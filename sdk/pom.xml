@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>sdk-parent</artifactId>
+        <groupId>com.sportradar.sdk</groupId>
+        <version>2.0.0</version>
+    </parent>
+
+    <artifactId>sdk</artifactId>
+    <packaging>jar</packaging>
+    <name>Livedata SDK - Livescout Distribution</name>
+
+<!--  removed testing dependencies  -->
+    <dependencies>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.j256.simplejmx</groupId>
+            <artifactId>simplejmx</artifactId>
+        </dependency>
+
+        <!-- XML Binding -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Dependency Injection Container -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-throwingproviders</artifactId>
+        </dependency>
+
+        <!-- Disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+        </dependency>
+
+        <!-- Miscellaneous -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+<!--     taken from sdk-common and sdk-feed-layer. Common-sdk build normally without it.       -->
+            <resource>
+                <directory>../sdk-feed-layer/src/main/resources</directory>
+            </resource>
+<!--     taken from skd-proto-layer       -->
+            <resource>
+                <directory>src/main/wsdl</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+<!--      maven-resources-plugin took from sdk-common. Common-sdk build normally without it.       -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-version</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${basedir}/target/classes</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>${jaxb2-maven-plugin.version}</version>
+                <executions>
+                    <!-- Live Scout -->
+                    <execution>
+                        <id>scout-xjc</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <extension>true</extension>
+                            <sources><source>src/main/xsd/Scout.xsd</source></sources>
+                            <xjbSources><xjbSource>src/main/xjb/Scout.xjb</xjbSource></xjbSources>
+                            <staleFileDirectory>${project.build.directory}/jaxb2/scout-XjcStaleFlag</staleFileDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>scout-request-xjc</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <extension>true</extension>
+                            <sources><source>src/main/xsd/ScoutRequest.xsd</source></sources>
+                            <xjbSources><xjbSource>src/main/xjb/ScoutRequest.xjb</xjbSource></xjbSources>
+                            <staleFileDirectory>${project.build.directory}/jaxb2/scout-request-XjcStaleFlag</staleFileDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+<!--                                <exclude>images/</exclude>-->
+<!--                                <exclude>*.properties</exclude>-->
+                                <exclude>module-info.class</exclude>
+<!--                                not working-->
+<!--                                <exclude>META-INF.versions.9.module-info</exclude>-->
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <!-- Fatjar -->
+                    <execution>
+                        <id>shade-dependencies</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>fatjar</shadedClassifierName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>shade-dependencies-relocation</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>fatjar-shaded</shadedClassifierName>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org</pattern>
+                                    <shadedPattern>com.sportradar.shaded.org</shadedPattern>
+                                    <excludes>
+                                        <exclude>org.slf4j.**</exclude>
+                                        <exclude>org.xml.**</exclude>
+                                        <exclude>org.joda.**</exclude>
+                                        <exclude>org.w3c.dom.**</exclude>
+                                    </excludes>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com</pattern>
+                                    <shadedPattern>com.sportradar.shaded.com</shadedPattern>
+                                    <includes>
+                                        <include>com.google.**</include>
+                                        <include>com.j256.**</include>
+                                        <include>com.lmax.**</include>
+                                        <include>com.thoughtworks.**</include>
+                                    </includes>
+                                </relocation>
+                                <relocation>
+                                    <pattern>javassist</pattern>
+                                    <shadedPattern>com.sportradar.shaded.javassist</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>jakarta</pattern>
+                                    <shadedPattern>com.sportradar.shaded.jakarta</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>javax</pattern>
+                                    <shadedPattern>com.sportradar.shaded.javax</shadedPattern>
+                                    <includes>
+                                        <include>javax.annotation.**</include>
+                                        <include>javax.inject.**</include>
+                                    </includes>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net</pattern>
+                                    <shadedPattern>com.sportradar.shaded.net</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>${copy-rename-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

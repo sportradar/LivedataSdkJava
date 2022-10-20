@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings
+        xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        version="3.0">
+
+    <jxb:bindings schemaLocation="../xsd/ScoutRequest.xsd" version="1.0">
+        <jxb:schemaBindings>
+            <jxb:package name="com.sportradar.sdk.proto.dto.outgoing.livescout"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <jxb:globalBindings>
+        <xjc:superClass name="com.sportradar.sdk.proto.dto.OutgoingMessage" />
+    </jxb:globalBindings>
+
+</jxb:bindings>

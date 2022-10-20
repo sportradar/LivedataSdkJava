@@ -1,0 +1,112 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+<!--    <groupId>com.sportradar.sdk</groupId>-->
+<!--    <artifactId>sportradar-sdk</artifactId>-->
+<!--    <name>Sportradar Livedata Feed SDK</name>-->
+<!--    <version>${project.version}</version>-->
+
+<!--    <dependencies>-->
+<!--        &lt;!&ndash; logging &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-api</artifactId>-->
+<!--            <version>${slf4j.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-core</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-classic</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-access</artifactId>-->
+<!--            <version>${logback.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.j256.simplejmx</groupId>-->
+<!--            <artifactId>simplejmx</artifactId>-->
+<!--            <version>${simplejmx.version}</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Dependency Injection Container &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.inject</groupId>-->
+<!--            <artifactId>javax.inject</artifactId>-->
+<!--            <version>${javax.inject.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.google.inject</groupId>-->
+<!--            <artifactId>guice</artifactId>-->
+<!--            <version>${guice.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.google.inject.extensions</groupId>-->
+<!--            <artifactId>guice-throwingproviders</artifactId>-->
+<!--            <version>${guice.version}</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Disruptor &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.lmax</groupId>-->
+<!--            <artifactId>disruptor</artifactId>-->
+<!--            <version>${disruptor.version}</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Miscellaneous &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>xerces</groupId>-->
+<!--            <artifactId>xercesImpl</artifactId>-->
+<!--            <version>${xerces.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.google.guava</groupId>-->
+<!--            <artifactId>guava</artifactId>-->
+<!--            <version>${guava.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>joda-time</groupId>-->
+<!--            <artifactId>joda-time</artifactId>-->
+<!--            <version>${jodatime.version}</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Java Mail API &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.mail</groupId>-->
+<!--            <artifactId>mail</artifactId>-->
+<!--            <version>${javax.mail.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>commons-net</groupId>-->
+<!--            <artifactId>commons-net</artifactId>-->
+<!--            <version>${commonsnet.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>commons-io</groupId>-->
+<!--            <artifactId>commons-io</artifactId>-->
+<!--            <version>${commonsio.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>commons-lang</groupId>-->
+<!--            <artifactId>commons-lang</artifactId>-->
+<!--            <version>${commonslang.version}</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.reflections</groupId>-->
+<!--            <artifactId>reflections-maven</artifactId>-->
+<!--            <version>${reflections.version}</version>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+<!--</project>-->

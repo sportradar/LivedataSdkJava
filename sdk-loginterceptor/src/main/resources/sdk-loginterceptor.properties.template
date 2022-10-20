@@ -1,0 +1,8 @@
+sdk.loginterceptor.to=sdk-alerts@klika.si
+sdk.loginterceptor.from=nobody@klika.si
+sdk.loginterceptor.subject=[SDK Java] Log report
+sdk.loginterceptor.smtpHost=smtp.gmail.com
+sdk.loginterceptor.smtpPort=587
+sdk.loginterceptor.username=
+sdk.loginterceptor.password=
+sdk.loginterceptor.interval=60000

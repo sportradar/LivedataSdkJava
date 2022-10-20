@@ -1,0 +1,241 @@
+####### All values here are just to see proper format for specific property
+####### They don't represent values that are/should be actually used
+
+# Is the feed enabled
+.enabled=true
+# Sportradar bookmaker id for feed, mandatory if .enabled=true
+.bookmaker_id=1337
+# Password for specified bookmaker id, mandatory if .enabled=true
+.bookmaker_key=Password
+# Connect to the test server
+.test=false
+# How long to wait before fetching translations from server
+.translation_initial_delay = 00:00:00:10
+# Interval for updating translations
+.translation_interval = 00:01:0:00
+# Desired translation languages (when not present defaults to server configuration)
+.languages = en,si,test
+# How long to wait after alive to start error recovery
+.error_recovery_delay = 00:00:00:10
+# How long can error recovery last
+.error_recovery_max_duration = 00:00:05:00
+# Maximum number of events requested at once
+.error_recovery_max_chunk_size = 20
+# Maximum interval for meta requests
+.max_meta_request_interval = 10:00:00:00
+# Interval on how long should SDK send alive message(for feeds that have this)
+.client_alive_msg_timeout = 00:00:00:10
+# Hostname to connect to for specific feed (used to override the default hostname)
+.host_name= service.betradar.com
+# What is the max number of login request per time interval
+.login_limiters = 10;00:01:00:00
+# What is the max number of request per match per time interval
+.match_request_limiters = "10;00:01:00:00" "100;00:05:00:00" "1000;01:00:00:00"
+# What is the max number of all request per time interval
+.request_limiters  = "10;00:01:00:00" "100;00:05:00:00"
+# How much dispatcher thread to use for dispatching events to feed listener
+.dispatcher_thread_count = 4
+# Dispatcher (disruptor) queue size
+.dispatcher_queue_size = 16384
+# Max received message size in bytes
+.max_message_size = 1048576
+# How long to wait before trying to connect if first attempt fails
+.reconnect_wait = 00:00:00:10
+# Max number of match ids in a single request
+.max_request_match_ids =200
+# How long before the user request expires in case of no reply
+.max_request_time_allowance = 00:01:00:00
+# How long to wait before trying to connect after disconnect
+.initial_reconnect_wait = 00:00:00:10
+# Port to connect to for specific feed (used to override the default)
+.port = 1337
+# Buffer size for receiving messages
+.receive_buffer_size  = 16777216
+# Max timeout for no messages received from server before disconnecting from feed
+.server_alive_msg_timeout = 00:00:00:20
+# Use TLS/SSL connection
+.use_ssl = true
+# Path where to create logs
+.logger.log_path = folder/subfolder
+# Interval when to check for old logs
+.logger.old_log_cleanup_interval = 00:01:00:00
+# Logs older than that will be deleted
+.logger.old_log_max_age = 01:00:00:00
+# Severity level for alert logs
+.logger.alert_log_level= Info
+# Severity level for client interaction logs
+.logger.client_interaction_log_level = Warn
+# Severity level for configuration changes logs
+.logger.config_log_level=Debug
+# Severity level for invalid message logs
+.logger.invalid_msg_log_level=Debug
+# Severity level for statistics logs
+.logger.stats_log_level=All
+# Severity level for traffic logs
+.logger.traffic_log_level=Info
+# Max log file size in bytes
+.logger.max_file_size = 10485760
+# Should the feed disconnect on feed error
+.disconnect_on_parse_error=true
+
+
+####   All LiveScout settings
+####   Valid for :
+####     sdk.livescout
+####
+####
+
+# Is the feed enabled
+.enabled=true
+# Sportradar bookmaker username for feed, mandatory if .enabled=true
+.username=Username
+# Sportradar bookmaker password for feed, mandatory if .enabled=true
+.password=Password
+# Connect to test server
+.test=false
+# When are cached events checked for expiry
+.match_expire_check_interval= 00:01:00:00
+# When do cached events expire
+.match_expire_max_age = 00:10:00:00
+# Maximum match list interval
+.max_match_list_interval= 07:00:00:00
+# Interval on how long should SDK send alive message(for feeds that have this)
+.client_alive_msg_timeout = 00:00:00:10
+# Hostname to connect to for specific feed (used to override the default hostname)
+.host_name= service.betradar.com
+# What is the max number of login request per time interval
+.login_limiters = 10;00:01:00:00
+# What is the max number of request per match per time interval
+.match_request_limiters = "10;00:01:00:00" "100;00:05:00:00" "1000;01:00:00:00"
+# What is the max number of all request per time interval
+.request_limiters  = "10;00:01:00:00" "100;00:05:00:00"
+# How much dispatcher thread to use for dispatching events to feed listener
+.dispatcher_thread_count = 4
+# Dispatcher (disruptor) queue size
+.dispatcher_queue_size = 16384
+# Max received message size in bytes
+.max_message_size = 1048576
+# How long to wait before trying to connect if first attempt fails
+.reconnect_wait = 00:00:00:10
+# Max number of match ids in a single request
+.max_request_match_ids =200
+# How long before the user request expires in case of no reply
+.max_request_time_allowance = 00:01:00:00
+# How long to wait before trying to connect after disconnect
+.initial_reconnect_wait = 00:00:00:05
+# Port to connect to for specific feed (used to override the default)
+.port = 1337
+# Buffer size for receiving messages
+.receive_buffer_size  = 16777216
+# Max timeout for no messages received from server before disconnecting from feed
+.server_alive_msg_timeout = 00:00:00:20
+# Use SSL/TLS connection
+.use_ssl = true
+# Path where to create logs
+.logger.log_path = folder/subfolder
+# Interval when to check for old logs
+.logger.old_log_cleanup_interval = 00:01:00:00
+# Logs older than that will be deleted
+.logger.old_log_max_age = 01:00:00:00
+# Severity level for alert logs
+.logger.alert_log_level= Info
+# Severity level for client interaction logs
+.logger.client_interaction_log_level = Warn
+# Severity level for configuration changes logs
+.logger.config_log_level=Debug
+# Severity level for invalid message logs
+.logger.invalid_msg_log_level=Debug
+# Severity level for statistics logs
+.logger.stats_log_level=All
+# Severity level for traffic logs
+.logger.traffic_log_level=Info
+# Max log file size in bytes
+.max_file_size = 10485760
+# Should the feed disconnect on feed error
+.disconnect_on_parse_error=true
+
+
+# Is the feed enabled
+.enabled=true
+# Sportradar bookmaker id for feed, mandatory if .enabled=true
+.username=Username
+# Sportradar bookmaker password for feed, mandatory if .enabled=true
+.password=Password
+# XML feed name (etc FileGet, Fixtures). Default is FileGet
+.feed_name=FileGet
+# URL for the data request (first %s is replaced with username, second with password, third with feed name)
+.url = https://www.betradar.com/betradar/getXmlFeed.php?bookmakerName=%s&key=%s&xmlFeedName=%s
+# URL for the clear queue request (first %s is replaced with username, second with password, third with feed name)
+.clear_queue_url=https://www.betradar.com/betradar/getXmlFeed.php?bookmakerName=%s&key=%s&xmlFeedName=%s&deleteFullQueue=yes
+# If server says there is more data request this often (10 seconds is enforced by server)
+.low_delay=00:00:00:07
+# Regular delay between two consecutive data fetches
+.regular_delay= 00:00:00:12
+# Which timezone to use when parsing dates in MatchDate, EventDate. Default is Europe/Oslo
+.fixture_timezone=Europe/Oslo
+# Socket timeout
+.request_timeout= 00:00:01:00
+# Connection timeout
+.connection_timeout=00:00:00:10
+# Keep alive
+.keep_alive=true
+# Path where to create logs
+.logger.log_path = folder/subfolder
+# Interval when to check for old logs
+.logger.old_log_cleanup_interval = 00:01:00:00
+# Logs older than that will be deleted
+.logger.old_log_max_age = 01:00:00:00
+# Severity level for alert logs
+.logger.alert_log_level= Info
+# Severity level for client interaction logs
+.logger.client_interaction_log_level = Warn
+# Severity level for configuration changes logs
+.logger.config_log_level=Debug
+# Severity level for invalid message logs
+.logger.invalid_msg_log_level=Debug
+# Severity level for statistics logs
+.logger.stats_log_level=All
+# Severity level for traffic logs
+.logger.traffic_log_level=Info
+# Max log file size in bytes
+.max_file_size = 10485760
+# How much dispatcher thread to use for dispatching events to feed listener
+.dispatcher_thread_count = 4
+# Dispatcher (disruptor) queue size
+.dispatcher_queue_size = 16384
+
+####   All logger settings
+####   Valid for :
+####     sdk.common.logger
+####
+####
+
+# Severity level for execution logging
+.execution_log_level=Trace
+# Path where to create logs
+.log_path = folder/subfolder
+# Max log file size in bytes
+.max_file_size = 10485760
+
+# Maximum number of stashed elements (soft limit will just cause warnings), negative value means infinity
+.stash_soft_limit = 5000
+# Hard limit will stop stashing more, negative value means infinity
+.stash_hard_limit = -1
+
+
+####   All JMX settings
+####   Valid for :
+####     sdk.jmx
+####
+####
+
+# Enable JMX
+.enabled=false
+# Bind IP
+.host=localhost
+# Bind port
+.port=12345
+# Where is password file for JMX configuration stored
+.passwordfile=c:/jmxremote.password
+# Where is JMX access configuration file stored
+.accessfile=c:/jmxremote.access

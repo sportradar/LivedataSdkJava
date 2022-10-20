@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%.10thread] [%-5level] %logger{32} - %n%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+
+
+    </appender>
+
+    <logger name="com.sportradar.sdk.LoggingInputStream" level="ERROR"/>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
