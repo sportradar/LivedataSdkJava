@@ -135,13 +135,15 @@
                         <phase>package</phase>
                         <id>attach-javadocs</id>
                         <goals>
-                            <goal>aggregate-jar</goal>
+                            <goal>aggregate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <show>public</show>
                     <level>public</level>
+                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                    <destDir>${project.version}</destDir>
                     <sourcepath>
                         sdk/src/main/java/com/sportradar/sdk/feed/common;
                         sdk/src/main/java/com/sportradar/sdk/feed/livescout/entities;
