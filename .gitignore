@@ -5,4 +5,3 @@ target/
 sdk-test/dependency-reduced-pom.xml
 sdk/dependency-reduced-pom.xml
 .idea/
-docs/
