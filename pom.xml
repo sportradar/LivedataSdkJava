@@ -165,8 +165,18 @@
                 <configuration>
                     <show>public</show>
                     <level>public</level>
-                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
-                    <destDir>${project.version}</destDir>
+                    <source>11</source>
+                    <excludePackageNames>*.asn1.*</excludePackageNames>
+                    <quiet>true</quiet>
+                    <notimestamp>true</notimestamp>
+                    <nodeprecated>true</nodeprecated>
+                    <locale>en</locale>
+                    <doclint>none</doclint>
+
+                    <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
+                    <destDir>docs</destDir>
+<!--                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>-->
+<!--                    <destDir>${project.version}</destDir>-->
                     <sourcepath>
                         sdk/src/main/java/com/sportradar/sdk/feed/common;
                         sdk/src/main/java/com/sportradar/sdk/feed/livescout/entities;

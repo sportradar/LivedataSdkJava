@@ -11,7 +11,7 @@
 
     <artifactId>sdk</artifactId>
     <packaging>jar</packaging>
-    <name>Livedata SDK - Livescout Distribution</name>
+    <name>Livedata SDK - Distribution</name>
 
 <!--  removed testing dependencies  -->
     <dependencies>
