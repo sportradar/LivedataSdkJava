@@ -167,6 +167,7 @@
                     <level>public</level>
                     <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
                     <destDir>docs</destDir>
+                    <notimestamp>true</notimestamp>
 <!--                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>-->
 <!--                    <destDir>${project.version}</destDir>-->
                     <sourcepath>
