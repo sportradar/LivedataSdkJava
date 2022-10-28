@@ -37,8 +37,8 @@ SDK will make various logs during its operation. Logs are organized into various
 SDK generates implicit "*bet stop*" message after disconnect and does automatic error recovery. It does however not keep track of bet clearings!
 If you are disconnected for a long time it may happen that after you come back the match is already over. In that time-frame bets were not accepted (so you are safe) but it might still be necessary to clear the bets placed at the begining of the match. In that (rare) case you it is up to you to invoke [getMatchStatus](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/feed/livescout/entities/MatchUpdateEntity.html#getMatchStatus()) method to obtain bet clearings to do correct pay-outs (if / when required).
 
-~~If match is suspended or cancelled you will receive onMetaInfoReceived and see the change periodically in onAliveReceived as AliveEntity.getEventHeaders().getStatus(),
-but again you can be disconnected too long and miss that. So same logic as before applies, you need to be sure to do some sort of "garbage-collection" and delete stale matches.~~
+<!--If match is suspended or cancelled you will receive onMetaInfoReceived and see the change periodically in onAliveReceived as AliveEntity.getEventHeaders().getStatus(),
+but again you can be disconnected too long and miss that. So same logic as before applies, you need to be sure to do some sort of "garbage-collection" and delete stale matches.-->
 
 SDK never generates implicit "_bet start_". You should not rely on "_bet start_" to start accepting bets again but check [MatchHeaderEntity.getBetStatus()](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/feed/livescout/entities/MatchHeaderEntity.html#getBetStatus())!
 
