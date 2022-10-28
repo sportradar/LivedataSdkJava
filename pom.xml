@@ -171,15 +171,15 @@
 <!--                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>-->
 <!--                    <destDir>${project.version}</destDir>-->
                     <sourcepath>
-                        sdk/src/main/java/com/sportradar/sdk/feed/common;
-                        sdk/src/main/java/com/sportradar/sdk/feed/livescout/entities;
-                        sdk/src/main/java/com/sportradar/sdk/feed/livescout/enums;
-                        sdk/src/main/java/com/sportradar/sdk/feed/livescout/interfaces;
-                        sdk/src/main/java/com/sportradar/sdk/feed/sdk;
-                        sdk/src/main/java/com/sportradar/sdk/common;
-                        sdk/src/main/java/com/sportradar/sdk/common/enums;
-                        sdk/src/main/java/com/sportradar/sdk/common/classes;
-                        sdk/src/main/java/com/sportradar/sdk/common/exceptions;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/common;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/entities;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/enums;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/interfaces;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/sdk;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/common;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/common/enums;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/common/classes;
+                        sdk/src/main/java/com/sportradar/livedata/sdk/common/exceptions;
                     </sourcepath>
 <!--                    <excludePackageNames>-->
 <!--                        *com.sportradar.livedata.sdk.common.classes*-->
