@@ -5,3 +5,6 @@ target/
 sdk-test/dependency-reduced-pom.xml
 sdk/dependency-reduced-pom.xml
 .idea/
+docs/member-search-index.zip
+docs/package-search-index.zip
+docs/type-search-index.zip
