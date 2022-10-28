@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.conn;
+package com.sportradar.livedata.sdk.test.conn;
 
 public interface FakeGatewayListener {
 

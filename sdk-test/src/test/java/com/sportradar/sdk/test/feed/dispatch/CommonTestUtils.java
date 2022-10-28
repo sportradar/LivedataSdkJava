@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.feed.dispatch;
+package com.sportradar.livedata.sdk.test.feed.dispatch;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

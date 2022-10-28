@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.system.framework.livescout;
+package com.sportradar.livedata.sdk.test.system.framework.livescout;
 
-import com.sportradar.sdk.test.system.framework.common.Match;
+import com.sportradar.livedata.sdk.test.system.framework.common.Match;
 
 public class LiveScoutMatch extends Match {
 

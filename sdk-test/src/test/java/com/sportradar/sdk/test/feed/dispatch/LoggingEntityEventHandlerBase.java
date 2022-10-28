@@ -1,17 +1,17 @@
-package com.sportradar.sdk.test.feed.dispatch;
+package com.sportradar.livedata.sdk.test.feed.dispatch;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.sportradar.sdk.common.classes.FileSdkLogger;
-import com.sportradar.sdk.common.enums.SdkLogAppenderType;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.settings.DefaultSettingsBuilderHelper;
-import com.sportradar.sdk.common.settings.LoggerSettings;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
-import com.sportradar.sdk.test.common.FileSdkLoggerTestBase;
+import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.test.common.FileSdkLoggerTestBase;
 
 import java.util.List;
 import java.util.concurrent.Executors;

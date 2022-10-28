@@ -1,13 +1,13 @@
-package com.sportradar.sdk.test.system.framework.livescout;
+package com.sportradar.livedata.sdk.test.system.framework.livescout;
 
-import com.sportradar.sdk.common.settings.DefaultSettingsBuilderHelper;
-import com.sportradar.sdk.common.settings.LiveScoutSettingsBuilder;
-import com.sportradar.sdk.dispatch.livescout.LiveScoutDispatcher;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.sdk.test.NullSdkLogger;
-import com.sportradar.sdk.test.conn.FakeGateway;
-import com.sportradar.sdk.test.system.framework.common.*;
+import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettingsBuilder;
+import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.test.NullSdkLogger;
+import com.sportradar.livedata.sdk.test.conn.FakeGateway;
+import com.sportradar.livedata.sdk.test.system.framework.common.*;
 
 import jakarta.xml.bind.JAXBException;
 
@@ -34,8 +34,8 @@ public class LiveScoutSystemTestFramework {
                             sdkDataListener.sdkEntitySend(msg);
                         }
                     },
-                    "com.sportradar.sdk.proto.dto.incoming.livescout",
-                    "com.sportradar.sdk.proto.dto.outgoing.livescout");
+                    "com.sportradar.livedata.sdk.proto.dto.incoming.livescout",
+                    "com.sportradar.livedata.sdk.proto.dto.outgoing.livescout");
         } catch (JAXBException e) {
             e.printStackTrace();
         }

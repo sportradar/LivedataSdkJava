@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.feed.feed.entities;
+package com.sportradar.livedata.sdk.test.feed.feed.entities;
 
-import com.sportradar.sdk.feed.livescout.enums.EventType;
+import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

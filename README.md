@@ -10,12 +10,12 @@ sdk.livescout.username=xxx
 sdk.livescout.password=xxx
 ```
 A complete list of properties and their defaults (when appropriate) can be found [here](https://github.com/sportradar/LivedataSdkJava/blob/main/sdk-example/src/main/resources/sdk.properties.all).
-- SDK will throw [MissingPropertyFileException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/common/exceptions/MissingPropertyFileException.html) if sdk.properties file is not found
-- SDK will throw [MissingPropertyException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/common/exceptions/MissingPropertyException.html) if any mandatory property is missing from the properties file
-- SDK will throw [InvalidPropertyException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/common/exceptions/InvalidPropertyException.html) if any property written in properties file is malformed
+- SDK will throw [MissingPropertyFileException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/common/exceptions/MissingPropertyFileException.html) if sdk.properties file is not found
+- SDK will throw [MissingPropertyException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/common/exceptions/MissingPropertyException.html) if any mandatory property is missing from the properties file
+- SDK will throw [InvalidPropertyException](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/common/exceptions/InvalidPropertyException.html) if any property written in properties file is malformed
 
 ### Usage
-First you need to implement the [LiveScoutFeedListener](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/feed/livescout/interfaces/LiveScoutFeedListener.html) that will receive callbacks for each message/event.
+First you need to implement the [LiveScoutFeedListener](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/feed/livescout/interfaces/LiveScoutFeedListener.html) that will receive callbacks for each message/event.
 Then to actually connect and start receiving messages you do the following:
 ```java
 final Sdk sdk = Sdk.getInstance();
@@ -26,7 +26,7 @@ liveScoutFeed.open(scoutFeedListener);
 > **_NOTE:_**  Bookmaker SDK is a singleton. There should be only one SDK instance per process. When using multiple processes avoid running multiple SDK instances, especially if the same access credentials are used. You may end up in an inconsistent state and get problems due to limits on the server side. Use IPC instead in such cases.
 
 SDK provider(s) will try to connect to the corresponding XML feed server and keep the connection alive. If the connection is lost the provider will try to reconnect automatically - you will be informed of this through the corresponding events.
-<br>To send message use [LiveScoutFeed](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/feed/livescout/interfaces/LiveScoutFeed.html) instace. For example:
+<br>To send message use [LiveScoutFeed](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/feed/livescout/interfaces/LiveScoutFeed.html) instace. For example:
 ```java
 final LiveScoutFeed liveScoutFeed = sdk.getLiveScout();
 liveScoutFeed.getMatchList(1,3,true);
@@ -40,7 +40,7 @@ If you are disconnected for a long time it may happen that after you come back t
 <!--If match is suspended or cancelled you will receive onMetaInfoReceived and see the change periodically in onAliveReceived as AliveEntity.getEventHeaders().getStatus(),
 but again you can be disconnected too long and miss that. So same logic as before applies, you need to be sure to do some sort of "garbage-collection" and delete stale matches.-->
 
-SDK never generates implicit "_bet start_". You should not rely on "_bet start_" to start accepting bets again but check [MatchHeaderEntity.getBetStatus()](https://sportradar.github.io/LivedataSdkJava/com/sportradar/sdk/feed/livescout/entities/MatchHeaderEntity.html#getBetStatus())!
+SDK never generates implicit "_bet start_". You should not rely on "_bet start_" to start accepting bets again but check [MatchHeaderEntity.getBetStatus()](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getBetStatus())!
 
 ### Documentation
 [Javadoc](https://sportradar.github.io/LivedataSdkJava/)

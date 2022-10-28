@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.feed.dispatch;
+package com.sportradar.livedata.sdk.test.feed.dispatch;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;

@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.system.framework.common;
+package com.sportradar.livedata.sdk.test.system.framework.common;
 
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 
 public interface SdkDataListener {
 

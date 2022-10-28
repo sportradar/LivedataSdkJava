@@ -1,11 +1,11 @@
-package com.sportradar.sdk.test.system.framework.common;
+package com.sportradar.livedata.sdk.test.system.framework.common;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.sportradar.sdk.common.settings.*;
-import com.sportradar.sdk.di.*;
+import com.sportradar.livedata.sdk.common.settings.*;
+import com.sportradar.livedata.sdk.di.*;
 
-import static com.sportradar.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
 public class TestInjectionHelper {
 

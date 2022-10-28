@@ -1,15 +1,15 @@
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.sportradar.sdk.common.classes.*;
-import com.sportradar.sdk.common.enums.SdkLogAppenderType;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.settings.DefaultSettingsBuilderHelper;
-import com.sportradar.sdk.common.settings.LoggerSettings;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.classes.*;
+import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +21,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-import static com.sportradar.sdk.test.common.FileSdkLoggerTestBase.getLogger;
+import static com.sportradar.livedata.sdk.test.common.FileSdkLoggerTestBase.getLogger;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 

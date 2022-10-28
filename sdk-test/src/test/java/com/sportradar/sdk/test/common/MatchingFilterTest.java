@@ -2,10 +2,10 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
 import ch.qos.logback.core.spi.FilterReply;
-import com.sportradar.sdk.common.classes.SdkLoggerCfg;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerCfg;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Marker;

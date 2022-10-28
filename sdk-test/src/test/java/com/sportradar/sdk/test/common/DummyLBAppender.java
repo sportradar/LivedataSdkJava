@@ -2,7 +2,7 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;

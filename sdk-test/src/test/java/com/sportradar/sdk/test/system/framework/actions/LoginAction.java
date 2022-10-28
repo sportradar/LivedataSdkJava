@@ -1,11 +1,11 @@
-package com.sportradar.sdk.test.system.framework.actions;
+package com.sportradar.livedata.sdk.test.system.framework.actions;
 
 import org.hamcrest.Description;
 import org.jmock.States;
 import org.jmock.api.Action;
 import org.jmock.api.Invocation;
 
-import static com.sportradar.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
 public class LoginAction implements Action {
 

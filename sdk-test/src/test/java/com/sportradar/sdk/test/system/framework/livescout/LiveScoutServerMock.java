@@ -1,18 +1,18 @@
-package com.sportradar.sdk.test.system.framework.livescout;
+package com.sportradar.livedata.sdk.test.system.framework.livescout;
 
 
-import com.sportradar.sdk.proto.dto.IncomingMessage;
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.sdk.proto.dto.outgoing.livescout.*;
-import com.sportradar.sdk.test.conn.FakeGateway;
-import com.sportradar.sdk.test.system.framework.common.SystemTestMessageParser;
+import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.*;
+import com.sportradar.livedata.sdk.test.conn.FakeGateway;
+import com.sportradar.livedata.sdk.test.system.framework.common.SystemTestMessageParser;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.sportradar.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
 public class LiveScoutServerMock {
 
@@ -202,7 +202,7 @@ public class LiveScoutServerMock {
     }
 
     protected void handleServertime() {
-        com.sportradar.sdk.proto.dto.incoming.livescout.Servertime servertime = LiveScoutServerResponseFactory.buildServertime();
+        com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Servertime servertime = LiveScoutServerResponseFactory.buildServertime();
     }
 
 

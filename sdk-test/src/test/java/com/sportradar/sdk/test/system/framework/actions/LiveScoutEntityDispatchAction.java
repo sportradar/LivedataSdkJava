@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.system.framework.actions;
+package com.sportradar.livedata.sdk.test.system.framework.actions;
 
-import com.sportradar.sdk.feed.livescout.entities.LiveScoutEntityBase;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import org.hamcrest.Description;
 import org.jmock.States;
 import org.jmock.api.Action;

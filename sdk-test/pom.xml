@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>sdk-parent</artifactId>
-        <groupId>com.sportradar.sdk</groupId>
+        <groupId>com.sportradar.livedata.sdk</groupId>
         <version>2.0.0</version>
     </parent>
 
-    <groupId>com.sportradar.sdk.test</groupId>
+    <groupId>com.sportradar.livedata.sdk.test</groupId>
     <artifactId>sdk-test</artifactId>
     <packaging>jar</packaging>
     <name>Livedata SDK - End To End Tests</name>
@@ -16,7 +16,7 @@
     <dependencies>
         <!-- Dependencies to other projects in this solution -->
         <dependency>
-            <groupId>com.sportradar.sdk</groupId>
+            <groupId>com.sportradar.livedata.sdk</groupId>
             <artifactId>sdk</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

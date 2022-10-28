@@ -1,19 +1,19 @@
-package com.sportradar.sdk.test.feed.feed.di;
+package com.sportradar.livedata.sdk.test.feed.feed.di;
 
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.networking.Gateway;
-import com.sportradar.sdk.di.LiveScoutInjectionModule;
-import com.sportradar.sdk.dispatch.livescout.LiveScoutDispatcher;
-import com.sportradar.sdk.feed.common.ProtocolManager;
-import com.sportradar.sdk.feed.common.entities.EntityBase;
-import com.sportradar.sdk.feed.common.interfaces.UserRequestManager;
-import com.sportradar.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.networking.Gateway;
+import com.sportradar.livedata.sdk.di.LiveScoutInjectionModule;
+import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
+import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
+import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
+import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
+import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

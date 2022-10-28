@@ -1,7 +1,7 @@
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import com.sportradar.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

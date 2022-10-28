@@ -2,12 +2,12 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
-import com.sportradar.sdk.common.exceptions.InvalidPropertyException;
-import com.sportradar.sdk.common.exceptions.MissingPropertyException;
-import com.sportradar.sdk.common.settings.LimiterData;
-import com.sportradar.sdk.common.settings.PropertiesParser;
+import com.sportradar.livedata.sdk.common.exceptions.InvalidPropertyException;
+import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
+import com.sportradar.livedata.sdk.common.settings.LimiterData;
+import com.sportradar.livedata.sdk.common.settings.PropertiesParser;
 import org.joda.time.Duration;
 import org.junit.Test;
 

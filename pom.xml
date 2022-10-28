@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sportradar.sdk</groupId>
+    <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk-parent</artifactId>
     <version>2.0.0</version>
     <modules>
@@ -182,9 +182,9 @@
                         sdk/src/main/java/com/sportradar/sdk/common/exceptions;
                     </sourcepath>
 <!--                    <excludePackageNames>-->
-<!--                        *com.sportradar.sdk.common.classes*-->
-<!--                        *com.sportradar.sdk.common.interfaces*-->
-<!--                        *com.sportradar.sdk.common.settings*-->
+<!--                        *com.sportradar.livedata.sdk.common.classes*-->
+<!--                        *com.sportradar.livedata.sdk.common.interfaces*-->
+<!--                        *com.sportradar.livedata.sdk.common.settings*-->
 <!--                        *EntityMapper*-->
 <!--                        *Factory*-->
 <!--                        *HttpMethod*-->

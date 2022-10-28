@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.system.framework.actions;
+package com.sportradar.livedata.sdk.test.system.framework.actions;
 
 import org.hamcrest.Description;
 import org.jmock.States;

@@ -11,7 +11,7 @@
 
     </appender>
 
-    <logger name="com.sportradar.sdk.LoggingInputStream" level="ERROR"/>
+    <logger name="com.sportradar.livedata.sdk.LoggingInputStream" level="ERROR"/>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>

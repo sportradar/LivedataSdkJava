@@ -2,28 +2,28 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.integration;
+package com.sportradar.livedata.sdk.test.integration;
 
-import com.sportradar.sdk.common.classes.SdkVersion;
-import com.sportradar.sdk.common.enums.FeedEventType;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.networking.Gateway;
-import com.sportradar.sdk.common.networking.ReconnectingGateway;
-import com.sportradar.sdk.common.networking.TcpGateway;
-import com.sportradar.sdk.common.rategate.NullRateGate;
-import com.sportradar.sdk.common.rategate.RateLimiter;
-import com.sportradar.sdk.common.settings.DefaultSettingsBuilderHelper;
-import com.sportradar.sdk.common.settings.LiveScoutSettings;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
-import com.sportradar.sdk.common.networking.ConnectionMonitoringGateway;
-import com.sportradar.sdk.proto.LiveFeedProtocol;
-import com.sportradar.sdk.proto.common.*;
-import com.sportradar.sdk.proto.dto.IncomingMessage;
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
-import com.sportradar.sdk.proto.livescout.LiveScoutStatusFactory;
-import com.sportradar.sdk.test.NullSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.SdkVersion;
+import com.sportradar.livedata.sdk.common.enums.FeedEventType;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.networking.Gateway;
+import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
+import com.sportradar.livedata.sdk.common.networking.TcpGateway;
+import com.sportradar.livedata.sdk.common.rategate.NullRateGate;
+import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
+import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
+import com.sportradar.livedata.sdk.proto.LiveFeedProtocol;
+import com.sportradar.livedata.sdk.proto.common.*;
+import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.test.NullSdkLogger;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;

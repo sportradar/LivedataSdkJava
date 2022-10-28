@@ -1,9 +1,9 @@
-package com.sportradar.sdk.test.conn;
+package com.sportradar.livedata.sdk.test.conn;
 
-import com.sportradar.sdk.common.networking.GatewayListener;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
-import com.sportradar.sdk.common.networking.ConnectionMonitoringGateway;
+import com.sportradar.livedata.sdk.common.networking.GatewayListener;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;

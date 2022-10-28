@@ -1,9 +1,9 @@
-package com.sportradar.sdk.test.system.framework.livescout;
+package com.sportradar.livedata.sdk.test.system.framework.livescout;
 
 import com.google.inject.Provides;
-import com.sportradar.sdk.common.networking.Gateway;
-import com.sportradar.sdk.common.settings.LiveScoutSettings;
-import com.sportradar.sdk.di.LiveScoutInjectionModule;
+import com.sportradar.livedata.sdk.common.networking.Gateway;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
+import com.sportradar.livedata.sdk.di.LiveScoutInjectionModule;
 
 import javax.net.ssl.SSLSocketFactory;
 import java.util.concurrent.ExecutorService;
@@ -15,7 +15,7 @@ public class LiveScoutInjectionModuleMock extends LiveScoutInjectionModule {
     Gateway mockedGateway;
 
     /**
-     * Initializes a new instance of the {@link com.sportradar.sdk.di.LiveScoutInjectionModuleBase} class.
+     * Initializes a new instance of the {@link com.sportradar.livedata.sdk.di.LiveScoutInjectionModuleBase} class.
      *
      * @param settings       The {@link LiveScoutSettings} implementation containing live-scout configurable values.
      * @throws IllegalArgumentException The {@code settings} is a null reference.<

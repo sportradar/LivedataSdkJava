@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.feed.feed.di;
+package com.sportradar.livedata.sdk.test.feed.feed.di;
 
-import com.sportradar.sdk.di.JaxbContextProvider;
+import com.sportradar.livedata.sdk.di.JaxbContextProvider;
 import org.junit.Test;
 
 import jakarta.xml.bind.JAXBContext;

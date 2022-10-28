@@ -1,10 +1,10 @@
-package com.sportradar.sdk.test.conn;
+package com.sportradar.livedata.sdk.test.conn;
 
 import ch.qos.logback.classic.Logger;
-import com.sportradar.sdk.common.networking.Gateway;
-import com.sportradar.sdk.common.networking.GatewayListener;
-import com.sportradar.sdk.common.networking.ReconnectingGateway;
-import com.sportradar.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.networking.Gateway;
+import com.sportradar.livedata.sdk.common.networking.GatewayListener;
+import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
+import com.sportradar.livedata.sdk.common.timer.Timer;
 import org.joda.time.Duration;
 import org.slf4j.LoggerFactory;
 

@@ -2,9 +2,9 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
-import com.sportradar.sdk.common.classes.CommonUtils;
+import com.sportradar.livedata.sdk.common.classes.CommonUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;

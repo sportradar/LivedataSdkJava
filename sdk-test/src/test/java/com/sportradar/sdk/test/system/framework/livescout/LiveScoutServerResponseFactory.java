@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.system.framework.livescout;
+package com.sportradar.livedata.sdk.test.system.framework.livescout;
 
-import com.sportradar.sdk.proto.dto.incoming.livescout.*;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;

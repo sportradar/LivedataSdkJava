@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -6,14 +6,14 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.util.StatusPrinter;
-import com.sportradar.sdk.common.classes.FileSdkLogger;
-import com.sportradar.sdk.common.classes.SdkLoggerCfg;
-import com.sportradar.sdk.common.enums.SdkLogAppenderType;
-import com.sportradar.sdk.common.exceptions.SdkException;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.settings.LoggerSettings;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerCfg;
+import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
+import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
 import org.joda.time.Duration;
 import org.junit.Before;
 import org.junit.Rule;

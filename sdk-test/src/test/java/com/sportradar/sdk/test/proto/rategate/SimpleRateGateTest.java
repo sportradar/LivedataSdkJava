@@ -2,12 +2,12 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.proto.rategate;
+package com.sportradar.livedata.sdk.test.proto.rategate;
 
-import com.sportradar.sdk.common.rategate.RateGate;
-import com.sportradar.sdk.common.rategate.SimpleRateGate;
-import com.sportradar.sdk.common.timer.TimeProvider;
-import com.sportradar.sdk.test.FakeTimeProvider;
+import com.sportradar.livedata.sdk.common.rategate.RateGate;
+import com.sportradar.livedata.sdk.common.rategate.SimpleRateGate;
+import com.sportradar.livedata.sdk.common.timer.TimeProvider;
+import com.sportradar.livedata.sdk.test.FakeTimeProvider;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.api.Invocation;

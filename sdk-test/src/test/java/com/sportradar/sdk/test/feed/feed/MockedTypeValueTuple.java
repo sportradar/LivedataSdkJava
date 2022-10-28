@@ -1,6 +1,6 @@
-package com.sportradar.sdk.test.feed.feed;
+package com.sportradar.livedata.sdk.test.feed.feed;
 
-import com.sportradar.sdk.feed.common.entities.TypeValueTuple;
+import com.sportradar.livedata.sdk.feed.common.entities.TypeValueTuple;
 
 public class MockedTypeValueTuple extends TypeValueTuple {
 

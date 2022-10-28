@@ -2,9 +2,9 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.conn;
+package com.sportradar.livedata.sdk.test.conn;
 
-import com.sportradar.sdk.common.networking.TcpGateway;
+import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.sportradar.sdk.test.system.framework.common;
+package com.sportradar.livedata.sdk.test.system.framework.common;
 
 public class Match {
 

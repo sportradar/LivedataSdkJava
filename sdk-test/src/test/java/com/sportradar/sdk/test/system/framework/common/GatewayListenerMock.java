@@ -1,7 +1,7 @@
-package com.sportradar.sdk.test.system.framework.common;
+package com.sportradar.livedata.sdk.test.system.framework.common;
 
-import com.sportradar.sdk.common.exceptions.SdkException;
-import com.sportradar.sdk.test.conn.FakeGatewayListener;
+import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.test.conn.FakeGatewayListener;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 

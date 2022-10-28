@@ -2,7 +2,7 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.proto.rategate;
+package com.sportradar.livedata.sdk.test.proto.rategate;
 
 import org.joda.time.Duration;
 

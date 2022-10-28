@@ -1,12 +1,12 @@
-package com.sportradar.sdk.test.feed.dispatch.livescout;
+package com.sportradar.livedata.sdk.test.feed.dispatch.livescout;
 
-import com.sportradar.sdk.dispatch.livescout.EntityEventHandler;
-import com.sportradar.sdk.dispatch.livescout.LiveScoutDispatcherContainer;
-import com.sportradar.sdk.feed.common.entities.EventIdentifier;
-import com.sportradar.sdk.feed.livescout.entities.*;
-import com.sportradar.sdk.feed.livescout.enums.ScoutFeedType;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
+import com.sportradar.livedata.sdk.dispatch.livescout.EntityEventHandler;
+import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcherContainer;
+import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
+import com.sportradar.livedata.sdk.feed.livescout.entities.*;
+import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;

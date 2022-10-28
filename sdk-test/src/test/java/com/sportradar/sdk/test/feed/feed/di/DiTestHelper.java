@@ -1,9 +1,9 @@
-package com.sportradar.sdk.test.feed.feed.di;
+package com.sportradar.livedata.sdk.test.feed.feed.di;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.sportradar.sdk.common.settings.*;
-import com.sportradar.sdk.di.*;
+import com.sportradar.livedata.sdk.common.settings.*;
+import com.sportradar.livedata.sdk.di.*;
 
 public class DiTestHelper {
 

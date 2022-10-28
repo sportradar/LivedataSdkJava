@@ -1,9 +1,9 @@
-package com.sportradar.sdk.test.feed.feed.entities;
+package com.sportradar.livedata.sdk.test.feed.feed.entities;
 
-import com.sportradar.sdk.feed.common.enums.Team;
-import com.sportradar.sdk.feed.livescout.enums.*;
-import com.sportradar.sdk.proto.dto.IncomingMessage;
-import com.sportradar.sdk.proto.dto.incoming.livescout.*;
+import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import com.sportradar.livedata.sdk.feed.livescout.enums.*;
+import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 
 import javax.xml.namespace.QName;
 import java.math.BigDecimal;

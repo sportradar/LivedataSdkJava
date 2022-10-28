@@ -2,12 +2,12 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
-import com.sportradar.sdk.common.classes.BlockingList;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.Timer;
-import com.sportradar.sdk.common.timer.TimerListener;
+import com.sportradar.livedata.sdk.common.classes.BlockingList;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.common.timer.TimerListener;
 import org.joda.time.Duration;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Executors;
 
-import static com.sportradar.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 

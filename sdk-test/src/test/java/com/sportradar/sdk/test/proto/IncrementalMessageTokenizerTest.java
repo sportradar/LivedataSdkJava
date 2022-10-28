@@ -1,9 +1,9 @@
-package com.sportradar.sdk.test.proto;
+package com.sportradar.livedata.sdk.test.proto;
 
 import ch.qos.logback.classic.Level;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.proto.common.IncrementalMessageTokenizer;
-import com.sportradar.sdk.proto.common.MessageTokenizerListener;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.proto.common.IncrementalMessageTokenizer;
+import com.sportradar.livedata.sdk.proto.common.MessageTokenizerListener;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;

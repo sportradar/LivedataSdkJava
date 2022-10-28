@@ -1,18 +1,18 @@
-package com.sportradar.sdk.test.system.framework.common;
+package com.sportradar.livedata.sdk.test.system.framework.common;
 
 
-import com.sportradar.sdk.common.exceptions.SdkException;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.proto.common.*;
-import com.sportradar.sdk.proto.dto.IncomingMessage;
-import com.sportradar.sdk.proto.dto.MessageBase;
-import com.sportradar.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.proto.common.*;
+import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
+import com.sportradar.livedata.sdk.proto.dto.MessageBase;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import java.io.ByteArrayInputStream;
 
-import static com.sportradar.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
 public class SystemTestMessageParser {
 

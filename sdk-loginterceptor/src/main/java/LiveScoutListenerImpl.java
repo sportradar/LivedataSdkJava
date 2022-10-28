@@ -1,15 +1,15 @@
-import com.sportradar.sdk.common.enums.FeedEventType;
-import com.sportradar.sdk.feed.livescout.entities.*;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
+import com.sportradar.livedata.sdk.common.enums.FeedEventType;
+import com.sportradar.livedata.sdk.feed.livescout.entities.*;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 
 public class LiveScoutListenerImpl implements LiveScoutFeedListener {
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when match list requested by the user is received.
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when match list requested by the user is received.
      *
-     * @param sender    The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchList The {@link com.sportradar.sdk.feed.livescout.entities.MatchListEntity} representing the received match list.
+     * @param sender    The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchList The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchListEntity} representing the received match list.
      */
     @Override
     public void onMatchListReceived(LiveScoutFeed sender, MatchListEntity matchList) {
@@ -22,10 +22,10 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when an unsolicited match list is received.
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when an unsolicited match list is received.
      *
-     * @param sender    The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchList {@link com.sportradar.sdk.feed.livescout.entities.MatchListUpdateEntity} representing the received match list.
+     * @param sender    The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchList {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchListUpdateEntity} representing the received match list.
      */
     @Override
     public void onMatchListUpdateReceived(LiveScoutFeed sender, MatchListUpdateEntity matchList) {
@@ -33,11 +33,11 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} after the was un-subscribed from a match or if subscription to a
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} after the was un-subscribed from a match or if subscription to a
      * match failed.
      *
-     * @param sender    The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchStop The {@link com.sportradar.sdk.feed.livescout.entities.MatchStopEntity} representing the un-subscription message
+     * @param sender    The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchStop The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchStopEntity} representing the un-subscription message
      */
     @Override
     public void onMatchStopped(LiveScoutFeed sender, MatchStopEntity matchStop) {
@@ -45,8 +45,8 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when match update message is received. There are three types of match information messages:
-     * full match feed, delta match feed and delta update feed (see {@link com.sportradar.sdk.feed.livescout.enums.ScoutFeedType}.
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when match update message is received. There are three types of match information messages:
+     * full match feed, delta match feed and delta update feed (see {@link com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType}.
      * All three can contain statistical information as well as individual events (an event being a goal, card, etc.).
      * </p>
      * <p>
@@ -65,8 +65,8 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
      * Client must consider this as an update to an existing event, and not a new event (based on Event Id property).
      * </p>
      *
-     * @param sender      The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchUpdate The {@link com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
+     * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchUpdate The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
      */
     @Override
     public void onMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
@@ -74,11 +74,11 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when full match update is received. For more information see the
-     * {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity)}
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when full match update is received. For more information see the
+     * {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity)}
      *
-     * @param sender      The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchUpdate The {@link com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
+     * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchUpdate The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
      */
     @Override
     public void onFullMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
@@ -86,11 +86,11 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when match delta update is received. For more information see the
-     * {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity)}
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when match delta update is received. For more information see the
+     * {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity)}
      *
-     * @param sender      The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchUpdate The {@link com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
+     * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchUpdate The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
      */
     @Override
     public void onMatchDeltaUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
@@ -98,11 +98,11 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when match delta update delta message is received. For more
-     * information see the {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity)}
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when match delta update delta message is received. For more
+     * information see the {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener#onMatchUpdateReceived(com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed, com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity)}
      *
-     * @param sender      The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchUpdate The {@link com.sportradar.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
+     * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchUpdate The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
      */
     @Override
     public void onMatchDeltaUpdateUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
@@ -110,11 +110,11 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when odds suggestions are received. Suggested live odds are
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when odds suggestions are received. Suggested live odds are
      * constantly updated and sent out according to match events. These odds are generated based on statistical models.
      *
-     * @param sender          The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param oddsSuggestions The {@link com.sportradar.sdk.feed.livescout.entities.OddsSuggestionsEntity} instance representing the received odds suggestions.
+     * @param sender          The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param oddsSuggestions The {@link com.sportradar.livedata.sdk.feed.livescout.entities.OddsSuggestionsEntity} instance representing the received odds suggestions.
      */
     @Override
     public void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions) {
@@ -122,12 +122,12 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when a match-booked reply is received. Reply is sent by the
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when a match-booked reply is received. Reply is sent by the
      * live-scout server when a client books a match. If match booking failed for some reason
      * (match already booked, match finished etc.), the reply will contain additional explanation.
      *
-     * @param sender      The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param matchBooked The {@link com.sportradar.sdk.feed.livescout.entities.MatchBookingEntity} representing the received message.
+     * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param matchBooked The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchBookingEntity} representing the received message.
      */
     @Override
     public void onMatchBooked(LiveScoutFeed sender, MatchBookingEntity matchBooked) {
@@ -135,15 +135,15 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} when player lineups for both teams are received.
+     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when player lineups for both teams are received.
      * </p>
      * <p>
      * The event is dispatched immediately after subscribing to a match and every time the lineup changes.
      * XML configuration option "Send lineups for matches where this is available" needs to be activated (currently works just for deep coverage soccer matches).
      * </p>
      *
-     * @param sender  The {@link com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param lineups The {@link com.sportradar.sdk.feed.livescout.entities.LineupsEntity} representing the received lineups.
+     * @param sender  The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
+     * @param lineups The {@link com.sportradar.livedata.sdk.feed.livescout.entities.LineupsEntity} representing the received lineups.
      */
     @Override
     public void onLineupsReceived(LiveScoutFeed sender, LineupsEntity lineups) {
@@ -190,7 +190,7 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
      * Invoked by the observed live feed when it encounters an special event related to the behavior of the server.
      *
      * @param sender
-     * @param eventType The {@link com.sportradar.sdk.common.enums.FeedEventType} member specifying the type of the occurred event.
+     * @param eventType The {@link com.sportradar.livedata.sdk.common.enums.FeedEventType} member specifying the type of the occurred event.
      */
     @Override
     public void onFeedEvent(LiveScoutFeed sender, FeedEventType eventType) {

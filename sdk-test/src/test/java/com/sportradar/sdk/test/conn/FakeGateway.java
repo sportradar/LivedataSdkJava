@@ -1,7 +1,7 @@
-package com.sportradar.sdk.test.conn;
+package com.sportradar.livedata.sdk.test.conn;
 
-import com.sportradar.sdk.common.networking.Gateway;
-import com.sportradar.sdk.common.networking.GatewayListener;
+import com.sportradar.livedata.sdk.common.networking.Gateway;
+import com.sportradar.livedata.sdk.common.networking.GatewayListener;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class FakeGateway implements Gateway {
 
 
     /**
-     * Sets the {@link com.sportradar.sdk.common.networking.GatewayListener} used to observe the current {@link com.sportradar.sdk.common.networking.Gateway} implementation.
+     * Sets the {@link com.sportradar.livedata.sdk.common.networking.GatewayListener} used to observe the current {@link com.sportradar.livedata.sdk.common.networking.Gateway} implementation.
      *
-     * @param listener the {@link com.sportradar.sdk.common.networking.GatewayListener} used to observe the current {@link com.sportradar.sdk.common.networking.Gateway} implementation or a null reference if observation is not required.
+     * @param listener the {@link com.sportradar.livedata.sdk.common.networking.GatewayListener} used to observe the current {@link com.sportradar.livedata.sdk.common.networking.Gateway} implementation or a null reference if observation is not required.
      */
     @Override
     public void setListener(GatewayListener listener) {
@@ -37,7 +37,7 @@ public class FakeGateway implements Gateway {
     }
 
     /**
-     * Sends data through the current {@link com.sportradar.sdk.common.networking.Gateway}.
+     * Sends data through the current {@link com.sportradar.livedata.sdk.common.networking.Gateway}.
      *
      * @param data data to send.
      * @throws IllegalArgumentException The {@code data} is a null reference or an empty array

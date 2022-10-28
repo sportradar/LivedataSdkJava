@@ -1,10 +1,10 @@
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.Appender;
-import com.sportradar.sdk.common.exceptions.SdkException;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
-import com.sportradar.sdk.feed.sdk.Sdk;
+import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
+import com.sportradar.livedata.sdk.feed.sdk.Sdk;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;

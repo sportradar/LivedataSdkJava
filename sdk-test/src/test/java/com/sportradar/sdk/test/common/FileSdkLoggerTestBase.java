@@ -2,21 +2,21 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.common;
+package com.sportradar.livedata.sdk.test.common;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.sportradar.sdk.common.classes.FileSdkLogger;
-import com.sportradar.sdk.common.classes.RealTimeProvider;
-import com.sportradar.sdk.common.enums.SdkLogAppenderType;
-import com.sportradar.sdk.common.interfaces.SdkLogger;
-import com.sportradar.sdk.common.settings.LoggerSettings;
-import com.sportradar.sdk.common.timer.PeriodicTimer;
-import com.sportradar.sdk.common.timer.TimeProvider;
-import com.sportradar.sdk.common.timer.Timer;
-import com.sportradar.sdk.feed.common.entities.EventIdentifier;
+import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.RealTimeProvider;
+import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.TimeProvider;
+import com.sportradar.livedata.sdk.common.timer.Timer;
+import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import org.apache.commons.lang3.ArrayUtils;
 import org.hamcrest.CoreMatchers;
 import org.joda.time.DateTime;

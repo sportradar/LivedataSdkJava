@@ -2,11 +2,11 @@
  * Copyright (c) 2013, Sportradar AG                           *
  ***************************************************************/
 
-package com.sportradar.sdk.test.proto.rategate;
+package com.sportradar.livedata.sdk.test.proto.rategate;
 
-import com.sportradar.sdk.common.rategate.CombinedRateGate;
-import com.sportradar.sdk.common.rategate.RateGate;
-import com.sportradar.sdk.common.rategate.SimpleRateGate;
+import com.sportradar.livedata.sdk.common.rategate.CombinedRateGate;
+import com.sportradar.livedata.sdk.common.rategate.RateGate;
+import com.sportradar.livedata.sdk.common.rategate.SimpleRateGate;
 import org.joda.time.Duration;
 import org.joda.time.ReadableDuration;
 import org.junit.Test;
