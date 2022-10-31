@@ -2,6 +2,15 @@ Livedata SDK 2.x
 ----------------
 Livedata SDK is a client library that enables easier integration with the Livedata XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed versions.
 
+### BUILDING
+Project consists of three modules:
+- **sdk**. Sdk itself.
+- **sdk-example**. Example project to test sdk.
+- **sdk-test**. Unit tests.
+- **sdk-loginterceptor**. Jmx functionality for debugging.
+
+Running "_package_" will run unit tests, generate javadoc and create jar files uner _sdk/target/_. You need **sdk-2.x.x-fatjar-shaded.jar** as it contains all needed shaded libraries.
+
 ### CONFIGURATION
 In your _sdk.properties_ you need at least to set-up the following: (replace xxx with actual credentials).
 ```
