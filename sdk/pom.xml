@@ -233,7 +233,9 @@
                         </goals>
                         <configuration>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>fatjar-shaded</shadedClassifierName>
+<!--                            <shadedClassifierName>fatjar-shaded</shadedClassifierName>-->
+                            <finalName>sdk</finalName>
+                            <outputDirectory>${project.parent.basedir}/release</outputDirectory>
                             <relocations>
                                 <relocation>
                                     <pattern>org</pattern>

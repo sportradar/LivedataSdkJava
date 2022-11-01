@@ -33,9 +33,9 @@
             </activation>
             <modules>
                 <module>sdk</module>
-                <module>sdk-example</module>
-                <module>sdk-loginterceptor</module>
                 <module>sdk-test</module>
+                <module>sdk-loginterceptor</module>
+                <module>sdk-example</module>
             </modules>
         </profile>
     </profiles>
@@ -141,6 +141,13 @@
                                 <exclude>*.pdf</exclude>
                                 <exclude>templates/**</exclude>
                             </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/release</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>
