@@ -9,3 +9,4 @@ docs/member-search-index.zip
 docs/package-search-index.zip
 docs/type-search-index.zip
 sdk-example/src/main/resources/sdk.properties
+sdk-jar-example/src/main/resources/sdk.properties
