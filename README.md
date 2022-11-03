@@ -4,11 +4,12 @@ Livedata SDK is a client library that enables easier integration with the Liveda
 > **_NOTE:_**	Until SDK is not published at Maven Central latest version can be dowloaded from [here](https://github.com/sportradar/LivedataSdkJava/blob/main/release/sdk.jar).
 
 ### BUILDING
-Project consists of three modules:
+Project consists of next modules:
 - **sdk**. Sdk itself.
 - **sdk-example**. Example project to test sdk.
 - **sdk-test**. Unit tests.
 - **sdk-loginterceptor**. Jmx functionality for debugging.
+- **sdk-jar-example**. Separate example project to test sdk.jar independently. _Requirs sdk.jar in release folder._
 
 Running "_package_" will run unit tests, generate javadoc and shader fatjar **sdk.jar** under release folder. If you need minimal versions, you can find them at _sdk/target/_.
 <!--create jar files uner _sdk/target/_. You need **sdk-2.x.x-fatjar-shaded.jar** as it contains all needed shaded libraries.-->
