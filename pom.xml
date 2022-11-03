@@ -165,7 +165,7 @@
                         <phase>package</phase>
                         <id>attach-javadocs</id>
                         <goals>
-                            <goal>aggregate</goal>
+                            <goal>aggregate-jar</goal>
                         </goals>
                     </execution>
                 </executions>
