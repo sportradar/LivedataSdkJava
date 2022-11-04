@@ -47,11 +47,13 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
     }
 
     /**
+     * <p>
      * Contributes bindings and other configurations for this module to {@code binder}.
-     * <p/>
+     * </p>
      * <p><strong>Do not invoke this method directly</strong> to install submodules. Instead use
      * {@link com.google.inject.Binder#install(com.google.inject.Module)}, which ensures that {@link com.google.inject.Provides provider methods} are
      * discovered.
+     * </p>
      */
     @Override
     public void configure(Binder binder) {

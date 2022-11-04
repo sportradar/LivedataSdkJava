@@ -143,9 +143,64 @@
                 </executions>
             </plugin>
 
+            <!-- include javadoc in doc folder -->
+            <!-- if package does not work, comment this, install package and then enable again -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>aggregate-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>${project.parent.basedir}/docs</outputDirectory>
+                    <jarOutputDirectory>${project.parent.build.directory}</jarOutputDirectory>
+                    <windowtitle>Livedata SDK ${project.version} API</windowtitle>
+                    <doctitle>Livedata SDK ${project.version} API</doctitle>
+                    <notimestamp>true</notimestamp>
+                    <sourcepath>
+                        src/main/java/com/sportradar/livedata/sdk/feed/common;
+                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/entities;
+                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/enums;
+                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/interfaces;
+                        src/main/java/com/sportradar/livedata/sdk/feed/sdk;
+                        src/main/java/com/sportradar/livedata/sdk/common;
+                        src/main/java/com/sportradar/livedata/sdk/common/enums;
+                        src/main/java/com/sportradar/livedata/sdk/common/classes;
+                        src/main/java/com/sportradar/livedata/sdk/common/exceptions;
+                    </sourcepath>
+<!--                    <excludePackageNames>-->
+<!--                        *com.sportradar.livedata.sdk.common.classes*-->
+<!--                        *com.sportradar.livedata.sdk.common.interfaces*-->
+<!--                        *com.sportradar.livedata.sdk.common.settings*-->
+<!--                        *EntityMapper*-->
+<!--                        *Factory*-->
+<!--                        *HttpMethod*-->
+<!--                        *InvalidEntityException*-->
+<!--                        *Jaxb*-->
+<!--                        *LiveFeedProtocolManager*-->
+<!--                        *LiveFeedTestManagerBase*-->
+<!--                        *LiveScoutTestManagerImpl*-->
+<!--                        *LiveScoutTestManagerImpl*-->
+<!--                        *MessagePipeline*-->
+<!--                        *MessageProcessor*-->
+<!--                        *ProtocolManager*-->
+<!--                        *ProtocolManagerListener*-->
+<!--                        *SdkLogAppenderType*-->
+<!--                        *UnknownEnumException*-->
+<!--                    </excludePackageNames>-->
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -156,6 +211,7 @@
                 </executions>
                 <configuration>
                     <excludeResources>true</excludeResources>
+                    <outputDirectory>${project.parent.build.directory}</outputDirectory>
                 </configuration>
             </plugin>
 

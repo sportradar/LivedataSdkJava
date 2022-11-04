@@ -12,11 +12,15 @@
 
     <packaging>pom</packaging>
     <name>Livedata SDK</name>
+    <description>
+        Livedata SDK is a client library that enables easier integration with the Livedata XML feed.
+        SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do
+        XML feed parsing, proper connection handling, error recovery, event queuing and dispatching.
+        It also makes a client solution more stable and robust when it comes to feed handling,
+        especially with the release of new and updated XML feed versions.
+    </description>
     <inceptionYear>2013</inceptionYear>
 
-<!--    <scm>-->
-<!--        <connection>scm:git:git@git.sportradar.ag:bookmakersdk/java.git</connection>-->
-<!--    </scm>-->
     <developers>
         <developer>
             <id>sdk</id>
@@ -24,6 +28,10 @@
             <email>sdk@betradar.com</email>
         </developer>
     </developers>
+
+    <scm>
+        <url>https://github.com/sportradar/LivedataSdkJava/</url>
+    </scm>
 
     <profiles>
         <profile>
@@ -153,99 +161,10 @@
                     </filesets>
                 </configuration>
             </plugin>
-
-            <!-- include javadoc in doc folder -->
-            <!-- if package does not work, comment this, install package and then enable again -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>aggregate-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <show>public</show>
-                    <level>public</level>
-                    <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
-                    <destDir>docs</destDir>
-                    <notimestamp>true</notimestamp>
-<!--                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>-->
-<!--                    <destDir>${project.version}</destDir>-->
-                    <sourcepath>
-                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/common;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/entities;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/enums;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/livescout/interfaces;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/feed/sdk;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/common;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/common/enums;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/common/classes;
-                        sdk/src/main/java/com/sportradar/livedata/sdk/common/exceptions;
-                    </sourcepath>
-<!--                    <excludePackageNames>-->
-<!--                        *com.sportradar.livedata.sdk.common.classes*-->
-<!--                        *com.sportradar.livedata.sdk.common.interfaces*-->
-<!--                        *com.sportradar.livedata.sdk.common.settings*-->
-<!--                        *EntityMapper*-->
-<!--                        *Factory*-->
-<!--                        *HttpMethod*-->
-<!--                        *InvalidEntityException*-->
-<!--                        *Jaxb*-->
-<!--                        *LiveFeedProtocolManager*-->
-<!--                        *LiveFeedTestManagerBase*-->
-<!--                        *LiveScoutTestManagerImpl*-->
-<!--                        *LiveScoutTestManagerImpl*-->
-<!--                        *MessagePipeline*-->
-<!--                        *MessageProcessor*-->
-<!--                        *ProtocolManager*-->
-<!--                        *ProtocolManagerListener*-->
-<!--                        *SdkLogAppenderType*-->
-<!--                        *UnknownEnumException*-->
-<!--                    </excludePackageNames>-->
-                </configuration>
-            </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-resources-plugin</artifactId>-->
-<!--                <version>${maven-resources-plugin.version}</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>readme-md</id>-->
-<!--                        <phase>process-resources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy-resources</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <outputDirectory>${project.basedir}</outputDirectory>-->
-<!--                            <resources>-->
-<!--                                <resource>-->
-<!--                                    <directory>${project.basedir}/docs/templates</directory>-->
-<!--                                    <includes>-->
-<!--                                        <include>README.md</include>-->
-<!--                                    </includes>-->
-<!--                                    <filtering>true</filtering>-->
-<!--                                </resource>-->
-<!--                            </resources>-->
-<!--                            <encoding>UTF-8</encoding>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
 
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                </plugin>
 <!--                <plugin>-->
 <!--                    <groupId>org.apache.maven.plugins</groupId>-->
 <!--                    <artifactId>maven-jar-plugin</artifactId>-->

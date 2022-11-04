@@ -201,8 +201,10 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
      * Sends the passed {@link OutgoingMessage} instance to the server.
      *
      * @param message the {@link OutgoingMessage} instance to be send to the server.
+     * @param blocking mark if request must be blocking.
      * @throws IllegalArgumentException the {@code message} is a null reference.
      * @throws IllegalStateException    the message cannot be send at this time.
+     * @return true if success.
      */
     protected boolean sendMessage(OutgoingMessage message, boolean blocking) {
         checkNotNull(message, "message cannot be a null reference");

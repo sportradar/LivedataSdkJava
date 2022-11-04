@@ -19,7 +19,13 @@
 <script type="text/javascript" src="../../../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var pathtoroot = "../../../../../../";
+<script type="text/javascript">var data = {"i0":6,"i1":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
+var pathtoroot = "../../../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -51,15 +57,15 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <div class="navListSearch"><label for="search">SEARCH:</label>
@@ -101,17 +107,241 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </section>
 <section class="summary">
 <ul class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<li class="blockList">
+<section class="fieldSummary"><a id="field.summary">
+<!--   -->
+</a>
+<h2>Field Summary</h2>
+<div class="memberSummary">
+<table>
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected ch.qos.logback.classic.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#alertLogger">alertLogger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected ch.qos.logback.classic.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clientInteractionLogger">clientInteractionLogger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected ch.qos.logback.classic.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#invalidMessageLogger">invalidMessageLogger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected static org.slf4j.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logger">logger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected ch.qos.logback.classic.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rootExecLogger">rootExecLogger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected ch.qos.logback.classic.Logger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#trafficLogger">trafficLogger</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#usingLogback">usingLogback</a></span></code></th>
+<td class="colLast">
+<div class="block">Is the default logging facility of the app logback?</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<li class="blockList">
+<section class="constructorSummary"><a id="constructor.summary">
+<!--   -->
+</a>
+<h2>Constructor Summary</h2>
+<div class="memberSummary">
+<table>
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colSecond" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,java.lang.String)">BaseSdkLogger</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;rootName,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;markerName)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
 <!-- ========== METHOD SUMMARY =========== -->
 <li class="blockList">
 <section class="methodSummary"><a id="method.summary">
 <!--   -->
 </a>
 <h2>Method Summary</h2>
+<div class="memberSummary">
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="tableTab" onclick="show(2);">Instance Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t3" class="tableTab" onclick="show(4);">Abstract Methods</button></div>
+<div id="memberSummary_tabpanel" role="tabpanel">
+<table aria-labelledby="t0">
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor" id="i0">
+<td class="colFirst"><code>protected abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#log(ch.qos.logback.classic.Logger,ch.qos.logback.classic.Level,java.lang.String)">log</a></span>&#8203;(ch.qos.logback.classic.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><code>protected abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logWithException(org.slf4j.Logger,ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logWithException</a></span>&#8203;(org.slf4j.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Exception.html?is-external=true" title="class or interface in java.lang" class="externalLink">Exception</a>&nbsp;exception)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="inheritedList">
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
 <a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
-</a><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></div>
+</a><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></div>
+</section>
+</li>
+</ul>
+</section>
+<section class="details">
+<ul class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<li class="blockList">
+<section class="fieldDetails"><a id="field.detail">
+<!--   -->
+</a>
+<h2>Field Details</h2>
+<ul class="blockList">
+<li class="blockList">
+<section class="detail">
+<h3><a id="logger">logger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected static final</span>&nbsp;<span class="returnType">org.slf4j.Logger</span>&nbsp;<span class="memberName">logger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="rootExecLogger">rootExecLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">ch.qos.logback.classic.Logger</span>&nbsp;<span class="memberName">rootExecLogger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="invalidMessageLogger">invalidMessageLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">ch.qos.logback.classic.Logger</span>&nbsp;<span class="memberName">invalidMessageLogger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="trafficLogger">trafficLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">ch.qos.logback.classic.Logger</span>&nbsp;<span class="memberName">trafficLogger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="clientInteractionLogger">clientInteractionLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">ch.qos.logback.classic.Logger</span>&nbsp;<span class="memberName">clientInteractionLogger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="alertLogger">alertLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">ch.qos.logback.classic.Logger</span>&nbsp;<span class="memberName">alertLogger</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="usingLogback">usingLogback</a></h3>
+<div class="memberSignature"><span class="modifiers">protected final</span>&nbsp;<span class="returnType">boolean</span>&nbsp;<span class="memberName">usingLogback</span></div>
+<div class="block">Is the default logging facility of the app logback?</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<li class="blockList">
+<section class="constructorDetails"><a id="constructor.detail">
+<!--   -->
+</a>
+<h2>Constructor Details</h2>
+<ul class="blockList">
+<li class="blockList">
+<section class="detail">
+<h3><a id="&lt;init&gt;(java.lang.String,java.lang.String)">BaseSdkLogger</a></h3>
+<div class="memberSignature"><span class="modifiers">protected</span>&nbsp;<span class="memberName">BaseSdkLogger</span>&#8203;(<span class="arguments"><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;rootName,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;markerName)</span>
+                 throws <span class="exceptions"><a href="../exceptions/SdkException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">SdkException</a></span></div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../exceptions/SdkException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">SdkException</a></code></dd>
+</dl>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<!-- ============ METHOD DETAIL ========== -->
+<li class="blockList">
+<section class="methodDetails"><a id="method.detail">
+<!--   -->
+</a>
+<h2>Method Details</h2>
+<ul class="blockList">
+<li class="blockList">
+<section class="detail">
+<h3><a id="log(ch.qos.logback.classic.Logger,ch.qos.logback.classic.Level,java.lang.String)">log</a></h3>
+<div class="memberSignature"><span class="modifiers">protected abstract</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">log</span>&#8203;(<span class="arguments">ch.qos.logback.classic.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</span></div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
+<h3><a id="logWithException(org.slf4j.Logger,ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logWithException</a></h3>
+<div class="memberSignature"><span class="modifiers">protected abstract</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">logWithException</span>&#8203;(<span class="arguments">org.slf4j.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Exception.html?is-external=true" title="class or interface in java.lang" class="externalLink">Exception</a>&nbsp;exception)</span></div>
+</section>
+</li>
+</ul>
 </section>
 </li>
 </ul>
@@ -145,15 +375,15 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 </div>

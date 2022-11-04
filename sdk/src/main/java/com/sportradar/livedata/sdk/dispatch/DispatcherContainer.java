@@ -9,7 +9,7 @@ public interface DispatcherContainer<T> {
 
     /**
      * Checks if is container valid
-     * @return
+     * @return treu if valid
      */
     boolean isValid();
 

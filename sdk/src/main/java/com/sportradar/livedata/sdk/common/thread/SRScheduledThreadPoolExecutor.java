@@ -86,17 +86,17 @@ public class SRScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
     }
 
     /**
-     * č
+     * <p>
      * Method invoked upon completion of execution of the given Runnable.
      * This method is invoked by the thread that executed the task. If
      * non-null, the Throwable is the uncaught {@code RuntimeException}
      * or {@code Error} that caused execution to terminate abruptly.
-     * <p/>
+     * </p>
      * <p>This implementation does nothing, but may be customized in
      * subclasses. Note: To properly nest multiple overridings, subclasses
      * should generally invoke {@code super.afterExecute} at the
      * beginning of this method.
-     * <p/>
+     * </p>
      * <p><b>Note:</b> When actions are enclosed in tasks (such as
      * {@link FutureTask}) either explicitly or via methods such as
      * {@code submit}, these task objects catch and maintain
@@ -106,7 +106,7 @@ public class SRScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
      * failures in this method, you can further probe for such cases,
      * as in this sample subclass that prints either the direct cause
      * or the underlying exception if a task has been aborted:
-     * <p/>
+     * </p>
      * <pre> {@code
      * class ExtendedExecutor extends ThreadPoolExecutor {
      *   // ...

@@ -85,6 +85,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
 
     /**
      * Initializes a new instance of the {@link MatchUpdateEntity} class.
+     * @param otherAttributes additional XML attributes not supported in the current version of the data contract.
      */
     protected MatchUpdateEntity(Map<String, String> otherAttributes) {
         super(otherAttributes);

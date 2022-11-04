@@ -19,7 +19,7 @@
 <script type="text/javascript" src="../../../../../../script-dir/jquery-ui.js"></script>
 </head>
 <body class="class-declaration">
-<script type="text/javascript">var data = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+<script type="text/javascript">var data = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -155,6 +155,11 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 </tbody>
 </table>
 </div>
+<div class="inheritedList">
+<h3>Fields inherited from class&nbsp;com.sportradar.livedata.sdk.common.classes.<a href="BaseSdkLogger.html" title="class in com.sportradar.livedata.sdk.common.classes">BaseSdkLogger</a></h3>
+<a id="fields.inherited.from.class.com.sportradar.livedata.sdk.common.classes.BaseSdkLogger">
+<!--   -->
+</a><code><a href="BaseSdkLogger.html#alertLogger">alertLogger</a>, <a href="BaseSdkLogger.html#clientInteractionLogger">clientInteractionLogger</a>, <a href="BaseSdkLogger.html#invalidMessageLogger">invalidMessageLogger</a>, <a href="BaseSdkLogger.html#logger">logger</a>, <a href="BaseSdkLogger.html#rootExecLogger">rootExecLogger</a>, <a href="BaseSdkLogger.html#trafficLogger">trafficLogger</a>, <a href="BaseSdkLogger.html#usingLogback">usingLogback</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -269,6 +274,13 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 </td>
 </tr>
 <tr class="altColor" id="i8">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#log(ch.qos.logback.classic.Logger,ch.qos.logback.classic.Level,java.lang.String)">log</a></span>&#8203;(ch.qos.logback.classic.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor" id="i9">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logAlert(ch.qos.logback.classic.Level,java.lang.String)">logAlert</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
@@ -276,7 +288,7 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 <div class="block">SDK will generate and signal alerts in case of any special events.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i9">
+<tr class="altColor" id="i10">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logAlert(ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logAlert</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
@@ -285,7 +297,7 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 <div class="block">SDK will generate and signal alerts in case of any special events.</div>
 </td>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logClientInteraction(ch.qos.logback.classic.Level,java.lang.String)">logClientInteraction</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
@@ -293,7 +305,7 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 <div class="block">All interaction with the client software on the SDK interface level will be logged in a separate client communication log.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i11">
+<tr class="altColor" id="i12">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logClientInteraction(ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logClientInteraction</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
@@ -302,7 +314,7 @@ implements <a href="../interfaces/SdkLogger.html" title="interface in com.sportr
 <div class="block">All interaction with the client software on the SDK interface level will be logged in a separate client communication log.</div>
 </td>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logClientInteraction(ch.qos.logback.classic.Level,java.lang.String,org.joda.time.Duration,java.lang.Exception)">logClientInteraction</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
@@ -312,7 +324,7 @@ org.joda.time.Duration&nbsp;interval,
 <div class="block">All interaction with the client software on the SDK interface level will be logged in a separate client communication log.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logInvalidMessage(ch.qos.logback.classic.Level,java.lang.String)">logInvalidMessage</a></span>&#8203;(ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
@@ -320,7 +332,7 @@ org.joda.time.Duration&nbsp;interval,
 <div class="block">Corrupt input feed data will be dumped into log files dedicated to corrupt input data (could be garbage and not even text, exceeding max buffer size).</div>
 </td>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logTraffic(boolean,java.lang.String)">logTraffic</a></span>&#8203;(boolean&nbsp;outgoing,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
@@ -328,14 +340,14 @@ org.joda.time.Duration&nbsp;interval,
 <div class="block">Depending on configuration SDK will be able to dump all feed XML traffic into dedicated traffic logs.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i15">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logTraffic(java.lang.String)">logTraffic</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</code></th>
 <td class="colLast">
 <div class="block">Dump given message to traffic log.</div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i17">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#logWithException(org.slf4j.Logger,ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logWithException</a></span>&#8203;(org.slf4j.Logger&nbsp;logger,
 ch.qos.logback.classic.Level&nbsp;level,
@@ -351,7 +363,7 @@ ch.qos.logback.classic.Level&nbsp;level,
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
 <a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
-</a><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></div>
+</a><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -724,11 +736,27 @@ org.joda.time.Duration&nbsp;interval,
 </li>
 <li class="blockList">
 <section class="detail">
+<h3><a id="log(ch.qos.logback.classic.Logger,ch.qos.logback.classic.Level,java.lang.String)">log</a></h3>
+<div class="memberSignature"><span class="modifiers">protected</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">log</span>&#8203;(<span class="arguments">ch.qos.logback.classic.Logger&nbsp;logger,
+ch.qos.logback.classic.Level&nbsp;level,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message)</span></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="BaseSdkLogger.html#log(ch.qos.logback.classic.Logger,ch.qos.logback.classic.Level,java.lang.String)">log</a></code>&nbsp;in class&nbsp;<code><a href="BaseSdkLogger.html" title="class in com.sportradar.livedata.sdk.common.classes">BaseSdkLogger</a></code></dd>
+</dl>
+</section>
+</li>
+<li class="blockList">
+<section class="detail">
 <h3><a id="logWithException(org.slf4j.Logger,ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logWithException</a></h3>
 <div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">logWithException</span>&#8203;(<span class="arguments">org.slf4j.Logger&nbsp;logger,
 ch.qos.logback.classic.Level&nbsp;level,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;message,
 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Exception.html?is-external=true" title="class or interface in java.lang" class="externalLink">Exception</a>&nbsp;exception)</span></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="BaseSdkLogger.html#logWithException(org.slf4j.Logger,ch.qos.logback.classic.Level,java.lang.String,java.lang.Exception)">logWithException</a></code>&nbsp;in class&nbsp;<code><a href="BaseSdkLogger.html" title="class in com.sportradar.livedata.sdk.common.classes">BaseSdkLogger</a></code></dd>
+</dl>
 </section>
 </li>
 </ul>
