@@ -32,7 +32,8 @@ public class LiveScoutEntityMapper implements EntityMapper<IncomingMessage, Enti
     /**
      * Initializes a new instance of the {@link LiveScoutEntityMapper} class.
      *
-     * @param factory A {@link LiveScoutEntityFactory} used to build live scout entities.
+     * @param factory   A {@link LiveScoutEntityFactory} used to build live scout entities.
+     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException the {@code factory} is a null reference or
      *                                  {@code sdkLogger} is a null reference
      */

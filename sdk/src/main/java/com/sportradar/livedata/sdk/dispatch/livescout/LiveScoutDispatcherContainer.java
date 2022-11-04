@@ -25,7 +25,7 @@ public class LiveScoutDispatcherContainer implements DispatcherContainer<LiveSco
     private boolean valid = false;
     /**
      * Checks if is container valid
-     * @return
+     * @return true if valid.
      */
     public boolean isValid() {
         return valid;

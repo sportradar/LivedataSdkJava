@@ -89,6 +89,7 @@ public class LiveScoutUserRequestManagerImpl
      * @param requestFactory A {@link LiveScoutStatusFactory} instance used to generate server requests.
      * @param maxAge         max age of events
      * @param testManager    test manager
+     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException The {@code requestFactory} is a null reference.
      */
     public LiveScoutUserRequestManagerImpl(

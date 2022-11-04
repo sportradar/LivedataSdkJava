@@ -49,7 +49,10 @@ public class LiveScoutDisruptorDispatcher extends DisruptorDispatcher<LiveScoutD
      * Initializes a new instance of the {@link LiveScoutDisruptorDispatcher} class.
      *
      * @param dispatcherCount The number of the consumers which dispatch events to the user.
+     * @param dispatcherQueueSize The size of the disruptor.
      * @param executor        The {@link ExecutorService} used to spawn background threads
+     * @param sdkLogger The {@link SdkLogger} instance used for structured logging.
+     * @param counter The {@link LiveScoutStatisticsCounter} event counter used as JMX MBeans
      */
     public LiveScoutDisruptorDispatcher(
             int dispatcherCount,
@@ -182,7 +185,7 @@ public class LiveScoutDisruptorDispatcher extends DisruptorDispatcher<LiveScoutD
     /**
      * Set the feed.
      *
-     * @param feed
+     * @param feed feed that will be served.
      */
     public void setFeed(LiveScoutFeed feed) {
         checkNotNull(feed, "feed cannot be a null reference");

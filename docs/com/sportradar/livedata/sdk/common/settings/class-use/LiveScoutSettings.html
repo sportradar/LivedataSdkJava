@@ -85,6 +85,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Contains classes and interfaces associated with settings</div>
 </td>
 </tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.di">com.sportradar.livedata.sdk.di</a></th>
+<td class="colLast">
+<div class="block">This package should only contain classes associated with IOC container used to build the dependency tree.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.classes">com.sportradar.livedata.sdk.feed.livescout.classes</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -120,6 +130,112 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code><a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">SettingsLoader.</span><code><span class="memberNameLink"><a href="../SettingsLoader.html#getLiveScoutSettings()">getLiveScoutSettings</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.di">
+<!--   -->
+</a>
+<h2>Uses of <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a> in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Fields in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a> declared as <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutInjectionModuleBase.</span><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModuleBase.html#settings">settings</a></span></code></th>
+<td class="colLast">
+<div class="block">The <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings"><code>LiveScoutSettings</code></a> instance containing live-scout configurable values.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a> with parameters of type <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../feed/livescout/interfaces/LiveScoutFeed.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces">LiveScoutFeed</a></code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutInjectionModuleBase.</span><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModuleBase.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed</a></span>&#8203;(javax.inject.Provider&lt;<a href="../../../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../../../feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&gt;&nbsp;protocolManagerProvider,
+javax.inject.Provider&lt;<a href="../../../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&gt;&nbsp;userRequestManagerProvider,
+javax.inject.Provider&lt;<a href="../../../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&gt;&nbsp;dispatcherProvider,
+javax.inject.Provider&lt;<a href="../../interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&gt;&nbsp;sdkLoggerProvider,
+<a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a>&nbsp;settings)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="useSummary">
+<table>
+<caption><span>Constructors in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a> with parameters of type <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModule.html#%3Cinit%3E(com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">LiveScoutInjectionModule</a></span>&#8203;(<a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a>&nbsp;settings)</code></th>
+<td class="colLast">
+<div class="block">Initializes a new instance of the <a href="../../../di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di"><code>LiveScoutInjectionModule</code></a> class.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModuleBase.html#%3Cinit%3E(com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">LiveScoutInjectionModuleBase</a></span>&#8203;(<a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a>&nbsp;settings)</code></th>
+<td class="colLast">
+<div class="block">Initializes a new instance of the <a href="../../../di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di"><code>LiveScoutInjectionModule</code></a> class.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.feed.livescout.classes">
+<!--   -->
+</a>
+<h2>Uses of <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a> in <a href="../../../feed/livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Constructors in <a href="../../../feed/livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a> with parameters of type <a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../feed/livescout/classes/LiveScoutFeedImpl.html#%3Cinit%3E(com.sportradar.livedata.sdk.feed.common.ProtocolManager,com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager,com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">LiveScoutFeedImpl</a></span>&#8203;(<a href="../../../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../../../feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;protocolManager,
+<a href="../../../feed/livescout/interfaces/LiveScoutUserRequestManager.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces">LiveScoutUserRequestManager</a>&nbsp;userRequestManager,
+<a href="../../../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&nbsp;dispatcher,
+<a href="../../interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger,
+<a href="../LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a>&nbsp;settings)</code></th>
+<td class="colLast">
+<div class="block">Initializes a new instance of the <a href="../../../feed/livescout/classes/LiveScoutFeedImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes"><code>LiveScoutFeedImpl</code></a> class.</div>
+</td>
 </tr>
 </tbody>
 </table>

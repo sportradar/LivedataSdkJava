@@ -82,7 +82,7 @@ public class JaxbFactory implements JaxbBuilder {
      * Creates and returns a {@link Marshaller} implementation. Note that each time this method is called new instance of the marshaller is created.
      *
      * @return The created {@link Marshaller} instance.
-     * @throws JAXBException
+     * @throws ProtocolException wrapped JAXBException.
      */
     @Override
     public Marshaller buildMarshaller() throws ProtocolException {
@@ -100,7 +100,7 @@ public class JaxbFactory implements JaxbBuilder {
      * Creates and returns a {@link Unmarshaller} implementation. Note that each time this method is called new instance of the un-marshaller is created.
      *
      * @return The created {@link Unmarshaller} instance.
-     * @throws JAXBException
+     * @throws ProtocolException wrapped JAXBException.
      */
     @Override
     public Unmarshaller buildUnmarshaller() throws ProtocolException {

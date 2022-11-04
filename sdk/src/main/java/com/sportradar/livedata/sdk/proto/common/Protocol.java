@@ -46,11 +46,18 @@ public interface Protocol<I extends IncomingMessage, O extends OutgoingMessage> 
      * Sends the passed {@code message} instance to the server.
      *
      * @param message The message derived from {@link OutgoingMessage} to be send to the server.
+     * @param blocking true if request must be blocking.
+     * @return true if success.
+     * @throws MessageException An error occurred while writing the message to byte array.
+     * @throws ProtocolException thrown when an un-expected situation is encountered.
      */
     boolean sendMessage(O message, boolean blocking) throws MessageException, ProtocolException;
 
     /**
      * Sends the passed data to the server as is.
+     * @param data data to be sent.
+     * @throws MessageException An error occurred while writing the message to byte array.
+     * @throws ProtocolException thrown when an un-expected situation is encountered.
      */
     void sendMessage(String data) throws MessageException, ProtocolException;
 

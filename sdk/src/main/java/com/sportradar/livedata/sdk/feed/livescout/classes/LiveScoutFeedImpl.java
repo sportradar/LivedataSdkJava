@@ -84,6 +84,8 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      * @param protocolManager    A {@link ProtocolManager} implementation used to manage the underlying protocol and related components
      * @param userRequestManager The {@link UserRequestManager} used to process user requests.
      * @param dispatcher         A {@link LiveScoutDispatcher} implementation used to dispatch messages to the user.
+     * @param sdkLogger          Logger instance.
+     * @param settings           Provided settings.
      * @throws IllegalArgumentException The {@code protocolManager} is a null reference or
      *                                  a {@code userRequestManager} is a null reference or
      *                                  a {@code dispatcher} is a null reference.
@@ -145,8 +147,8 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
     }
 
     /**
-     * Requests a list of available scout matches for a given time frame.
-     * <p/>
+     * <p>Requests a list of available scout matches for a given time frame.
+     * </p>
      * By default only matches you have access to will be sent.
      * You can also request all available matches by setting the {@code includeAvailable}
      * If this is done the reply will also include matches that are open for booking.
@@ -241,7 +243,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
     }
 
     /**
-     * Request a full feed for the match, and then update messages will follow in the same pace as they were sent out live.
+     * <p>Request a full feed for the match, and then update messages will follow in the same pace as they were sent out live.
      * </p>
      * <p>
      * This should only be used on the test server.

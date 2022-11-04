@@ -27,13 +27,14 @@ public interface LiveScoutDispatcher extends LiveFeedDispatcher<LiveScoutFeed> {
      * Dispatches the passed {@link LiveScoutEntityBase} to the user
      *
      * @param entity the {@link LiveScoutEntityBase} to dispatch to the user.
+     * @throws InsufficientCapacityException ring buffer is full.
      */
     void dispatchEntity(LiveScoutEntityBase entity) throws InsufficientCapacityException;
 
     /**
      * Set the feed.
      *
-     * @param feed
+     * @param feed feed that will be served.
      */
     void setFeed(LiveScoutFeed feed);
 }

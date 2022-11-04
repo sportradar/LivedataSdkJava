@@ -71,6 +71,9 @@ public abstract class DisruptorDispatcher<T extends DispatcherContainer<T>> {
      * Initializes a new instance of the {@link DisruptorDispatcher} class.
      *
      * @param executor The {@link ExecutorService} used to spawn background threads
+     * @param dispatcherCount The number of the dispatchers.
+     * @param dispatcherQueueSize The size of the disruptor.
+     * @param sdkLogger The {@link SdkLogger} instance used for structured logging.
      */
     protected DisruptorDispatcher(
             ExecutorService executor,
@@ -96,6 +99,7 @@ public abstract class DisruptorDispatcher<T extends DispatcherContainer<T>> {
      * @param container The container to be published
      * @throws IllegalStateException    The dispatcher is stopped.
      * @throws IllegalArgumentException The {@code container} is a null reference.
+     * @throws InsufficientCapacityException Ring buffer is full.
      */
     protected void publish(T container) throws InsufficientCapacityException {
         checkNotNull(container, "container cannot be a null reference");
@@ -123,10 +127,9 @@ public abstract class DisruptorDispatcher<T extends DispatcherContainer<T>> {
     }
 
     /**
-     * Constructs and starts the disruptor and associated elements
+     * <p>Constructs and starts the disruptor and associated elements
      * </p>
-     * <p>
-     * Notice that method is not thread safe and should only be called within critical region.
+     * <p>Notice that method is not thread safe and should only be called within critical region.
      * </p>
      *
      * @param containerFactory A {@link EventFactory} implementation used to construct containers

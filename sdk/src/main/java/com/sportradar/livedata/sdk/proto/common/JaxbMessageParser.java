@@ -42,6 +42,7 @@ public class JaxbMessageParser<T extends MessageBase> extends MessageParserBase<
      *
      * @param builder   The {@link JaxbBuilder} implementation used to construct the {@link Unmarshaller} instances.
      * @param tokenizer The {@link MessageTokenizer} implementation used to tokenize received data, or a null reference.
+     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException the {@code builder} is a null reference or {@code bufferSize} is smaller than or equal to 0.
      */
     public JaxbMessageParser(JaxbBuilder builder, MessageTokenizer tokenizer, SdkLogger sdkLogger) {

@@ -89,12 +89,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a></div>
-<h1 title="Interface EntityMapper" class="title">Interface EntityMapper&lt;I extends com.sportradar.livedata.sdk.proto.dto.IncomingMessage,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</h1>
+<h1 title="Interface EntityMapper" class="title">Interface EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</h1>
 </div>
 <div class="contentContainer">
 <section class="description">
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><code><a href="../livescout/classes/LiveScoutEntityMapper.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutEntityMapper</a></code></dd>
+</dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">EntityMapper&lt;I extends com.sportradar.livedata.sdk.proto.dto.IncomingMessage,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</span></pre>
 <div class="block">Represents a class used to map protocol layer messages to feed layer entities</div>
 </section>
 <section class="summary">
@@ -121,7 +125,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code><a href="EntityMapper.html" title="type parameter in EntityMapper">E</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#map(I)">map</a></span>&#8203;(<a href="EntityMapper.html" title="type parameter in EntityMapper">I</a>&nbsp;message)</code></th>
 <td class="colLast">
-<div class="block">Maps the passed <code>IncomingMessage</code> derived message to feed entity</div>
+<div class="block">Maps the passed <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto"><code>IncomingMessage</code></a> derived message to feed entity</div>
 </td>
 </tr>
 </tbody>
@@ -148,10 +152,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a><a id="map(I)">map</a></h3>
 <div class="memberSignature"><span class="returnType"><a href="EntityMapper.html" title="type parameter in EntityMapper">E</a></span>&nbsp;<span class="memberName">map</span>&#8203;(<span class="arguments"><a href="EntityMapper.html" title="type parameter in EntityMapper">I</a>&nbsp;message)</span>
 throws <span class="exceptions"><a href="exceptions/InvalidEntityException.html" title="class in com.sportradar.livedata.sdk.feed.common.exceptions">InvalidEntityException</a></span></div>
-<div class="block">Maps the passed <code>IncomingMessage</code> derived message to feed entity</div>
+<div class="block">Maps the passed <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto"><code>IncomingMessage</code></a> derived message to feed entity</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>message</code> - The <code>IncomingMessage</code> derived message to be mapped to the feed layer entity.</dd>
+<dd><code>message</code> - The <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto"><code>IncomingMessage</code></a> derived message to be mapped to the feed layer entity.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> derived class representing the passed message.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>

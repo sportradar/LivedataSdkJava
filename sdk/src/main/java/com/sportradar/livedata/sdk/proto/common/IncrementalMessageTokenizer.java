@@ -141,9 +141,9 @@ public class IncrementalMessageTokenizer extends MessageTokenizerBase {
 
     /**
      * Finds the index of the first occurrence of bytes representing the end of the element in the {@code source}.
-     * The end of the element can be specified in a normal format '</elementName>' or the shorten one (/>) but must be
+     * The end of the element can be specified in a normal format '@lt;/elementName&gt;' or the shorten one (/&gt;) but must be
      * followed by double LF/CR combination. The search starts at the location specified by the {@code offset}.
-     * The returned index points to the '>' character.
+     * The returned index points to the '&gt;' character.
      *
      * @param source      the array to be searched
      * @param elementName the byte array representation of the element's name

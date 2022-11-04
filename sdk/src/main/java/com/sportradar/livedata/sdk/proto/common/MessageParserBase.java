@@ -51,6 +51,7 @@ public abstract class MessageParserBase<T extends MessageBase> implements Messag
      * When overridden in derived class, it processes the received data.
      *
      * @param stream A {@link InputStream} implementation containing the received data.
+     * @throws SdkException thrown when an un-expected situation is encountered.
      */
     protected abstract void onDataReady(InputStream stream) throws SdkException;
 

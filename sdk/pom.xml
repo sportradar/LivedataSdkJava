@@ -165,36 +165,8 @@
                     <doctitle>Livedata SDK ${project.version} API</doctitle>
                     <notimestamp>true</notimestamp>
                     <sourcepath>
-                        src/main/java/com/sportradar/livedata/sdk/feed/common;
-                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/entities;
-                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/enums;
-                        src/main/java/com/sportradar/livedata/sdk/feed/livescout/interfaces;
-                        src/main/java/com/sportradar/livedata/sdk/feed/sdk;
-                        src/main/java/com/sportradar/livedata/sdk/common;
-                        src/main/java/com/sportradar/livedata/sdk/common/enums;
-                        src/main/java/com/sportradar/livedata/sdk/common/classes;
-                        src/main/java/com/sportradar/livedata/sdk/common/exceptions;
+                        src/main/java/com/sportradar/livedata/sdk;
                     </sourcepath>
-<!--                    <excludePackageNames>-->
-<!--                        *com.sportradar.livedata.sdk.common.classes*-->
-<!--                        *com.sportradar.livedata.sdk.common.interfaces*-->
-<!--                        *com.sportradar.livedata.sdk.common.settings*-->
-<!--                        *EntityMapper*-->
-<!--                        *Factory*-->
-<!--                        *HttpMethod*-->
-<!--                        *InvalidEntityException*-->
-<!--                        *Jaxb*-->
-<!--                        *LiveFeedProtocolManager*-->
-<!--                        *LiveFeedTestManagerBase*-->
-<!--                        *LiveScoutTestManagerImpl*-->
-<!--                        *LiveScoutTestManagerImpl*-->
-<!--                        *MessagePipeline*-->
-<!--                        *MessageProcessor*-->
-<!--                        *ProtocolManager*-->
-<!--                        *ProtocolManagerListener*-->
-<!--                        *SdkLogAppenderType*-->
-<!--                        *UnknownEnumException*-->
-<!--                    </excludePackageNames>-->
                 </configuration>
             </plugin>
             <plugin>

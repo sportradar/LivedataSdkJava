@@ -18,6 +18,7 @@ public interface MessageWriter<T extends MessageBase> {
      *
      * @param message The message to be written to the array.
      * @return The {@code byte[]} containing message data.
+     * @throws ProtocolException thrown when an un-expected situation is encountered.
      * @throws MessageException The {@code message} could not be written to specified media
      */
     byte[] write(T message) throws ProtocolException, MessageException;

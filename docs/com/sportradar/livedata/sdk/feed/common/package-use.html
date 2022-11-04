@@ -80,16 +80,26 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.di">com.sportradar.livedata.sdk.di</a></th>
+<td class="colLast">
+<div class="block">This package should only contain classes associated with IOC container used to build the dependency tree.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.common">com.sportradar.livedata.sdk.feed.common</a></th>
 <td class="colLast">
 <div class="block">Contains files common to all feeds</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.common.interfaces">com.sportradar.livedata.sdk.feed.common.interfaces</a></th>
 <td class="colLast">
 <div class="block">Contains interfaces that are the same for multiple feeds</div>
 </td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.classes">com.sportradar.livedata.sdk.feed.livescout.classes</a></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.interfaces">com.sportradar.livedata.sdk.feed.livescout.interfaces</a></th>
@@ -102,6 +112,43 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <section class="packageUses">
 <ul class="blockList">
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.di">
+<!--   -->
+</a>
+<div class="useSummary">
+<table>
+<caption><span>Classes in <a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a> used by <a href="../../di/package-summary.html">com.sportradar.livedata.sdk.di</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/EntityMapper.html#com.sportradar.livedata.sdk.di">EntityMapper</a></th>
+<td class="colLast">
+<div class="block">Represents a class used to map protocol layer messages to feed layer entities</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="class-use/ProtocolManager.html#com.sportradar.livedata.sdk.di">ProtocolManager</a></th>
+<td class="colLast">
+<div class="block">Represents a class used to manage access to the underlying <a href="../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common"><code>Protocol</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/TestManager.html#com.sportradar.livedata.sdk.di">TestManager</a></th>
+<td class="colLast">
+<div class="block">Represents an interface used to drive the test/replay servers.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
 <li class="blockList">
 <section class="detail"><a id="com.sportradar.livedata.sdk.feed.common">
 <!--   -->
@@ -137,7 +184,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr class="rowColor">
 <th class="colFirst" scope="row"><a href="class-use/ProtocolManager.html#com.sportradar.livedata.sdk.feed.common">ProtocolManager</a></th>
 <td class="colLast">
-<div class="block">Represents a class used to manage access to the underlying <code>Protocol</code>.</div>
+<div class="block">Represents a class used to manage access to the underlying <a href="../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common"><code>Protocol</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -179,6 +226,67 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tbody>
 <tr class="altColor">
 <th class="colFirst" scope="row"><a href="class-use/TestManager.html#com.sportradar.livedata.sdk.feed.common.interfaces">TestManager</a></th>
+<td class="colLast">
+<div class="block">Represents an interface used to drive the test/replay servers.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.feed.livescout.classes">
+<!--   -->
+</a>
+<div class="useSummary">
+<table>
+<caption><span>Classes in <a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a> used by <a href="../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/EntityMapper.html#com.sportradar.livedata.sdk.feed.livescout.classes">EntityMapper</a></th>
+<td class="colLast">
+<div class="block">Represents a class used to map protocol layer messages to feed layer entities</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="class-use/LiveFeedTestManagerBase.html#com.sportradar.livedata.sdk.feed.livescout.classes">LiveFeedTestManagerBase</a></th>
+<td class="colLast">
+<div class="block">Base class for feed test managers</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/MessageProcessor.html#com.sportradar.livedata.sdk.feed.livescout.classes">MessageProcessor</a></th>
+<td class="colLast">
+<div class="block">Represents a class capable of receiving an input message, processing it and passing in forward for further processing</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="class-use/MessageProcessorListener.html#com.sportradar.livedata.sdk.feed.livescout.classes">MessageProcessorListener</a></th>
+<td class="colLast">
+<div class="block">Represents a listener used to observer the <a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/ProtocolManager.html#com.sportradar.livedata.sdk.feed.livescout.classes">ProtocolManager</a></th>
+<td class="colLast">
+<div class="block">Represents a class used to manage access to the underlying <a href="../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common"><code>Protocol</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="class-use/TestDelayWithSpeed.html#com.sportradar.livedata.sdk.feed.livescout.classes">TestDelayWithSpeed</a></th>
+<td class="colLast">
+<div class="block">Represents a delay specification for the test server together with some speed.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="class-use/TestManager.html#com.sportradar.livedata.sdk.feed.livescout.classes">TestManager</a></th>
 <td class="colLast">
 <div class="block">Represents an interface used to drive the test/replay servers.</div>
 </td>

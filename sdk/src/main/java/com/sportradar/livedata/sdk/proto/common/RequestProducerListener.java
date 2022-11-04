@@ -14,6 +14,8 @@ public interface RequestProducerListener<T extends OutgoingMessage> {
      * Invoked by the observed {@link RequestProducer} when a request for the betradar server is ready.
      *
      * @param request the {@link OutgoingMessage} derived type representing the request for the betradar server.
+     * @param blocking true if request must be blocking.
+     * @return true if success.
      */
     boolean onRequestReady(T request, boolean blocking);
 }

@@ -92,12 +92,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.classes">com.sportradar.livedata.sdk.feed.livescout.classes</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.entities">com.sportradar.livedata.sdk.feed.livescout.entities</a></th>
 <td class="colLast">
 <div class="block">Contains Live Scout related entities</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.interfaces">com.sportradar.livedata.sdk.feed.livescout.interfaces</a></th>
 <td class="colLast">
 <div class="block">Contains Live Scout related interfaces</div>
@@ -218,6 +222,114 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">UserRequestManager.</span><code><span class="memberNameLink"><a href="../../interfaces/UserRequestManager.html#unsubscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">unsubscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Un-subscribe from the specified matches.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.feed.livescout.classes">
+<!--   -->
+</a>
+<h2>Uses of <a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a> in <a href="../../../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../../../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a> that return <a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutFeedImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutFeedImpl.html#getSubscribedEvents()">getSubscribedEvents</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Gets the ids of all subscribed matches.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutUserRequestManagerImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutUserRequestManagerImpl.html#getSubscribedEvents()">getSubscribedEvents</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Gets the ids of all subscribed events.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../../../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a> with parameters of type <a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutFeedImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutFeedImpl.html#bookMatches(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">bookMatches</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Book the specified matches.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutUserRequestManagerImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutUserRequestManagerImpl.html#bookMatches(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">bookMatches</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Book the specified matches.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutFeedImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutFeedImpl.html#subscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">subscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Subscribe to specified matches.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutTestManagerImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutTestManagerImpl.html#subscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier,com.sportradar.livedata.sdk.feed.common.TestDelayWithSpeed)">subscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>&nbsp;id,
+<a href="../../TestDelayWithSpeed.html" title="class in com.sportradar.livedata.sdk.feed.common">TestDelayWithSpeed</a>&nbsp;delay)</code></th>
+<td class="colLast">
+<div class="block">Subscribe to an event</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutUserRequestManagerImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutUserRequestManagerImpl.html#subscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">subscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Subscribe to specified matches.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutFeedImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutFeedImpl.html#subscribeToTest(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier,java.lang.Integer,java.lang.Integer)">subscribeToTest</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>&nbsp;eventId,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&nbsp;messageDelay,
+<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a>&nbsp;startMessage)</code></th>
+<td class="colLast">
+<div class="block">Request a full feed for the match, and then update messages will follow in the same pace as they were sent out live.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutFeedImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutFeedImpl.html#unsubscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">unsubscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
+<td class="colLast">
+<div class="block">Un-subscribe from the specified matches.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutUserRequestManagerImpl.</span><code><span class="memberNameLink"><a href="../../../livescout/classes/LiveScoutUserRequestManagerImpl.html#unsubscribe(com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier%5B%5D)">unsubscribe</a></span>&#8203;(<a href="../EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>[]&nbsp;eventIds)</code></th>
 <td class="colLast">
 <div class="block">Un-subscribe from the specified matches.</div>
 </td>

@@ -80,16 +80,65 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.di">com.sportradar.livedata.sdk.di</a></th>
+<td class="colLast">
+<div class="block">This package should only contain classes associated with IOC container used to build the dependency tree.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.common">com.sportradar.livedata.sdk.feed.common</a></th>
 <td class="colLast">
 <div class="block">Contains files common to all feeds</div>
 </td>
+</tr>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.feed.livescout.classes">com.sportradar.livedata.sdk.feed.livescout.classes</a></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </div>
 <section class="classUses">
 <ul class="blockList">
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.di">
+<!--   -->
+</a>
+<h2>Uses of <a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a> in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../../../di/package-summary.html">com.sportradar.livedata.sdk.di</a> with parameters of type <a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutInjectionModule.</span><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModule.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager</a></span>&#8203;(<a href="../../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common">Protocol</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;protocol,
+<a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;entityMapper,
+<a href="../../livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&nbsp;userRequestManager,
+<a href="../../../proto/livescout/LiveScoutClientAliveProducer.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutClientAliveProducer</a>&nbsp;aliveProducer,
+<a href="../../../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">LiveScoutInjectionModuleBase.</span><code><span class="memberNameLink"><a href="../../../di/LiveScoutInjectionModuleBase.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager</a></span>&#8203;(<a href="../../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common">Protocol</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;protocol,
+<a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;entityMapper,
+<a href="../../livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&nbsp;userRequestManager,
+<a href="../../../proto/livescout/LiveScoutClientAliveProducer.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutClientAliveProducer</a>&nbsp;aliveProducer,
+<a href="../../../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
 <li class="blockList">
 <section class="detail"><a id="com.sportradar.livedata.sdk.feed.common">
 <!--   -->
@@ -106,13 +155,41 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </thead>
 <tbody>
 <tr class="altColor">
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../LiveFeedProtocolManager.html#%3Cinit%3E(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.common.MessageProcessor,com.sportradar.livedata.sdk.proto.common.RequestProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">LiveFeedProtocolManager</a></span>&#8203;(com.sportradar.livedata.sdk.proto.common.Protocol&lt;com.sportradar.livedata.sdk.proto.dto.IncomingMessage,&#8203;com.sportradar.livedata.sdk.proto.dto.OutgoingMessage&gt;&nbsp;protocol,
-<a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a>&lt;com.sportradar.livedata.sdk.proto.dto.IncomingMessage,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;entityMapper,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../LiveFeedProtocolManager.html#%3Cinit%3E(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.common.MessageProcessor,com.sportradar.livedata.sdk.proto.common.RequestProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">LiveFeedProtocolManager</a></span>&#8203;(<a href="../../../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common">Protocol</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;protocol,
+<a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a>&lt;<a href="../../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;entityMapper,
 <a href="../MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="../entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;&nbsp;messageProcessor,
-com.sportradar.livedata.sdk.proto.common.RequestProducer&lt;com.sportradar.livedata.sdk.proto.dto.OutgoingMessage&gt;&nbsp;requestProducer,
+<a href="../../../proto/common/RequestProducer.html" title="interface in com.sportradar.livedata.sdk.proto.common">RequestProducer</a>&lt;<a href="../../../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;requestProducer,
 <a href="../../../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</code></th>
 <td class="colLast">
 <div class="block">Initializes a new instance of the <a href="../LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common"><code>LiveFeedProtocolManager</code></a> class</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.feed.livescout.classes">
+<!--   -->
+</a>
+<h2>Uses of <a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a> in <a href="../../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Classes in <a href="../../livescout/classes/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.classes</a> that implement <a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../livescout/classes/LiveScoutEntityMapper.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutEntityMapper</a></span></code></th>
+<td class="colLast">
+<div class="block">A <a href="../EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>EntityMapper</code></a> implementation used to map protocol layer scout messages into feed layer scout entities.</div>
 </td>
 </tr>
 </tbody>

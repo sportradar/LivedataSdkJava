@@ -43,7 +43,7 @@ public abstract class MessageTokenizerBase implements MessageTokenizer {
      * Notifies the observer that data was tokenized.
      *
      * @param stream A {@link InputStream} instance containing the tokenized data.
-     * @throws SdkException
+     * @throws SdkException thrown when an un-expected situation is encountered.
      */
     protected void notifyListener(InputStream stream) throws SdkException {
         MessageTokenizerListener copy = this.listener;

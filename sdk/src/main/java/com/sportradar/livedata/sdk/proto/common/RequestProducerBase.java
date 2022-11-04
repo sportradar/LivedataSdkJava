@@ -91,6 +91,8 @@ public abstract class RequestProducerBase<T extends OutgoingMessage> implements 
      * Notifies the observer that new request is ready to be send to the server.
      *
      * @param message the {@code T} representing the request to be send to the betradar server.
+     * @param blocking determine if request must be blocking.
+     * @return true is success.
      */
     protected boolean notifyOnRequestReady(T message, boolean blocking) {
         RequestProducerListener<T> listenerCopy = this.listener;

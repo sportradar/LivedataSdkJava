@@ -105,6 +105,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Contains SDK entry point</div>
 </td>
 </tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="#com.sportradar.livedata.sdk.proto.common">com.sportradar.livedata.sdk.proto.common</a></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -298,6 +302,132 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colLast">
 <div class="block">Initialize SDK with passed <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Properties.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>Properties</code></a> instance
  Call to this method is optional.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</li>
+<li class="blockList">
+<section class="detail"><a id="com.sportradar.livedata.sdk.proto.common">
+<!--   -->
+</a>
+<h2>Uses of <a href="../SdkException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">SdkException</a> in <a href="../../../proto/common/package-summary.html">com.sportradar.livedata.sdk.proto.common</a></h2>
+<div class="useSummary">
+<table>
+<caption><span>Subclasses of <a href="../SdkException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">SdkException</a> in <a href="../../../proto/common/package-summary.html">com.sportradar.livedata.sdk.proto.common</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../proto/common/MessageException.html" title="class in com.sportradar.livedata.sdk.proto.common">MessageException</a></span></code></th>
+<td class="colLast">
+<div class="block">An exception thrown when the message cannot be created from the data or message data cannot be written to the target type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../proto/common/NoDataProtocolException.html" title="class in com.sportradar.livedata.sdk.proto.common">NoDataProtocolException</a></span></code></th>
+<td class="colLast">
+<div class="block">An <a href="../../../proto/common/ProtocolException.html" title="class in com.sportradar.livedata.sdk.proto.common"><code>ProtocolException</code></a> derived class which is thrown when no data is available</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../proto/common/ProtocolException.html" title="class in com.sportradar.livedata.sdk.proto.common">ProtocolException</a></span></code></th>
+<td class="colLast">
+<div class="block">An <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Exception.html?is-external=true" title="class or interface in java.lang" class="externalLink"><code>Exception</code></a> derived class which is thrown when an un-expected situation is encountered in the protocol layer code.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="useSummary">
+<table>
+<caption><span>Methods in <a href="../../../proto/common/package-summary.html">com.sportradar.livedata.sdk.proto.common</a> that throw <a href="../SdkException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">SdkException</a></span><span class="tabEnd">&nbsp;</span></caption>
+<thead>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageTokenizerBase.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageTokenizerBase.html#notifyListener(java.io.InputStream)">notifyListener</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Notifies the observer that data was tokenized.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">JaxbMessageParser.</span><code><span class="memberNameLink"><a href="../../../proto/common/JaxbMessageParser.html#onDataReady(java.io.InputStream)">onDataReady</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes the received data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected abstract void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageParserBase.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageParserBase.html#onDataReady(java.io.InputStream)">onDataReady</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">When overridden in derived class, it processes the received data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageTokenizerListener.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageTokenizerListener.html#onMessageReady(java.io.InputStream)">onMessageReady</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Invoked when the observed <a href="../../../proto/common/MessageTokenizer.html" title="interface in com.sportradar.livedata.sdk.proto.common"><code>MessageTokenizer</code></a> parsed data which represented a whole message.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">IncrementalMessageTokenizer.</span><code><span class="memberNameLink"><a href="../../../proto/common/IncrementalMessageTokenizer.html#processData(java.io.InputStream)">processData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes passed data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageParser.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageParser.html#processData(java.io.InputStream)">processData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes passed data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageParserBase.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageParserBase.html#processData(java.io.InputStream)">processData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes passed data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageTokenizer.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageTokenizer.html#processData(java.io.InputStream)">processData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes passed data.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">MessageTokenizerBase.</span><code><span class="memberNameLink"><a href="../../../proto/common/MessageTokenizerBase.html#processData(java.io.InputStream)">processData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">Processes passed data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">JaxbMessageParser.</span><code><span class="memberNameLink"><a href="../../../proto/common/JaxbMessageParser.html#unMarshallData(java.io.InputStream)">unMarshallData</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/InputStream.html?is-external=true" title="class or interface in java.io" class="externalLink">InputStream</a>&nbsp;stream)</code></th>
+<td class="colLast">
+<div class="block">When overridden in derived class it un-marshals the <code>data</code>.</div>
 </td>
 </tr>
 </tbody>

@@ -17,6 +17,7 @@ public interface MessageTokenizerListener {
      * Invoked when the observed {@link MessageTokenizer} parsed data which represented a whole message.
      *
      * @param stream A {@link InputStream} implementation containing tokenized message data.
+     * @throws SdkException thrown when an un-expected situation is encountered.
      */
     void onMessageReady(InputStream stream) throws SdkException;
 }
