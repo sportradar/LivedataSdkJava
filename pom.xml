@@ -5,13 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk-parent</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.0-RC2</version>
     <modules>
         <module>sdk</module>
     </modules>
-
     <packaging>pom</packaging>
-    <name>Livedata SDK</name>
+    <name>Livedata SDK - parent</name>
     <description>
         Livedata SDK is a client library that enables easier integration with the Livedata XML feed.
         SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do
@@ -20,7 +19,17 @@
         especially with the release of new and updated XML feed versions.
     </description>
     <inceptionYear>2013</inceptionYear>
-
+    <url>https://sdk.sportradar.com/bookmaker/java</url>
+    <scm>
+        <url>https://github.com/sportradar/LivedataSdkJava/</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>SDK licence</name>
+            <url> https://sdk.sportradar.com/bookmaker/java/file?g=9ca8c5b3-d3e8-49d8-b3c3-d8b10ffa9e73</url>
+            <comments>See end-user agreement on sdk website</comments>
+        </license>
+    </licenses>
     <developers>
         <developer>
             <id>sdk</id>
@@ -29,9 +38,16 @@
         </developer>
     </developers>
 
-    <scm>
-        <url>https://github.com/sportradar/LivedataSdkJava/</url>
-    </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
 
     <profiles>
         <profile>
@@ -85,6 +101,8 @@
         <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
         <jaxb2-maven-plugin.version>3.1.0</jaxb2-maven-plugin.version>
         <copy-rename-maven-plugin.version>1.0.1</copy-rename-maven-plugin.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <common.settings.path>../sdk-feed-layer/src/main/resources</common.settings.path>
@@ -161,6 +179,20 @@
                     </filesets>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -217,6 +249,14 @@
 <!--                            </configuration>-->
 <!--                        </execution>-->
 <!--                    </executions>-->
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                    <configuration>
+                        <skip>false</skip>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -429,17 +469,4 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>http://nexus.klika.si/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Internal Releases</name>
-            <url>http://nexus.klika.si/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 </project>
