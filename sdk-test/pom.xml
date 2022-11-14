@@ -5,7 +5,7 @@
     <parent>
         <artifactId>sdk-parent</artifactId>
         <groupId>com.sportradar.livedata.sdk</groupId>
-        <version>2.0.0-RC2</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>com.sportradar.livedata.sdk.test</groupId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.sportradar.livedata.sdk</groupId>
             <artifactId>sdk</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${revision}</version>
         </dependency>
 
         <!-- logging -->
@@ -71,39 +71,5 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>log4j.xml</exclude>
-                                        <exclude>module-info.class</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven-deploy-plugin.version}</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 </project>

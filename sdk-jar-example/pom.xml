@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
     <groupId>sdk_jar_example</groupId>
     <artifactId>sdk_jar_example</artifactId>
-    <version>2.0.0-RC2</version>
+    <version>2.0.0</version>
 
     <build>
         <plugins>
@@ -19,11 +19,11 @@
                         <id>install-external</id>
                         <phase>clean</phase>
                         <configuration>
-                            <file>${basedir}/../release/sdk.jar</file>
+                            <file>${basedir}/../target/sdk-2.0.0-RC4-fatjar-shaded.jar</file>
                             <repositoryLayout>default</repositoryLayout>
                             <groupId>com.sportradar.sdk</groupId>
-                            <artifactId>sdk-parent</artifactId>
-                            <version>2.0.0-RC2</version>
+                            <artifactId>sdk</artifactId>
+                            <version>2.0.0-RC4</version>
                             <packaging>jar</packaging>
                             <generatePom>true</generatePom>
                         </configuration>
@@ -48,10 +48,10 @@
     <dependencies>
         <dependency>
             <groupId>com.sportradar.livedata.sdk</groupId>
-            <artifactId>sdk-parent</artifactId>
-            <version>2.0.0-RC2</version>
+            <artifactId>sdk</artifactId>
+            <version>2.0.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../release/sdk.jar</systemPath>
+            <systemPath>${basedir}/../target/sdk-2.0.0-RC4-fatjar-shaded.jar</systemPath>
         </dependency>
     </dependencies>
 

@@ -6,12 +6,38 @@
     <parent>
         <artifactId>sdk-parent</artifactId>
         <groupId>com.sportradar.livedata.sdk</groupId>
-        <version>2.0.0-RC2</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>sdk</artifactId>
     <packaging>jar</packaging>
     <name>Livedata SDK</name>
+    <description>
+        Livedata SDK is a client library that enables easier integration with the Livedata XML feed.
+        SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do
+        XML feed parsing, proper connection handling, error recovery, event queuing and dispatching.
+        It also makes a client solution more stable and robust when it comes to feed handling,
+        especially with the release of new and updated XML feed versions.
+    </description>
+    <inceptionYear>2013</inceptionYear>
+    <url>https://sdk.sportradar.com/bookmaker/java</url>
+    <scm>
+        <url>https://github.com/sportradar/LivedataSdkJava/</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>SDK licence</name>
+            <url> https://sdk.sportradar.com/bookmaker/java/file?g=9ca8c5b3-d3e8-49d8-b3c3-d8b10ffa9e73</url>
+            <comments>See end-user agreement on sdk website</comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>sdk</id>
+            <name>SDK developers</name>
+            <email>sdk@betradar.com</email>
+        </developer>
+    </developers>
 
 <!--  removed testing dependencies  -->
     <dependencies>
@@ -46,6 +72,12 @@
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.angus</groupId>
+                    <artifactId>angus-activation</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Dependency Injection Container -->
@@ -228,13 +260,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
                 <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+                            <resources>
+                                <resource>META-INF/MANIFEST.MF</resource>
+                                <resource>META-INF/DEPENDENCIES</resource>
+                            </resources>
+                        </transformer>
+                    </transformers>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
                             <excludes>
-<!--                                <exclude>images/</exclude>-->
-<!--                                <exclude>*.properties</exclude>-->
                                 <exclude>module-info.class</exclude>
 <!--                                not working-->
 <!--                                <exclude>META-INF.versions.9.module-info</exclude>-->
@@ -263,7 +304,7 @@
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>fatjar-shaded</shadedClassifierName>
 <!--                            <finalName>sdk</finalName>-->
-<!--                            <outputDirectory>${project.parent.basedir}/release</outputDirectory>-->
+                            <outputDirectory>${project.parent.build.directory}</outputDirectory>
                             <relocations>
                                 <relocation>
                                     <pattern>org</pattern>
@@ -329,6 +370,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
