@@ -364,23 +364,6 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testAppenderTypeNonNull() {
-        SdkLogAppenderType appenderTypeAlert = SdkLogAppenderType.ALERT;
-        final String markerName = "marker";
-        String appenderName = SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
-        assertThat(appenderName, equalTo(SdkLogAppenderType.resolveAppenderName(appenderTypeAlert, markerName)));
-    }
-
-    @Test
-    public void testAppenderTypeNull() {
-        SdkLogAppenderType appenderTypeAlert = null;
-        final String markerName = "marker";
-        thrown.expectMessage("appenderType");
-        thrown.expect(IllegalArgumentException.class);
-        SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
-    }
-
-    @Test
     public void testMarker() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.TRAFFIC;
         final String markerName = "LiveOdds";
