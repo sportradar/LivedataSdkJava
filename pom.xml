@@ -62,7 +62,7 @@
     </profiles>
 
     <properties>
-        <revision>2.0.0-RC4</revision>
+        <revision>2.0.0</revision>
 
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 
@@ -143,7 +143,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <compilerVersion>11</compilerVersion>
+                    <compilerVersion>${maven.compiler.source}</compilerVersion>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
@@ -320,6 +320,10 @@
                     <exclusion>
                         <groupId>jakarta.xml.bind</groupId>
                         <artifactId>jakarta.xml.bind-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.angus</groupId>
+                        <artifactId>angus-activation</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
