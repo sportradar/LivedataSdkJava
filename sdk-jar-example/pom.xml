@@ -6,40 +6,47 @@
 	<modelVersion>4.0.0</modelVersion>
     <groupId>sdk_jar_example</groupId>
     <artifactId>sdk_jar_example</artifactId>
-    <version>2.0.0</version>
+    <version>${sdk.version}</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <sdk.version>2.0.0</sdk.version>
+    </properties>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>install-external</id>
-                        <phase>clean</phase>
-                        <configuration>
-                            <file>${basedir}/../sdk/target/sdk-2.0.0-RC5-fatjar-shaded.jar</file>
-                            <repositoryLayout>default</repositoryLayout>
-                            <groupId>com.sportradar.sdk</groupId>
-                            <artifactId>sdk</artifactId>
-                            <version>2.0.0-RC5</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-install-plugin</artifactId>-->
+<!--                <version>2.5.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>install-external</id>-->
+<!--                        <phase>clean</phase>-->
+<!--                        <configuration>-->
+<!--                            <file>${basedir}/../sdk/target/sdk-2.0.0-fatjar-shaded.jar</file>-->
+<!--                            <repositoryLayout>default</repositoryLayout>-->
+<!--                            <groupId>com.sportradar.sdk</groupId>-->
+<!--                            <artifactId>sdk</artifactId>-->
+<!--                            <version>2.0.0-RC5</version>-->
+<!--                            <packaging>jar</packaging>-->
+<!--                            <generatePom>true</generatePom>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>install-file</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -49,9 +56,9 @@
         <dependency>
             <groupId>com.sportradar.livedata.sdk</groupId>
             <artifactId>sdk</artifactId>
-            <version>2.0.0-RC5</version>
+            <version>${sdk.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../sdk/target/sdk-2.0.0-RC5-fatjar-shaded.jar</systemPath>
+            <systemPath>${basedir}/../sdk/target/sdk-${sdk.version}-fatjar-shaded.jar</systemPath>
         </dependency>
     </dependencies>
 

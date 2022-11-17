@@ -1,7 +1,6 @@
 Livedata SDK 2.x
 ----------------
 Livedata SDK is a client library that enables easier integration with the Livedata XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed versions.
-> **_NOTE:_**	Until SDK is not published at Maven Central latest version can be dowloaded from [here](https://github.com/sportradar/LivedataSdkJava/blob/main/release/sdk.jar).
 
 ### BUILDING
 Project consists of next modules:
@@ -11,8 +10,7 @@ Project consists of next modules:
 - **sdk-loginterceptor**. Jmx functionality for debugging.
 - **sdk-jar-example**. Separate example project to test sdk.jar independently. _Requirs sdk.jar in release folder._
 
-Running "_package_" will run unit tests, generate javadoc and shader fatjar **sdk.jar** under release folder. If you need minimal versions, you can find them at _sdk/target/_.
-<!--create jar files uner _sdk/target/_. You need **sdk-2.x.x-fatjar-shaded.jar** as it contains all needed shaded libraries.-->
+Running "_package_" will run unit tests, generate javadoc and all needed jar files at _sdk/target/_.
 
 ### INSTALLATION
 Project builds three different jars:

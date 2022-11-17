@@ -1,7 +1,6 @@
 Livedata SDK 2.x
 ----------------
 Livedata SDK is a client library that enables easier integration with the Livedata XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed versions.
-> **_NOTE:_**	Until SDK is not published at Maven Central latest version can be dowloaded from [here](https://github.com/sportradar/LivedataSdkJava/blob/main/release/sdk.jar).
 
 ### BUILDING
 Project consists of next modules:
@@ -11,14 +10,13 @@ Project consists of next modules:
 - **sdk-loginterceptor**. Jmx functionality for debugging.
 - **sdk-jar-example**. Separate example project to test sdk.jar independently. _Requirs sdk.jar in release folder._
 
-Running "_package_" will run unit tests, generate javadoc and shader fatjar **sdk.jar** under release folder. If you need minimal versions, you can find them at _sdk/target/_.
-<!--create jar files uner _sdk/target/_. You need **sdk-2.x.x-fatjar-shaded.jar** as it contains all needed shaded libraries.-->
+Running "_package_" will run unit tests, generate javadoc and all needed jar files at _sdk/target/_.
 
 ### INSTALLATION
 Project builds three different jars:
-* sdk-2.0.0-RC5.jar - only sdk classes, need to upload dependencies from maven.
-* sdk-2.0.0-RC5-fatjar.jar - stores all needed libraries inside jar.
-* sdk-2.0.0-RC5-fatjar-shaded.jar - stores all needed libraries inside jar. Libraries are shaded to avoid overwriting by newer versions.
+* sdk-2.0.0.jar - only sdk classes, need to upload dependencies from maven.
+* sdk-2.0.0-fatjar.jar - stores all needed libraries inside jar.
+* sdk-2.0.0-fatjar-shaded.jar - stores all needed libraries inside jar. Libraries are shaded to avoid overwriting by newer versions.
 > **_NOTE:_**	Despite the availability of original jar, we recommend to use fatjar-shaded to avoid libraries versions incompatibility.
 
 Livedata sdk can be imported from [Maven Central Repository](https://mvnrepository.com/artifact/com.sportradar.livedata.sdk/sdk).
@@ -27,7 +25,7 @@ Just add the fatjar-shaded dependency to your pom.xml file:
 <dependency>
     <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.0.0-RC5</version>
+    <version>2.0.0</version>
     <classifier>fatjar-shaded</classifier>
     <exclusions>
         <exclusion>
@@ -42,7 +40,7 @@ If you want to manage sdk libraries original jar be used:
 <dependency>
     <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.0.0-RC5</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
