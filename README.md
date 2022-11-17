@@ -14,6 +14,38 @@ Project consists of next modules:
 Running "_package_" will run unit tests, generate javadoc and shader fatjar **sdk.jar** under release folder. If you need minimal versions, you can find them at _sdk/target/_.
 <!--create jar files uner _sdk/target/_. You need **sdk-2.x.x-fatjar-shaded.jar** as it contains all needed shaded libraries.-->
 
+### INSTALLATION
+Project builds three different jars:
+* sdk-${revision}.jar
+* sdk-${revision}-fatjar.jar
+* sdk-${revision}-fatjar-shaded.jar (can be found in parent target folder with sources and javadoc)
+> **_NOTE:_**	Despite the availability of original jar, we recommend to use fatjar-shaded to avoid libraries versions incompatibility.
+
+Livedata sdk can be imported from [Maven Central Repository](https://mvnrepository.com/artifact/com.sportradar.livedata.sdk/sdk).
+Just add the fatjar-shaded dependency to your pom.xml file:
+```
+<dependency>
+    <groupId>com.sportradar.livedata.sdk</groupId>
+    <artifactId>sdk</artifactId>
+    <version>${revision}</version>
+    <classifier>fatjar-shaded</classifier>
+    <exclusions>
+        <exclusion>
+            <groupId>*</groupId>
+            <artifactId>*</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+If you want to manage sdk libraries original jar be used:
+```
+<dependency>
+    <groupId>com.sportradar.livedata.sdk</groupId>
+    <artifactId>sdk</artifactId>
+    <version>${revision}</version>
+</dependency>
+```
+
 ### CONFIGURATION
 In your _sdk.properties_ you need at least to set-up the following: (replace xxx with actual credentials).
 ```
@@ -55,4 +87,4 @@ but again you can be disconnected too long and miss that. So same logic as befor
 SDK never generates implicit "_bet start_". You should not rely on "_bet start_" to start accepting bets again but check [MatchHeaderEntity.getBetStatus()](https://sportradar.github.io/LivedataSdkJava/com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getBetStatus())!
 
 ### Documentation
-[Javadoc](https://sportradar.github.io/LivedataSdkJava/)
+[Javadoc](https://sportradar.github.io/LivedataSdkJava/) for latest version. For older version [javadoc.io](https://javadoc.io/) can be used.
