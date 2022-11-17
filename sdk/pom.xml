@@ -185,7 +185,7 @@
                 </executions>
                 <configuration>
                     <outputDirectory>${project.parent.basedir}/docs</outputDirectory>
-                    <jarOutputDirectory>${project.parent.build.directory}</jarOutputDirectory>
+<!--                    <jarOutputDirectory>${project.parent.build.directory}</jarOutputDirectory>-->
                     <windowtitle>Livedata SDK ${project.version} API</windowtitle>
                     <doctitle>Livedata SDK ${project.version} API</doctitle>
                     <notimestamp>true</notimestamp>
@@ -208,7 +208,7 @@
                 </executions>
                 <configuration>
                     <excludeResources>true</excludeResources>
-                    <outputDirectory>${project.parent.build.directory}</outputDirectory>
+<!--                    <outputDirectory>${project.parent.build.directory}</outputDirectory>-->
                 </configuration>
             </plugin>
 
@@ -298,7 +298,7 @@
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>fatjar-shaded</shadedClassifierName>
 <!--                            <finalName>sdk</finalName>-->
-                            <outputDirectory>${project.parent.build.directory}</outputDirectory>
+<!--                            <outputDirectory>${project.parent.build.directory}</outputDirectory>-->
                             <relocations>
                                 <relocation>
                                     <pattern>org</pattern>

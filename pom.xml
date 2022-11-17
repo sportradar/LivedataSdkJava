@@ -62,7 +62,7 @@
     </profiles>
 
     <properties>
-        <revision>2.0.0</revision>
+        <revision>2.0.0-RC5</revision>
 
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 
@@ -175,7 +175,33 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>readme-md</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/docs/templates</directory>
+                                    <includes>
+                                        <include>README.md</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 <!--            removing javadoc during clean-->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
