@@ -12,8 +12,6 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        FileSkdLoggerGetAppenderTypeTest.class,
-        FileSdkLoggerGetLevelTest.class,
         FileSdkLoggerTestBase.class,
         MatchingFilterTest.class,
 })

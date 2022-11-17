@@ -16,7 +16,7 @@ public class DummyLBAppender extends AppenderBase<ILoggingEvent> {
     public List<ILoggingEvent> list = new ArrayList<>();
     public List<String> stringList = new ArrayList<>();
 
-    private PatternLayout layout;
+    private final PatternLayout layout;
 
     public DummyLBAppender() {
         this(null);

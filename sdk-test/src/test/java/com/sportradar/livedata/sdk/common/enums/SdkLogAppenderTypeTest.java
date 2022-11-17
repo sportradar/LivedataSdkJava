@@ -10,7 +10,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("getAppenderName() test -> if appenderType and marker are not null")
     @Test
-    public void getAppenderName_appenderTypeIsNotNull_test() {
+    void getAppenderName_appenderTypeIsNotNull_test() {
         SdkLogAppenderType appenderTypeAlert = SdkLogAppenderType.ALERT;
         final String markerName = "marker";
 
@@ -23,7 +23,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("getAppenderName() test -> if appenderType is null")
     @Test
-    public void getAppenderName_appenderTypeIsNull_test() {
+    void getAppenderName_appenderTypeIsNull_test() {
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> SdkLogAppenderType.getAppenderName(null, "marker")
@@ -33,7 +33,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("getAppenderName() test -> if marker is null")
     @Test
-    public void getAppenderName_markerIsNull_test() {
+    void getAppenderName_markerIsNull_test() {
         SdkLogAppenderType appenderTypeAlert = SdkLogAppenderType.ALERT;
         String expectedAppenderName = appenderTypeAlert.getAppenderName();
 
@@ -44,7 +44,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("resolveAppenderName() test -> ok parameters")
     @Test
-    public void getMarker_test() {
+    void getMarker_test() {
         SdkLogAppenderType appenderTypeAlert = SdkLogAppenderType.ALERT;
         final String markerName = "marker";
 
@@ -57,7 +57,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("resolveAppenderName() test -> appender is null")
     @Test
-    public void getMarker_appenderTypeIsNull_test() {
+    void getMarker_appenderTypeIsNull_test() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> SdkLogAppenderType.resolveAppenderName(null, "marker")
@@ -66,7 +66,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("resolveAppenderName() test -> marker is null")
     @Test
-    public void getMarker_markerIsNull_test() {
+    void getMarker_markerIsNull_test() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.ALERT;
 
         String actualAppenderName = SdkLogAppenderType.resolveAppenderName(appenderType, null);
@@ -76,7 +76,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("resolveAppenderName() test -> marker is empty")
     @Test
-    public void getMarker_markerIsEmpty_test() {
+    void getMarker_markerIsEmpty_test() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.ALERT;
 
         String actualAppenderName = SdkLogAppenderType.resolveAppenderName(appenderType, "");
@@ -86,7 +86,7 @@ class SdkLogAppenderTypeTest {
 
     @DisplayName("resolveAppenderName() test -> if appenderType == EXECUTION")
     @Test
-    public void getMarker_appenderTypeExecution_test() {
+    void getMarker_appenderTypeExecution_test() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.EXECUTION;
 
         String actualAppenderName = SdkLogAppenderType.resolveAppenderName(appenderType, "marker");

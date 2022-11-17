@@ -344,48 +344,11 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLoggerLevelIsNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("level");
-        FileSdkLogger.getLevel(null);
-    }
-
-    @Test
-    public void testLoggerLevelIsEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("level");
-        FileSdkLogger.getLevel("");
-    }
-
-    @Test
-    public void testLoggerLevelIsEmp() {
-        Level level = FileSdkLogger.getLevel("foo bar");
-        assertThat(level, equalTo(Level.OFF));
-    }
-
-    @Test
     public void testMarker() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.TRAFFIC;
         final String markerName = "LiveOdds";
         Marker marker = appenderType.getMarker(markerName);
         assertThat(marker, not(equalTo(null)));
-    }
-
-    @Test
-    public void testGetAppenderType_InvalidCharacters() {
-        final SdkLogAppenderType inputAppenderType = SdkLogAppenderType.ALERT;
-        SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(FileSdkLogger.ROOT_NS + inputAppenderType.name() + "\"[!@#$%^");
-        assertThat(outputAppenderType, equalTo(inputAppenderType));
-    }
-
-    @Test
-    public void testGetAppenderType_InvalidName() {
-        final SdkLogAppenderType inputAppenderType = SdkLogAppenderType.ALERT;
-        final String suffix = "new";
-        final String appenderName = FileSdkLogger.ROOT_NS + inputAppenderType.name() + "." + suffix;
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("No enum constant " + inputAppenderType.getClass().getName() + "." + inputAppenderType.name() + suffix);
-        SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(appenderName);
     }
 
     @Test
