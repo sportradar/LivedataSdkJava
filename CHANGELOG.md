@@ -5,6 +5,7 @@ It also makes a client solution more stable and robust when it comes to feed han
 **2.0.0 (2022-00-00)**
 * Based on Bookmaker SDK v1.24.0.0
 * Supports only Livescout feed. Others feeds support was removed
+* Packages were changed from **com.sportradar.sdk** to **com.sportradar.livedata.sdk**
 * Java updated from 7 to 11.
 * All libraries updated to the latest versions, which were available at 2022-10-01
 
