@@ -2,6 +2,9 @@
 Livedata SDK is a client library that enables easier integration with the Livescout XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. 
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.
 
+**2.0.1 (2022-00-00)**
+* Max amount of matches per subscribtion added. If subscribtion request will exceed that amount, it will be split in multiple requests.
+
 **2.0.0 (2022-00-00)**
 * Based on Bookmaker SDK v1.24.0.0
 * Supports only Livescout feed. Others feeds support was removed

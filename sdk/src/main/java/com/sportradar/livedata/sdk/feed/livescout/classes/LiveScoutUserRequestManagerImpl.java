@@ -47,6 +47,7 @@ public class LiveScoutUserRequestManagerImpl
      * How long to leave match after it comes into terminal state?
      */
     public static final Duration TERMINAL_STATE_ADDENDUM = Duration.standardMinutes(5);
+    public static final int MAX_SUBSCRIPTION_AMOUNT = 2000;//should it come from configs?
     private final static Object NullObject = new Object();
     private final static Logger logger = LoggerFactory.getLogger(LiveScoutUserRequestManagerImpl.class);
     /**
@@ -179,11 +180,14 @@ public class LiveScoutUserRequestManagerImpl
     public void subscribe(final EventIdentifier[] eventIds) {
         checkNotNull(eventIds);
         sdkLogger.logClientInteraction(Level.INFO, String.format("Subscribe: %s", ArrayUtils.toString(eventIds)));
-        List<Long> ids = new ArrayList<>();
-        for (EventIdentifier eventId : eventIds) {
-            ids.add(eventId.getEventId());
+        List<Long> ids = new ArrayList<>(Math.min(eventIds.length, MAX_SUBSCRIPTION_AMOUNT));
+        for(int i = 1; i <= eventIds.length; i++){
+            ids.add(eventIds[i-1].getEventId());
+            if(i % MAX_SUBSCRIPTION_AMOUNT == 0 || i == eventIds.length){//maybe we should pass collection instead of an array and use guava partition?
+                notifyOnRequestReady(requestFactory.buildMatchSubscribe(ids));
+                ids.clear();
+            }
         }
-        notifyOnRequestReady(requestFactory.buildMatchSubscribe(ids));
     }
 
     /**
