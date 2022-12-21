@@ -1,19 +1,21 @@
 package com.sportradar.livedata.sdk.common.classes;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.config.FileSdkLoggerFactory;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.EnumSource.Mode.EXCLUDE;
 
 class FileSdkLoggerTest {
 
@@ -91,21 +93,110 @@ class FileSdkLoggerTest {
 
     @DisplayName("getLevel() test -> ok params levels")
     @ParameterizedTest
-    @MethodSource("levelProvider")
+    @MethodSource("com.sportradar.livedata.sdk.common.classes.LevelProvider#allLevelsProvider")
     void getLevel_ok_test(Level level) {
         Level resultLevel = FileSdkLogger.getLevel(level.levelStr);
 
         assertThat(resultLevel).isEqualTo(level);
     }
 
-    @DisplayName("isDebugEnabled() test -> with valid enum values")
-    @ParameterizedTest
-    @EnumSource
-    void testGetLevel(SdkLogAppenderType type) throws SdkException, NoSuchMethodException {
+    @Nested
+    @DisplayName("With FileSdkLogger mocked object -> non-static methods tests")
+    class NonStaticMethodsTests {
+        FileSdkLoggerFactory sdkLoggerFactory = new FileSdkLoggerFactory();
+        FileSdkLogger fileSdkLogger;
 
+        @BeforeEach
+        void setUp() throws SdkException, IOException {
+            /* TODO: figure out how to delete temp directory after tests
+            In current implementation it is unclear how to do that. During programmatical deletion attempt error is thrown and
+            indicates that some resources are used by system. Issue persists on Windows 10*/
+            fileSdkLogger = sdkLoggerFactory.buildFileSdkLogger(Files.createTempDirectory("junit"));
+        }
+
+        @Test
+        @DisplayName("isDebugEnabled() test -> with alert appenderType")
+        void isDebugEnabled_alertAppenderType_test() {
+            boolean result = fileSdkLogger.isDebugEnabled(SdkLogAppenderType.ALERT);
+
+            assertTrue(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource(mode = EXCLUDE, names = { "ALERT" })
+        @DisplayName("isDebugEnabled() test -> with all except alert appenderTypes")
+        void isDebugEnabled_withAllExceptAlertAppenderTypes_test(SdkLogAppenderType type) {
+            boolean result = fileSdkLogger.isDebugEnabled(type);
+
+            assertFalse(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource
+        @DisplayName("isErrorEnabled() test -> with all possible appenderTypes")
+        void isErrorEnabled_withAllAppenderTypes_test(SdkLogAppenderType type) {
+            boolean result = fileSdkLogger.isErrorEnabled(type);
+
+            assertTrue(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource
+        @DisplayName("isInfoEnabled() test -> with all possible appenderTypes")
+        void isInfoEnabled_withAllAppenderTypes_test(SdkLogAppenderType type) {
+            boolean result = fileSdkLogger.isInfoEnabled(type);
+
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("isTraceEnabled() test -> with alert appenderType")
+        void isTraceEnabled_alertAppenderType_test() {
+            boolean result = fileSdkLogger.isTraceEnabled(SdkLogAppenderType.ALERT);
+
+            assertTrue(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource(mode = EXCLUDE, names = { "ALERT" })
+        @DisplayName("isTraceEnabled() test -> with all except alert appenderTypes")
+        void isTraceEnabled_withAllExceptAlertAppenderTypes_test(SdkLogAppenderType type) {
+            boolean result = fileSdkLogger.isTraceEnabled(type);
+
+            assertFalse(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource
+        @DisplayName("isWarnEnabled() test -> with all possible appenderTypes")
+        void isWarnEnabled_withAllAppenderTypes_test(SdkLogAppenderType type) {
+            boolean result = fileSdkLogger.isWarnEnabled(type);
+
+            assertTrue(result);
+        }
+
+        @ParameterizedTest
+        @MethodSource("com.sportradar.livedata.sdk.common.classes.LevelProvider#mainLevelsProvider")
+        @DisplayName("isLevelEnabled() test -> with all possible appenderTypes and main levels")
+        void isLevelEnabled_withMainLevelProviders_test(Level level) {
+            boolean result = fileSdkLogger.isLevelEnabled(level, SdkLogAppenderType.ALERT);
+
+            assertTrue(result);
+        }
+
+        @ParameterizedTest
+        @MethodSource("com.sportradar.livedata.sdk.common.classes.LevelProvider#secondaryLevelsProvider")
+        @DisplayName("isLevelEnabled() test -> with all possible appenderTypes and main levels")
+        void isLevelEnabled_withSecondaryLevelProviders_test(Level level) {
+            boolean result = fileSdkLogger.isLevelEnabled(level, SdkLogAppenderType.ALERT);
+
+            assertFalse(result);
+        }
     }
+}
 
-    static Stream<Level> levelProvider() {
+class LevelProvider {
+    static Stream<Level> allLevelsProvider() {
         return Stream.of(Level.ALL,
                 Level.TRACE,
                 Level.DEBUG,
@@ -113,5 +204,17 @@ class FileSdkLoggerTest {
                 Level.WARN,
                 Level.ERROR,
                 Level.OFF);
+    }
+
+    static Stream<Level> mainLevelsProvider() {
+        return Stream.of(Level.TRACE,
+                Level.DEBUG,
+                Level.INFO,
+                Level.WARN,
+                Level.ERROR);
+    }
+
+    static Stream<Level> secondaryLevelsProvider() {
+        return Stream.of(Level.OFF, Level.ALL);
     }
 }
