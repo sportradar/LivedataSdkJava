@@ -174,4 +174,67 @@ class CommonUtilsTest {
                 CommonUtils.randomDuration(min, max)
         );
     }
+
+    @DisplayName("fromTimestamp(timeStamp) test -> with utc timezone")
+    @Test
+    void fromTimestamp_utcTimezone_test() {
+        long timeStamp = 1672751777L;
+
+        DateTime result = CommonUtils.fromTimestamp(timeStamp);
+
+        assertThat(result).isEqualTo(new DateTime(timeStamp, DateTimeZone.UTC));
+    }
+
+    @DisplayName("fromTimestamp(timeStamp, timeZone) test -> with specified timezone")
+    @Test
+    void fromTimestamp_specifiedTimezone_test() {
+        long timeStamp = 1672751777L;
+        DateTimeZone cet = DateTimeZone.forID("CET");
+
+        DateTime result = CommonUtils.fromTimestamp(timeStamp, cet);
+
+        assertThat(result).isEqualTo(new DateTime(timeStamp, cet));
+    }
+
+    @DisplayName("intToBoolean test -> with 0 -> false expected")
+    @Test
+    void intToBoolean_withZero_test() {
+        assertFalse(CommonUtils.intToBoolean(0));
+    }
+
+    @DisplayName("intToBoolean test -> with positive number -> true expected")
+    @Test
+    void intToBoolean_withPositiveNumber_test() {
+        assertTrue(CommonUtils.intToBoolean(1));
+    }
+
+    @DisplayName("intToBoolean test -> with negative number -> true expected")
+    @Test
+    void intToBoolean_withNegativeNumber_test() {
+        assertTrue(CommonUtils.intToBoolean(-1));
+    }
+
+    @DisplayName("integerToBoolean test -> with null -> null expected")
+    @Test
+    void integerToBoolean_withNull_test() {
+        assertNull(CommonUtils.integerToBoolean(null));
+    }
+
+    @DisplayName("integerToBoolean test -> with 0 -> false expected")
+    @Test
+    void integerToBoolean_withZero_test() {
+        assertFalse(CommonUtils.integerToBoolean(0));
+    }
+
+    @DisplayName("integerToBoolean test -> with positive number -> true expected")
+    @Test
+    void integerToBoolean_withPositiveNumber_test() {
+        assertTrue(CommonUtils.integerToBoolean(1));
+    }
+
+    @DisplayName("integerToBoolean test -> with negative number -> true expected")
+    @Test
+    void integerToBoolean_withNegativeNumber_test() {
+        assertTrue(CommonUtils.integerToBoolean(-1));
+    }
 }
