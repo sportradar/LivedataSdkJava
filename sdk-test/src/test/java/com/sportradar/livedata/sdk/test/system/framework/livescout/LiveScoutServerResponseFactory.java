@@ -154,45 +154,6 @@ public class LiveScoutServerResponseFactory {
         return dbfail;
     }
 
-    public static OddsSuggestions buildOddsSuggestions(long matchid) {
-
-        OddsSuggestions oddsSuggestions = new OddsSuggestions();
-        oddsSuggestions.setMatchid(matchid);
-        Odds odds = new Odds();
-        odds.setBookId(1);
-        odds.setChangenumber(1);
-        odds.setDescription("Who wins the rest of the match?");
-        odds.setGuthMatchId((int) matchid);
-        odds.setManualActive((byte) 1);
-        odds.setMatchId(matchid);
-        odds.setSpecialOddsValue("0:0");
-        odds.setSubtype(4);
-        odds.setType(19);
-        odds.setValidDate(1244794244648L);
-        oddsSuggestions.getOdds().add(odds);
-
-        OddsField oddsField = new OddsField();
-        oddsField.setDescription("Home");
-        oddsField.setSide("home");
-        oddsField.setValue(BigDecimal.valueOf(2.5));
-        odds.getOddsField().add(oddsField);
-
-        oddsField = new OddsField();
-        oddsField.setDescription("Draw");
-        oddsField.setSide("draw");
-        oddsField.setValue(BigDecimal.valueOf(2.9));
-        odds.getOddsField().add(oddsField);
-
-        oddsField = new OddsField();
-        oddsField.setDescription("Away");
-        oddsField.setSide("away");
-        oddsField.setValue(BigDecimal.valueOf(2.85));
-        odds.getOddsField().add(oddsField);
-
-
-        return oddsSuggestions;
-    }
-
     public static Match buildMatchUpdate(long matchid) {
 
         return buildMatch(matchid, "delta");

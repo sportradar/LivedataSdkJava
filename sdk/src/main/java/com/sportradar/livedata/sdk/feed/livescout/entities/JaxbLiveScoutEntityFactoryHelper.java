@@ -195,8 +195,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
         {
             result.setIsCancelled(isCancelled != 0);
         }
-
+        result.setVbpClassification(match.getVbpclassification());
         result.setSTime(match.getStime());
+        result.setHomeState(match.getHomestate());
+        result.setAwayState(match.getAwaystate());
+        result.setVenue(match.getVenue());
 
         return result;
     }
@@ -562,6 +565,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     Teams teams = (Teams) item;
                     result.setMatchTeams(buildMatchTeams(teams));
                     break;
+                case "Subteam":
+                    Subteam subteam = (Subteam) item;
+                    result.setSubteam(new SubteamEntity(subteam));
+                    break;
                 case "Green":
                     Green green = (Green) item;
                     result.setGreenCards(new HomeAway<>(green.getT1(), green.getT2()));
@@ -581,17 +588,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         for (Jersey jersey : jerseys.getJersey()) {
             result.add(new JerseyEntity(jersey));
         }
-        return result;
-    }
-
-    public static OddsSuggestionsEntity buildOddsSuggestionsEntity(OddsSuggestions oddsSuggestions) {
-        OddsSuggestionsEntity result = new OddsSuggestionsEntity(new HashMap<String, String>());
-        result.setMatchId(oddsSuggestions.getMatchid());
-        ArrayList<ScoutOddsEntity> scoutOddsEntities = new ArrayList<>(oddsSuggestions.getOdds().size());
-        for (Odds odd : oddsSuggestions.getOdds()) {
-            scoutOddsEntities.add(buildScoutOddsEntity(odd));
-        }
-        result.setOdds(scoutOddsEntities);
         return result;
     }
 
@@ -733,6 +729,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setLastHits(event.getLasthits());
         result.setLevel(event.getLevel());
         result.setNetWorth(event.getNetworth());
+        result.setPitchingSubstitution(event.getPitchingsubstitution());
         result.setRunsAway(event.getRunsaway());
         result.setRunsHome(event.getRunshome());
         result.setWeaponId(event.getWeaponid());
@@ -904,37 +901,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 
-        return result;
-    }
-
-    public static ScoutOddsEntity buildScoutOddsEntity(Odds odds) {
-        ScoutOddsEntity result = new ScoutOddsEntity();
-        result.setAlsoOdds(odds.getAlsoOdds());
-        result.setDescription(odds.getDescription());
-        result.setGuthMatchId(odds.getGuthMatchId());
-        result.setManualActive(CommonUtils.intToBoolean(odds.getManualActive()));
-        result.setMatchId(odds.getMatchId());
-        result.setSpecialOddsValue(odds.getSpecialOddsValue());
-        result.setSubType(odds.getSubtype());
-        result.setType(odds.getType());
-        result.setValidDate(CommonUtils.fromTimestamp(odds.getValidDate()));
-        if (odds.getOddsField() != null) {
-            HashMap<String, ScoutOddsFieldEntity> oddsFields = new HashMap<>(odds.getOddsField().size());
-            for (OddsField oddsField : odds.getOddsField()) {
-                oddsFields.put(oddsField.getSide(), buildScoutOddsFieldEntity(oddsField));
-            }
-            result.setValues(oddsFields);
-        }
-        return result;
-    }
-
-    public static ScoutOddsFieldEntity buildScoutOddsFieldEntity(OddsField oddsField) {
-        ScoutOddsFieldEntity result = new ScoutOddsFieldEntity();
-        result.setDescription(oddsField.getDescription());
-        result.setSide(oddsField.getSide());
-        if (oddsField.getValue() != null) {
-            result.setValue(oddsField.getValue().toString());
-        }
         return result;
     }
 

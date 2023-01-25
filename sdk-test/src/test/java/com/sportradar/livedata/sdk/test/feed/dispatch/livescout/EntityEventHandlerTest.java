@@ -89,20 +89,6 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void oddsSuggestionEntityIsDispatched() {
-        final OddsSuggestionsEntity entity = new TestOddsSuggestionEntity(EventIdentifier.id(1L));
-        context.checking(new Expectations() {{
-            oneOf(listenerMock).onOddsSuggestionReceived(with(feed), with(entity));
-        }});
-        OddsSuggestionsEntity notHandledEntity = new TestOddsSuggestionEntity(EventIdentifier.id(2L));
-        handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(entity)), 1, true);
-        handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(notHandledEntity)), 1, true);
-
-        context.assertIsSatisfied();
-    }
-
-
-    @Test
     public void matchBookEntityIsDispatched() {
         final MatchBookingEntity entity = new TestMatchBookingEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
@@ -254,21 +240,6 @@ public class EntityEventHandlerTest {
         @Override
         public ScoutFeedType getFeedType() {
             return feedType;
-        }
-    }
-
-    class TestOddsSuggestionEntity extends OddsSuggestionsEntity {
-
-        private final EventIdentifier eventId;
-
-        TestOddsSuggestionEntity(EventIdentifier eventId) {
-            super(null);
-            this.eventId = eventId;
-        }
-
-        @Override
-        public EventIdentifier getEventId() {
-            return eventId;
         }
     }
 

@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 @Ignore
-public class FakeOddsServerTest {
+public class FakeServerTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 

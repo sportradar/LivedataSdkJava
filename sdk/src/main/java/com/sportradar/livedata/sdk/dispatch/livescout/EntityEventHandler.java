@@ -150,14 +150,6 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
         }
     }
 
-    protected void dispatchOddsSuggestion(OddsSuggestionsEntity entity) {
-        try {
-            listener.onOddsSuggestionReceived(feed, entity);
-        } catch (Exception e) {
-            logger.warn("User handler for onOddsSuggestionReceived threw exception", e);
-        }
-    }
-
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         try {
             listener.onMatchDeltaUpdateUpdateReceived(feed, matchUpdate);
@@ -221,8 +213,6 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
 
                 }
             }
-        } else if (entity instanceof OddsSuggestionsEntity) {
-            dispatchOddsSuggestion((OddsSuggestionsEntity) entity);
         } else if (entity instanceof MatchBookingEntity) {
             dispatchMatchBooking((MatchBookingEntity) entity);
         } else if (entity instanceof LineupsEntity) {

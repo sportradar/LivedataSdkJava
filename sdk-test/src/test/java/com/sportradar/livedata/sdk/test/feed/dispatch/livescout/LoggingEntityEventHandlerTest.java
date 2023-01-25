@@ -308,47 +308,6 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
         assertEqualMessage(Level.INFO, message);
     }
 
-    @Test
-    public void testOnEvent_OddsSuggestionsEntity_DebugLevel() throws Exception {
-        logger.setLevel(Level.DEBUG);
-        OddsSuggestionsEntity entity = EntityMock.createFake(virtualGameId, eventId, sequenceNumber, OddsSuggestionsEntity.class);
-        List<ScoutOddsEntity> scoutOddsEntities = new ArrayList<>();
-        ScoutOddsEntity scoutOddsEntity = new ScoutOddsEntity();
-        scoutOddsEntities.add(scoutOddsEntity);
-        CommonTestUtils.setFieldValue(OddsSuggestionsEntity.class, "odds", entity, scoutOddsEntities);
-
-        LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
-        entityEventHandler.onEvent(markAsValid(entityContainer), sequenceNumber, isEndOfBatch);
-        String message = String.format("[Elapsed 0] OnOddsSuggestion [%s] : %s", entity.getMatchId(), entity);
-        assertEqualMessage(Level.DEBUG, message);
-    }
-
-    @Test
-    public void testOnEvent_OddsSuggestionsEntity_DebugLevel_EmptyMatchOdds() throws Exception {
-        logger.setLevel(Level.DEBUG);
-        OddsSuggestionsEntity entity = EntityMock.<OddsSuggestionsEntity>createFake(virtualGameId, eventId, sequenceNumber, OddsSuggestionsEntity.class);
-
-        LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
-        entityEventHandler.onEvent(markAsValid(entityContainer), sequenceNumber, isEndOfBatch);
-        String message = String.format("[Elapsed 0] Discarding OddsSuggestions client event notify: empty odds list");
-        assertEqualMessage(Level.DEBUG, message);
-    }
-
-    @Test
-    public void testOnEvent_OddsSuggestionsEntity_InfoLevel() throws Exception {
-        logger.setLevel(Level.INFO);
-        OddsSuggestionsEntity entity = EntityMock.<OddsSuggestionsEntity>createFake(virtualGameId, eventId, sequenceNumber, OddsSuggestionsEntity.class);
-        List<ScoutOddsEntity> scoutOddsEntities = new ArrayList<>();
-        ScoutOddsEntity scoutOddsEntity = new ScoutOddsEntity();
-        scoutOddsEntities.add(scoutOddsEntity);
-        CommonTestUtils.setFieldValue(OddsSuggestionsEntity.class, "odds", entity, scoutOddsEntities);
-
-        LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
-        entityEventHandler.onEvent(markAsValid(entityContainer), sequenceNumber, isEndOfBatch);
-        String message = String.format("[Elapsed 0] OnOddsSuggestion %s #%s", entity.getMatchId(), scoutOddsEntities.size());
-        assertEqualMessage(Level.INFO, message);
-    }
-
     static class EntityMock<T> {
 
         public static <T> T createFake(

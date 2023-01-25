@@ -157,9 +157,6 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
             MatchUpdateEntity matchUpdateEntity = matchList.getMatches().get(i);
             long id = matchUpdateEntity.getEventId().getEventId();
             logger.info(id + ">" + matchUpdateEntity.getMatchTeams() + ">" + matchUpdateEntity.getMatchStatus());
-            if(id < 0){
-                logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            }
         }
     }
 
@@ -177,11 +174,6 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
                 logger.info("Match score %s", se);
             }
         }
-    }
-
-    @Override
-    public void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions) {
-        logger.info("Odds suggestion");
     }
 
     @Override

@@ -90,11 +90,6 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener{
     }
 
     @Override
-    public void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions) {
-        logger.info("Odds suggestion");
-    }
-
-    @Override
     public void onServerTimeReceived(LiveScoutFeed liveScoutFeed, ServerTimeEntity serverTimeEntity) {
         logger.info("Server time received");
     }

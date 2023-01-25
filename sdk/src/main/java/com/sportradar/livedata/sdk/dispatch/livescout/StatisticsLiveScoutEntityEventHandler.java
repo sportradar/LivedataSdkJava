@@ -55,12 +55,6 @@ public final class StatisticsLiveScoutEntityEventHandler extends LoggingEntityEv
     }
 
     @Override
-    protected void dispatchOddsSuggestion(OddsSuggestionsEntity entity) {
-        super.dispatchOddsSuggestion(entity);
-        counter.countUpOnOddsSuggestion();
-    }
-
-    @Override
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         super.dispatchOnMatchDeltaUpdateDeltaReceived(matchUpdate);
         counter.countUpOnOnMatchDeltaUpdateDeltaReceived();

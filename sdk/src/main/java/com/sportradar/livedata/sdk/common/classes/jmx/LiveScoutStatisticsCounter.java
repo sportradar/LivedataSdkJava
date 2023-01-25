@@ -12,7 +12,6 @@ public class LiveScoutStatisticsCounter {
     protected int onMatchData = 0;
     protected int onMatchBooking = 0;
     protected int onScoutInfos = 0;
-    protected int onOddsSuggestion = 0;
     protected int onOnMatchDeltaUpdateDeltaReceived = 0;
     protected int onOnMatchDeltaUpdateReceived = 0;
     protected int onFullMatchUpdateReceived = 0;
@@ -44,11 +43,6 @@ public class LiveScoutStatisticsCounter {
     @JmxAttributeMethod(description = "Number of onScoutInfos cals.")
     public int getOnScoutInfos() {
         return onScoutInfos;
-    }
-
-    @JmxAttributeMethod(description = "Number of onOddsSuggestion cals.")
-    public int getOnOddsSuggestion() {
-        return onOddsSuggestion;
     }
 
     @JmxAttributeMethod(description = "Number of onOnMatchDeltaUpdateDeltaReceived cals.")
@@ -101,9 +95,6 @@ public class LiveScoutStatisticsCounter {
         ++onScoutInfos;
     }
 
-    public synchronized void countUpOnOddsSuggestion() {
-        ++onOddsSuggestion;
-    }
 
     public synchronized void countUpOnOnMatchDeltaUpdateDeltaReceived() {
         ++onOnMatchDeltaUpdateDeltaReceived;
@@ -136,7 +127,6 @@ public class LiveScoutStatisticsCounter {
         onLineups = 0;
         onMatchBooking = 0;
         onScoutInfos = 0;
-        onOddsSuggestion = 0;
         onOnMatchDeltaUpdateDeltaReceived = 0;
         onOnMatchDeltaUpdateReceived = 0;
         onFullMatchUpdateReceived = 0;

@@ -57,6 +57,7 @@ public class MatchHeaderEntity implements Serializable {
     private Long teamMatchId;
     private Boolean cancelled;
     private Long stime;
+    private String vbpClassification;
     private String homeState;
     private String awayState;
     private String venue;
@@ -426,6 +427,10 @@ public class MatchHeaderEntity implements Serializable {
 
     public Long getSTime() { return stime; }
 
+    public String getVbpClassification() {
+        return vbpClassification;
+    }
+
     public String getHomeState() { return homeState; }
 
     public String getAwayState() { return awayState; }
@@ -482,6 +487,7 @@ public class MatchHeaderEntity implements Serializable {
                 ", teamMatchId=" + teamMatchId +
                 ", cancelled=" + cancelled +
                 ", stime=" + stime +
+                ", vbpClassification=" + vbpClassification +
                 ", homeState=" + homeState +
                 ", awayState=" + awayState +
                 ", venue=" + venue +
@@ -635,6 +641,10 @@ public class MatchHeaderEntity implements Serializable {
     public void setIsCancelled(Boolean cancelled) { this.cancelled = cancelled; }
 
     public void setSTime(Long stime) { this.stime = stime; }
+
+    public void setVbpClassification(String vbpClassification) {
+        this.vbpClassification = vbpClassification;
+    }
 
     public void setHomeState(String homeState) { this.homeState = homeState; }
 

@@ -24,8 +24,6 @@ public interface LiveScoutEntityFactory {
 
     public MatchUpdateEntity buildMatchUpdateEntity(Match matchUpdate) throws InvalidEntityException;
 
-    public OddsSuggestionsEntity buildOddsSuggestionsEntity(OddsSuggestions oddsSuggestions);
-
     public ServerTimeEntity buildServerTimeEntity(Servertime servertime) throws InvalidEntityException;
 
 

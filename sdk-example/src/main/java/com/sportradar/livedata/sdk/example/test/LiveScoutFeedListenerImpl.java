@@ -105,13 +105,6 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
     }
 
     @Override
-    public void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions) {
-        oddsSuggestions = Serilizator.inAndOut(oddsSuggestions);
-        logger.info("Odds suggestion");
-    }
-
-
-    @Override
     public void onMatchBooked(LiveScoutFeed sender, MatchBookingEntity matchBooked) {
         matchBooked = Serilizator.inAndOut(matchBooked);
         logger.info("Match booked");

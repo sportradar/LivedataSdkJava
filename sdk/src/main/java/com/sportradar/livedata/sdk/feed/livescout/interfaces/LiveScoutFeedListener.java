@@ -143,15 +143,6 @@ public interface LiveScoutFeedListener {
      */
     void onMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate);
 
-    /**
-     * Invoked by the observed {@link LiveScoutFeed} when odds suggestions are received. Suggested live odds are
-     * constantly updated and sent out according to match events. These odds are generated based on statistical models.
-     *
-     * @param sender          The {@link LiveScoutFeed} sender of the event.
-     * @param oddsSuggestions The {@link OddsSuggestionsEntity} instance representing the received odds suggestions.
-     */
-    void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions);
-
 
     /**
      * Server time request response

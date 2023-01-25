@@ -873,6 +873,25 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="subteam">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="parent" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="tiebreak">
         <xs:complexType>
             <xs:attribute name="value" use="required">
@@ -1150,6 +1169,7 @@
                 <xs:element ref="behinds" minOccurs="0"/>
                 <xs:element ref="matchproperties" minOccurs="0"/>
                 <xs:element ref="teams" minOccurs="0"/>
+                <xs:element ref="subteam" minOccurs="0"/>
             </xs:choice>
             <xs:attribute name="extmatchid">
                 <xs:simpleType>
@@ -1196,7 +1216,7 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="t1division" use="optional">
+			<xs:attribute name="t1division" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -1416,6 +1436,14 @@
                     <xs:restriction base="xs:long"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="vbpclassification">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="star"/>
+                        <xs:enumeration value="mvp"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="homestate" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -1474,7 +1502,7 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="info" use="required">
+            <xs:attribute name="info">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -1804,6 +1832,11 @@
                     <xs:restriction base="xs:double"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="pitchingsubstitution" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int" />
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="runshome" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
@@ -2044,7 +2077,7 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="positionplayerpitching" use="optional">
+			<xs:attribute name="positionplayerpitching" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:boolean"/>
                 </xs:simpleType>
@@ -2765,127 +2798,6 @@
     <xs:element name="dbfail">
         <xs:complexType>
             <xs:attribute name="request" type="xs:string" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:simpleType name="T_OddsField">
-        <xs:restriction base="xs:decimal"/>
-    </xs:simpleType>
-    <xs:element name="OddsSuggestions">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="Odds" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-            <xs:attribute name="matchid" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:long"/>
-                </xs:simpleType>
-            </xs:attribute>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="OddsField">
-        <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="T_OddsField">
-                    <xs:attribute name="side" use="required">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string"/>
-                        </xs:simpleType>
-                    </xs:attribute>
-                    <xs:attribute name="description" use="required">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string"/>
-                        </xs:simpleType>
-                    </xs:attribute>
-                </xs:extension>
-            </xs:simpleContent>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="Odds">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="OddsField" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-            <xs:attribute name="validDate" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:long"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="type" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int">
-                        <xs:enumeration value="1"/>
-                        <xs:enumeration value="4"/>
-                        <xs:enumeration value="5"/>
-                        <xs:enumeration value="18"/>
-                        <xs:enumeration value="19"/>
-                        <xs:enumeration value="20"/>
-                        <xs:enumeration value="21"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="subtype" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="specialOddsValue" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="matchId" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:long"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="manualActive" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:byte">
-                        <xs:enumeration value="1"/>
-                        <xs:enumeration value="0"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="guthMatchId" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="description" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="changenumber" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="bookId" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="pref" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:boolean"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="alsoOdds" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="sj" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:double"/>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="maxDev" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:double"/>
-                </xs:simpleType>
-            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="infos">

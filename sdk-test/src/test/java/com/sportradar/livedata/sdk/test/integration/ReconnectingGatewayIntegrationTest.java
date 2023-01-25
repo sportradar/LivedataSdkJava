@@ -12,7 +12,7 @@ import com.sportradar.livedata.sdk.common.timer.Timer;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.test.FakeOddsServer;
+import com.sportradar.livedata.sdk.test.FakeServer;
 import com.sportradar.livedata.sdk.test.NullSdkLogger;
 import com.sportradar.livedata.sdk.test.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
@@ -55,7 +55,7 @@ public class ReconnectingGatewayIntegrationTest {
     private final ExecutorService executor = Executors.newCachedThreadPool();
 
 
-    private FakeOddsServer serverDriver;
+    private FakeServer serverDriver;
     private Gateway client;
 
 
@@ -69,7 +69,7 @@ public class ReconnectingGatewayIntegrationTest {
                 .setUsername("1")
                 .setPassword("key")
                 .build();
-        this.serverDriver = new FakeOddsServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
+        this.serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
 
         Gateway actualGateway = new TcpGateway(executor, new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);
         Timer reconnectTimer = new PeriodicTimer(Executors.newScheduledThreadPool(1));

@@ -147,53 +147,12 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThatMatchUpdateEntityEqualToMatch(result.getMatches(), input.getMatch(), clazz);
     }
 
-    private void assertThatScoutOddsEntityEqualToOdds(ScoutOddsEntity result,
-                                                      Odds input) {
-        assertThat(result.getMatchId(), equalTo(input.getMatchId()));
-        assertThat(result.getAlsoOdds(), equalTo(input.getAlsoOdds()));
-        assertThat(result.getDescription(), equalTo(input.getDescription()));
-        assertThat(result.getGuthMatchId(), equalTo(input.getGuthMatchId()));
-        assertThat(result.getSpecialOddsValue(), equalTo(input.getSpecialOddsValue()));
-        assertThat(result.getSubType(), equalTo(input.getSubtype()));
-        assertThat(result.getType(), equalTo(input.getType()));
-        assertThat(result.getValidDate().getMillis(), equalTo(input.getValidDate()));
-        assertThat(result.isManualActive(), equalTo(input.getManualActive()!=0));
-        assertThat(input.getOddsField().size(), equalTo(1));
-        OddsField oddsField = input.getOddsField().get(0);
-        for (Map.Entry<String, ScoutOddsFieldEntity> e : result.getValues().entrySet()) {
-            ScoutOddsFieldEntity scoutOddsFieldValue = e.getValue();
-            assertThat(scoutOddsFieldValue.getSide(), equalTo(oddsField.getSide()));
-            assertThat(scoutOddsFieldValue.getDescription(), equalTo(oddsField.getDescription()));
-            assertThat(scoutOddsFieldValue.getValue(), equalTo(oddsField.getValue().toString()));
-        }
-
-    }
-
-    private void assertThatScoutOddsEntityEqualToOdds(List<ScoutOddsEntity> result,
-                                                      List<Odds> input) {
-        if (result == null && input == null) {
-            return;
-        }
-        for (int i = 0; i < result.size(); ++i) {
-            assertThatScoutOddsEntityEqualToOdds(result.get(i), input.get(i));
-        }
-    }
-
     private void assertThatMapQnameStringEqualToMapStringString(Map<String, String> result,
                                                                 Map<QName, String> input) {
         for (Map.Entry<QName, String> e : input.entrySet()) {
             String value = result.get(e.getKey().getLocalPart());
             assertThat(e.getValue(), equalTo(value));
         }
-    }
-
-    private void assertThatOddsSuggestionsEntityEqualToOddsSuggestions(OddsSuggestionsEntity result,
-                                                                       OddsSuggestions input) {
-        Map<String, String> mapAdditionalData = result.getAdditionalData();
-        assertThat(mapAdditionalData.size(), equalTo(0));
-        assertThat(result.getEventId().getEventId(), equalTo(input.getMatchid()));
-        assertThat(result.getMatchId(), equalTo(input.getMatchid()));
-        assertThatScoutOddsEntityEqualToOdds(result.getOdds(), input.getOdds());
     }
 
     private void assertThatPlayerEntityEqualToPlayer(PlayerEntity result, Player input) {
@@ -255,16 +214,6 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result.isTieBreakLastSet(), equalTo(CommonUtils.integerToBoolean(input.getTiebreaklastset())));
         assertThat(result.isTimeRunning(), equalTo(CommonUtils.integerToBoolean(input.getTimerunning())));
         assertThat(result.getWonJumpBall().isLiteralValueEqual(input.getWonjumpball()), equalTo(true));
-    }
-
-    private void assertThatScoutOddsFieldEntityEqualToOddsFieldEntity(ScoutOddsFieldEntity result,
-                                                                      OddsField input) {
-        if (result == null && input == null) {
-            return;
-        }
-        assertThat(result.getValue(), equalTo(input.getValue().toString()));
-        assertThat(result.getDescription(), equalTo(input.getDescription()));
-        assertThat(result.getSide(), equalTo(input.getSide()));
     }
 
     @Test(expected = NullPointerException.class)
@@ -1349,37 +1298,6 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void buildOddsSuggestionsEntity_Null_Input_Test() {
-        OddsSuggestions input = null;
-
-        JaxbLiveScoutEntityFactoryHelper.buildOddsSuggestionsEntity(input);
-    }
-
-    @Test
-    public void buildOddsSuggestionsEntity_Empty_Input_Test() {
-        OddsSuggestions input = new OddsSuggestions();
-
-        OddsSuggestionsEntity result = JaxbLiveScoutEntityFactoryHelper.buildOddsSuggestionsEntity(input);
-
-        assertThat(result, not(equalTo(null)));
-        assertThat(result.getAdditionalData().size(), equalTo(0));
-        EventIdentifier eventIdentifier = result.getEventId();
-        assertThat(eventIdentifier, not(equalTo(null)));
-        assertThat(eventIdentifier.getEventId(), equalTo(0l));
-        assertThat(result.getMatchId(), equalTo(0l));
-        assertThat(result.getOdds().size(), equalTo(0));
-    }
-
-    @Test
-    public void buildOddsSuggestionsEntity_OK_Input_Test() {
-        OddsSuggestions input = LiveScoutProtoEntityFactory.buildOddsSuggestions();
-
-        OddsSuggestionsEntity result = JaxbLiveScoutEntityFactoryHelper.buildOddsSuggestionsEntity(input);
-
-        assertThatOddsSuggestionsEntityEqualToOddsSuggestions(result, input);
-    }
-
-    @Test(expected = NullPointerException.class)
     public void buildMatchUpdateEntity_Null_Input_Test() throws Exception {
         Match input = null;
 
@@ -1827,51 +1745,5 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
 
         assertThatScoutEventEntityEqualToEvent(result, input);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void buildScoutOddsEntity_Null_Input_Test() {
-        Odds input = null;
-
-        JaxbLiveScoutEntityFactoryHelper.buildScoutOddsEntity(input);
-    }
-
-    @Test
-    public void buildScoutOddsEntity_Empty_Test() {
-        Odds input = new Odds();
-
-        ScoutOddsEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutOddsEntity(input);
-    }
-
-    @Test
-    public void buildScoutOddsEntity_OK_Input_Test() {
-        Odds input = LiveScoutProtoEntityFactory.buildOdds();
-
-        ScoutOddsEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutOddsEntity(input);
-
-        assertThatScoutOddsEntityEqualToOdds(result, input);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void buildScoutOddsFieldEntity_Null_Input_Test() {
-        OddsField input = null;
-
-        JaxbLiveScoutEntityFactoryHelper.buildScoutOddsFieldEntity(input);
-    }
-
-    @Test
-    public void buildScoutOddsFieldEntity_Empty_Input_Test() {
-        OddsField input = new OddsField();
-
-        ScoutOddsFieldEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutOddsFieldEntity(input);
-    }
-
-    @Test
-    public void buildScoutOddsFieldEntity_OK_Input_Test() {
-        OddsField input = LiveScoutProtoEntityFactory.buildOddsField();
-
-        ScoutOddsFieldEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutOddsFieldEntity(input);
-
-        assertThatScoutOddsFieldEntityEqualToOddsFieldEntity(result, input);
     }
 }

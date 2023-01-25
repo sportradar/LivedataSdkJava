@@ -65,8 +65,6 @@ public class LiveScoutEntityMapper implements EntityMapper<IncomingMessage, Enti
             return factory.buildMatchListEntity((Matchlist) message);
         } else if (message instanceof Matchlistupdate) {
             return factory.buildMatchListUpdateEntity((Matchlistupdate) message);
-        } else if (message instanceof OddsSuggestions) {
-            return factory.buildOddsSuggestionsEntity((OddsSuggestions) message);
         } else if (message instanceof Match) {
             return factory.buildMatchUpdateEntity((Match) message);
         } else if (message instanceof Lineups) {

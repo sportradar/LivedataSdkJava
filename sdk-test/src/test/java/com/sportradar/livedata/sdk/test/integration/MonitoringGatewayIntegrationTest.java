@@ -14,7 +14,7 @@ import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.test.FakeOddsServer;
+import com.sportradar.livedata.sdk.test.FakeServer;
 import com.sportradar.livedata.sdk.test.NullSdkLogger;
 import com.sportradar.livedata.sdk.test.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
@@ -57,7 +57,7 @@ public class MonitoringGatewayIntegrationTest {
     private final ExecutorService executor = Executors.newCachedThreadPool();
 
 
-    private FakeOddsServer serverDriver;
+    private FakeServer serverDriver;
     private Gateway client;
 
     @Before
@@ -68,7 +68,7 @@ public class MonitoringGatewayIntegrationTest {
         MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null, new NullSdkLogger());
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();
-        this.serverDriver = new FakeOddsServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
+        this.serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
         Gateway actualGateway = new TcpGateway(executor, new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);

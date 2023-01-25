@@ -23,7 +23,7 @@ import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
-import com.sportradar.livedata.sdk.test.FakeOddsServer;
+import com.sportradar.livedata.sdk.test.FakeServer;
 import com.sportradar.livedata.sdk.test.NullSdkLogger;
 import com.sportradar.livedata.sdk.test.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
@@ -51,9 +51,6 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 @Ignore
 public class ProtocolIntegrationTest {
-
-    private static String LIVE_ODDS_FILEPATH = "/LiveOdds.xsd";
-
     private final Synchroniser synchronizer = new Synchroniser();
 
     private final Mockery context = new JUnit4Mockery() {{
@@ -67,7 +64,7 @@ public class ProtocolIntegrationTest {
 
     private final States protocolState = context.states("protocolState");
 
-    private FakeOddsServer serverDriver;
+    private FakeServer serverDriver;
 
     private Gateway gateway;
     MessageParser<IncomingMessage> clientMessageParser;
@@ -76,9 +73,6 @@ public class ProtocolIntegrationTest {
 
     @Before
     public void setUp() throws IOException, JAXBException {
-
-        File file = new File(getClass().getResource(LIVE_ODDS_FILEPATH).getFile());
-
         JAXBContext jaxbContext = JAXBContext.newInstance(IncomingMessage.class, OutgoingMessage.class);
         JaxbBuilder liveOddsJaxbFactory = new JaxbFactory(jaxbContext);
         JaxbBuilder bookmakerStatusJaxbFactory = new JaxbFactory(jaxbContext);
@@ -91,7 +85,7 @@ public class ProtocolIntegrationTest {
                 .setPassword("key")
                 .build();
 
-        serverDriver = new FakeOddsServer(new TcpServer(executor, 5055), serverMessageParser, serverMessageWriter, serverSettings);
+        serverDriver = new FakeServer(new TcpServer(executor, 5055), serverMessageParser, serverMessageWriter, serverSettings);
         Gateway tcpGateway = new TcpGateway(executor, new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);

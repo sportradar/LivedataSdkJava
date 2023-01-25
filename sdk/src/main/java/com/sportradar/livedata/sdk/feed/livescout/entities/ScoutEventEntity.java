@@ -85,6 +85,7 @@ public class ScoutEventEntity implements Serializable {
     private Integer posY;
     private String remainingTimeInPeriod;
     private Integer roundNumber;
+    private Integer pitchingSubstitution;
     private Integer runs;
     private Integer runsAway;
     private Integer runsHome;
@@ -875,6 +876,14 @@ public class ScoutEventEntity implements Serializable {
     public Integer getNetWorth() { return netWorth; }
 
     /**
+     * Gets pitching substitution
+     * @return pitching substitution
+     */
+    public Integer getPitchingSubstitution(){
+        return pitchingSubstitution;
+    }
+
+    /**
      * Gets the number of runs for away team
      *
      * @return number of runs for away team
@@ -1594,6 +1603,7 @@ public class ScoutEventEntity implements Serializable {
                 ", posY=" + posY +
                 ", remainingTimeInPeriod='" + remainingTimeInPeriod + '\'' +
                 ", roundNumber=" + roundNumber +
+                ", pitchingSubstitution=" + pitchingSubstitution +
                 ", runs=" + runs +
                 ", runsAway=" + runsAway +
                 ", runsHome=" + runsHome +
@@ -2066,6 +2076,10 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setNetWorth(Integer netWorth) {
         this.netWorth = netWorth;
+    }
+
+    protected void setPitchingSubstitution(Integer pitchingSubstitution){
+        this.pitchingSubstitution = pitchingSubstitution;
     }
 
     protected void setRunsAway(Integer runsAway) {

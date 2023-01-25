@@ -81,6 +81,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private BehindsEntity behinds;
     private List<MatchPropertyEntity> matchProperties;
     private List<MatchTeamEntity> matchTeams;
+    private SubteamEntity subteam;
     private HomeAway<Integer> greenCards;
 
     /**
@@ -606,6 +607,14 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     public List<MatchTeamEntity> getMatchTeams() { return matchTeams; }
 
     /**
+     * Returns the subteam.
+     * @return {@link SubteamEntity}
+     */
+    public SubteamEntity getSubteam() {
+        return subteam;
+    }
+
+    /**
      * Returns a string that represents the current object.
      * <p>
      * Note : Can be used for diagnostics purposes.
@@ -670,6 +679,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
                 ", goals=" + goals +
                 ", behinds=" + behinds +
                 ", teams=" + matchTeams +
+                ", subteam=" + subteam +
                 ", properties=" + matchProperties +
                 "} " + super.toString();
     }
@@ -886,6 +896,10 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
 
     protected void setMatchTeams(List<MatchTeamEntity> matchTeams) {
         this.matchTeams = matchTeams;
+    }
+
+    protected void setSubteam(SubteamEntity subteam) {
+        this.subteam = subteam;
     }
 
     protected void setGreenCards(HomeAway<Integer> greenCards) { this.greenCards = greenCards; }

@@ -28,11 +28,6 @@ public class JaxbLiveScoutEntityFactory implements LiveScoutEntityFactory {
     }
 
     @Override
-    public OddsSuggestionsEntity buildOddsSuggestionsEntity(OddsSuggestions oddsSuggestions) {
-        return JaxbLiveScoutEntityFactoryHelper.buildOddsSuggestionsEntity(oddsSuggestions);
-    }
-
-    @Override
     public MatchUpdateEntity buildMatchUpdateEntity(Match match) throws InvalidEntityException {
         return JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(match);
     }

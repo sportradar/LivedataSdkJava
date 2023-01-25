@@ -198,31 +198,6 @@ public class LoggingEntityEventHandler extends EntityEventHandler {
     }
 
     @Override
-    protected void dispatchOddsSuggestion(OddsSuggestionsEntity oddsSuggestionsEntity) {
-        long durationStart = System.currentTimeMillis();
-        super.dispatchOddsSuggestion(oddsSuggestionsEntity);
-        Duration durationEnd = new Duration(System.currentTimeMillis()).minus(durationStart);
-
-        if (oddsSuggestionsEntity.getOdds() != null) {
-            if (sdkLogger.isDebugEnabled(SdkLogAppenderType.CLIENT_INTERACTION)) {
-                sdkLogger.logClientInteraction(Level.DEBUG,
-                        String.format("OnOddsSuggestion [%s] : %s", oddsSuggestionsEntity.getMatchId(), oddsSuggestionsEntity),
-                        durationEnd, null);
-            } else if (sdkLogger.isInfoEnabled(SdkLogAppenderType.CLIENT_INTERACTION)) {
-                sdkLogger.logClientInteraction(Level.INFO,
-                        String.format("OnOddsSuggestion %s #%s",
-                                oddsSuggestionsEntity.getMatchId(),
-                                oddsSuggestionsEntity.getOdds().size()),
-                        durationEnd, null);
-            }
-        } else {
-            sdkLogger.logClientInteraction(Level.DEBUG,
-                    "Discarding OddsSuggestions client event notify: empty odds list",
-                    durationEnd, null);
-        }
-    }
-
-    @Override
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         long durationStart = System.currentTimeMillis();
         super.dispatchOnMatchDeltaUpdateDeltaReceived(matchUpdate);

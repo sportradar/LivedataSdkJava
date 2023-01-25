@@ -110,18 +110,6 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
     }
 
     /**
-     * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when odds suggestions are received. Suggested live odds are
-     * constantly updated and sent out according to match events. These odds are generated based on statistical models.
-     *
-     * @param sender          The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
-     * @param oddsSuggestions The {@link com.sportradar.livedata.sdk.feed.livescout.entities.OddsSuggestionsEntity} instance representing the received odds suggestions.
-     */
-    @Override
-    public void onOddsSuggestionReceived(LiveScoutFeed sender, OddsSuggestionsEntity oddsSuggestions) {
-
-    }
-
-    /**
      * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when a match-booked reply is received. Reply is sent by the
      * live-scout server when a client books a match. If match booking failed for some reason
      * (match already booked, match finished etc.), the reply will contain additional explanation.

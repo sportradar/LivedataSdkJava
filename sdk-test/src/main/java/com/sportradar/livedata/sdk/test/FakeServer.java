@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Live-odds server used for end-to-end and integration tests.
  */
-public class FakeOddsServer implements NetworkServerListener, MessageParserListener<OutgoingMessage> {
+public class FakeServer implements NetworkServerListener, MessageParserListener<OutgoingMessage> {
 
     /**
      * Specifies the time interval the server will wait for an async operation to complete.
@@ -40,7 +40,7 @@ public class FakeOddsServer implements NetworkServerListener, MessageParserListe
     /**
      * A logger implementation.
      */
-    private static final Logger logger = LoggerFactory.getLogger(FakeOddsServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(FakeServer.class);
 
     /**
      * A tcp server used to accept incoming client connections.
@@ -93,13 +93,13 @@ public class FakeOddsServer implements NetworkServerListener, MessageParserListe
     private ScheduledExecutorService aliveScheduler = Executors.newScheduledThreadPool(1);
 
     /**
-     * Initializes a new instance of the {@link FakeOddsServer} class.
+     * Initializes a new instance of the {@link FakeServer} class.
      *
      * @param server        The {@link TcpServer} used to accept client connections.
      * @param messageParser The {@link MessageWriter} used to parse client messages
      * @param messageWriter The {@link MessageWriter} used to write messages send to the clients.
      */
-    public FakeOddsServer(TcpServer server, MessageParser<OutgoingMessage> messageParser, MessageWriter<IncomingMessage> messageWriter, LiveScoutSettings settings) {
+    public FakeServer(TcpServer server, MessageParser<OutgoingMessage> messageParser, MessageWriter<IncomingMessage> messageWriter, LiveScoutSettings settings) {
         this.server = server;
         this.server.setListener(this);
         this.messageParser = messageParser;

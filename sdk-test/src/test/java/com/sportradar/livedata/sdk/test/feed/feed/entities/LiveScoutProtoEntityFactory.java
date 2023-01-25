@@ -40,13 +40,6 @@ public class LiveScoutProtoEntityFactory {
         return matchlistupdate;
     }
 
-    public static OddsSuggestions buildOddsSuggestions() {
-        OddsSuggestions oddsSuggestions = new OddsSuggestions();
-        oddsSuggestions.setMatchid(123654);
-        oddsSuggestions.getOdds().add(buildOdds());
-        return oddsSuggestions;
-    }
-
     public static Attacks buildAttacks() {
         Attacks attacks = new Attacks();
         attacks.setT1(11);
@@ -481,32 +474,5 @@ public class LiveScoutProtoEntityFactory {
 
     public static String buildString() {
         return "test string";
-    }
-
-    public static Odds buildOdds() {
-        Odds odds = new Odds();
-        odds.getOddsField().add(buildOddsField());
-        odds.setValidDate(123456789);
-        odds.setType(1122);
-        odds.setSubtype(1223);
-        odds.setSpecialOddsValue("special odds value");
-        odds.setMatchId(10001);
-        odds.setManualActive(Byte.parseByte("1"));
-        odds.setGuthMatchId(4554);
-        odds.setDescription("description");
-        odds.setChangenumber(7458);
-        odds.setBookId(7423);
-        odds.setPref(false);
-        odds.setAlsoOdds(80010);
-        odds.setSj(12.34d);
-        return odds;
-    }
-
-    public static OddsField buildOddsField() {
-        OddsField oddsField = new OddsField();
-        oddsField.setDescription("odds field description");
-        oddsField.setSide("odds field side");
-        oddsField.setValue(new BigDecimal(123321));
-        return oddsField;
     }
 }

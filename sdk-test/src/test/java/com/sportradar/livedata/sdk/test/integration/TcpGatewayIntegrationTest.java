@@ -9,7 +9,7 @@ import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.test.FakeOddsServer;
+import com.sportradar.livedata.sdk.test.FakeServer;
 import com.sportradar.livedata.sdk.test.NullSdkLogger;
 import com.sportradar.livedata.sdk.test.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
@@ -54,7 +54,7 @@ public class TcpGatewayIntegrationTest {
     private JAXBContext jaxbContext;
     private MessageParser<OutgoingMessage> messageParser;
     private MessageWriter<IncomingMessage> messageWriter;
-    private FakeOddsServer serverDriver;
+    private FakeServer serverDriver;
     private Gateway client;
 
     @Before
@@ -66,7 +66,7 @@ public class TcpGatewayIntegrationTest {
         messageWriter = new JaxbMessageWriter<>(builder);
 
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();
-        serverDriver = new FakeOddsServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
+        serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
         client = new TcpGateway(executor, new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);
         client.setListener(clientListener);
     }
