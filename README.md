@@ -14,9 +14,9 @@ Running "_package_" will run unit tests, generate javadoc and all needed jar fil
 
 ### INSTALLATION
 Project builds three different jars:
-* sdk-2.0.1-RC1.jar - only sdk classes, need to upload dependencies from maven.
-* sdk-2.0.1-RC1-fatjar.jar - stores all needed libraries inside jar.
-* sdk-2.0.1-RC1-fatjar-shaded.jar - stores all needed libraries inside jar. Libraries are shaded to avoid overwriting by newer versions.
+* sdk-2.0.1.jar - only sdk classes, need to upload dependencies from maven.
+* sdk-2.0.1-fatjar.jar - stores all needed libraries inside jar.
+* sdk-2.0.1-fatjar-shaded.jar - stores all needed libraries inside jar. Libraries are shaded to avoid overwriting by newer versions.
 > **_NOTE:_**	Despite the availability of original jar, we recommend to use fatjar-shaded to avoid libraries versions incompatibility.
 
 Livedata sdk can be imported from [Maven Central Repository](https://mvnrepository.com/artifact/com.sportradar.livedata.sdk/sdk).
@@ -25,7 +25,7 @@ Just add the fatjar-shaded dependency to your pom.xml file:
 <dependency>
     <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.0.1-RC1</version>
+    <version>2.0.1</version>
     <classifier>fatjar-shaded</classifier>
     <exclusions>
         <exclusion>
@@ -40,7 +40,7 @@ If you want to manage sdk libraries original jar be used:
 <dependency>
     <groupId>com.sportradar.livedata.sdk</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.0.1-RC1</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
