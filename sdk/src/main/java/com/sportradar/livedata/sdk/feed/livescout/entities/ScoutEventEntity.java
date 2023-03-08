@@ -102,6 +102,9 @@ public class ScoutEventEntity implements Serializable {
     private Team side;
     private Integer strikes;
     private Boolean thirdBaseLoaded;
+    private Long firstBasePlayer;
+    private Long secondBasePlayer;
+    private Long thirdBasePlayer;
     private EventType type;
     private int typeId;
     private Integer weaponId;
@@ -215,6 +218,7 @@ public class ScoutEventEntity implements Serializable {
     private String homePlayers;
     private String awayPlayers;
     private Integer atBatNumber;
+    private Integer totalPitchCount;
     private Integer atBatPitchNumber;
     private Double batBallDistance;
     private Double batBallX;
@@ -238,6 +242,10 @@ public class ScoutEventEntity implements Serializable {
     private Integer freeKickReason;
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
+    private Integer homeRunsHome;
+    private Integer homeRunsAway;
+    private Integer prevPitcher;
+    private Integer nextBatter;
 
     /**
      * For Serializable
@@ -1523,6 +1531,70 @@ public class ScoutEventEntity implements Serializable {
     public String getFoulTypeQualifier() { return foulTypeQualifier; }
 
     /**
+     * Gets the total pitch count
+     * @return the total pitch count
+     */
+    public Integer getTotalPitchCount() {
+        return totalPitchCount;
+    }
+
+    /**
+     * Gets the first base player
+     * @return the first base player
+     */
+    public Long getFirstBasePlayer() {
+        return firstBasePlayer;
+    }
+
+    /**
+     * Gets the second base player
+     * @return the second base player
+     */
+    public Long getSecondBasePlayer() {
+        return secondBasePlayer;
+    }
+
+    /**
+     * Gets the third base player
+     * @return the third base player
+     */
+    public Long getThirdBasePlayer() {
+        return thirdBasePlayer;
+    }
+
+    /**
+     * Gets the home team home runs
+     * @return the second base player
+     */
+    public Integer getHomeRunsHome() {
+        return homeRunsHome;
+    }
+
+    /**
+     * Gets the away team home runs
+     * @return the second base player
+     */
+    public Integer getHomeRunsAway() {
+        return homeRunsAway;
+    }
+
+    /**
+     * Gets the previous pitcher
+     * @return the previous pitcher
+     */
+    public Integer getPrevPitcher() {
+        return prevPitcher;
+    }
+
+    /**
+     * Gets the next batter
+     * @return the next batter
+     */
+    public Integer getNextBatter() {
+        return nextBatter;
+    }
+
+    /**
      * Returns a string that represents the current object.
      * <p>
      * Note : Can be used for diagnostics purposes.
@@ -1755,6 +1827,14 @@ public class ScoutEventEntity implements Serializable {
                 ", freeKickReason=" + freeKickReason +
                 ", foulTypeDescriptor=" + foulTypeDescriptor +
                 ", foulTypeQualifier=" + foulTypeQualifier +
+                ", totalPitchCount=" + totalPitchCount +
+                ", firstBasePlayer=" + firstBasePlayer +
+                ", secondBasePlayer=" + secondBasePlayer +
+                ", thirdBasePlayer=" + thirdBasePlayer +
+                ", homeRunsHome=" + homeRunsHome +
+                ", homeRunsAway=" + homeRunsAway +
+                ", prevPitcher=" + prevPitcher +
+                ", nextBatter=" + nextBatter +
                 '}';
     }
 
@@ -2606,5 +2686,37 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setFoulTypeQualifier(String foulTypeQualifier) {
         this.foulTypeQualifier = foulTypeQualifier;
+    }
+
+    protected void setTotalPitchCount(Integer totalPitchCount) {
+        this.totalPitchCount = totalPitchCount;
+    }
+
+    protected void setFirstBasePlayer(Long firstBasePlayer) {
+        this.firstBasePlayer = firstBasePlayer;
+    }
+
+    protected void setSecondBasePlayer(Long secondBasePlayer) {
+        this.secondBasePlayer = secondBasePlayer;
+    }
+
+    protected void setThirdBasePlayer(Long thirdBasePlayer) {
+        this.thirdBasePlayer = thirdBasePlayer;
+    }
+
+    protected void setHomeRunsHome(Integer homeRunsHome) {
+        this.homeRunsHome = homeRunsHome;
+    }
+
+    protected void setHomeRunsAway(Integer homeRunsAway) {
+        this.homeRunsAway = homeRunsAway;
+    }
+
+    protected void setPrevPitcher(Integer prevPitcher) {
+        this.prevPitcher = prevPitcher;
+    }
+
+    protected void setNextBatter(Integer nextBatter) {
+        this.nextBatter = nextBatter;
     }
 }
