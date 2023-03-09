@@ -785,10 +785,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setDragonType(event.getDragontype());
         result.setWardsPlaced(event.getWardsplaced());
         result.setChampionDamage(event.getChampiondamage());
-        result.setTotalPitchCount(event.getTotalPitchCount());
-        result.setFirstBasePlayer(event.getFirstBasePlayer());
-        result.setSecondBasePlayer(event.getSecondBasePlayer());
-        result.setThirdBasePlayer(event.getThirdBasePlayer());
+        result.setTotalPitchCount(event.getTotalpitchcount());
+        result.setFirstBasePlayer(event.getFirstbaseplayer());
+        result.setSecondBasePlayer(event.getSecondbaseplayer());
+        result.setThirdBasePlayer(event.getThirdbaseplayer());
 
 
         result.setRefUuId(event.getRefuuid());
@@ -905,10 +905,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFreeKickReason(event.getFreekickreason());
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
-        result.setHomeRunsHome(event.getHomeRunsHome());
-        result.setHomeRunsAway(event.getHomeRunsAway());
-        result.setPrevPitcher(event.getPrevPitcher());
-        result.setNextBatter(event.getNextBatter());
+        result.setHomeRunsHome(event.getHomerunshome());
+        result.setHomeRunsAway(event.getHomerunsaway());
+        result.setPrevPitcher(event.getPrevpitcher());
+        result.setNextBatter(event.getNextbatter());
 
         return result;
     }
