@@ -1,0 +1,3139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xs:schema [
+  <!ELEMENT xs:schema (xs:element|xs:simpleType)*>
+  <!ATTLIST xs:schema
+    xmlns:xs CDATA #REQUIRED>
+  <!ELEMENT xs:element (xs:complexType)*>
+  <!ATTLIST xs:element
+    maxOccurs CDATA #IMPLIED
+    minOccurs CDATA #IMPLIED
+    name CDATA #IMPLIED
+    ref CDATA #IMPLIED>
+  <!ELEMENT xs:complexType (xs:attribute|xs:choice|xs:all|xs:sequence|xs:simpleContent)*>
+  <!ELEMENT xs:attribute (xs:simpleType)*>
+  <!ATTLIST xs:attribute
+    name CDATA #REQUIRED
+    type CDATA #IMPLIED
+    use CDATA #IMPLIED>
+  <!ELEMENT xs:simpleType (xs:restriction|xs:union)*>
+  <!ATTLIST xs:simpleType
+    name CDATA #IMPLIED>
+  <!ELEMENT xs:restriction (xs:enumeration|xs:pattern)*>
+  <!ATTLIST xs:restriction
+    base CDATA #REQUIRED>
+  <!ELEMENT xs:enumeration (#PCDATA)>
+  <!ATTLIST xs:enumeration
+    value CDATA #REQUIRED>
+  <!ELEMENT xs:choice (xs:element)*>
+  <!ATTLIST xs:choice
+    maxOccurs CDATA #REQUIRED
+    minOccurs CDATA #REQUIRED>
+  <!ELEMENT xs:all (xs:element)*>
+  <!ELEMENT xs:union (xs:simpleType)*>
+  <!ELEMENT xs:pattern (#PCDATA)>
+  <!ATTLIST xs:pattern
+    value CDATA #REQUIRED>
+  <!ELEMENT xs:sequence (xs:element)*>
+  <!ELEMENT xs:simpleContent (xs:extension)*>
+  <!ELEMENT xs:extension (xs:attribute)*>
+  <!ATTLIST xs:extension
+    base CDATA #REQUIRED>
+  ]>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="yellow">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="green">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="weatherconditions">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="GOOD"/>
+                        <xs:enumeration value="MEDIUM"/>
+                        <xs:enumeration value="BAD"/>
+                        <xs:enumeration value="UNKNOWN"/>
+                        <xs:enumeration value="INDOOR"/>
+                        <xs:enumeration value="EXTREME"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="5"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tournament">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="status">
+        <xs:complexType>
+            <xs:attribute name="start" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NOT_STARTED"/>
+                        <xs:enumeration value="FIRST_PERIOD"/>
+                        <xs:enumeration value="SECOND_PERIOD"/>
+                        <xs:enumeration value="THIRD_PERIOD"/>
+                        <xs:enumeration value="FOURTH_PERIOD"/>
+                        <xs:enumeration value="FIFTH_PERIOD"/>
+                        <xs:enumeration value="FIRST_HALF"/>
+                        <xs:enumeration value="SECOND_HALF"/>
+                        <xs:enumeration value="FIRST_SET"/>
+                        <xs:enumeration value="SECOND_SET"/>
+                        <xs:enumeration value="THIRD_SET"/>
+                        <xs:enumeration value="FOURTH_SET"/>
+                        <xs:enumeration value="FIFTH_SET"/>
+                        <xs:enumeration value="FIRST_QUARTER"/>
+                        <xs:enumeration value="SECOND_QUARTER"/>
+                        <xs:enumeration value="THIRD_QUARTER"/>
+                        <xs:enumeration value="FOURTH_QUARTER"/>
+                        <xs:enumeration value="GOLDEN_SET"/>
+                        <xs:enumeration value="STARTED"/>
+                        <xs:enumeration value="IN_PROGRESS"/>
+                        <xs:enumeration value="PAUSE"/>
+                        <xs:enumeration value="HALFTIME"/>
+                        <xs:enumeration value="AWAITING_OT"/>
+                        <xs:enumeration value="OT_HALFTIME"/>
+                        <xs:enumeration value="AWAITING_PENALTIES"/>
+                        <xs:enumeration value="AWAITING_GOLDEN_SET"/>
+                        <xs:enumeration value="OVERTIME"/>
+                        <xs:enumeration value="FIRST_HALF_OT"/>
+                        <xs:enumeration value="SECOND_HALF_OT"/>
+                        <xs:enumeration value="PENALTY_SHOOTING"/>
+                        <xs:enumeration value="POSTPONED"/>
+                        <xs:enumeration value="DELAYED"/>
+                        <xs:enumeration value="CANCELLED"/>
+                        <xs:enumeration value="INTERRUPTED"/>
+                        <xs:enumeration value="ABANDONED"/>
+                        <xs:enumeration value="WALKOVER"/>
+                        <xs:enumeration value="RETIRED"/>
+                        <xs:enumeration value="WALKOVER1"/>
+                        <xs:enumeration value="WALKOVER2"/>
+                        <xs:enumeration value="RETIRED1"/>
+                        <xs:enumeration value="RETIRED2"/>
+                        <xs:enumeration value="DEFAULTED1"/>
+                        <xs:enumeration value="DEFAULTED2"/>
+                        <xs:enumeration value="ENDED"/>
+                        <xs:enumeration value="AFTER_OT"/>
+                        <xs:enumeration value="AFTER_PENALTIES"/>
+                        <xs:enumeration value="AFTER_GOLDEN_SET"/>
+                        <xs:enumeration value="FIRST_PAUSE"/>
+                        <xs:enumeration value="SECOND_PAUSE"/>
+                        <xs:enumeration value="THIRD_PAUSE"/>
+                        <xs:enumeration value="FOURTH_PAUSE"/>
+                        <xs:enumeration value="FIFTH_PAUSE"/>
+                        <xs:enumeration value="SIXTH_PAUSE"/>
+                        <xs:enumeration value="SUDDEN_DEATH"/>
+                        <xs:enumeration value="SIXTH_SET"/>
+                        <xs:enumeration value="SEVENTH_SET"/>
+                        <xs:enumeration value="AWAITING_SD"/>
+                        <xs:enumeration value="AFTER_SD"/>
+                        <xs:enumeration value="SESSION_BREAK"/>
+                        <xs:enumeration value="FIRST_INNINGS_HOME_TEAM"/>
+                        <xs:enumeration value="FIRST_INNINGS_AWAY_TEAM"/>
+                        <xs:enumeration value="SECOND_INNINGS_HOME_TEAM"/>
+                        <xs:enumeration value="SECOND_INNINGS_AWAY_TEAM"/>
+                        <xs:enumeration value="AWAITING_SUPER_OVER"/>
+                        <xs:enumeration value="SUPER_OVER_HOME_TEAM"/>
+                        <xs:enumeration value="SUPER_OVER_AWAY_TEAM"/>
+                        <xs:enumeration value="AFTER_SUPER_OVER"/>
+                        <xs:enumeration value="INNINGS_BREAK"/>
+                        <xs:enumeration value="SUPER_OVER_BREAK"/>
+                        <xs:enumeration value="LUNCH_BREAK"/>
+                        <xs:enumeration value="TEA_BREAK"/>
+                        <xs:enumeration value="STUMPS"/>
+                        <xs:enumeration value="FIRST_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP1_BOTTOM1"/>
+                        <xs:enumeration value="FIRST_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP2_BOTTOM1"/>
+                        <xs:enumeration value="SECOND_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP2_BOTTOM2"/>
+                        <xs:enumeration value="SECOND_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP3_BOTTOM2"/>
+                        <xs:enumeration value="THIRD_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP3_BOTTOM3"/>
+                        <xs:enumeration value="THIRD_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP4_BOTTOM3"/>
+                        <xs:enumeration value="FOURTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP4_BOTTOM4"/>
+                        <xs:enumeration value="FOURTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP5_BOTTOM4"/>
+                        <xs:enumeration value="FIFTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP5_BOTTOM5"/>
+                        <xs:enumeration value="FIFTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP6_BOTTOM5"/>
+                        <xs:enumeration value="SIXTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP6_BOTTOM6"/>
+                        <xs:enumeration value="SIXTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP7_BOTTOM6"/>
+                        <xs:enumeration value="SEVENTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP7_BOTTOM7"/>
+                        <xs:enumeration value="SEVENTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP8_BOTTOM7"/>
+                        <xs:enumeration value="EIGHTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP8_BOTTOM8"/>
+                        <xs:enumeration value="EIGHTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOP9_BOTTOM8"/>
+                        <xs:enumeration value="NINTH_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOP9_BOTTOM9"/>
+                        <xs:enumeration value="NINTH_INNING_BOTTOM"/>
+                        <xs:enumeration value="BREAK_TOPEI_BOTTOM7"/>
+                        <xs:enumeration value="BREAK_TOPEI_BOTTOM9"/>
+                        <xs:enumeration value="EXTRA_INNING_TOP"/>
+                        <xs:enumeration value="BREAK_TOPEI_BOTTOMEI"/>
+                        <xs:enumeration value="EXTRA_INNING_BOTTOM"/>
+                        <xs:enumeration value="FIRST_MAP"/>
+                        <xs:enumeration value="SECOND_MAP"/>
+                        <xs:enumeration value="THIRD_MAP"/>
+                        <xs:enumeration value="FOURTH_MAP"/>
+                        <xs:enumeration value="FIFTH_MAP"/>
+                        <xs:enumeration value="SIXTH_MAP"/>
+                        <xs:enumeration value="SEVENTH_MAP"/>
+                        <xs:enumeration value="FIRST_GAME"/>
+                        <xs:enumeration value="SECOND_GAME"/>
+                        <xs:enumeration value="THIRD_GAME"/>
+                        <xs:enumeration value="FOURTH_GAME"/>
+                        <xs:enumeration value="FIFTH_GAME"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="5"/>
+                        <xs:enumeration value="6"/>
+                        <xs:enumeration value="7"/>
+                        <xs:enumeration value="8"/>
+                        <xs:enumeration value="9"/>
+                        <xs:enumeration value="10"/>
+                        <xs:enumeration value="11"/>
+                        <xs:enumeration value="12"/>
+                        <xs:enumeration value="13"/>
+                        <xs:enumeration value="14"/>
+                        <xs:enumeration value="15"/>
+                        <xs:enumeration value="16"/>
+                        <xs:enumeration value="17"/>
+                        <xs:enumeration value="20"/>
+                        <xs:enumeration value="21"/>
+                        <xs:enumeration value="30"/>
+                        <xs:enumeration value="31"/>
+                        <xs:enumeration value="32"/>
+                        <xs:enumeration value="33"/>
+                        <xs:enumeration value="34"/>
+                        <xs:enumeration value="37"/>
+                        <xs:enumeration value="40"/>
+                        <xs:enumeration value="41"/>
+                        <xs:enumeration value="42"/>
+                        <xs:enumeration value="50"/>
+                        <xs:enumeration value="60"/>
+                        <xs:enumeration value="61"/>
+                        <xs:enumeration value="70"/>
+                        <xs:enumeration value="80"/>
+                        <xs:enumeration value="90"/>
+                        <xs:enumeration value="91"/>
+                        <xs:enumeration value="92"/>
+                        <xs:enumeration value="93"/>
+                        <xs:enumeration value="94"/>
+                        <xs:enumeration value="95"/>
+                        <xs:enumeration value="96"/>
+                        <xs:enumeration value="97"/>
+                        <xs:enumeration value="98"/>
+                        <xs:enumeration value="100"/>
+                        <xs:enumeration value="110"/>
+                        <xs:enumeration value="120"/>
+                        <xs:enumeration value="130"/>
+                        <xs:enumeration value="301"/>
+                        <xs:enumeration value="302"/>
+                        <xs:enumeration value="303"/>
+                        <xs:enumeration value="304"/>
+                        <xs:enumeration value="305"/>
+                        <xs:enumeration value="306"/>
+                        <xs:enumeration value="440"/>
+                        <xs:enumeration value="441"/>
+                        <xs:enumeration value="442"/>
+                        <xs:enumeration value="443"/>
+                        <xs:enumeration value="444"/>
+                        <xs:enumeration value="445"/>
+                        <xs:enumeration value="501"/>
+                        <xs:enumeration value="502"/>
+                        <xs:enumeration value="503"/>
+                        <xs:enumeration value="504"/>
+                        <xs:enumeration value="505"/>
+                        <xs:enumeration value="506"/>
+                        <xs:enumeration value="507"/>
+                        <xs:enumeration value="508"/>
+                        <xs:enumeration value="509"/>
+                        <xs:enumeration value="510"/>
+                        <xs:enumeration value="511"/>
+                        <xs:enumeration value="512"/>
+                        <xs:enumeration value="513"/>
+                        <xs:enumeration value="401"/>
+                        <xs:enumeration value="402"/>
+                        <xs:enumeration value="403"/>
+                        <xs:enumeration value="404"/>
+                        <xs:enumeration value="405"/>
+                        <xs:enumeration value="406"/>
+                        <xs:enumeration value="407"/>
+                        <xs:enumeration value="408"/>
+                        <xs:enumeration value="409"/>
+                        <xs:enumeration value="410"/>
+                        <xs:enumeration value="411"/>
+                        <xs:enumeration value="412"/>
+                        <xs:enumeration value="413"/>
+                        <xs:enumeration value="414"/>
+                        <xs:enumeration value="415"/>
+                        <xs:enumeration value="416"/>
+                        <xs:enumeration value="417"/>
+                        <xs:enumeration value="418"/>
+                        <xs:enumeration value="419"/>
+                        <xs:enumeration value="420"/>
+                        <xs:enumeration value="421"/>
+                        <xs:enumeration value="422"/>
+                        <xs:enumeration value="423"/>
+                        <xs:enumeration value="424"/>
+                        <xs:enumeration value="425"/>
+                        <xs:enumeration value="426"/>
+                        <xs:enumeration value="427"/>
+                        <xs:enumeration value="428"/>
+                        <xs:enumeration value="429"/>
+                        <xs:enumeration value="430"/>
+                        <xs:enumeration value="431"/>
+                        <xs:enumeration value="432"/>
+                        <xs:enumeration value="433"/>
+                        <xs:enumeration value="434"/>
+                        <xs:enumeration value="435"/>
+                        <xs:enumeration value="436"/>
+                        <xs:enumeration value="437"/>
+                        <xs:enumeration value="548"/>
+                        <xs:enumeration value="438"/>
+                        <xs:enumeration value="439"/>
+                        <xs:enumeration value="141"/>
+                        <xs:enumeration value="142"/>
+                        <xs:enumeration value="143"/>
+                        <xs:enumeration value="144"/>
+                        <xs:enumeration value="145"/>
+                        <xs:enumeration value="146"/>
+                        <xs:enumeration value="147"/>
+                        <xs:enumeration value="151"/>
+                        <xs:enumeration value="152"/>
+                        <xs:enumeration value="153"/>
+                        <xs:enumeration value="154"/>
+                        <xs:enumeration value="155"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sport">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dangerousattacks">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchproperties">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="matchproperty" minOccurs="0"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchproperty">
+        <xs:complexType>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="best of"/>
+                        <xs:enumeration value="first to"/>
+                        <xs:enumeration value="number of periods"/>
+                        <xs:enumeration value="var"/>
+                        <xs:enumeration value="number of ends in tie break"/>
+                        <xs:enumeration value="number of ends per set"/>
+                        <xs:enumeration value="match type"/>
+                        <xs:enumeration value="number of overtime rounds"/>
+                        <xs:enumeration value="rapid markets"/>
+                        <xs:enumeration value="sin bin"/>
+                        <xs:enumeration value="jersey color"/>
+                        <xs:enumeration value="period length"/>
+                        <xs:enumeration value="overtime length"/>
+                        <xs:enumeration value="penalty shootout"/>
+                        <xs:enumeration value="rule set"/>
+                        <xs:enumeration value="number of overtime periods"/>
+                        <xs:enumeration value="overtime victory condition"/>
+                        <xs:enumeration value="player markets"/>
+                        <xs:enumeration value="overtime team strength"/>
+                        <xs:enumeration value="number of extra innings"/>
+                        <xs:enumeration value="technical timeout"/>
+                        <xs:enumeration value="points in final set"/>
+                        <xs:enumeration value="deciding score"/>
+                        <xs:enumeration value="play through in regular sets"/>
+                        <xs:enumeration value="tiebreak scoring procedure"/>
+                        <xs:enumeration value="rounds per map"/>
+                        <xs:enumeration value="legs to win"/>
+                        <xs:enumeration value="legs to win in last set"/>
+                        <xs:enumeration value="sudden death leg"/>
+                        <xs:enumeration value="sudden death leg in last set"/>
+                        <xs:enumeration value="draw possible"/>
+                        <xs:enumeration value="legs to trigger sudden death"/>
+                        <xs:enumeration value="legs to trigger sudden death in last set"/>
+                        <xs:enumeration value="number of legs in early sets"/>
+                        <xs:enumeration value="number of legs in last set"/>
+                        <xs:enumeration value="double in"/>
+                        <xs:enumeration value="sudden death in last game"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="value" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchformat">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="format" minOccurs="0"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="format">
+        <xs:complexType>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="limitedovers"/>
+                        <xs:enumeration value="overs"/>
+                        <xs:enumeration value="days"/>
+                        <xs:enumeration value="mandatorypowerplayovers"/>
+                        <xs:enumeration value="battingpowerplayovers"/>
+                        <xs:enumeration value="powerplay1overs"/>
+                        <xs:enumeration value="powerplay2overs"/>
+                        <xs:enumeration value="powerplay3overs"/>
+                        <xs:enumeration value="maxoversperbowler"/>
+                        <xs:enumeration value="reviews"/>
+                        <xs:enumeration value="maps"/>
+                        <xs:enumeration value="rounds"/>
+                        <xs:enumeration value="overtimerounds"/>
+                        <xs:enumeration value="numberofperiods"/>
+                        <xs:enumeration value="periodlength"/>
+                        <xs:enumeration value="tryvalue"/>
+                        <xs:enumeration value="conversionvalue"/>
+                        <xs:enumeration value="penaltyvalue"/>
+                        <xs:enumeration value="dropgoalvalue"/>
+                        <xs:enumeration value="penaltytryvalue"/>
+                        <xs:enumeration value="numberovertimeperiods"/>
+                        <xs:enumeration value="lengthovertimeperiods"/>
+                        <xs:enumeration value="lengthsuddendeath"/>
+                        <xs:enumeration value="penaltyshootout"/>
+                        <xs:enumeration value="ruleset"/>
+                        <xs:enumeration value="twopointconversionyardline"/>
+                        <xs:enumeration value="extrapointyardline"/>
+                        <xs:enumeration value="noballpenaltyvalue"/>
+                        <xs:enumeration value="tiebreakermethod"/>
+                        <xs:enumeration value="regularinnings"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="value" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="innings">
+        <xs:complexType>
+            <xs:attribute name="dismissals" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="runs" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="statusid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="statusname" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="score">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="score" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:union>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="set([1-9]|1[0-3])"/>
+                                <!-- set1-set13 -->
+                                <xs:pattern value="frame([1-9]|[12][0-9]|3[0-5])?"/>
+                                <!-- frame & frame1-frame35 -->
+                                <xs:pattern value="period[1-5]"/>
+                                <xs:pattern value="map[1-7]"/>
+                                <xs:pattern value="game[1-5]"/>
+                                <xs:pattern value="inning[1-9][0-9]*"/>
+                                <!-- inning1, inning2, .... -->
+                                <xs:pattern value="(overtime|overtime[1-9][0-9]*)"/>
+                                <!-- overtime && overtime1.. -->
+                            </xs:restriction>
+                        </xs:simpleType>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="current"/>
+                                <xs:enumeration value="match"/>
+                                <xs:enumeration value="game"/>
+                                <xs:enumeration value="leg"/>
+                                <xs:enumeration value="tiebreak"/>
+                                <xs:enumeration value="goldensetmatch"/>
+                                <xs:enumeration value="goldenset"/>
+                                <xs:enumeration value="break"/>
+                                <xs:enumeration value="end"/>
+                                <xs:enumeration value="penalties"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:union>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="red">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="shotsofftarget">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="shotsontarget">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="throwins">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="goalkicks">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="freekicks">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="shotsblocked">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="goalkeepersaves">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="offsides">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="injuries">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="possession">
+        <xs:complexType>
+            <xs:attribute name="team" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pitchconditions">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="GOOD"/>
+                        <xs:enumeration value="MEDIUM"/>
+                        <xs:enumeration value="BAD"/>
+                        <xs:enumeration value="UNKNOWN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iceconditions">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="UNKNOWN"/>
+                        <xs:enumeration value="GOOD"/>
+                        <xs:enumeration value="MEDIUM"/>
+                        <xs:enumeration value="POOR"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="penalties">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="surfacetype">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="SAND"/>
+                        <xs:enumeration value="HARDCOURT"/>
+                        <xs:enumeration value="GRASS"/>
+                        <xs:enumeration value="CARPET"/>
+                        <xs:enumeration value="UNKNOWN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="court">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="courtseq" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tiebreak">
+        <xs:complexType>
+            <xs:attribute name="value" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="serve">
+        <xs:complexType>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="kickoffteam">
+        <xs:complexType>
+            <xs:attribute name="team" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="firstkickoffteam1sthalf">
+        <xs:complexType>
+            <xs:attribute name="team" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="firstkickoffteam2ndhalf">
+        <xs:complexType>
+            <xs:attribute name="team" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="firstkickoffteamot">
+        <xs:complexType>
+            <xs:attribute name="team" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="openingfaceoff1stperiod">
+        <xs:complexType>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="openingfaceoff2ndperiod">
+        <xs:complexType>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="openingfaceoff3rdperiod">
+        <xs:complexType>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="openingfaceoffovertime">
+        <xs:complexType>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="suspensions">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="powerplay">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="freethrows">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attacks">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="directfoulsperiod">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="directfreekicks">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="black">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="match">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="status" minOccurs="0"/>
+                <xs:element ref="score" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="red" minOccurs="0"/>
+                <xs:element ref="yellow" minOccurs="0"/>
+                <xs:element ref="green" minOccurs="0"/>
+                <xs:element ref="corners" minOccurs="0"/>
+                <xs:element ref="dangerousattacks" minOccurs="0"/>
+                <xs:element ref="penalties" minOccurs="0"/>
+                <xs:element ref="throwins" minOccurs="0"/>
+                <xs:element ref="goalkicks" minOccurs="0"/>
+                <xs:element ref="freekicks" minOccurs="0"/>
+                <xs:element ref="shotsofftarget" minOccurs="0"/>
+                <xs:element ref="shotsontarget" minOccurs="0"/>
+                <xs:element ref="shotsblocked" minOccurs="0"/>
+                <xs:element ref="goalkeepersaves" minOccurs="0"/>
+                <xs:element ref="offsides" minOccurs="0"/>
+                <xs:element ref="injuries" minOccurs="0"/>
+                <xs:element ref="possession" minOccurs="0"/>
+                <xs:element ref="weatherconditions" minOccurs="0"/>
+                <xs:element ref="pitchconditions" minOccurs="0"/>
+                <xs:element ref="iceconditions" minOccurs="0"/>
+                <xs:element ref="kickoffteam" minOccurs="0"/>
+                <xs:element ref="firstkickoffteam1sthalf" minOccurs="0"/>
+                <xs:element ref="firstkickoffteam2ndhalf" minOccurs="0"/>
+                <xs:element ref="firstkickoffteamot" minOccurs="0"/>
+                <xs:element ref="openingfaceoff1stperiod" minOccurs="0"/>
+                <xs:element ref="openingfaceoff2ndperiod" minOccurs="0"/>
+                <xs:element ref="openingfaceoff3rdperiod" minOccurs="0"/>
+                <xs:element ref="openingfaceoffovertime" minOccurs="0"/>
+                <xs:element ref="surfacetype" minOccurs="0"/>
+                <xs:element ref="tiebreak" minOccurs="0"/>
+                <xs:element ref="serve" minOccurs="0"/>
+                <xs:element ref="suspensions" minOccurs="0"/>
+                <xs:element ref="freethrows" minOccurs="0"/>
+                <xs:element ref="events" minOccurs="0"/>
+                <xs:element ref="tournament" minOccurs="0"/>
+                <xs:element ref="category" minOccurs="0"/>
+                <xs:element ref="sport" minOccurs="0"/>
+                <xs:element ref="attacks" minOccurs="0"/>
+                <xs:element ref="directfoulsperiod" minOccurs="0"/>
+                <xs:element ref="directfreekicks" minOccurs="0"/>
+                <xs:element ref="black" minOccurs="0"/>
+                <xs:element ref="court" minOccurs="0"/>
+                <xs:element ref="matchformat" minOccurs="0"/>
+                <xs:element ref="innings" minOccurs="0"/>
+                <xs:element ref="scout" minOccurs="0"/>
+                <xs:element ref="gold" minOccurs="0"/>
+                <xs:element ref="networth" minOccurs="0"/>
+                <xs:element ref="jerseys" minOccurs="0"/>
+                <xs:element ref="goals" minOccurs="0"/>
+                <xs:element ref="behinds" minOccurs="0"/>
+                <xs:element ref="matchproperties" minOccurs="0"/>
+                <xs:element ref="teams" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="extmatchid">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1namenatural">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2namenatural">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2name" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2id" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1name" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1id" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1abbr" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2abbr" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1division" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2division" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="start" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="matchid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="feedtype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="full"/>
+                        <xs:enumeration value="delta"/>
+                        <xs:enumeration value="deltaupdate"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfo" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="distance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="betstatus" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NOT_STARTED"/>
+                        <xs:enumeration value="STARTED"/>
+                        <xs:enumeration value="BETSTOP"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="firstserve" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="firstservetiebreak" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="firstservegoldenset" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="numberofsets" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="setlimit" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tiebreaklastset" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="connectionstatus" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dc" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="device" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="coveredfrom" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="tv"/>
+                        <xs:enumeration value="venue"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="var" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="timerunning" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="wonjumpball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="booked" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="st1id" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="st2id" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="matchtime" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sex" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="active" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sourceid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="coveragestatusid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sportid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="teammatch" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="teammatchid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="iscancelled" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="stime" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homestate" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awaystate" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="venue" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="region" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="events">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="event" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="event">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="inningscore" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="stime" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="away"/>
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="none"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="mtime" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="info" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="uuid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="refuuid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfo" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="posx" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="posy" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="player1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="player2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="player3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="player4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tippedto" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="setnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="gamenumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="mapnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="roundnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="framenumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="endscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="legscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="mapscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="matchscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="setscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="gamescore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="periodscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="roundscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="baseinfo" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="remainingtimeperiod" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="periodnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="inninghalf" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="T"/>
+                        <xs:enumeration value="B"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="runs" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="balls" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="strikes" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="outs" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pcount" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="errors" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="atbatnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="atbatpitchnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="automatic" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfodarts" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfosnooker" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfobowls" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfofootball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfobasketball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="spot" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfohandball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfovolleyball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfocricket" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfobaseball" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfoicehockey" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfocsgo" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfomoba" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfokabaddi" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="framescore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="breakscore" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="server" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="away"/>
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="none"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dismissalsininnings" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="runsininnings" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ballnumber" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="correctedfrom" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="correctedto" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="secondscoretype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="scoretypequalifier" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="happenedat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shotdistance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="runshome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="runsaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hitshome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hitsaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="errorshome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="errorsaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="firstbaseloaded" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="secondbaseloaded" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="thirdbaseloaded" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="kills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="assists" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="deaths" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="lasthits" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="denies" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="networth" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="experience" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="level" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="heroesalivehome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="heroesaliveaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="weaponid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="weaponname" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ballspotting" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:boolean"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="earlybetstarttype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="heroid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="heroname" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="killshome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="killsaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dragonkills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="baronkills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="inhibitorkills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="towerkills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="doublekills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="triplekills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="quadrakills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pentakills" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="mapname" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="itemname" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="touchdowntype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:minInclusive value="-1"/>
+                        <xs:maxInclusive value="7"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="conversiontype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:minInclusive value="-1"/>
+                        <xs:maxInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="goals" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="behinds" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="matchstatus" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pitchtype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pitchspeed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="battingaverages" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="positionplayerpitching" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:boolean"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batballspeed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batballangle" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batballdirection" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batballdistance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batballx" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="batbally" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="fieldingplayers" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="structure" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="monstertype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dragontype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="wardsplaced" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="championdamage" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="driveinfostatus" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="kickedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="snappedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="receivedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="muffedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="downedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="caughtby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tackledby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="touchbackat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="cloud" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="humidity" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="windchill" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="winddirection" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="windspeed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="temperature" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="spottedat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="direction" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pushedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="totalyardsgained" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="intendedreceiver" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="thrownto" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="defensedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="yardline" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstats" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstats" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="blockedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="passedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="rushedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="rushspeed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="interceptedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="turftype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="stadiumtype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sackedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="safetyby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="fumbledby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="recoveredby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="recoveredat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="causedby" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ranoutofboundsat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="penaltydistance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="penaltyreason" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="penaltynoplay" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="placedat" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="injuryplayer" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="injuryreturn" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="driveplayinfo" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsdef" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsdef" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatspass" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatspass" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsrush" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsrush" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsrec" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsrec" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsp1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsp1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsp2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsp2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsp3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsp3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsp4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsp4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsot" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsot" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsp1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsp1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsp2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsp2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsp3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsp3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsp4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsp4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsot" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsot" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="foultypedescriptor" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="foultypequalifier" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="puntdistance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="fieldgoaldistance" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="damage" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="healthremaining" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="inventory" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="item" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometimeonice" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awaytimeonice" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometimeoncourt" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awaytimeoncourt" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayers" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayers" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="attackingplayers" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="unavailableplayershome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="unavailableplayersaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="preliminarymatchstatistics" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="actualmatchstatistics" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="freekickreason" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="aussie_rules_score_type">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="period[1-4]"/>
+                    <xs:pattern value="(overtime|overtime[1-2])"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="current"/>
+                    <xs:enumeration value="suddendeath"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    <xs:element name="goals">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="goals" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="type" use="required" type="aussie_rules_score_type"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="behinds">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="behinds" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="type" use="required" type="aussie_rules_score_type"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="inningscore">
+        <xs:complexType>
+            <xs:attribute name="inning" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="home" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="away" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="corners">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="category">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="servertime">
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="matchstop">
+        <xs:complexType>
+            <xs:attribute name="reason" type="xs:string" use="required"/>
+            <xs:attribute name="matchid" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="user">
+        <xs:complexType>
+            <xs:attribute name="bookmakerid" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="login">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="user" minOccurs="0"/>
+                <xs:element ref="flashconfig" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="result" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="valid"/>
+                        <xs:enumeration value="invalid"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="flashconfig">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="eventconfig" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="eventconfig">
+        <xs:complexType>
+            <xs:attribute name="popup" type="xs:boolean" use="required"/>
+            <xs:attribute name="playsound" type="xs:boolean" use="required"/>
+            <xs:attribute name="eventtype" type="xs:int" use="required"/>
+            <xs:attribute name="changebackgroundcolourpossible" type="xs:boolean" use="optional"/>
+            <xs:attribute name="changebackgroundcolour" type="xs:boolean" use="required"/>
+            <xs:attribute name="audio" type="xs:string" use="optional"/>
+            <xs:attribute name="sportid" type="xs:int" use="optional"/>
+            <xs:attribute name="extrainfo" type="xs:int" use="optional"/>
+            <xs:attribute name="side" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="away"/>
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="none"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="p3" type="xs:int" use="optional"/>
+            <xs:attribute name="p4" type="xs:int" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dbfail">
+        <xs:complexType>
+            <xs:attribute name="request" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="T_OddsField">
+        <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+    <xs:element name="OddsSuggestions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Odds" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="matchid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OddsField">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="T_OddsField">
+                    <xs:attribute name="side" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string"/>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="description" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string"/>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Odds">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="OddsField" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="validDate" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="5"/>
+                        <xs:enumeration value="18"/>
+                        <xs:enumeration value="19"/>
+                        <xs:enumeration value="20"/>
+                        <xs:enumeration value="21"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="subtype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="specialOddsValue" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="matchId" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="manualActive" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:byte">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="guthMatchId" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="description" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="changenumber" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bookId" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pref" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:boolean"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="alsoOdds" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sj" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="maxDev" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="infos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="info" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="matchid" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="info">
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="order" type="xs:int" use="required"/>
+            <xs:attribute name="link" type="xs:boolean"/>
+            <xs:attribute name="header" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="matchlist">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="match" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="matchlistupdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="match" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ct">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="bookmatch">
+        <xs:complexType>
+            <xs:attribute name="result" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="valid"/>
+                        <xs:enumeration value="invalid"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="message" type="xs:string" use="optional"/>
+            <xs:attribute name="matchid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineups">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="player" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="manager" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="teamofficial" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="matchid" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="player">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="attributes" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="matchroles" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+
+            <xs:attribute name="id" type="xs:int" use="required"/>
+            <xs:attribute name="extplayerid" type="xs:string" use="optional"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="shirtnumber" type="xs:int" use="required"/>
+            <xs:attribute name="substitute" type="xs:boolean" use="optional"/>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="position" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nickname" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="order" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="manager">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:int" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="teamofficial">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:int" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="team" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="attributes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="attribute" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchroles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="matchrole" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="attribute">
+        <xs:complexType>
+            <xs:attribute name="typeid" type="xs:int" use="required"/>
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="valueid" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchrole">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:int" use="required"/>
+            <xs:attribute name="description" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="matchdata">
+        <xs:complexType>
+            <xs:attribute name="matchid" type="xs:long" use="required"/>
+            <xs:attribute name="mtime" type="xs:string" use="required"/>
+            <xs:attribute name="remainingtimeperiod" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="scout">
+        <xs:complexType>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="networth">
+        <xs:complexType>
+            <xs:attribute name="mapnr" type="xs:int" use="required"/>
+            <xs:attribute name="t1" type="xs:int" use="required"/>
+            <xs:attribute name="t2" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="gold">
+        <xs:complexType>
+            <xs:attribute name="mapnr" type="xs:int" use="required"/>
+            <xs:attribute name="t1" type="xs:int" use="required"/>
+            <xs:attribute name="t2" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="jerseys">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="jersey" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="jersey">
+        <xs:complexType>
+            <xs:attribute name="side" type="xs:int" use="required"/>
+            <xs:attribute name="jersey_type" type="xs:int" use="required"/>
+            <xs:attribute name="base" type="xs:string"/>
+            <xs:attribute name="outline" type="xs:string"/>
+            <xs:attribute name="number" type="xs:string"/>
+            <xs:attribute name="horizontal_stripes" type="xs:string"/>
+            <xs:attribute name="vertical_stripes" type="xs:string"/>
+            <xs:attribute name="split" type="xs:string"/>
+            <xs:attribute name="squares" type="xs:string"/>
+            <xs:attribute name="shirt_type" type="xs:string"/>
+            <xs:attribute name="sleeve" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="teams">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="team" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="team">
+        <xs:complexType>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nationality" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
