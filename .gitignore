@@ -11,3 +11,4 @@ docs/type-search-index.zip
 sdk-example/src/main/resources/sdk.properties
 sdk-jar-example/src/main/resources/sdk.properties
 .flattened-pom.xml
+.gitlab-ci.yml
