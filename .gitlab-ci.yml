@@ -10,7 +10,6 @@ workflow:
 stages:
   - code_quality
 
-
 cache:
   paths:
     - .m2/repository
