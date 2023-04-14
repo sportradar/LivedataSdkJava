@@ -15,7 +15,7 @@ cache:
     - .m2/repository
     
 variables:
-  MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dmaven.test.skip=true
+  MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dmaven.test.skip=true -Dgpg.skip
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
