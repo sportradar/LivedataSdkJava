@@ -18,7 +18,6 @@ cache:
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
-  PATH_TO_DOCKERFILE: $CI_PROJECT_DIR
 
 .rules-auto-on-validation:
   rules:
