@@ -13,7 +13,8 @@ stages:
 cache:
   paths:
     - .m2/repository
-
+    
+variables:
   MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dmaven.test.skip=true
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
