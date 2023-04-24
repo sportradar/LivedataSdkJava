@@ -45,4 +45,3 @@ whitesource-update:
   extends:
     - .whitesource-update
     - .rules-auto-on-validation
-
