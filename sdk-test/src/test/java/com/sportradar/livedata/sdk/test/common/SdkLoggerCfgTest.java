@@ -52,6 +52,11 @@ public class SdkLoggerCfgTest {
 
     @Before
     public void setUp() throws Exception {
+        if (!logDirectory.exists() && !logDirectory.isDirectory()) {
+            logDirectory.mkdir();
+        }
+        directory = new TemporaryFolder(logDirectory);
+        directory.create();
         File tmpDirectory = directory.newFolder();
         loggerSettings = createLoggerSettings(tmpDirectory, "");
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
