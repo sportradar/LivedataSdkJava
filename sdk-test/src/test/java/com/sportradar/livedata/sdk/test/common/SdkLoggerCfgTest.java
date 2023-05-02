@@ -36,7 +36,7 @@ public class SdkLoggerCfgTest {
 
     File logDirectory = new File(System.getProperty("java.io.tmpdir") + File.separator + "logs");
     @Rule
-    public TemporaryFolder directory = new TemporaryFolder(logDirectory);
+    public TemporaryFolder directory;
     final private String LIVE_SCOUT_SUBDIRECTORY = "LiveScout";
 
     private Logger rootLogger = (Logger) LoggerFactory.getLogger(FileSdkLogger.ROOT_NS);
