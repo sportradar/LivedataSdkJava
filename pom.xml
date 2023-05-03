@@ -267,7 +267,7 @@
                             <goals>
                                 <goal>report-aggregate</goal>
                             </goals>
-                            <phase>verify</phase>
+<!--                            <phase>verify</phase>-->
                         </execution>
                     </executions>
                 </plugin>

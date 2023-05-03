@@ -35,7 +35,7 @@ sonar-validate:
   extends: .sonar-base
   needs: []
   after_script:
-    - ls -la /tmp/logs
+    - ls -la ${WORKSPACE}/sdk-test/target
 
 whitesource-check-policies:
   extends:
