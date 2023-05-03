@@ -15,11 +15,10 @@ cache:
     - .m2/repository
     
 variables:
-  MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip -Dsonar.coverage.jacoco.xmlReportPaths=${WORKSPACE}/sdk-test/target/site/jacoco-aggregate/jacoco.xml
+  MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip -Dsonar.coverage.jacoco.xmlReportPaths=$CI_PROJECT_DIR/sdk-test/target/site/jacoco-aggregate/jacoco.xml
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
-  PATH_TO_DOCKERFILE: $CI_PROJECT_DIR
 
 .rules-auto-on-validation:
   rules:
@@ -35,7 +34,7 @@ sonar-validate:
   extends: .sonar-base
   needs: []
   after_script:
-    - ls -la ${WORKSPACE}/sdk-test/target
+    - ls -la $CI_PROJECT_DIR/sdk-test/target
 
 whitesource-check-policies:
   extends:
