@@ -12,6 +12,10 @@
     <packaging>jar</packaging>
     <name>Livedata SDK - Example</name>
 
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
     <dependencies>
         <!-- Dependencies to other projects in this solution -->
         <dependency>
