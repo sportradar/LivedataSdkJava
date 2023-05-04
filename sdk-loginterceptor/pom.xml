@@ -12,10 +12,6 @@
     <artifactId>sdk-loginterceptor</artifactId>
     <name>Livedata SDK - Log Interceptor</name>
 
-    <properties>
-        <sonar.skip>true</sonar.skip>
-    </properties>
-
     <dependencies>
         <!-- Dependencies to other projects in this solution -->
         <dependency>

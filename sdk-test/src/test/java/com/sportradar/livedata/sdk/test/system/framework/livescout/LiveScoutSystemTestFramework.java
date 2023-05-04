@@ -5,7 +5,7 @@ import com.sportradar.livedata.sdk.common.settings.LiveScoutSettingsBuilder;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.test.NullSdkLogger;
+import com.sportradar.livedata.sdk.test.util.NullSdkLogger;
 import com.sportradar.livedata.sdk.test.conn.FakeGateway;
 import com.sportradar.livedata.sdk.test.system.framework.common.*;
 

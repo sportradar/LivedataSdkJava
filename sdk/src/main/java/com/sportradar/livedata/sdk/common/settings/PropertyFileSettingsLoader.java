@@ -34,7 +34,7 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
     @Override
     public JmxSettings getJmxSettings() throws SdkException {
         JmxSettingsBuilder jmxSettingsBuilder = DefaultSettingsBuilderHelper.getJmxSettingsBuilder();
-        return readJmxSettings("sdk.jmx.", jmxSettingsBuilder);
+        return readJmxSettings("sdk.com.sportradar.livedata.sdk.loginterceptor.jmx.", jmxSettingsBuilder);
     }
 
     @Override

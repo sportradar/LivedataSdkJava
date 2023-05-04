@@ -109,6 +109,12 @@
         <finalName>${project.artifactId}.${project.version}</finalName>
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+
+        <sonar.exclusions>
+            com/sportradar/livedata/sdk/example/**,
+            com/sportradar/livedata/sdk/test/util/**,
+            com/sportradar/livedata/sdk/loginterceptor/**
+        </sonar.exclusions>
     </properties>
 
     <build>

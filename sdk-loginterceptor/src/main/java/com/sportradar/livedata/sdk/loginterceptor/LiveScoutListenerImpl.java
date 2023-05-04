@@ -1,3 +1,5 @@
+package com.sportradar.livedata.sdk.loginterceptor;
+
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.feed.livescout.entities.*;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
