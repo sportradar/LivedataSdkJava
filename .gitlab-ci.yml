@@ -33,8 +33,6 @@ variables:
 sonar-validate:
   extends: .sonar-base
   needs: []
-  after_script:
-    - ls -la $CI_PROJECT_DIR/sdk-test/target
 
 whitesource-check-policies:
   extends:
