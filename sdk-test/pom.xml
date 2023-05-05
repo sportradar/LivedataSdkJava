@@ -90,6 +90,11 @@
                             <goal>report-aggregate</goal>
                         </goals>
                         <phase>verify</phase>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.parent.basedir}/target/site/jacoco
+                            </outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

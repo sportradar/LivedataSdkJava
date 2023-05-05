@@ -115,9 +115,6 @@
             **/livedata/sdk/test/util/**,
             **/livedata/sdk/loginterceptor/**
         </sonar.exclusions>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            ${project.basedir}/../sdk-test/target/site/jacoco-aggregate/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <build>
