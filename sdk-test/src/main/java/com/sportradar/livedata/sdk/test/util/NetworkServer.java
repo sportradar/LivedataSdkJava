@@ -1,4 +1,4 @@
-package com.sportradar.livedata.sdk.test;
+package com.sportradar.livedata.sdk.test.util;
 
 import java.io.IOException;
 

@@ -1,7 +1,7 @@
 package com.sportradar.livedata.sdk.test.integration;
 
-import com.sportradar.livedata.sdk.test.NetworkServerListener;
-import com.sportradar.livedata.sdk.test.TcpServer;
+import com.sportradar.livedata.sdk.test.util.NetworkServerListener;
+import com.sportradar.livedata.sdk.test.util.TcpServer;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.States;

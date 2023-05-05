@@ -35,9 +35,9 @@ public class SimpleJMX {
     private static final Logger logger = LoggerFactory.getLogger(SimpleJMX.class);
 
     /**
-     * @param enabled enables jmx
-     * @param jmxHost Host of jmx eg. "localhost"
-     * @param jmxPort Port of jmx
+     * @param enabled enables com.sportradar.livedata.sdk.loginterceptor.jmx
+     * @param jmxHost Host of com.sportradar.livedata.sdk.loginterceptor.jmx eg. "localhost"
+     * @param jmxPort Port of com.sportradar.livedata.sdk.loginterceptor.jmx
      * @param passwordFile password file
      * @param accessFile access file
      */
@@ -59,7 +59,7 @@ public class SimpleJMX {
         int registryPort = jmxPort;
         int serverPort = registryPort + 1;
 
-        String urlString = "service:jmx:rmi://" + this.jmxHost + ":" + serverPort + "/jndi/rmi://:" + registryPort + "/jmxrmi";
+        String urlString = "service:com.sportradar.livedata.sdk.loginterceptor.jmx:rmi://" + this.jmxHost + ":" + serverPort + "/jndi/rmi://:" + registryPort + "/jmxrmi";
         try {
             LocateRegistry.createRegistry(registryPort);
             //createRegistry can be called just once
@@ -67,8 +67,8 @@ public class SimpleJMX {
             JMXServiceURL url = new JMXServiceURL(urlString);
 
             Map<String, String> env = new HashMap<>();
-            env.put("jmx.remote.x.password.file", passwordFile);
-            env.put("jmx.remote.x.access.file", accessFile);
+            env.put("com.sportradar.livedata.sdk.loginterceptor.jmx.remote.x.password.file", passwordFile);
+            env.put("com.sportradar.livedata.sdk.loginterceptor.jmx.remote.x.access.file", accessFile);
             connector = JMXConnectorServerFactory.newJMXConnectorServer(url, env, ManagementFactory.getPlatformMBeanServer());
             connector.start();
             MBeanServer mbeanServer = connector.getMBeanServer();

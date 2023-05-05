@@ -225,7 +225,7 @@
 
 ####   All JMX settings
 ####   Valid for :
-####     sdk.jmx
+####     sdk.com.sportradar.livedata.sdk.loginterceptor.jmx
 ####
 ####
 

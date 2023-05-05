@@ -1,3 +1,5 @@
+package com.sportradar.livedata.sdk.loginterceptor;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.Appender;
@@ -88,7 +90,7 @@ public class LogInterceptor {
             prop.load(LogInterceptor.class.getClassLoader().getResourceAsStream(filePath));
 
         } catch (Exception ex) {
-            System.err.println("Error reading properties file of LogInterceptor. Loading defaults...");
+            System.err.println("Error reading properties file of com.sportradar.livedata.sdk.loginterceptor.LogInterceptor. Loading defaults...");
         }
         return prop;
     }

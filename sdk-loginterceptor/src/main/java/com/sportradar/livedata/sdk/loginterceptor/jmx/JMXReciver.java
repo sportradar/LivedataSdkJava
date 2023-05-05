@@ -1,4 +1,4 @@
-package jmx;
+package com.sportradar.livedata.sdk.loginterceptor.jmx;
 
 import com.j256.simplejmx.client.JmxClient;
 

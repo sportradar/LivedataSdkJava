@@ -23,9 +23,9 @@ import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
-import com.sportradar.livedata.sdk.test.FakeServer;
-import com.sportradar.livedata.sdk.test.NullSdkLogger;
-import com.sportradar.livedata.sdk.test.TcpServer;
+import com.sportradar.livedata.sdk.test.util.FakeServer;
+import com.sportradar.livedata.sdk.test.util.NullSdkLogger;
+import com.sportradar.livedata.sdk.test.util.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -39,7 +39,7 @@ import org.junit.Test;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
-import java.io.File;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
