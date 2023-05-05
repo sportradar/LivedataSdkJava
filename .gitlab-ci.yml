@@ -20,11 +20,6 @@ variables:
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
 
-.rules-auto-on-validation:
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "validation"'
-      when: on_success
-
 
 ######################
 # Code quality stage #
@@ -37,10 +32,10 @@ sonar-validate:
 whitesource-check-policies:
   extends:
     - .whitesource-check-policies
-    - .rules-auto-on-validation
+    - .rules-except-master
   allow_failure: true
 
 whitesource-update:
   extends:
     - .whitesource-update
-    - .rules-auto-on-validation
+    - .rules-only-master
