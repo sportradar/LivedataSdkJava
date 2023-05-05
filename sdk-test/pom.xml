@@ -90,6 +90,11 @@
                             <goal>report-aggregate</goal>
                         </goals>
                         <phase>verify</phase>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.parent.basedir}/target
+                            </outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
