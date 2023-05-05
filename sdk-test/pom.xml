@@ -92,7 +92,7 @@
                         <phase>verify</phase>
                         <configuration>
                             <outputDirectory>
-                                ${project.parent.basedir}/target
+                                ${project.parent.basedir}/target/site/jacoco
                             </outputDirectory>
                         </configuration>
                     </execution>
