@@ -3,6 +3,7 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
+import jakarta.xml.bind.annotation.XmlAttribute;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
@@ -20,6 +21,8 @@ public class ScoutEventEntity implements Serializable {
     private Integer balls;
     private Boolean ballSpotting;
     private String baseInfo;
+
+    private Integer pointsUntilSnookerNeeded;
     private String breakScore;
     private Integer correctedFrom;
     private Integer correctedTo;
@@ -95,6 +98,7 @@ public class ScoutEventEntity implements Serializable {
     private String scoreTypeQualifier;
     private DateTime happenedAt;
     private Double shotDistance;
+    private Integer possibleBreak;
     private Team server;
     private DateTime serverTime;
     private Integer setNumber;
@@ -102,6 +106,9 @@ public class ScoutEventEntity implements Serializable {
     private Team side;
     private Integer strikes;
     private Boolean thirdBaseLoaded;
+    private Long firstBasePlayer;
+    private Long secondBasePlayer;
+    private Long thirdBasePlayer;
     private EventType type;
     private int typeId;
     private Integer weaponId;
@@ -190,6 +197,8 @@ public class ScoutEventEntity implements Serializable {
     private String puntDistance;
     private Integer damage;
     private Integer healthRemaining;
+    private Integer pointsRemaining;
+    private Integer reds;
     private String ranOutOfBoundsAt;
     private String driveInfoStatus;
     private String fieldGoalDistance;
@@ -215,6 +224,8 @@ public class ScoutEventEntity implements Serializable {
     private String homePlayers;
     private String awayPlayers;
     private Integer atBatNumber;
+
+    private Integer totalPitchCount;
     private Integer atBatPitchNumber;
     private Double batBallDistance;
     private Double batBallX;
@@ -236,6 +247,11 @@ public class ScoutEventEntity implements Serializable {
     private String homeTeamStatsOt;
     private String awayTeamStatsOt;
     private Integer freeKickReason;
+    private Integer maxBreakFrame;
+    private Integer homeRunsHome;
+    private Integer maxBreakMatch;
+    private Integer homeRunsAway;
+    private Integer nextBatter;
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
 
@@ -311,6 +327,16 @@ public class ScoutEventEntity implements Serializable {
      * @return base info
      */
     public String getBaseInfo() { return baseInfo; }
+
+    /**
+     * Gets points util snooker will be needed
+     * <p>
+     * Note: Used in Snooker
+     * </p>
+     *
+     * @return points util snooker will be needed
+     */
+    public Integer getPointsUntilSnookerNeeded() { return pointsUntilSnookerNeeded; }
 
     /**
      * Gets break score
@@ -712,6 +738,15 @@ public class ScoutEventEntity implements Serializable {
     public Double getShotDistance() { return shotDistance; }
 
     /**
+     * Possible break
+     *
+     * @return {@link Integer} possible break.
+     */
+    public Integer getPossibleBreak() {
+        return possibleBreak;
+    }
+
+    /**
      * Who will serve next (in table-tennis).
      *
      * @return serving team
@@ -910,6 +945,33 @@ public class ScoutEventEntity implements Serializable {
      * @return first base status
      */
     public Boolean getThirdBaseLoaded() { return thirdBaseLoaded; }
+
+    /**
+     * Get first base player
+     *
+     * @return first base player
+     */
+    public Long getFirstBasePlayer() {
+        return firstBasePlayer;
+    }
+
+    /**
+     * Get second base player
+     *
+     * @return second base player
+     */
+    public Long getSecondBasePlayer() {
+        return secondBasePlayer;
+    }
+
+    /**
+     * Get third base player
+     *
+     * @return third base player
+     */
+    public Long getThirdBasePlayer() {
+        return thirdBasePlayer;
+    }
 
     /**
      * Gets weapon id
@@ -1350,6 +1412,14 @@ public class ScoutEventEntity implements Serializable {
         return healthRemaining;
     }
 
+    public Integer getPointsRemaining() {
+        return pointsRemaining;
+    }
+
+    public Integer getReds() {
+        return reds;
+    }
+
     public String getRanOutOfBoundsAt() {
         return ranOutOfBoundsAt;
     }
@@ -1422,6 +1492,7 @@ public class ScoutEventEntity implements Serializable {
 
     public Integer getAtBatNumber() { return atBatNumber; }
 
+    public Integer getTotalPitchCount() { return totalPitchCount; }
     public Integer getAtBatPitchNumber() { return atBatPitchNumber; }
 
     public Double getBatBallDistance() { return batBallDistance; }
@@ -1473,6 +1544,51 @@ public class ScoutEventEntity implements Serializable {
      */
     public Integer getFreeKickReason() {
         return freeKickReason;
+    }
+
+    /**
+     * Get max break frame.
+     *
+     * @return max break frame
+     */
+    public Integer getMaxBreakFrame() {
+        return maxBreakFrame;
+    }
+
+    /**
+     * Get home runs home.
+     *
+     * @return home runs home
+     */
+    public Integer getHomeRunsHome() {
+        return homeRunsHome;
+    }
+
+    /**
+     * Get max break match
+     *
+     * @return max break match
+     */
+    public Integer getMaxBreakMatch() {
+        return maxBreakMatch;
+    }
+
+    /**
+     * Get home runs away.
+     *
+     * @return home runs away
+     */
+    public Integer getHomeRunsAway() {
+        return homeRunsAway;
+    }
+
+    /**
+     * Get next batter.
+     *
+     * @return next batter
+     */
+    public Integer getNextBatter() {
+        return nextBatter;
     }
 
     /**
@@ -1539,6 +1655,7 @@ public class ScoutEventEntity implements Serializable {
                 ", balls=" + balls +
                 ", ballSpotting=" + ballSpotting +
                 ", baseInfo='" + baseInfo + '\'' +
+                ", pointsUntilSnookerNeeded='" + pointsUntilSnookerNeeded + '\'' +
                 ", breakScore='" + breakScore + '\'' +
                 ", correctedFrom=" + correctedFrom +
                 ", correctedTo=" + correctedTo +
@@ -1613,6 +1730,7 @@ public class ScoutEventEntity implements Serializable {
                 ", scoreTypeQualifier=" + scoreTypeQualifier +
                 ", happenedAt=" + happenedAt +
                 ", shotDistance=" + shotDistance +
+                ", possibleBreak=" + possibleBreak +
                 ", server=" + server +
                 ", serverTime=" + serverTime +
                 ", setNumber=" + setNumber +
@@ -1620,6 +1738,9 @@ public class ScoutEventEntity implements Serializable {
                 ", side=" + side +
                 ", strikes=" + strikes +
                 ", thirdBaseLoaded=" + thirdBaseLoaded +
+                ", firstBasePlayer=" + firstBasePlayer +
+                ", secondBasePlayer=" + secondBasePlayer +
+                ", thirdBasePlayer=" + thirdBasePlayer +
                 ", type=" + type +
                 ", typeId=" + typeId +
                 ", weaponId=" + weaponId +
@@ -1707,6 +1828,8 @@ public class ScoutEventEntity implements Serializable {
                 ", puntDistance=" + puntDistance +
                 ", damage=" + damage +
                 ", healthRemaining=" + healthRemaining +
+                ", pointsRemaining=" + pointsRemaining +
+                ", reds=" + reds +
                 ", ranOutOfBoundsAt=" + ranOutOfBoundsAt +
                 ", driveInfoStatus=" + driveInfoStatus +
                 ", fieldGoalDistance=" + fieldGoalDistance +
@@ -1732,6 +1855,7 @@ public class ScoutEventEntity implements Serializable {
                 ", homePlayers=" + homePlayers +
                 ", awayPlayers=" + awayPlayers +
                 ", atBatNumber=" + atBatNumber +
+                ", totalPitchCount=" + totalPitchCount +
                 ", atBatPitchNumber=" + atBatPitchNumber +
                 ", batBallDistance=" + batBallDistance +
                 ", batBallX=" + batBallX +
@@ -1753,6 +1877,11 @@ public class ScoutEventEntity implements Serializable {
                 ", homeTeamStatsOt=" + homeTeamStatsOt +
                 ", awayTeamStatsOt=" + awayTeamStatsOt +
                 ", freeKickReason=" + freeKickReason +
+                ", maxBreakFrame=" + maxBreakFrame +
+                ", homeRunsHome=" + homeRunsHome +
+                ", maxBreakMatch=" + maxBreakMatch +
+                ", homeRunsAway=" + homeRunsAway +
+                ", nextBatter=" + nextBatter +
                 ", foulTypeDescriptor=" + foulTypeDescriptor +
                 ", foulTypeQualifier=" + foulTypeQualifier +
                 '}';
@@ -1816,6 +1945,10 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setBaseInfo(String baseInfo) {
         this.baseInfo = baseInfo;
+    }
+
+    protected void setPointsUntilSnookerNeeded(Integer pointsUntilSnookerNeeded) {
+        this.pointsUntilSnookerNeeded = pointsUntilSnookerNeeded;
     }
 
     protected void setBreakScore(String breakScore) {
@@ -1992,6 +2125,10 @@ public class ScoutEventEntity implements Serializable {
         this.shotDistance = shotDistance;
     }
 
+    protected void setPossibleBreak(Integer possibleBreak) {
+        this.possibleBreak = possibleBreak;
+    }
+
     protected void setServer(Team server) {
         this.server = server;
     }
@@ -2096,6 +2233,18 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setThirdBaseLoaded(Boolean thirdBaseLoaded) {
         this.thirdBaseLoaded = thirdBaseLoaded;
+    }
+
+    protected void setFirstBasePlayer(Long firstBasePlayer) {
+        this.firstBasePlayer = firstBasePlayer;
+    }
+
+    protected void setSecondBasePlayer(Long secondBasePlayer) {
+        this.secondBasePlayer = secondBasePlayer;
+    }
+
+    protected void setThirdBasePlayer(Long thirdBasePlayer) {
+        this.thirdBasePlayer = thirdBasePlayer;
     }
 
     protected void setWeaponId(Integer weaponId) {
@@ -2416,6 +2565,14 @@ public class ScoutEventEntity implements Serializable {
         this.healthRemaining = healthRemaining;
     }
 
+    protected void setPointsRemaining(Integer pointsRemaining) {
+        this.pointsRemaining = pointsRemaining;
+    }
+
+    protected void setReds(Integer reds) {
+        this.reds = reds;
+    }
+
     protected void setRanOutOfBoundsAt(String ranOutOfBoundsAt) {
         this.ranOutOfBoundsAt = ranOutOfBoundsAt;
     }
@@ -2516,6 +2673,9 @@ public class ScoutEventEntity implements Serializable {
         this.atBatNumber = atBatNumber;
     }
 
+    protected void setTotalPitchCount(Integer totalPitchCount) {
+        this.totalPitchCount = totalPitchCount;
+    }
     protected void setAtBatPitchNumber(Integer atBatPitchNumber) {
         this.atBatPitchNumber = atBatPitchNumber;
     }
@@ -2598,6 +2758,26 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setFreeKickReason(Integer freeKickReason) {
         this.freeKickReason = freeKickReason;
+    }
+
+    protected void setMaxBreakFrame(Integer maxBreakFrame) {
+        this.maxBreakFrame = maxBreakFrame;
+    }
+
+    protected void setHomeRunsHome(Integer homeRunsHome) {
+        this.homeRunsHome = homeRunsHome;
+    }
+
+    protected void setMaxBreakMatch(Integer maxBreakMatch) {
+        this.maxBreakMatch = maxBreakMatch;
+    }
+
+    protected void setHomeRunsAway(Integer homeRunsAway) {
+        this.homeRunsAway = homeRunsAway;
+    }
+
+    protected void setNextBatter(Integer nextBatter) {
+        this.nextBatter = nextBatter;
     }
 
     protected void setFoulTypeDescriptor(Integer foulTypeDescriptor) {

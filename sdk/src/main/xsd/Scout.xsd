@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xs:schema [
-  <!ELEMENT xs:schema (xs:element|xs:simpleType)*>
-  <!ATTLIST xs:schema
-    xmlns:xs CDATA #REQUIRED>
-  <!ELEMENT xs:element (xs:complexType)*>
-  <!ATTLIST xs:element
-    maxOccurs CDATA #IMPLIED
-    minOccurs CDATA #IMPLIED
-    name CDATA #IMPLIED
-    ref CDATA #IMPLIED>
-  <!ELEMENT xs:complexType (xs:attribute|xs:choice|xs:all|xs:sequence|xs:simpleContent)*>
-  <!ELEMENT xs:attribute (xs:simpleType)*>
-  <!ATTLIST xs:attribute
-    name CDATA #REQUIRED
-    type CDATA #IMPLIED
-    use CDATA #IMPLIED>
-  <!ELEMENT xs:simpleType (xs:restriction|xs:union)*>
-  <!ATTLIST xs:simpleType
-    name CDATA #IMPLIED>
-  <!ELEMENT xs:restriction (xs:enumeration|xs:pattern)*>
-  <!ATTLIST xs:restriction
-    base CDATA #REQUIRED>
-  <!ELEMENT xs:enumeration (#PCDATA)>
-  <!ATTLIST xs:enumeration
-    value CDATA #REQUIRED>
-  <!ELEMENT xs:choice (xs:element)*>
-  <!ATTLIST xs:choice
-    maxOccurs CDATA #REQUIRED
-    minOccurs CDATA #REQUIRED>
-  <!ELEMENT xs:all (xs:element)*>
-  <!ELEMENT xs:union (xs:simpleType)*>
-  <!ELEMENT xs:pattern (#PCDATA)>
-  <!ATTLIST xs:pattern
-    value CDATA #REQUIRED>
-  <!ELEMENT xs:sequence (xs:element)*>
-  <!ELEMENT xs:simpleContent (xs:extension)*>
-  <!ELEMENT xs:extension (xs:attribute)*>
-  <!ATTLIST xs:extension
-    base CDATA #REQUIRED>
-  ]>
+        <!ELEMENT xs:schema (xs:element|xs:simpleType)*>
+        <!ATTLIST xs:schema
+                xmlns:xs CDATA #REQUIRED>
+        <!ELEMENT xs:element (xs:complexType)*>
+        <!ATTLIST xs:element
+                maxOccurs CDATA #IMPLIED
+                minOccurs CDATA #IMPLIED
+                name CDATA #IMPLIED
+                ref CDATA #IMPLIED>
+        <!ELEMENT xs:complexType (xs:attribute|xs:choice|xs:all|xs:sequence|xs:simpleContent)*>
+        <!ELEMENT xs:attribute (xs:simpleType)*>
+        <!ATTLIST xs:attribute
+                name CDATA #REQUIRED
+                type CDATA #IMPLIED
+                use CDATA #IMPLIED>
+        <!ELEMENT xs:simpleType (xs:restriction|xs:union)*>
+        <!ATTLIST xs:simpleType
+                name CDATA #IMPLIED>
+        <!ELEMENT xs:restriction (xs:enumeration|xs:pattern)*>
+        <!ATTLIST xs:restriction
+                base CDATA #REQUIRED>
+        <!ELEMENT xs:enumeration (#PCDATA)>
+        <!ATTLIST xs:enumeration
+                value CDATA #REQUIRED>
+        <!ELEMENT xs:choice (xs:element)*>
+        <!ATTLIST xs:choice
+                maxOccurs CDATA #REQUIRED
+                minOccurs CDATA #REQUIRED>
+        <!ELEMENT xs:all (xs:element)*>
+        <!ELEMENT xs:union (xs:simpleType)*>
+        <!ELEMENT xs:pattern (#PCDATA)>
+        <!ATTLIST xs:pattern
+                value CDATA #REQUIRED>
+        <!ELEMENT xs:sequence (xs:element)*>
+        <!ELEMENT xs:simpleContent (xs:extension)*>
+        <!ELEMENT xs:extension (xs:attribute)*>
+        <!ATTLIST xs:extension
+                base CDATA #REQUIRED>
+        ]>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="yellow">
         <xs:complexType>
@@ -1216,7 +1216,7 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-			<xs:attribute name="t1division" use="optional">
+            <xs:attribute name="t1division" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -1685,6 +1685,11 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="totalpitchcount" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="atbatpitchnumber" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
@@ -1773,9 +1778,19 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="pointsuntilsnookerneeded" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="breakscore" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="possiblebreak" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="server" use="optional">
@@ -1834,7 +1849,7 @@
             </xs:attribute>
             <xs:attribute name="pitchingsubstitution" use="optional">
                 <xs:simpleType>
-                    <xs:restriction base="xs:int" />
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="runshome" use="optional">
@@ -1889,6 +1904,21 @@
                         <xs:enumeration value="0"/>
                         <xs:enumeration value="1"/>
                     </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="firstbaseplayer" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="secondbaseplayer" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="thirdbaseplayer" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long" />
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="kills" use="optional">
@@ -2077,7 +2107,7 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-			<xs:attribute name="positionplayerpitching" use="optional">
+            <xs:attribute name="positionplayerpitching" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:boolean"/>
                 </xs:simpleType>
@@ -2562,6 +2592,16 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="pointsremaining" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="reds" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="inventory" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -2628,6 +2668,31 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="freekickreason" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="maxbreakframe" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homerunshome" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="maxbreakmatch" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homerunsaway" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nextbatter" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
