@@ -625,6 +625,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static ScoutEventEntity buildScoutEventEntity(Event event) throws InvalidEntityException {
         ScoutEventEntity result = new ScoutEventEntity();
         result.setAutomatic(event.getAutomatic());
+        result.setPointsUntilSnookerNeeded(event.getPointsuntilsnookerneeded());
         result.setBreakScore(event.getBreakscore());
         result.setCorrectedFrom(event.getCorrectedfrom());
         result.setCorrectedTo(event.getCorrectedto());
@@ -703,6 +704,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
             result.setHappenedAt(CommonUtils.fromTimestamp(event.getHappenedat()));
         }
         result.setShotDistance(event.getShotdistance());
+        result.setPossibleBreak(event.getPossiblebreak());
         result.setAssists(event.getAssists());
         result.setDeaths(event.getDeaths());
         result.setErrorsAway(event.getErrorsaway());
@@ -720,6 +722,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (thirdbaseloaded != null) {
             result.setThirdBaseLoaded(thirdbaseloaded != 0);
         }
+        result.setFirstBasePlayer(event.getFirstbaseplayer());
+        result.setSecondBasePlayer(event.getSecondbaseplayer());
+        result.setThirdBasePlayer(event.getThirdbaseplayer());
         result.setHeroesAliveAway(event.getHeroesaliveaway());
         result.setHeroesAliveHome(event.getHeroesalivehome());
         result.setHitsAway(event.getHitsaway());
@@ -762,15 +767,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (touchdownType != null) {
             result.setTouchdownType(Integer.valueOf(touchdownType));
         }
-        if (event.getGoals() != null) {
-            result.setGoals(event.getGoals());
-        }
-        if (event.getBehinds() != null) {
-            result.setBehinds(event.getBehinds());
-        }
-        if(event.getMatchstatus() != null){
-            result.setMatchStatus(event.getMatchstatus());
-        }
+        result.setGoals(event.getGoals());
+        result.setBehinds(event.getBehinds());
+        result.setMatchStatus(event.getMatchstatus());
 
         result.setUuId(event.getUuid());
         result.setPitchType(event.getPitchtype());
@@ -842,6 +841,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setPuntDistance(event.getPuntdistance());
         result.setDamage(event.getDamage());
         result.setHealthRemaining(event.getHealthremaining());
+        result.setPointsRemaining(event.getPointsremaining());
+        result.setReds(event.getReds());
         result.setRanOutOfBoundsAt(event.getRanoutofboundsat());
         result.setDriveInfoStatus(event.getDriveinfostatus());
         result.setFieldGoalDistance(event.getFieldgoaldistance());
@@ -866,21 +867,12 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayTimeOnCourt(event.getAwaytimeoncourt());
         result.setHomePlayers(event.getHomeplayers());
         result.setAwayPlayers(event.getAwayplayers());
-        if(event.getAtbatnumber() != null){
-            result.setAtBatNumber(event.getAtbatnumber());
-        }
-        if(event.getAtbatpitchnumber() != null){
-            result.setAtBatPitchNumber(event.getAtbatpitchnumber());
-        }
-        if(event.getBatballdistance() != null){
-            result.setBatBallDistance(event.getBatballdistance());
-        }
-        if(event.getBatballx() != null){
-            result.setBatBallX(event.getBatballx());
-        }
-        if(event.getBatbally() != null){
-            result.setBatBallY(event.getBatbally());
-        }
+        result.setAtBatNumber(event.getAtbatnumber());
+        result.setTotalPitchCount(event.getTotalpitchcount());
+        result.setAtBatPitchNumber(event.getAtbatpitchnumber());
+        result.setBatBallDistance(event.getBatballdistance());
+        result.setBatBallX(event.getBatballx());
+        result.setBatBallY(event.getBatbally());
         result.setExtraInfoKabaddi(event.getExtrainfokabaddi());
         result.setFieldingPlayers(event.getFieldingplayers());
         result.setPreliminaryMatchStatistics(event.getPreliminarymatchstatistics());
@@ -898,6 +890,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setHomeTeamStatsOt(event.getHometeamstatsot());
         result.setAwayTeamStatsOt(event.getAwayteamstatsot());
         result.setFreeKickReason(event.getFreekickreason());
+        result.setMaxBreakFrame(event.getMaxbreakframe());
+        result.setHomeRunsHome(event.getHomerunshome());
+        result.setMaxBreakMatch(event.getMaxbreakmatch());
+        result.setHomeRunsAway(event.getHomerunsaway());
+        result.setNextBatter(event.getNextbatter());
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 
