@@ -329,10 +329,7 @@ public class ScoutEventEntity implements Serializable {
     public String getBaseInfo() { return baseInfo; }
 
     /**
-     * Gets points util snooker will be needed
-     * <p>
-     * Note: Used in Snooker
-     * </p>
+     * Points until snooker is needed to win the frame
      *
      * @return points util snooker will be needed
      */
@@ -738,7 +735,7 @@ public class ScoutEventEntity implements Serializable {
     public Double getShotDistance() { return shotDistance; }
 
     /**
-     * Possible break
+     * Highest possible break in the current situation
      *
      * @return {@link Integer} possible break.
      */
@@ -1412,10 +1409,20 @@ public class ScoutEventEntity implements Serializable {
         return healthRemaining;
     }
 
+    /**
+     * Get points remaining on the table.
+     *
+     * @return points remaining
+     */
     public Integer getPointsRemaining() {
         return pointsRemaining;
     }
 
+    /**
+     * Get number of Reds remaining on the table
+     *
+     * @return reds
+     */
     public Integer getReds() {
         return reds;
     }
@@ -1547,7 +1554,7 @@ public class ScoutEventEntity implements Serializable {
     }
 
     /**
-     * Get max break frame.
+     * Get highest break in the current frame.
      *
      * @return max break frame
      */
@@ -1565,7 +1572,7 @@ public class ScoutEventEntity implements Serializable {
     }
 
     /**
-     * Get max break match
+     * Get highest break in the current match.
      *
      * @return max break match
      */

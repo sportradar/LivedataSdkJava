@@ -2,6 +2,23 @@
 Livedata SDK is a client library that enables easier integration with the Livescout XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. 
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.
 
+**2.0.2 (2023-05-18)**
+* LiveData update for Snooker.
+* ScoutEvent extended with new properties: 
+  pointsUntilSnookerNeeded,
+  pointsRemaining,
+  reds,
+  maxBreakFrame
+  maxBreakMatch
+  totalPitchCount
+  homeRunsHome
+  homeRunsAway
+  nextBatter
+  possibleBreak
+  firstBasePlayer
+  secondBasePlayer
+  thirdBasePlayer
+
 **2.0.2 (2023-03-14)**
 * LiveData update for MLB.
 * ScoutEvent extended with new properties - FirstBasePlayer, SecondBasePlayer, ThirdBasePlayer, HomeRunsHome, HomeRunsAway, PrevPitcher, NextBatter, TotalPitchCount.
