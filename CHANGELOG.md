@@ -5,19 +5,19 @@ It also makes a client solution more stable and robust when it comes to feed han
 **2.0.3 (2023-05-18)**
 * LiveData update for Snooker.
 * ScoutEvent extended with new properties: 
-  pointsUntilSnookerNeeded,
-  pointsRemaining,
-  reds,
-  maxBreakFrame
-  maxBreakMatch
-  totalPitchCount
-  homeRunsHome
-  homeRunsAway
-  nextBatter
-  possibleBreak
-  firstBasePlayer
-  secondBasePlayer
-  thirdBasePlayer
+  - pointsUntilSnookerNeeded,
+  - pointsRemaining,
+  - reds,
+  - maxBreakFrame
+  - maxBreakMatch
+  - totalPitchCount
+  - homeRunsHome
+  - homeRunsAway
+  - nextBatter
+  - possibleBreak
+  - firstBasePlayer
+  - secondBasePlayer
+  - thirdBasePlayer
 
 **2.0.2 (2023-03-14)**
 * LiveData update for MLB.
