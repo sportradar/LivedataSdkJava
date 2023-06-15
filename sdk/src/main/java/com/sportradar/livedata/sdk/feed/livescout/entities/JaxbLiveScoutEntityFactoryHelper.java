@@ -902,6 +902,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setMaxBreakMatch(event.getMaxbreakmatch());
         result.setHomeRunsAway(event.getHomerunsaway());
         result.setNextBatter(event.getNextbatter());
+        result.setStrokeType(event.getStroketype());
+        result.setSpin(event.getSpin());
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 

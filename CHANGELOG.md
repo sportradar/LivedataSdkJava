@@ -4,6 +4,7 @@ It also makes a client solution more stable and robust when it comes to feed han
 
 **2.0.4 (2023-06-15)**
 * MatchHeaderEntity extended with new property - teamsReversed.
+* ScoutEventEntity extended with new properties - strokeType, spin
 
 **2.0.3 (2023-05-18)**
 * LiveData update for Snooker.
