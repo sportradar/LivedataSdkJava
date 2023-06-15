@@ -252,6 +252,8 @@ public class ScoutEventEntity implements Serializable {
     private Integer maxBreakMatch;
     private Integer homeRunsAway;
     private Integer nextBatter;
+    private String strokeType;
+    private String spin;
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
 
@@ -1599,6 +1601,24 @@ public class ScoutEventEntity implements Serializable {
     }
 
     /**
+     * Get stroke type.
+     *
+     * @return stroke type
+     */
+    public String getStrokeType() {
+        return strokeType;
+    }
+
+    /**
+     * Get spin.
+     *
+     * @return spin
+     */
+    public String getSpin() {
+        return spin;
+    }
+
+    /**
      * Foultypedescriptor: Description of the foul. Possible values:
      *
      * 1 = charge
@@ -1889,6 +1909,8 @@ public class ScoutEventEntity implements Serializable {
                 ", maxBreakMatch=" + maxBreakMatch +
                 ", homeRunsAway=" + homeRunsAway +
                 ", nextBatter=" + nextBatter +
+                ", strokeType=" + strokeType +
+                ", spin=" + spin +
                 ", foulTypeDescriptor=" + foulTypeDescriptor +
                 ", foulTypeQualifier=" + foulTypeQualifier +
                 '}';
@@ -2785,6 +2807,14 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setNextBatter(Integer nextBatter) {
         this.nextBatter = nextBatter;
+    }
+
+    public void setStrokeType(String strokeType) {
+        this.strokeType = strokeType;
+    }
+
+    public void setSpin(String spin) {
+        this.spin = spin;
     }
 
     protected void setFoulTypeDescriptor(Integer foulTypeDescriptor) {

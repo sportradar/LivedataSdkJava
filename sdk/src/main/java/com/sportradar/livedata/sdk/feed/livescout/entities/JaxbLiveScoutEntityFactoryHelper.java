@@ -111,6 +111,13 @@ public class JaxbLiveScoutEntityFactoryHelper {
         }
         result.setDeepCoverage(CommonUtils.integerToBoolean(match.getDc()));
         result.setDistance(match.getDistance());
+        if (match.getTeamsreversed() != null) {
+            try {
+                result.setTeamsReversed(TeamsReversed.findByValue(match.getTeamsreversed()));
+            } catch (UnknownEnumException e) {
+                throw new InvalidEntityException(e, "Match.getTeamsreversed()", String.valueOf(match.getTeamsreversed()));
+            }
+        }
         result.setExtraInfo(match.getExtrainfo());
         try {
             result.setFeedType(ScoutFeedType.getScoutFeedTypeFromLiteralValue(match.getFeedtype()));
@@ -895,6 +902,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setMaxBreakMatch(event.getMaxbreakmatch());
         result.setHomeRunsAway(event.getHomerunsaway());
         result.setNextBatter(event.getNextbatter());
+        result.setStrokeType(event.getStroketype());
+        result.setSpin(event.getSpin());
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 
