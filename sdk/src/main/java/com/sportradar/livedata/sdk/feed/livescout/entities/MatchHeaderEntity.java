@@ -2,10 +2,7 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.entities.IdNameTuple;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
-import com.sportradar.livedata.sdk.feed.livescout.enums.Coverage;
-import com.sportradar.livedata.sdk.feed.livescout.enums.MatchBetStatus;
-import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
-import com.sportradar.livedata.sdk.feed.livescout.enums.Sex;
+import com.sportradar.livedata.sdk.feed.livescout.enums.*;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
@@ -24,6 +21,7 @@ public class MatchHeaderEntity implements Serializable {
     private Boolean deepCoverage;
     private Integer device;
     private Integer distance;
+    private TeamsReversed teamsReversed;
     private Integer extraInfo;
     private ScoutFeedType feedType;
     private Team firstServe;
@@ -111,6 +109,15 @@ public class MatchHeaderEntity implements Serializable {
      */
     public Integer getDistance() {
         return distance;
+    }
+
+    /**
+     * Shows whether order not confirmed or reversed
+     *
+     * @return teams reversed
+     */
+    public TeamsReversed getTeamsReversed() {
+        return teamsReversed;
     }
 
     /**
@@ -456,6 +463,7 @@ public class MatchHeaderEntity implements Serializable {
                 ", deepCoverage=" + deepCoverage +
                 ", device=" + device +
                 ", distance=" + distance +
+                ", teamsReversed=" + teamsReversed +
                 ", extraInfo=" + extraInfo +
                 ", feedType=" + feedType +
                 ", firstServe=" + firstServe +
@@ -522,6 +530,10 @@ public class MatchHeaderEntity implements Serializable {
 
     protected void setDistance(Integer distance) {
         this.distance = distance;
+    }
+
+    public void setTeamsReversed(TeamsReversed teamsReversed) {
+        this.teamsReversed = teamsReversed;
     }
 
     protected void setExtraInfo(Integer extraInfo) {

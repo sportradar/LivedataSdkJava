@@ -1367,6 +1367,14 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="teamsreversed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="st1id" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
@@ -2695,6 +2703,16 @@
             <xs:attribute name="nextbatter" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="stroketype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="spin" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>
