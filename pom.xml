@@ -62,7 +62,7 @@
     </profiles>
 
     <properties>
-        <revision>2.0.2</revision>
+        <revision>2.0.3</revision>
 
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 

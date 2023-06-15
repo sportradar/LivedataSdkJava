@@ -111,6 +111,13 @@ public class JaxbLiveScoutEntityFactoryHelper {
         }
         result.setDeepCoverage(CommonUtils.integerToBoolean(match.getDc()));
         result.setDistance(match.getDistance());
+        if (match.getTeamsreversed() != null) {
+            try {
+                result.setTeamsReversed(TeamsReversed.findByValue(match.getTeamsreversed()));
+            } catch (UnknownEnumException e) {
+                throw new InvalidEntityException(e, "Match.getTeamsreversed()", String.valueOf(match.getTeamsreversed()));
+            }
+        }
         result.setExtraInfo(match.getExtrainfo());
         try {
             result.setFeedType(ScoutFeedType.getScoutFeedTypeFromLiteralValue(match.getFeedtype()));
