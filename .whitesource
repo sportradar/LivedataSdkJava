@@ -1,0 +1,23 @@
+{
+  "scanSettings": {
+    "configMode": "AUTO",
+    "configExternalURL": "",
+    "projectToken": "",
+    "baseBranches": []
+  },
+  "commitStatusSettings": {
+    "vulnerableCommitStatus": "FAILED",
+    "displayMode": "diff",
+    "useMendStatusNames": true
+  },
+  "issueSettings": {
+    "minSeverityLevel": "LOW",
+    "openConfidentialIssues": true,
+    "issueType": "DEPENDENCY"
+  },
+  "remediateSettings": {
+    "workflowRules": {
+      "enabled": true
+    }
+  }
+}
