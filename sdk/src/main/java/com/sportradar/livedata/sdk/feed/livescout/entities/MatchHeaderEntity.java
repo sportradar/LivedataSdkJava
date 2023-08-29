@@ -59,6 +59,10 @@ public class MatchHeaderEntity implements Serializable {
     private String homeState;
     private String awayState;
     private String venue;
+    private String region;
+    private String uuid;
+    private Integer page;
+    private Integer totalPages;
 
     /**
      * For Serializable
@@ -444,6 +448,30 @@ public class MatchHeaderEntity implements Serializable {
 
     public String getVenue() { return venue; }
 
+    public String getRegion() { return region; }
+
+    /**
+     * Too big feed can be splitted if such configuration is activated in LiveData.
+     * Before splitting feed gets his own uuid. All partials after splitting will have same uuid.
+     *
+     * @return uuid of splitted feed.
+     */
+    public String getUuid() { return uuid; }
+
+    /**
+     * Returns page number of current feed partial.
+     *
+     * @return page of current partial.
+     */
+    public Integer getPage() { return page; }
+
+    /**
+     * Returns total amount of pages in splitted feed.
+     *
+     * @return total pages.
+     */
+    public Integer getTotalPages() { return totalPages; }
+
     /**
      * Returns a string that represents the current object.
      * <p>
@@ -499,6 +527,10 @@ public class MatchHeaderEntity implements Serializable {
                 ", homeState=" + homeState +
                 ", awayState=" + awayState +
                 ", venue=" + venue +
+                ", region=" + region +
+                ", uuid=" + uuid +
+                ", page=" + page +
+                ", totalpages=" + totalPages +
                 '}';
     }
 
@@ -663,4 +695,12 @@ public class MatchHeaderEntity implements Serializable {
     public void setAwayState(String awayState) { this.awayState = awayState; }
 
     public void setVenue(String venue) { this.venue = venue; }
+
+    public void setRegion(String region) { this.region = region; }
+
+    public void setUuid(String uuid) { this.uuid = uuid; }
+
+    public void setPage(Integer page) { this.page = page; }
+
+    public void setTotalPages(Integer totalpages) { this.totalPages = totalPages; }
 }

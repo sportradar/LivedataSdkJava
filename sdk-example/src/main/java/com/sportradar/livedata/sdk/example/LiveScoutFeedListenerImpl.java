@@ -80,6 +80,11 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
     }
 
     @Override
+    public void onPartialMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
+        logger.info("Partial match update");
+    }
+
+    @Override
     public void onLineupsReceived(LiveScoutFeed sender, LineupsEntity lineups) {
         logger.info("Lineups");
     }

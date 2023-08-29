@@ -35,20 +35,23 @@ public class ScoutEventEntity implements Serializable {
     private Integer errorsAway;
     private Integer errorsHome;
     private Integer experience;
+    private String spot;
     private Long extraInfo;
     private String extraInfoBaseball;
     private String extraInfoBasketball;
-    private String spot;
     private String extraInfoBowls;
     private String extraInfoCricket;
     private String extraInfoCsGo;
     private String extraInfoMoba;
     private String extraInfoDarts;
     private String extraInfoFootball;
+    private String extraInfoSoccer;
     private String extraInfoHandball;
     private String extraInfoIceHockey;
     private String extraInfoSnooker;
     private String extraInfoVolleyball;
+    private String extraInfoKabaddi;
+    private String extraInfoWaterPolo;
     private Boolean firstBaseLoaded;
     private Integer frameNumber;
     private String frameScore;
@@ -98,6 +101,10 @@ public class ScoutEventEntity implements Serializable {
     private String scoreTypeQualifier;
     private DateTime happenedAt;
     private Double shotDistance;
+    private Double shotProjectedGoalRate;
+    private Integer shotRatingCategory;
+    private Double shotSpeed;
+    private Integer shotType;
     private Integer possibleBreak;
     private Team server;
     private DateTime serverTime;
@@ -192,6 +199,8 @@ public class ScoutEventEntity implements Serializable {
     private String awayPlayerStatsPass;
     private String homePlayerStatsRush;
     private String awayPlayerStatsRush;
+    private String homePlayerStats;
+    private String awayPlayerStats;
     private String homePlayerStatsRec;
     private String awayPlayerStatsRec;
     private String puntDistance;
@@ -224,13 +233,11 @@ public class ScoutEventEntity implements Serializable {
     private String homePlayers;
     private String awayPlayers;
     private Integer atBatNumber;
-
     private Integer totalPitchCount;
     private Integer atBatPitchNumber;
     private Double batBallDistance;
     private Double batBallX;
     private Double batBallY;
-    private String extraInfoKabaddi;
     private String fieldingPlayers;
     private String preliminaryMatchStatistics;
     private String actualMatchStatistics;
@@ -263,20 +270,6 @@ public class ScoutEventEntity implements Serializable {
     protected ScoutEventEntity() {
 
     }
-
-    /**
-     * Gets extra info for CS:GO
-     *
-     * @return extra info for CS:GO
-     */
-    public String getExtraInfoCsGo() { return extraInfoCsGo; }
-
-    /**
-     * Gets extra info for "MOBA" matches
-     *
-     * @return extra info for "MOBA" matches
-     */
-    public String getExtraInfoMoba() { return extraInfoMoba; }
 
     /**
      * Gets map number
@@ -383,6 +376,15 @@ public class ScoutEventEntity implements Serializable {
     public Integer getErrors() { return errors; }
 
     /**
+     * information whether a shot/goal was from inside/outside the box
+     * 0 - outside the box
+     * 1 - inside the box
+     * -1 - unknown
+     * @return according xsd - string value. Should it be parsed to int?
+     */
+    public String getSpot() { return spot; }
+
+    /**
      * Integer value, meaning of this attribute depends on event type:
      * <ul>
      * <li>30 (score): 0 or -1 = not specified, 1 = penalty, 2 = own goal, 3 = header</li>
@@ -426,15 +428,6 @@ public class ScoutEventEntity implements Serializable {
     public String getExtraInfoBasketball() { return extraInfoBasketball; }
 
     /**
-     * information whether a shot/goal was from inside/outside the box
-     * 0 - outside the box
-     * 1 - inside the box
-     * -1 - unknown
-     * @return according xsd - string value. Should it be parsed to int?
-     */
-    public String getSpot() { return spot; }
-
-    /**
      * Extra info for bowls game
      *
      * @return Bowls extra info
@@ -449,6 +442,20 @@ public class ScoutEventEntity implements Serializable {
     public String getExtraInfoCricket() { return extraInfoCricket; }
 
     /**
+     * Gets extra info for CS:GO
+     *
+     * @return extra info for CS:GO
+     */
+    public String getExtraInfoCsGo() { return extraInfoCsGo; }
+
+    /**
+     * Gets extra info for "MOBA" matches
+     *
+     * @return extra info for "MOBA" matches
+     */
+    public String getExtraInfoMoba() { return extraInfoMoba; }
+
+    /**
      * Extra info for dart game
      *
      * @return Dart extra info
@@ -461,6 +468,13 @@ public class ScoutEventEntity implements Serializable {
      * @return Football extra info
      */
     public String getExtraInfoFootball() { return extraInfoFootball; }
+
+    /**
+     * Extra info for soccer game
+     *
+     * @return Soccer extra info
+     */
+    public String getExtraInfoSoccer() { return extraInfoSoccer; }
 
     /**
      * Gets extra info handball
@@ -492,6 +506,20 @@ public class ScoutEventEntity implements Serializable {
      * @return Volleyball extra info
      */
     public String getExtraInfoVolleyball() { return extraInfoVolleyball; }
+
+    /**
+     * Gets kabaddi extra info
+     *
+     * @return Kabaddi extra info
+     */
+    public String getExtraInfoKabaddi() { return extraInfoKabaddi; }
+
+    /**
+     * Gets water polo extra info
+     *
+     * @return Water polo extra info
+     */
+    public String getExtraInfoWaterPolo() { return extraInfoWaterPolo; }
 
     /**
      * Gets frame number
@@ -735,6 +763,11 @@ public class ScoutEventEntity implements Serializable {
      * @return {@link Double} of shotdistance.
      */
     public Double getShotDistance() { return shotDistance; }
+
+    public Double getShotProjectedGoalRate() { return shotProjectedGoalRate; }
+    public Integer getShotRatingCategory() { return shotRatingCategory; }
+    public Double getShotSpeed() { return shotSpeed; }
+    public Integer getShotType() { return shotType; }
 
     /**
      * Highest possible break in the current situation
@@ -1391,6 +1424,14 @@ public class ScoutEventEntity implements Serializable {
         return awayPlayerStatsRush;
     }
 
+    public String getHomePlayerStats() {
+        return homePlayerStats;
+    }
+
+    public String getAwayPlayerStats() {
+        return awayPlayerStats;
+    }
+
     public String getHomePlayerStatsRec() {
         return homePlayerStatsRec;
     }
@@ -1509,8 +1550,6 @@ public class ScoutEventEntity implements Serializable {
     public Double getBatBallX() { return batBallX; }
 
     public Double getBatBallY() { return batBallY; }
-
-    public String getExtraInfoKabaddi() { return extraInfoKabaddi; }
 
     public String getFieldingPlayers() { return fieldingPlayers; }
 
@@ -1695,19 +1734,23 @@ public class ScoutEventEntity implements Serializable {
                 ", errorsAway=" + errorsAway +
                 ", errorsHome=" + errorsHome +
                 ", experience=" + experience +
+                ", spot='" + spot + '\'' +
                 ", extraInfo=" + extraInfo +
                 ", extraInfoBaseball='" + extraInfoBaseball + '\'' +
                 ", extraInfoBasketball='" + extraInfoBasketball + '\'' +
-                ", spot='" + spot + '\'' +
                 ", extraInfoBowls='" + extraInfoBowls + '\'' +
                 ", extraInfoCricket='" + extraInfoCricket + '\'' +
                 ", extraInfoCsGo='" + extraInfoCsGo + '\'' +
+                ", extraInfoMoba='" + extraInfoMoba + '\'' +
                 ", extraInfoDarts='" + extraInfoDarts + '\'' +
                 ", extraInfoFootball='" + extraInfoFootball + '\'' +
+                ", extraInfoSoccer'" + extraInfoSoccer + '\'' +
                 ", extraInfoHandball='" + extraInfoHandball + '\'' +
                 ", extraInfoIceHockey='" + extraInfoIceHockey + '\'' +
                 ", extraInfoSnooker='" + extraInfoSnooker + '\'' +
                 ", extraInfoVolleyball='" + extraInfoVolleyball + '\'' +
+                ", extraInfoKabaddi='" + extraInfoKabaddi + '\'' +
+                ", extraInfoWaterPolo='" + extraInfoWaterPolo + '\'' +
                 ", firstBaseLoaded=" + firstBaseLoaded +
                 ", frameNumber=" + frameNumber +
                 ", frameScore='" + frameScore + '\'' +
@@ -1757,6 +1800,10 @@ public class ScoutEventEntity implements Serializable {
                 ", scoreTypeQualifier=" + scoreTypeQualifier +
                 ", happenedAt=" + happenedAt +
                 ", shotDistance=" + shotDistance +
+                ", shotProjectedGoalRate=" + shotProjectedGoalRate +
+                ", shotRatingCategory=" + shotRatingCategory +
+                ", shotSpeed=" + shotSpeed +
+                ", shotType=" + shotType +
                 ", possibleBreak=" + possibleBreak +
                 ", server=" + server +
                 ", serverTime=" + serverTime +
@@ -1850,6 +1897,8 @@ public class ScoutEventEntity implements Serializable {
                 ", awayPlayerStatsPass=" + awayPlayerStatsPass +
                 ", homePlayerStatsRush=" + homePlayerStatsRush +
                 ", awayPlayerStatsRush=" + awayPlayerStatsRush +
+                ", homePlayerStats=" + homePlayerStats +
+                ", awayPlayerStats=" + awayPlayerStats +
                 ", homePlayerStatsRec=" + homePlayerStatsRec +
                 ", awayPlayerStatsRec=" + awayPlayerStatsRec +
                 ", puntDistance=" + puntDistance +
@@ -1887,7 +1936,6 @@ public class ScoutEventEntity implements Serializable {
                 ", batBallDistance=" + batBallDistance +
                 ", batBallX=" + batBallX +
                 ", batBallY=" + batBallY +
-                ", extraInfoKabaddi=" + extraInfoKabaddi +
                 ", fieldingPlayers=" + fieldingPlayers +
                 ", preliminaryMatchStatistics=" + preliminaryMatchStatistics +
                 ", actualMatchStatistics=" + actualMatchStatistics +
@@ -1944,10 +1992,6 @@ public class ScoutEventEntity implements Serializable {
         this.killsHome = killsHome;
     }
 
-    protected void setExtraInfoCsGo(String extraInfoCsGo) {
-        this.extraInfoCsGo = extraInfoCsGo;
-    }
-
     protected void setMapNumber(Integer mapNumber) {
         this.mapNumber = mapNumber;
     }
@@ -2002,6 +2046,8 @@ public class ScoutEventEntity implements Serializable {
         this.errors = errors;
     }
 
+    protected void setSpot(String spot) { this.spot = spot; }
+
     protected void setExtraInfo(Long extraInfo) {
         this.extraInfo = extraInfo;
     }
@@ -2012,8 +2058,6 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setExtraInfoBasketball(String extraInfoBasketball) { this.extraInfoBasketball = extraInfoBasketball; }
 
-    protected void setSpot(String spot) { this.spot = spot; }
-
     protected void setExtraInfoBowls(String extraInfoBowls) {
         this.extraInfoBowls = extraInfoBowls;
     }
@@ -2022,13 +2066,21 @@ public class ScoutEventEntity implements Serializable {
         this.extraInfoCricket = extraInfoCricket;
     }
 
+    protected void setExtraInfoCsGo(String extraInfoCsGo) {
+        this.extraInfoCsGo = extraInfoCsGo;
+    }
+
+    protected void setExtraInfoMoba(String extraInfoMoba) {
+        this.extraInfoMoba = extraInfoMoba;
+    }
+
     protected void setExtraInfoDarts(String extraInfoDarts) {
         this.extraInfoDarts = extraInfoDarts;
     }
 
-    protected void setExtraInfoFootball(String extraInfoFootball) {
-        this.extraInfoFootball = extraInfoFootball;
-    }
+    protected void setExtraInfoFootball(String extraInfoFootball) { this.extraInfoFootball = extraInfoFootball; }
+
+    protected void setExtraInfoSoccer(String extraInfoSoccer) { this.extraInfoSoccer = extraInfoSoccer; }
 
     protected void setExtraInfoHandball(String extraInfoHandball) {
         this.extraInfoHandball = extraInfoHandball;
@@ -2043,6 +2095,14 @@ public class ScoutEventEntity implements Serializable {
     }
 
     protected void setExtraInfoVolleyball(String extraInfoVolleyball) { this.extraInfoVolleyball = extraInfoVolleyball; }
+
+    protected void setExtraInfoKabaddi(String extraInfoKabaddi) {
+        this.extraInfoKabaddi = extraInfoKabaddi;
+    }
+
+    protected void setExtraInfoWaterPolo(String extraInfoWaterPolo) {
+        this.extraInfoWaterPolo = extraInfoWaterPolo;
+    }
 
     protected void setFrameNumber(Integer frameNumber) {
         this.frameNumber = frameNumber;
@@ -2150,9 +2210,15 @@ public class ScoutEventEntity implements Serializable {
         this.happenedAt = happenedAt;
     }
 
-    protected void setShotDistance(Double shotDistance) {
-        this.shotDistance = shotDistance;
-    }
+    protected void setShotDistance(Double shotDistance) { this.shotDistance = shotDistance; }
+
+    protected void setShotProjectedGoalRate(Double shotProjectedGoalRate) { this.shotProjectedGoalRate = shotProjectedGoalRate; }
+
+    protected void setShotRatingCategory(Integer shotRatingCategory) { this.shotRatingCategory = shotRatingCategory; }
+
+    protected void setShotSpeed(Double shotSpeed) { this.shotSpeed = shotSpeed; }
+
+    protected void setShotType(Integer shotType) { this.shotType = shotType; }
 
     protected void setPossibleBreak(Integer possibleBreak) {
         this.possibleBreak = possibleBreak;
@@ -2328,10 +2394,6 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setTouchdownType(int value) {
         this.touchdownType = Integer.valueOf(value);
-    }
-
-    protected void setExtraInfoMoba(String extraInfoMoba) {
-        this.extraInfoMoba = extraInfoMoba;
     }
 
     protected void setGoals(String goals) {
@@ -2576,9 +2638,13 @@ public class ScoutEventEntity implements Serializable {
         this.awayPlayerStatsRush = awayPlayerStatsRush;
     }
 
-    protected void setHomePlayerStatsRec(String homePlayerStatsRec) {
-        this.homePlayerStatsRec = homePlayerStatsRec;
+    protected void setHomePlayerStats(String homePlayerStats) { this.homePlayerStats = homePlayerStats; }
+
+    protected void setAwayPlayerStats(String awayPlayerStats) {
+        this.awayPlayerStats = awayPlayerStats;
     }
+
+    protected void setHomePlayerStatsRec(String homePlayerStatsRec) { this.homePlayerStatsRec = homePlayerStatsRec; }
 
     protected void setAwayPlayerStatsRec(String awayPlayerStatsRec) {
         this.awayPlayerStatsRec = awayPlayerStatsRec;
@@ -2719,10 +2785,6 @@ public class ScoutEventEntity implements Serializable {
 
     protected void setBatBallY(Double batBallY) {
         this.batBallY = batBallY;
-    }
-
-    protected void setExtraInfoKabaddi(String extraInfoKabaddi) {
-        this.extraInfoKabaddi = extraInfoKabaddi;
     }
 
     protected void setFieldingPlayers(String fieldingPlayers) {

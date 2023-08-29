@@ -86,14 +86,6 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
         entityContainer.clear();
     }
 
-    protected void dispatchFullMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
-        try {
-            listener.onFullMatchUpdateReceived(feed, matchUpdate);
-        } catch (Exception e) {
-            logger.warn("User handler for onFullMatchUpdateReceived threw exception", e);
-        }
-    }
-
     protected void dispatchLineups(LineupsEntity entity) {
         try {
             listener.onLineupsReceived(feed, entity);
@@ -150,6 +142,22 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
         }
     }
 
+    protected void dispatchFullMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
+        try {
+            listener.onFullMatchUpdateReceived(feed, matchUpdate);
+        } catch (Exception e) {
+            logger.warn("User handler for onFullMatchUpdateReceived threw exception", e);
+        }
+    }
+
+    protected void dispatchPartialMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
+        try {
+            listener.onPartialMatchUpdateReceived(feed, matchUpdate);
+        } catch (Exception e) {
+            logger.warn("User handler for onPartialMatchUpdateReceived threw exception", e);
+        }
+    }
+
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         try {
             listener.onMatchDeltaUpdateUpdateReceived(feed, matchUpdate);
@@ -181,7 +189,9 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
      * @param entity The {@link LiveScoutEntityBase} derived instance representing the message to be dispatched
      */
     private void dispatchEntity(LiveScoutEntityBase entity) {
-
+/*  Utku Can Yücel
+you can ignore multimatchsubscriptionresponse , it is not on prod xsd yet and normally it will not be exposed to clients.
+we will check this  */
         if (entity instanceof MatchListUpdateEntity) {
             dispatchMatchListUpdate((MatchListUpdateEntity) entity);
         } else if (entity instanceof MatchListEntity) {
@@ -201,6 +211,9 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
                 switch (feedType) {
                     case FULL:
                         dispatchFullMatchUpdateReceived(matchUpdate);
+                        break;
+                    case PARTIAL:
+                        dispatchPartialMatchUpdateReceived(matchUpdate);
                         break;
                     case DELTA:
                         dispatchOnMatchDeltaUpdateReceived(matchUpdate);

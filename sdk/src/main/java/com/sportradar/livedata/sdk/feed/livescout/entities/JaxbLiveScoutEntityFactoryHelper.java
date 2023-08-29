@@ -207,6 +207,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setHomeState(match.getHomestate());
         result.setAwayState(match.getAwaystate());
         result.setVenue(match.getVenue());
+        result.setRegion(match.getRegion());
+        result.setUuid(match.getUuid());
+        result.setPage(match.getPage());
+        result.setTotalPages(match.getTotalpages());
 
         return result;
     }
@@ -639,20 +643,23 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setBallNumber(event.getBallnumber());
         result.setDismissalsInInnings(event.getDismissalsininnings());
         result.setEndScore(event.getEndscore());
+        result.setSpot(event.getSpot());
         result.setExtraInfo(event.getExtrainfo());
         result.setExtraInfoBasketball(event.getExtrainfobasketball());
-        result.setSpot(event.getSpot());
         result.setExtraInfoBowls(event.getExtrainfobowls());
         result.setExtraInfoCricket(event.getExtrainfocricket());
         result.setExtraInfoCsGo(event.getExtrainfocsgo());
         result.setExtraInfoMoba(event.getExtrainfomoba());
         result.setExtraInfoDarts(event.getExtrainfodarts());
         result.setExtraInfoFootball(event.getExtrainfofootball());
+        result.setExtraInfoSoccer(event.getExtrainfosoccer());
         result.setExtraInfoHandball(event.getExtrainfohandball());
         result.setExtraInfoIceHockey(event.getExtrainfoicehockey());
         result.setExtraInfoSnooker(event.getExtrainfosnooker());
         result.setExtraInfoVolleyball(event.getExtrainfovolleyball());
         result.setExtraInfoBaseball(event.getExtrainfobaseball());
+        result.setExtraInfoKabaddi(event.getExtrainfokabaddi());
+        result.setExtraInfoWaterPolo(event.getExtrainfowaterpolo());
         result.setFrameNumber(event.getFramenumber());
         result.setFrameScore(event.getFramescore());
         result.setGameNumber(event.getGamenumber());
@@ -711,6 +718,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
             result.setHappenedAt(CommonUtils.fromTimestamp(event.getHappenedat()));
         }
         result.setShotDistance(event.getShotdistance());
+        result.setShotProjectedGoalRate(event.getShotprojectedgoalrate());
+        result.setShotRatingCategory(event.getShotratingcategory());
+        result.setShotSpeed(event.getShotspeed());
+        result.setShotType(event.getShottype());
         result.setPossibleBreak(event.getPossiblebreak());
         result.setAssists(event.getAssists());
         result.setDeaths(event.getDeaths());
@@ -843,6 +854,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayPlayerStatsPass(event.getAwayplayerstatspass());
         result.setHomePlayerStatsRush(event.getHomeplayerstatsrush());
         result.setAwayPlayerStatsRush(event.getAwayplayerstatsrush());
+        result.setHomePlayerStats(event.getHomeplayerstats());
+        result.setAwayPlayerStats(event.getAwayplayerstats());
         result.setHomePlayerStatsRec(event.getHomeplayerstatsrec());
         result.setAwayPlayerStatsRec(event.getAwayplayerstatsrec());
         result.setPuntDistance(event.getPuntdistance());
@@ -880,7 +893,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setBatBallDistance(event.getBatballdistance());
         result.setBatBallX(event.getBatballx());
         result.setBatBallY(event.getBatbally());
-        result.setExtraInfoKabaddi(event.getExtrainfokabaddi());
         result.setFieldingPlayers(event.getFieldingplayers());
         result.setPreliminaryMatchStatistics(event.getPreliminarymatchstatistics());
         result.setActualMatchStatistics(event.getActualmatchstatistics());

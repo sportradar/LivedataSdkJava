@@ -511,6 +511,7 @@
                         <xs:enumeration value="extrapointyardline"/>
                         <xs:enumeration value="noballpenaltyvalue"/>
                         <xs:enumeration value="tiebreakermethod"/>
+                        <xs:enumeration value="usesovers"/>
                         <xs:enumeration value="regularinnings"/>
                     </xs:restriction>
                 </xs:simpleType>
@@ -1242,6 +1243,7 @@
                         <xs:enumeration value="full"/>
                         <xs:enumeration value="delta"/>
                         <xs:enumeration value="deltaupdate"/>
+                        <xs:enumeration value="partial"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -1470,6 +1472,21 @@
             <xs:attribute name="region" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="uuid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="page" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="totalpages" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>
@@ -1731,6 +1748,11 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="extrainfosoccer" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="extrainfobasketball" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -1777,6 +1799,11 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="extrainfokabaddi" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="extrainfowaterpolo" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -1853,6 +1880,26 @@
             <xs:attribute name="shotdistance" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shotprojectedgoalrate" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shotratingcategory" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shotspeed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shottype" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="pitchingsubstitution" use="optional">
@@ -2440,6 +2487,16 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="homeplayerstats" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstats" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="homeplayerstatsrec" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -2685,12 +2742,12 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="homerunshome" use="optional">
+            <xs:attribute name="maxbreakmatch" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="maxbreakmatch" use="optional">
+            <xs:attribute name="homerunshome" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
@@ -2846,6 +2903,22 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="reason" type="xs:string"/>
+            <xs:attribute name="errorcode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="unauthenticated"/>
+                        <xs:enumeration value="insecure"/>
+                        <xs:enumeration value="missing"/>
+                        <xs:enumeration value="incorrect"/>
+                        <xs:enumeration value="expired"/>
+                        <xs:enumeration value="flooding"/>
+                        <xs:enumeration value="connection_quota"/>
+                        <xs:enumeration value="not_whitelisted"/>
+                        <xs:enumeration value="internal_error"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="flashconfig">
@@ -2907,6 +2980,13 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="matchlistupdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="match" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="multimatchsubscriptionresponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="match" minOccurs="0" maxOccurs="unbounded"/>

@@ -126,6 +126,11 @@ public enum FormatType implements EntityEnum {
      * How a tied match is resolved, if at all
      */
     TIE_BREAKER_METHOD("tiebreakermethod"),
+
+    /**
+     *
+     */
+    USES_OVERS("usesovers"),
     /**
      * Number of regular innings in MLB
      */

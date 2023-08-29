@@ -19,7 +19,11 @@ public enum ScoutFeedType implements EntityEnum {
     /**
      * Delta update message
      */
-    DELTAUPDATE("deltaupdate");
+    DELTAUPDATE("deltaupdate"),
+    /**
+     *
+     */
+    PARTIAL("partial");
 
 
     private String literalValue;
