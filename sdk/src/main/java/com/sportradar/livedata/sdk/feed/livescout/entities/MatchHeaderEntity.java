@@ -702,5 +702,5 @@ public class MatchHeaderEntity implements Serializable {
 
     public void setPage(Integer page) { this.page = page; }
 
-    public void setTotalPages(Integer totalpages) { this.totalPages = totalPages; }
+    public void setTotalPages(Integer totalPages) { this.totalPages = totalPages; }
 }
