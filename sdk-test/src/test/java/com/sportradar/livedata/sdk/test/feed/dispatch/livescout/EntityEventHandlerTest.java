@@ -68,12 +68,14 @@ public class EntityEventHandlerTest {
     public void matchUpdateEntityIsDispatched() {
         final MatchUpdateEntity matchUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), null);
         final MatchUpdateEntity fullUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.FULL));
+        final MatchUpdateEntity partialUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.PARTIAL));
         final MatchUpdateEntity deltaUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.DELTA));
         final MatchUpdateEntity deltaUpdateDeltaEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.DELTAUPDATE));
 
         context.checking(new Expectations() {{
             oneOf(listenerMock).onMatchUpdateReceived(with(feed), with(matchUpdateEntity));
             oneOf(listenerMock).onFullMatchUpdateReceived(with(feed), with(fullUpdateEntity));
+            oneOf(listenerMock).onPartialMatchUpdateReceived(with(feed), with(partialUpdateEntity));
             oneOf(listenerMock).onMatchDeltaUpdateReceived(with(feed), with(deltaUpdateEntity));
             oneOf(listenerMock).onMatchDeltaUpdateUpdateReceived(with(feed), with(deltaUpdateDeltaEntity));
         }});
@@ -81,6 +83,7 @@ public class EntityEventHandlerTest {
         final MatchUpdateEntity notHandledEntity = new TestMatchUpdateEntity(EventIdentifier.id(2L), null);
         handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(matchUpdateEntity)), 1, false);
         handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(fullUpdateEntity)), 1, false);
+        handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(partialUpdateEntity)), 1, false);
         handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(deltaUpdateEntity)), 1, false);
         handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(deltaUpdateDeltaEntity)), 1, false);
         handler.onEvent(markAsValid(new LiveScoutDispatcherContainer(notHandledEntity)), 1, false);

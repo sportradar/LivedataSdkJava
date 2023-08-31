@@ -128,7 +128,8 @@ public enum FormatType implements EntityEnum {
     TIE_BREAKER_METHOD("tiebreakermethod"),
 
     /**
-     *
+     * Used in special formats, for example "The Hundred" tournament.
+     * 1- overs used, 2 - blocks are used instead
      */
     USES_OVERS("usesovers"),
     /**
