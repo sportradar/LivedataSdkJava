@@ -45,7 +45,7 @@ public enum SurfaceType implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static SurfaceType getSurfaceTypeFromLiteralValue(String value) throws UnknownEnumException {
-        SurfaceType result = EntityEnumHelper.getValueFromLiteralValue(SurfaceType.values(), value);
+        SurfaceType result = EntityEnumHelper.getEnumMemberFromValue(SurfaceType.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(SurfaceType.class.getSimpleName(), value);
         }
@@ -53,7 +53,12 @@ public enum SurfaceType implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

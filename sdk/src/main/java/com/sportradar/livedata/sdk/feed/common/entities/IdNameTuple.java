@@ -1,10 +1,18 @@
 package com.sportradar.livedata.sdk.feed.common.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Contains id and name (for example Tournament, Category, ...)
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class IdNameTuple implements Serializable {
 
     private static final long serialVersionUID = 149281134715031203L;
@@ -38,9 +46,7 @@ public class IdNameTuple implements Serializable {
     /**
      * For Serializable
      */
-    protected IdNameTuple() {
-
-    }
+    protected IdNameTuple() {}
 
     /**
      * Entity id
@@ -69,35 +75,5 @@ public class IdNameTuple implements Serializable {
      */
     public Long getUniqueId() {
         return uniqueId;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (uniqueId != null ? uniqueId.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        IdNameTuple that = (IdNameTuple) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(uniqueId != null ? !uniqueId.equals(that.uniqueId) : that.uniqueId != null);
-
-    }
-
-    @Override
-    public String toString() {
-        return "IdNameTuple{" +
-                "id=" + id +
-                ", uniqueId=" + uniqueId +
-                ", name=" + name +
-                '}';
     }
 }

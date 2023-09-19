@@ -40,7 +40,7 @@ public enum PitchConditions implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static PitchConditions getPitchConditionsFromLiteralValue(String value) throws UnknownEnumException {
-        PitchConditions result = EntityEnumHelper.getValueFromLiteralValue(PitchConditions.values(), value);
+        PitchConditions result = EntityEnumHelper.getEnumMemberFromValue(PitchConditions.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(PitchConditions.class.getSimpleName(), value);
         }
@@ -48,7 +48,12 @@ public enum PitchConditions implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

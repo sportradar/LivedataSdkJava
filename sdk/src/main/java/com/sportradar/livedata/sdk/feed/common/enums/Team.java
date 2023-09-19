@@ -39,7 +39,7 @@ public enum Team implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static Team getTeamFromLiteralValue(String value) throws UnknownEnumException {
-        Team result = EntityEnumHelper.getValueFromLiteralValue(Team.values(), value);
+        Team result = EntityEnumHelper.getEnumMemberFromValue(Team.values(), value);
         if (result == null && value != null && !value.isEmpty()) {
             throw new UnknownEnumException(Team.class.getSimpleName(), value);
         }
@@ -53,12 +53,19 @@ public enum Team implements EntityEnum {
      * @return value true if passed {@code value} is equal to the value associated with the current {@link EntityEnum}. Otherwise false.
      */
     @Override
-    public boolean isLiteralValueEqual(String value) {
-        for (String literalValue : literalValues) {
-            if (literalValue.equalsIgnoreCase(value)) {
-                return true;
+    public boolean isValueEqual(Object value) {
+        if(value instanceof String) {
+            for (String literalValue : literalValues) {
+                if (literalValue.equalsIgnoreCase(value.toString())) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    @Override
+    public String[] getValue() {
+        return literalValues;
     }
 }

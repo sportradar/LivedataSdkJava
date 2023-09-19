@@ -17,5 +17,12 @@ public interface EntityEnum {
      * @param value a value to be compared to the value associated with the current {@link EntityEnum}
      * @return value true if passed {@code value} is equal to the value associated with the current {@link EntityEnum}. Otherwise false.
      */
-    boolean isLiteralValueEqual(String value);
+    boolean isValueEqual(Object value);
+
+    /**
+     * Returns value of concrete enum member.
+     *
+     * @return enum value
+     */
+    Object getValue();
 }

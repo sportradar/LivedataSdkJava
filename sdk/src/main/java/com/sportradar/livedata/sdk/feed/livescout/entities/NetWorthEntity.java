@@ -1,12 +1,19 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Networth;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 /**
  * Holds information about a match net-worth
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class NetWorthEntity implements Serializable {
     private final static long serialVersionUID = 1L;
 
@@ -45,14 +52,5 @@ public class NetWorthEntity implements Serializable {
      */
     public int getTeam2() {
         return team2;
-    }
-
-    @Override
-    public String toString() {
-        return "NetWorthEntity{" +
-                "mapNumber=" + mapNumber +
-                ", team1=" + team1 +
-                ", team2=" + team2 +
-                '}';
     }
 }

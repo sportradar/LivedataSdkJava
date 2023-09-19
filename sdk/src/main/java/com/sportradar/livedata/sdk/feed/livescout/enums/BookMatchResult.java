@@ -33,7 +33,7 @@ public enum BookMatchResult implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static BookMatchResult getBookMatchResultFromLiteralValue(String value) throws UnknownEnumException {
-        BookMatchResult result = EntityEnumHelper.getValueFromLiteralValue(BookMatchResult.values(), value);
+        BookMatchResult result = EntityEnumHelper.getEnumMemberFromValue(BookMatchResult.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(BookMatchResult.class.getSimpleName(), value);
         }
@@ -41,7 +41,12 @@ public enum BookMatchResult implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

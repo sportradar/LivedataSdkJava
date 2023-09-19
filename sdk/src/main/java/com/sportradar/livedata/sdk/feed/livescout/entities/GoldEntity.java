@@ -1,9 +1,16 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Gold;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class GoldEntity implements Serializable {
     private final static long serialVersionUID = 1L;
 

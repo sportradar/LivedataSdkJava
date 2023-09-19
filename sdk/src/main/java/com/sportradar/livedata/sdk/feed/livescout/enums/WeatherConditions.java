@@ -35,7 +35,7 @@ public enum WeatherConditions implements EntityEnum {
     EXTREME("EXTREME");
 
 
-    private String literalValue;
+    private final String literalValue;
 
     WeatherConditions(String literalValue) {
         this.literalValue = literalValue;
@@ -49,7 +49,7 @@ public enum WeatherConditions implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static WeatherConditions getWeatherConditionsFromLiteralValue(String value) throws UnknownEnumException {
-        WeatherConditions result = EntityEnumHelper.getValueFromLiteralValue(WeatherConditions.values(), value);
+        WeatherConditions result = EntityEnumHelper.getEnumMemberFromValue(WeatherConditions.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(WeatherConditions.class.getSimpleName(), value);
         }
@@ -57,7 +57,12 @@ public enum WeatherConditions implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

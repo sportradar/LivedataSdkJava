@@ -1,10 +1,18 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Behinds
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class BehindsEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private final int t1;
@@ -42,14 +50,5 @@ public class BehindsEntity implements Serializable {
      */
     public String getType() {
         return type;
-    }
-
-    @Override
-    public String toString() {
-        return "BehindsEntity{" +
-                "t1=" + t1 +
-                ", t2=" + t2 +
-                ", type='" + type + '\'' +
-                '}';
     }
 }

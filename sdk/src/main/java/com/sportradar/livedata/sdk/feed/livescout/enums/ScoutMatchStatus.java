@@ -594,7 +594,7 @@ public enum ScoutMatchStatus implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static ScoutMatchStatus getScoutMatchStatusFromLiteralValue(String value) throws UnknownEnumException {
-        ScoutMatchStatus result = EntityEnumHelper.getValueFromLiteralValue(ScoutMatchStatus.values(), value);
+        ScoutMatchStatus result = EntityEnumHelper.getEnumMemberFromValue(ScoutMatchStatus.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(ScoutMatchStatus.class.getSimpleName(), value);
         }
@@ -602,7 +602,7 @@ public enum ScoutMatchStatus implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
     }
 
@@ -640,5 +640,10 @@ public enum ScoutMatchStatus implements EntityEnum {
             }
         }
         return false;
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

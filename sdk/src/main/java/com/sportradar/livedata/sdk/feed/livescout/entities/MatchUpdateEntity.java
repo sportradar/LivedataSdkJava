@@ -5,6 +5,7 @@ import com.sportradar.livedata.sdk.feed.common.entities.HomeAway;
 import com.sportradar.livedata.sdk.feed.common.entities.IdNameTuple;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.*;
+import lombok.*;
 import org.joda.time.DateTime;
 import com.sportradar.livedata.sdk.feed.livescout.enums.IceConditions;
 import com.sportradar.livedata.sdk.feed.livescout.enums.PitchConditions;
@@ -13,7 +14,6 @@ import com.sportradar.livedata.sdk.feed.livescout.enums.WeatherConditions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +21,10 @@ import java.util.Map;
  * Match information message. Contains statistical information about a match
  * as well as individual events (e.g. goals, cards, etc.).
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = -3625209060165281600L;
@@ -60,7 +64,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private Team possessionTeam;
     private HomeAway<Integer> redCards;
     private ScoutEntity scout;
-    private Map<String, HomeAway<Double>> score;
+    @Deprecated private Map<String, HomeAway<Double>> score;
     private List<ScoreEntity> scores;
     private Team serve;
     private HomeAway<Integer> shotsBlocked;
@@ -90,7 +94,6 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
      */
     protected MatchUpdateEntity(Map<String, String> otherAttributes) {
         super(otherAttributes);
-        this.innings = new ArrayList<>();
         this.matchTeams = new ArrayList<>();
     }
 
@@ -432,7 +435,8 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
      * Match score information.
      *
      * @return scores
-     * @deprecated since 1.15.0, use List &lt;ScoreEntity &gt; getScores() instead. It may contain SubScores - i.e. for tennis tie breaks. {@link #getScores()}
+     * @deprecated since 1.15.0, use List &lt;ScoreEntity &gt; getScores() instead.
+     * It may contain SubScores - i.e. for tennis tie breaks. {@link #getScores()}
      */
     public Map<String, HomeAway<Double>> getScore() {
         return score;
@@ -614,293 +618,10 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
         return subteam;
     }
 
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "MatchUpdateEntity{" +
-                "attacks=" + attacks +
-                ", blackCards=" + blackCards +
-                ", category=" + category +
-                ", corners=" + corners +
-                ", court=" + court +
-                ", dangerousAttacks=" + dangerousAttacks +
-                ", directFoulsPeriod=" + directFoulsPeriod +
-                ", directFreeKicks=" + directFreeKicks +
-                ", events=" + events +
-                ", freeKicks=" + freeKicks +
-                ", freeThrows=" + freeThrows +
-                ", goalKicks=" + goalKicks +
-                ", goalkeeperSaves=" + goalkeeperSaves +
-                ", iceConditions=" + iceConditions +
-                ", injuries=" + injuries +
-                ", innings=" + innings +
-                ", kickoffTeam=" + kickoffTeam +
-                ", kickoffTeamFirstHalf=" + kickoffTeamFirstHalf +
-                ", kickoffTeamOt=" + kickoffTeamOt +
-                ", kickoffTeamSecondHalf=" + kickoffTeamSecondHalf +
-                ", matchFormat=" + matchFormat +
-                ", matchHeader=" + matchHeader +
-                ", matchStatusId=" + matchStatusId +
-                ", matchStatus=" + matchStatus +
-                ", matchStatusStart=" + matchStatusStart +
-                ", offsides=" + offsides +
-                ", openingFaceoff1StPeriod=" + openingFaceoff1StPeriod +
-                ", openingFaceoff2NdPeriod=" + openingFaceoff2NdPeriod +
-                ", openingFaceoff3RdPeriod=" + openingFaceoff3RdPeriod +
-                ", openingFaceoffOvertime=" + openingFaceoffOvertime +
-                ", penalties=" + penalties +
-                ", pitchConditions=" + pitchConditions +
-                ", possession=" + possession +
-                ", possessionTeam=" + possessionTeam +
-                ", redCards=" + redCards +
-                ", scout=" + scout +
-                ", score=" + score +
-                ", serve=" + serve +
-                ", shotsBlocked=" + shotsBlocked +
-                ", shotsOffTarget=" + shotsOffTarget +
-                ", shotsOnTarget=" + shotsOnTarget +
-                ", sport=" + sport +
-                ", surfaceType=" + surfaceType +
-                ", suspensions=" + suspensions +
-                ", throwins=" + throwins +
-                ", tieBreak=" + tieBreak +
-                ", tournament=" + tournament +
-                ", weatherConditions=" + weatherConditions +
-                ", yellowCards=" + yellowCards +
-                ", gold=" + gold +
-                ", netWorth=" + netWorth +
-                ", goals=" + goals +
-                ", behinds=" + behinds +
-                ", teams=" + matchTeams +
-                ", subteam=" + subteam +
-                ", properties=" + matchProperties +
-                "} " + super.toString();
-    }
-
-    protected void setScout(ScoutEntity scout) {
-        this.scout = scout;
-    }
-
-    protected void setAttacks(HomeAway<Integer> attacks) {
-        this.attacks = attacks;
-    }
-
-    protected void setBlackCards(HomeAway<Integer> blackCards) {
-        this.blackCards = blackCards;
-    }
-
-    protected void setCategory(IdNameTuple category) {
-        this.category = category;
-    }
-
-    protected void setCorners(HomeAway<Integer> corners) {
-        this.corners = corners;
-    }
-
-    protected void setCourt(CourtEntity court) {
-        this.court = court;
-    }
-
-    protected void setDangerousAttacks(HomeAway<Integer> dangerousAttacks) {
-        this.dangerousAttacks = dangerousAttacks;
-    }
-
-    protected void setDirectFoulsPeriod(HomeAway<Integer> directFoulsPeriod) { this.directFoulsPeriod = directFoulsPeriod; }
-
-    protected void setDirectFreeKicks(HomeAway<Integer> directFreeKicks) {
-        this.directFreeKicks = directFreeKicks;
-    }
-
-    protected void setEvents(List<ScoutEventEntity> events) {
-        this.events = Collections.unmodifiableList(events);
-    }
-
-    protected void setFreeKicks(HomeAway<Integer> freeKicks) {
-        this.freeKicks = freeKicks;
-    }
-
-    protected void setFreeThrows(HomeAway<Integer> freeThrows) {
-        this.freeThrows = freeThrows;
-    }
-
-    protected void setGoalKicks(HomeAway<Integer> goalKicks) {
-        this.goalKicks = goalKicks;
-    }
-
-    protected void setGoalkeeperSaves(HomeAway<Integer> goalkeeperSaves) {
-        this.goalkeeperSaves = goalkeeperSaves;
-    }
-
-    protected void setIceConditions(IceConditions iceConditions) {
-        this.iceConditions = iceConditions;
-    }
-
-    protected void setInjuries(HomeAway<Integer> injuries) {
-        this.injuries = injuries;
-    }
-
-    protected void setInnings(InningsEntity innings) {
+    protected void addInnings(InningsEntity innings) {
+        if(this.innings == null){
+            this.innings = new ArrayList<>();
+        }
         this.innings.add(innings);
     }
-
-    protected void setKickoffTeam(Team kickoffTeam) {
-        this.kickoffTeam = kickoffTeam;
-    }
-
-    protected void setKickoffTeamFirstHalf(Team kickoffTeamFirstHalf) {
-        this.kickoffTeamFirstHalf = kickoffTeamFirstHalf;
-    }
-
-    protected void setKickoffTeamOt(Team kickoffTeamOt) {
-        this.kickoffTeamOt = kickoffTeamOt;
-    }
-
-    protected void setKickoffTeamSecondHalf(Team kickoffTeamSecondHalf) {
-        this.kickoffTeamSecondHalf = kickoffTeamSecondHalf;
-    }
-
-    protected void setMatchFormat(List<FormatEntity> matchFormat) {
-        this.matchFormat = matchFormat;
-    }
-
-    protected void setMatchHeader(MatchHeaderEntity matchHeader) {
-        this.matchHeader = matchHeader;
-    }
-
-    protected void setMatchStatusId(int id) {
-        this.matchStatusId = id;
-    }
-
-    protected void setMatchStatus(ScoutMatchStatus matchStatus) {
-        this.matchStatus = matchStatus;
-    }
-
-    protected void setMatchStatusStart(DateTime matchStatusStart) {
-        this.matchStatusStart = matchStatusStart;
-    }
-
-    protected void setOffsides(HomeAway<Integer> offsides) {
-        this.offsides = offsides;
-    }
-
-    protected void setOpeningFaceoff1StPeriod(Team openingFaceoff1StPeriod) {
-        this.openingFaceoff1StPeriod = openingFaceoff1StPeriod;
-    }
-
-    protected void setOpeningFaceoff2NdPeriod(Team openingFaceoff2NdPeriod) {
-        this.openingFaceoff2NdPeriod = openingFaceoff2NdPeriod;
-    }
-
-    protected void setOpeningFaceoff3RdPeriod(Team openingFaceoff3RdPeriod) {
-        this.openingFaceoff3RdPeriod = openingFaceoff3RdPeriod;
-    }
-
-    protected void setOpeningFaceoffOvertime(Team openingFaceoffOvertime) {
-        this.openingFaceoffOvertime = openingFaceoffOvertime;
-    }
-
-    protected void setPenalties(HomeAway<Integer> penalties) {
-        this.penalties = penalties;
-    }
-
-    protected void setPitchConditions(PitchConditions pitchConditions) {
-        this.pitchConditions = pitchConditions;
-    }
-
-    protected void setPossession(HomeAway<Integer> possession) {
-        this.possession = possession;
-    }
-
-    protected void setPossessionTeam(Team possessionTeam) {
-        this.possessionTeam = possessionTeam;
-    }
-
-    protected void setRedCards(HomeAway<Integer> redCards) { this.redCards = redCards; }
-
-    protected void setScore(Map<String, HomeAway<Double>> score) { this.score = Collections.unmodifiableMap(score); }
-
-    protected void setScores(List<ScoreEntity> scores) { this.scores = Collections.unmodifiableList(scores); }
-
-    protected void setServe(Team serve) {
-        this.serve = serve;
-    }
-
-    protected void setShotsBlocked(HomeAway<Integer> shotsBlocked) {
-        this.shotsBlocked = shotsBlocked;
-    }
-
-    protected void setShotsOffTarget(HomeAway<Integer> shotsOffTarget) {
-        this.shotsOffTarget = shotsOffTarget;
-    }
-
-    protected void setShotsOnTarget(HomeAway<Integer> shotsOnTarget) {
-        this.shotsOnTarget = shotsOnTarget;
-    }
-
-    protected void setSport(IdNameTuple sport) {
-        this.sport = sport;
-    }
-
-    protected void setSurfaceType(SurfaceType surfaceType) {
-        this.surfaceType = surfaceType;
-    }
-
-    protected void setSuspensions(SuspensionsEntity suspensions) {
-        this.suspensions = suspensions;
-    }
-
-    protected void setThrowins(HomeAway<Integer> throwins) {
-        this.throwins = throwins;
-    }
-
-    protected void setTieBreak(Boolean tieBreak) {
-        this.tieBreak = tieBreak;
-    }
-
-    protected void setTournament(IdNameTuple tournament) {
-        this.tournament = tournament;
-    }
-
-    protected void setWeatherConditions(WeatherConditions weatherConditions) { this.weatherConditions = weatherConditions; }
-
-    protected void setYellowCards(HomeAway<Integer> yellowCards) { this.yellowCards = yellowCards; }
-
-    protected void setGold(GoldEntity gold) {
-        this.gold = gold;
-    }
-
-    protected void setNetWorth(NetWorthEntity netWorth) {
-        this.netWorth = netWorth;
-    }
-
-    protected void setJerseys(List<JerseyEntity> jerseys) {
-        this.jerseys = jerseys;
-    }
-
-    protected void setGoals(GoalsEntity goals) {
-        this.goals = goals;
-    }
-
-    protected void setBehinds(BehindsEntity behinds) {
-        this.behinds = behinds;
-    }
-
-    protected void setMatchProperties(List<MatchPropertyEntity> matchProperties) { this.matchProperties = matchProperties; }
-
-    protected void setMatchTeams(List<MatchTeamEntity> matchTeams) {
-        this.matchTeams = matchTeams;
-    }
-
-    protected void setSubteam(SubteamEntity subteam) {
-        this.subteam = subteam;
-    }
-
-    protected void setGreenCards(HomeAway<Integer> greenCards) { this.greenCards = greenCards; }
 }

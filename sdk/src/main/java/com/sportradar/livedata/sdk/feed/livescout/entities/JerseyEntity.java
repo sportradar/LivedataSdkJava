@@ -2,12 +2,19 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.google.common.base.Preconditions;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Jersey;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 /**
  * A basic jersey representation
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class JerseyEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String base;

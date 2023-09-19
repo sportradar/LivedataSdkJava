@@ -3,6 +3,10 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 import com.sportradar.livedata.sdk.feed.common.entities.IdNameTuple;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
@@ -10,6 +14,10 @@ import java.io.Serializable;
 /**
  * Provides basic match information
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class MatchHeaderEntity implements Serializable {
 
     private static final long serialVersionUID = 907154056838604015L;
@@ -54,7 +62,7 @@ public class MatchHeaderEntity implements Serializable {
     private Boolean teamMatch;
     private Long teamMatchId;
     private Boolean cancelled;
-    private Long stime;
+    private Long sTime;
     private String vbpClassification;
     private String homeState;
     private String awayState;
@@ -67,8 +75,7 @@ public class MatchHeaderEntity implements Serializable {
     /**
      * For Serializable
      */
-    protected MatchHeaderEntity() {
-    }
+    protected MatchHeaderEntity() {}
 
     /**
      * Whether market is open or closed.
@@ -430,13 +437,13 @@ public class MatchHeaderEntity implements Serializable {
 
     public Integer getVar() { return var; }
 
-    public Boolean setIsTeamMatch() { return teamMatch; }
+    public Boolean isTeamMatch() { return teamMatch; }
 
     public Long getTeamMatchId() { return teamMatchId; }
 
-    public Boolean setIsCancelled() { return cancelled; }
+    public Boolean isCancelled() { return cancelled; }
 
-    public Long getSTime() { return stime; }
+    public Long getSTime() { return sTime; }
 
     public String getVbpClassification() {
         return vbpClassification;
@@ -471,236 +478,4 @@ public class MatchHeaderEntity implements Serializable {
      * @return total pages.
      */
     public Integer getTotalPages() { return totalPages; }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "MatchHeaderEntity{" +
-                "active=" + active +
-                ", betStatus=" + betStatus +
-                ", booked=" + booked +
-                ", connectionStatus=" + connectionStatus +
-                ", coveredFrom=" + coveredFrom +
-                ", deepCoverage=" + deepCoverage +
-                ", device=" + device +
-                ", distance=" + distance +
-                ", teamsReversed=" + teamsReversed +
-                ", extraInfo=" + extraInfo +
-                ", feedType=" + feedType +
-                ", firstServe=" + firstServe +
-                ", firstServeGoldenSet=" + firstServeGoldenSet +
-                ", firstServeTieBreak=" + firstServeTieBreak +
-                ", matchId=" + matchId +
-                ", matchTime='" + matchTime + '\'' +
-                ", numberOfSets=" + numberOfSets +
-                ", setLimit=" + setLimit +
-                ", sex=" + sex +
-                ", sourceId='" + sourceId + '\'' +
-                ", st1Id=" + st1Id +
-                ", st2Id=" + st2Id +
-                ", start=" + start +
-                ", team1=" + team1 +
-                ", team1Abbreviation='" + team1Abbreviation +
-                ", team1Division='" + team1Division + '\'' +
-                ", team2=" + team2 +
-                ", team2Abbreviation='" + team2Abbreviation +
-                ", team2Division='" + team2Division +'\'' +
-                ", tieBreakLastSet=" + tieBreakLastSet +
-                ", timeRunning=" + timeRunning +
-                ", wonJumpBall=" + wonJumpBall +
-                ", coverageStatusId=" + coverageStatusId +
-                ", sportId=" + sportId +
-                ", extMatchId='" + extMatchId + '\'' +
-                ", var=" + var +
-                ", teamMatch=" + teamMatch +
-                ", teamMatchId=" + teamMatchId +
-                ", cancelled=" + cancelled +
-                ", stime=" + stime +
-                ", vbpClassification=" + vbpClassification +
-                ", homeState=" + homeState +
-                ", awayState=" + awayState +
-                ", venue=" + venue +
-                ", region=" + region +
-                ", uuid=" + uuid +
-                ", page=" + page +
-                ", totalpages=" + totalPages +
-                '}';
-    }
-
-    protected void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    protected void setBetStatus(MatchBetStatus betStatus) {
-        this.betStatus = betStatus;
-    }
-
-    protected void setBooked(Boolean booked) {
-        this.booked = booked;
-    }
-
-    protected void setConnectionStatus(Boolean connectionStatus) {
-        this.connectionStatus = connectionStatus;
-    }
-
-    protected void setCoveredFrom(Coverage coveredFrom) {
-        this.coveredFrom = coveredFrom;
-    }
-
-    protected void setDeepCoverage(Boolean deepCoverage) {
-        this.deepCoverage = deepCoverage;
-    }
-
-    protected void setDevice(Integer device) { this.device = device; }
-
-    protected void setDistance(Integer distance) {
-        this.distance = distance;
-    }
-
-    public void setTeamsReversed(TeamsReversed teamsReversed) {
-        this.teamsReversed = teamsReversed;
-    }
-
-    protected void setExtraInfo(Integer extraInfo) {
-        this.extraInfo = extraInfo;
-    }
-
-    protected void setFeedType(ScoutFeedType feedType) {
-        this.feedType = feedType;
-    }
-
-    protected void setFirstServe(Team firstServe) {
-        this.firstServe = firstServe;
-    }
-
-    protected void setFirstServeGoldenSet(Team firstServeGoldenSet) {
-        this.firstServeGoldenSet = firstServeGoldenSet;
-    }
-
-    protected void setFirstServeTieBreak(Team firstServeTieBreak) {
-        this.firstServeTieBreak = firstServeTieBreak;
-    }
-
-    protected void setMatchId(long matchId) {
-        this.matchId = matchId;
-    }
-
-    protected void setMatchTime(String matchTime) {
-        this.matchTime = matchTime;
-    }
-
-    protected void setNumberOfSets(Integer numberOfSets) {
-        this.numberOfSets = numberOfSets;
-    }
-
-    protected void setSetLimit(Integer setLimit) {
-        this.setLimit = setLimit;
-    }
-
-    protected void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    protected void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
-
-    protected void setSt1Id(Integer st1Id) {
-        this.st1Id = st1Id;
-    }
-
-    protected void setSt2Id(Integer st2Id) {
-        this.st2Id = st2Id;
-    }
-
-    protected void setStart(DateTime start) {
-        this.start = start;
-    }
-
-    protected void setTeam1(IdNameTuple team1) {
-        this.team1 = team1;
-    }
-
-    protected void setTeam1Abbreviation(String team1Abbreviation) {
-        this.team1Abbreviation = team1Abbreviation;
-    }
-
-    protected void setTeam1Division(String team1Division) {
-        this.team1Division = team1Division;
-    }
-
-    protected void setTeam2(IdNameTuple team2) {
-        this.team2 = team2;
-    }
-
-    protected void setTeam2Abbreviation(String team2Abbreviation) {
-        this.team2Abbreviation = team2Abbreviation;
-    }
-
-    protected void setTeam2Division(String team2Division) {
-        this.team2Division = team2Division;
-    }
-
-    protected void setTieBreakLastSet(Boolean tieBreakLastSet) {
-        this.tieBreakLastSet = tieBreakLastSet;
-    }
-
-    protected void setTimeRunning(Boolean timeRunning) {
-        this.timeRunning = timeRunning;
-    }
-
-    protected void setWonJumpBall(Team wonJumpBall) {
-        this.wonJumpBall = wonJumpBall;
-    }
-
-    public void setCoverageStatusId(Integer coverageStatusId) {
-        this.coverageStatusId = coverageStatusId;
-    }
-
-    public void setTeam1Neutral(IdNameTuple team1Neutral) {
-        this.team1Neutral = team1Neutral;
-    }
-
-    public void setTeam2Neutral(IdNameTuple team2Neutral) {
-        this.team2Neutral = team2Neutral;
-    }
-
-    public void setSportId(Integer sportId) { this.sportId = sportId; }
-
-    public void setExtMatchId(String extMatchId) { this.extMatchId = extMatchId; }
-
-    public void setVar(Integer var) { this.var = var; }
-
-    public void setIsTeamMatch(Boolean teamMatch) { this.teamMatch = teamMatch; }
-
-    public void setTeamMatchId(Long teamMatchId) { this.teamMatchId = teamMatchId; }
-
-    public void setIsCancelled(Boolean cancelled) { this.cancelled = cancelled; }
-
-    public void setSTime(Long stime) { this.stime = stime; }
-
-    public void setVbpClassification(String vbpClassification) {
-        this.vbpClassification = vbpClassification;
-    }
-
-    public void setHomeState(String homeState) { this.homeState = homeState; }
-
-    public void setAwayState(String awayState) { this.awayState = awayState; }
-
-    public void setVenue(String venue) { this.venue = venue; }
-
-    public void setRegion(String region) { this.region = region; }
-
-    public void setUuid(String uuid) { this.uuid = uuid; }
-
-    public void setPage(Integer page) { this.page = page; }
-
-    public void setTotalPages(Integer totalPages) { this.totalPages = totalPages; }
 }

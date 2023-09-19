@@ -34,7 +34,7 @@ public enum Coverage implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static Coverage getCoverageFromLiteralValue(String value) throws UnknownEnumException {
-        Coverage result = EntityEnumHelper.getValueFromLiteralValue(Coverage.values(), value);
+        Coverage result = EntityEnumHelper.getEnumMemberFromValue(Coverage.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(Coverage.class.getSimpleName(), value);
         }
@@ -42,7 +42,12 @@ public enum Coverage implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

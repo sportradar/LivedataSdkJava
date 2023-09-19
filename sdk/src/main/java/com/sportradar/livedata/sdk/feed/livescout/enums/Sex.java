@@ -36,7 +36,7 @@ public enum Sex implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static Sex getSexFromLiteralValue(String value) throws UnknownEnumException {
-        Sex result = EntityEnumHelper.getValueFromLiteralValue(Sex.values(), value);
+        Sex result = EntityEnumHelper.getEnumMemberFromValue(Sex.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(Sex.class.getSimpleName(), value);
         }
@@ -44,7 +44,12 @@ public enum Sex implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

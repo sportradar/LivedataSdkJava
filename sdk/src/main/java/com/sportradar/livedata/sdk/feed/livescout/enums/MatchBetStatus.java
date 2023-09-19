@@ -39,7 +39,7 @@ public enum MatchBetStatus implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static MatchBetStatus getMatchBetStatusFromLiteralValue(String value) throws UnknownEnumException {
-        MatchBetStatus result = EntityEnumHelper.getValueFromLiteralValue(MatchBetStatus.values(), value);
+        MatchBetStatus result = EntityEnumHelper.getEnumMemberFromValue(MatchBetStatus.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(MatchBetStatus.class.getSimpleName(), value);
         }
@@ -47,7 +47,12 @@ public enum MatchBetStatus implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

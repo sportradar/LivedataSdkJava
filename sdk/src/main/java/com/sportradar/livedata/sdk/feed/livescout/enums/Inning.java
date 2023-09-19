@@ -7,7 +7,7 @@ import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
 /**
  * Inning enumeration
  */
-public enum Inning implements EntityEnum  {
+public enum Inning implements EntityEnum {
     /**
      * Top
      */
@@ -32,7 +32,7 @@ public enum Inning implements EntityEnum  {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static Inning getInningFromLiteralValue(String value) throws UnknownEnumException {
-        Inning result = EntityEnumHelper.getValueFromLiteralValue(Inning.values(), value);
+        Inning result = EntityEnumHelper.getEnumMemberFromValue(Inning.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(Inning.class.getSimpleName(), value);
         }
@@ -40,7 +40,12 @@ public enum Inning implements EntityEnum  {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

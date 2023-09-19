@@ -1,10 +1,18 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Contains player match roles
  */
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class MatchRoleEntity implements Serializable {
 
     private static final long serialVersionUID = 2074908659633349555L;
@@ -34,29 +42,5 @@ public class MatchRoleEntity implements Serializable {
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "MatchRole{" +
-                "description='" + description + '\'' +
-                ", id=" + id +
-                '}';
-    }
-
-    protected void setDescription(String description) {
-        this.description = description;
-    }
-
-    protected void setId(int id) {
-        this.id = id;
     }
 }

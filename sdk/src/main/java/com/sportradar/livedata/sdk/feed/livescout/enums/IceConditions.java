@@ -35,7 +35,7 @@ public enum IceConditions implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
     }
 
@@ -47,12 +47,15 @@ public enum IceConditions implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static IceConditions getIceConditionsFromLiteralValue(String value) throws UnknownEnumException {
-        IceConditions result = EntityEnumHelper.getValueFromLiteralValue(IceConditions.values(), value);
+        IceConditions result = EntityEnumHelper.getEnumMemberFromValue(IceConditions.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(IceConditions.class.getSimpleName(), value);
         }
         return result;
     }
 
-
+    @Override
+    public String getValue() {
+        return literalValue;
+    }
 }

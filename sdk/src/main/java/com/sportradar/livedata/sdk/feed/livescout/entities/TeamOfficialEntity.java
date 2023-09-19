@@ -1,10 +1,17 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Entity holding data about team official
  */
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class TeamOfficialEntity {
 
     private int id;
@@ -39,34 +46,5 @@ public class TeamOfficialEntity {
      */
     public Team getTeam() {
         return team;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "TeamOfficialEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", team=" + team +
-                '}';
-    }
-
-    protected void setId(int id) {
-        this.id = id;
-    }
-
-    protected void setName(String name) {
-        this.name = name;
-    }
-
-    protected void setTeam(Team team) {
-        this.team = team;
     }
 }

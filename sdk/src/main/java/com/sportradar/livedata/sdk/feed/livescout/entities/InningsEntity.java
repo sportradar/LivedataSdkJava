@@ -1,10 +1,19 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Contains information about innings
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class InningsEntity implements Serializable {
 
     private static final long serialVersionUID = 2059804753244499408L;
@@ -16,8 +25,7 @@ public class InningsEntity implements Serializable {
     /**
      * For Serializable
      */
-    protected InningsEntity() {
-    }
+    protected InningsEntity() {}
 
     /**
      * Gets number of dismissals
@@ -53,39 +61,5 @@ public class InningsEntity implements Serializable {
      */
     public String getStatusName() {
         return statusName;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "Innings{" +
-                "dismissals=" + dismissals +
-                ", runs=" + runs +
-                ", statusId=" + statusId +
-                ", statusName='" + statusName + '\'' +
-                '}';
-    }
-
-    protected void setDismissals(int dismissals) {
-        this.dismissals = dismissals;
-    }
-
-    protected void setRuns(int runs) {
-        this.runs = runs;
-    }
-
-    protected void setStatusId(int statusId) {
-        this.statusId = statusId;
-    }
-
-    protected void setStatusName(String statusName) {
-        this.statusName = statusName;
     }
 }

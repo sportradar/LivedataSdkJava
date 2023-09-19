@@ -7,6 +7,7 @@ It also makes a client solution more stable and robust when it comes to feed han
 * ScoutFeedType extended with new type - PARTIAL
 * LiveScoutFeedListener extended with new method - onPartialMatchUpdateReceived
 * MatchHeaderEntity extended with new properties: region, uuid, page, totalPages
+* MatchHeaderEntity getters names changed: setIsCancelled -> isCancelled, setIsTeamMatch -> isTeamMatch
 * ScoutEventEntity extended with new properties: 
   - extraInfoSoccer
   - extraInfoWaterPolo
@@ -16,6 +17,9 @@ It also makes a client solution more stable and robust when it comes to feed han
   - shotType
   - homePlayerStats
   - awayPlayerStats
+* ScoutEventEntity inningsScore will be null instead of empty collection
+* LineupsEntity managers and teamOfficials fixed
+* Lombok has been added: setters could be changed, getters remains unchanged
 
 **2.0.4 (2023-06-15)**
 * MatchHeaderEntity extended with new property - teamsReversed.

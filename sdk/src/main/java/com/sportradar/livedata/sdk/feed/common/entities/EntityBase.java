@@ -1,5 +1,10 @@
 package com.sportradar.livedata.sdk.feed.common.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,6 +13,9 @@ import java.util.Map;
 /**
  * Serves as a base class for all client data contracts/entities.
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public abstract class EntityBase implements Serializable {
 
     private static final long serialVersionUID = 6131509065819903558L;
@@ -44,20 +52,5 @@ public abstract class EntityBase implements Serializable {
      */
     public EventIdentifier getEventId() {
         return null;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note: Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "EntityBase{" +
-                "additionalData=" + additionalData +
-                '}';
     }
 }

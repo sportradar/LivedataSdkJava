@@ -1,6 +1,10 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +13,9 @@ import java.util.Map;
 /**
  * A player in the lineup.
  */
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = -1593562367717439150L;
@@ -118,65 +125,4 @@ public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
     public Boolean isSubstitute() {
         return substitute;
     }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "PlayerEntity{" +
-                "attributes=" + attributes +
-                ", id=" + id +
-                ", matchRoles=" + matchRoles +
-                ", name='" + name + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", position='" + position + '\'' +
-                ", shirtNumber=" + shirtNumber +
-                ", substitute=" + substitute +
-                ", team=" + team +
-                ", order=" + order +
-                "} " + super.toString();
-    }
-
-
-    protected void setAttributes(List<AttributeEntity> attributes) {
-        this.attributes = attributes;
-    }
-
-    protected void setId(int id) {
-        this.id = id;
-    }
-
-    protected void setMatchRoles(List<MatchRoleEntity> matchRoles) {
-        this.matchRoles = matchRoles;
-    }
-
-    protected void setName(String name) {
-        this.name = name;
-    }
-
-    protected void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    protected void setPosition(String position) {
-        this.position = position;
-    }
-
-    protected void setShirtNumber(int shirtNumber) {
-        this.shirtNumber = shirtNumber;
-    }
-
-    protected void setSubstitute(Boolean substitute) { this.substitute = substitute; }
-
-    protected void setTeam(Team team) {
-        this.team = team;
-    }
-
-    protected void setOrder(Integer order) { this.order = order; }
 }

@@ -2,12 +2,19 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.entities.HomeAway;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 /**
  * Contains information about suspensions
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class SuspensionsEntity implements Serializable {
 
     private static final long serialVersionUID = 4465911394156656399L;
@@ -15,13 +22,13 @@ public class SuspensionsEntity implements Serializable {
     /**
      * The suspensions of the away team
      */
-    private int away;
+    private final int away;
     /**
      * The suspensions of the home team
      */
-    private int home;
+    private final int home;
 
-    private Team powerplay;
+    private final Team powerplay;
 
     protected SuspensionsEntity(int home, int away, Team powerplay){
         this.home = home;
@@ -39,14 +46,5 @@ public class SuspensionsEntity implements Serializable {
 
     public Team getPowerplay() {
         return powerplay;
-    }
-
-    @Override
-    public String toString() {
-        return "SuspensionsEntity{" +
-                "home=" + home +
-                ", away=" + away +
-                ", powerplay=" + powerplay +
-                '}';
     }
 }

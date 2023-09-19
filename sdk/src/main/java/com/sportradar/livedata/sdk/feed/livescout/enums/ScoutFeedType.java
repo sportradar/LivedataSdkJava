@@ -40,7 +40,7 @@ public enum ScoutFeedType implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static ScoutFeedType getScoutFeedTypeFromLiteralValue(String value) throws UnknownEnumException {
-        ScoutFeedType result = EntityEnumHelper.getValueFromLiteralValue(ScoutFeedType.values(), value);
+        ScoutFeedType result = EntityEnumHelper.getEnumMemberFromValue(ScoutFeedType.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(ScoutFeedType.class.getSimpleName(), value);
         }
@@ -48,7 +48,12 @@ public enum ScoutFeedType implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
+    }
+
+    @Override
+    public String getValue() {
+        return literalValue;
     }
 }

@@ -1,5 +1,10 @@
 package com.sportradar.livedata.sdk.feed.common.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +12,9 @@ import java.io.Serializable;
  *
  * @param <T> Specifies the type of the home and away values
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class HomeAway<T> implements Serializable {
 
     private static final long serialVersionUID = 8894922074608700268L;
@@ -33,9 +41,7 @@ public class HomeAway<T> implements Serializable {
     /**
      * For Serializable
      */
-    protected HomeAway() {
-
-    }
+    protected HomeAway() {}
 
     /**
      * Gets the result of the away team
@@ -53,34 +59,5 @@ public class HomeAway<T> implements Serializable {
      */
     public T getHome() {
         return home;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = away != null ? away.hashCode() : 0;
-        result = 31 * result + (home != null ? home.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HomeAway<?> homeAway = (HomeAway<?>) o;
-
-        if (away != null ? !away.equals(homeAway.away) : homeAway.away != null) return false;
-        return !(home != null ? !home.equals(homeAway.home) : homeAway.home != null);
-
-    }
-
-    /**
-     * Constructs and returns a string representation of the current {@link HomeAway} instnace.
-     *
-     * @return A string representation of the current {@link HomeAway} instance.
-     */
-    @Override
-    public String toString() {
-        return String.format("(%s:%s)", home, away);
     }
 }

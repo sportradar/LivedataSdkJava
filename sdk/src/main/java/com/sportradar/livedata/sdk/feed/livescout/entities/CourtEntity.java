@@ -1,10 +1,19 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Court
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class CourtEntity implements Serializable {
     private final static long serialVersionUID = 1L;
     private int id;
@@ -15,32 +24,11 @@ public class CourtEntity implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    protected void setName(String name) {
-        this.name = name;
-    }
-
     public Integer getCourtSeq() {
         return courtSeq;
-    }
-
-    protected void setCourtSeq(Integer courtSeq) {
-        this.courtSeq = courtSeq;
-    }
-
-    @Override
-    public String toString() {
-        return "CourtEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", courtSeq=" + courtSeq +
-                '}';
     }
 }

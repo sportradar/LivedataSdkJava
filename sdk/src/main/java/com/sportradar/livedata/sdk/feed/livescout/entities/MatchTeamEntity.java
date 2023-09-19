@@ -2,12 +2,19 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.google.common.base.Preconditions;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 /**
  * A match team representation
  */
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class MatchTeamEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private final Team side;

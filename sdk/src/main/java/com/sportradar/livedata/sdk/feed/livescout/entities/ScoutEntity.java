@@ -1,10 +1,20 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Hold information about scout
  */
+//It is better to leave getters as is for javadoc purpose.
+// Do we need such entity?
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class ScoutEntity implements Serializable {
 
 
@@ -19,16 +29,5 @@ public class ScoutEntity implements Serializable {
      */
     public int getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return "ScoutEntity{" +
-                "id=" + id +
-                '}';
-    }
-
-    protected void setId(int id) {
-        this.id = id;
     }
 }

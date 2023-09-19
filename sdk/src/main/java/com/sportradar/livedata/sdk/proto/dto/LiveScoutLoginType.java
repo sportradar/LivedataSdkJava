@@ -34,7 +34,7 @@ public enum LiveScoutLoginType implements EntityEnum {
      *
      * @return the string value associated with the current instance.
      */
-    public String getLiteralValue() {
+    public String getValue() {
         return this.literalValue;
     }
 
@@ -45,10 +45,7 @@ public enum LiveScoutLoginType implements EntityEnum {
      * @return True if {@code value} is equal to value associated with the current instance. Otherwise false.
      */
     @Override
-    public boolean isLiteralValueEqual(String value) {
-        if (value == null || value.isEmpty()) {
-            return false;
-        }
+    public boolean isValueEqual(Object value) {
         return this.literalValue.equals(value);
     }
 
@@ -59,6 +56,6 @@ public enum LiveScoutLoginType implements EntityEnum {
      * @return The constructed {@link LiveScoutLoginType} instance or a null reference.
      */
     public static LiveScoutLoginType getTypeFromLiteralValue(String value) {
-        return EntityEnumHelper.getValueFromLiteralValue(LiveScoutLoginType.values(), value);
+        return EntityEnumHelper.getEnumMemberFromValue(LiveScoutLoginType.values(), value);
     }
 }

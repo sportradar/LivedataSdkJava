@@ -153,7 +153,7 @@ public enum FormatType implements EntityEnum {
      * @throws UnknownEnumException if invalid value is passed
      */
     public static FormatType getFormatTypeFromLiteralValue(String value) throws UnknownEnumException {
-        FormatType result = EntityEnumHelper.getValueFromLiteralValue(FormatType.values(), value);
+        FormatType result = EntityEnumHelper.getEnumMemberFromValue(FormatType.values(), value);
         if (result == null && value != null && value.isEmpty()) {
             throw new UnknownEnumException(FormatType.class.getSimpleName(), value);
         }
@@ -165,7 +165,8 @@ public enum FormatType implements EntityEnum {
      *
      * @return literal value
      */
-    public String getLiteralValue() {
+    @Override
+    public String getValue() {
         return literalValue;
     }
 
@@ -176,7 +177,7 @@ public enum FormatType implements EntityEnum {
      * @return value true if passed {@code value} is equal to the value associated with the current {@link FormatType}. Otherwise false.
      */
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
     }
 }

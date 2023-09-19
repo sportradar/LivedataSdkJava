@@ -1698,8 +1698,12 @@ public enum EventType implements EntityEnum {
     }
 
     @Override
-    public boolean isLiteralValueEqual(String value) {
+    public boolean isValueEqual(Object value) {
         return literalValue.equals(value);
     }
 
+    @Override
+    public String getValue() {
+        return literalValue;
+    }
 }

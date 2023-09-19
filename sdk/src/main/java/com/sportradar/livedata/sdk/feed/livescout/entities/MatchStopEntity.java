@@ -1,6 +1,10 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -8,6 +12,10 @@ import java.util.Map;
 /**
  * Reply sent when a client unsubscribes from a match or when a match subscription failed.
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class MatchStopEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = 671142432732812242L;
@@ -49,30 +57,5 @@ public class MatchStopEntity extends LiveScoutEntityBase implements Serializable
      */
     public String getReason() {
         return reason;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "MatchStopEntity{" +
-                super.toString() +
-                "matchId=" + matchId +
-                ", reason='" + reason + '\'' +
-                '}';
-    }
-
-    protected void setMatchId(long matchId) {
-        this.matchId = matchId;
-    }
-
-    protected void setReason(String reason) {
-        this.reason = reason;
     }
 }

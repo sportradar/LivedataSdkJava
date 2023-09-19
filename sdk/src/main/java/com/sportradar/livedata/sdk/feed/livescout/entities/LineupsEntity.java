@@ -1,6 +1,12 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +14,10 @@ import java.util.Map;
 /**
  * The current lineup.
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = 2690053709380185769L;
@@ -26,6 +36,9 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
      * @return team managers
      */
     public List<ManagerEntity> getManagers() {
+        if(managers == null){
+            managers = new ArrayList<>();
+        }
         return managers;
     }
 
@@ -44,6 +57,9 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
      * @return player list
      */
     public List<PlayerEntity> getPlayers() {
+        if(players == null){
+            players = new ArrayList<>();
+        }
         return players;
     }
 
@@ -53,42 +69,9 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
      * @return team officials
      */
     public List<TeamOfficialEntity> getTeamOfficials() {
+        if(teamOfficials == null){
+            teamOfficials = new ArrayList<>();
+        }
         return teamOfficials;
     }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "LineupsEntity{" +
-                "managers=" + managers +
-                ", matchId=" + matchId +
-                ", players=" + players +
-                ", teamOfficials=" + teamOfficials +
-                '}';
-    }
-
-    protected void setManagers(List<ManagerEntity> managers) {
-        this.managers = managers;
-    }
-
-    protected void setMatchId(long matchId) {
-        this.matchId = matchId;
-    }
-
-    protected void setPlayers(List<PlayerEntity> players) {
-        this.players = Collections.unmodifiableList(players);
-    }
-
-    protected void setTeamOfficials(List<TeamOfficialEntity> teamOfficials) {
-        this.teamOfficials = teamOfficials;
-    }
-
-
 }

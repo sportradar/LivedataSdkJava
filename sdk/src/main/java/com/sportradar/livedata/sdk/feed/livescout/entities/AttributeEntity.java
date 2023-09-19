@@ -1,10 +1,18 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
  * Contains players attributes
  */
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class AttributeEntity implements Serializable {
 
     private static final long serialVersionUID = -3050286847169465168L;
@@ -55,39 +63,5 @@ public class AttributeEntity implements Serializable {
      */
     public int getValueId() {
         return valueId;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "Attribute{" +
-                "type='" + type + '\'' +
-                ", typeId=" + typeId +
-                ", value=" + value +
-                ", valueId='" + valueId + '\'' +
-                '}';
-    }
-
-    protected void setType(String type) {
-        this.type = type;
-    }
-
-    protected void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
-
-    protected void setValue(String value) {
-        this.value = value;
-    }
-
-    protected void setValueId(int valueId) {
-        this.valueId = valueId;
     }
 }

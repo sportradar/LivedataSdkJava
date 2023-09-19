@@ -3,6 +3,10 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import com.sportradar.livedata.sdk.feed.livescout.enums.BookMatchResult;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -10,6 +14,10 @@ import java.util.Map;
 /**
  * Match booking reply. This reply is sent when a client books a match.
  */
+//It is better to leave getters as is for javadoc purpose.
+@Setter(AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class MatchBookingEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = -4192096017579932803L;
@@ -52,35 +60,5 @@ public class MatchBookingEntity extends LiveScoutEntityBase implements Serializa
      */
     public BookMatchResult getResult() {
         return result;
-    }
-
-    /**
-     * Returns a string that represents the current object.
-     * <p>
-     * Note : Can be used for diagnostics purposes.
-     * </p>
-     *
-     * @return A string that represents the current object.
-     */
-    @Override
-    public String toString() {
-        return "MatchBookingEntity{" +
-                super.toString() +
-                "matchId=" + matchId +
-                ", message='" + message + '\'' +
-                ", result=" + result +
-                '}';
-    }
-
-    protected void setMatchId(Long matchId) {
-        this.matchId = matchId;
-    }
-
-    protected void setMessage(String message) {
-        this.message = message;
-    }
-
-    protected void setResult(BookMatchResult result) {
-        this.result = result;
     }
 }

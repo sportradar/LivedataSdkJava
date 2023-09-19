@@ -1,9 +1,16 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Score;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+//It is better to leave getters as is for javadoc purpose.
+@EqualsAndHashCode
+@ToString
 public class ScoreEntity implements Serializable {
     private final static long serialVersionUID = 1L;
 
@@ -13,16 +20,15 @@ public class ScoreEntity implements Serializable {
     private final ScoreEntity subScore;
 
     public ScoreEntity(Score score) {
-        this.type = score.getType();
-        this.team1 = score.getT1();
-        this.team2 = score.getT2();
+        this(score.getType(), score.getT1(), score.getT2(),
+                score.getScore() != null ? new ScoreEntity(score.getScore()) : null);
+    }
 
-        if(score.getScore() != null){
-            subScore = new ScoreEntity(score.getScore());
-        }
-        else{
-            subScore = null;
-        }
+    protected ScoreEntity(String type, double team1, double team2, ScoreEntity subScore) {
+        this.type = type;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.subScore = subScore;
     }
 
     public String getType() { return type; }
@@ -32,14 +38,4 @@ public class ScoreEntity implements Serializable {
     public double getTeam2() { return team2; }
 
     public ScoreEntity getSubScore() { return subScore; }
-
-    @Override
-    public String toString() {
-        return "ScoreEntity{" +
-                "type=" + type +
-                ", t1=" + team1 +
-                ", t2=" + team2 +
-                ", subScore=" + subScore +
-                '}';
-    }
 }

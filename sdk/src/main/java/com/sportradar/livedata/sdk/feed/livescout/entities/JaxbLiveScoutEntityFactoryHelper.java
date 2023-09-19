@@ -13,10 +13,12 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
+import static com.sportradar.livedata.sdk.common.classes.Nulls.nte;
 
 @SuppressWarnings("JavaDoc")
 public class JaxbLiveScoutEntityFactoryHelper {
@@ -31,30 +33,24 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static LineupsEntity buildLineupsEntity(Lineups lineups) throws InvalidEntityException {
-        LineupsEntity result = new LineupsEntity(new HashMap<String, String>());
+        LineupsEntity result = new LineupsEntity(new HashMap<>());
         result.setMatchId(lineups.getMatchid());
-        if (lineups.getPlayer() != null) {
-            List<PlayerEntity> players = new ArrayList<>(lineups.getPlayer().size());
+        if (lineups.getPlayer() != null) {//always not null
             for (Player player : lineups.getPlayer()) {
-                players.add(buildPlayerEntity(player));
+                result.getPlayers().add(buildPlayerEntity(player));
             }
-            result.setPlayers(players);
         }
         List<Manager> managerList = lineups.getManager();
-        if (managerList != null) {
-            List<ManagerEntity> managers = new ArrayList<>(managerList.size());
+        if (managerList != null) {//always not null
             for (Manager manager : managerList) {
-                managers.add(buildManagerEntity(manager));
+                result.getManagers().add(buildManagerEntity(manager));
             }
-            result.setManagers(managers);
         }
         List<Teamofficial> teamOfficialList = lineups.getTeamofficial();
-        if (teamOfficialList != null) {
-            List<TeamOfficialEntity> teamOfficials = new ArrayList<>(teamOfficialList.size());
+        if (teamOfficialList != null) {//always not null
             for (Teamofficial teamofficial : teamOfficialList) {
-                teamOfficials.add(buildTeamOfficial(teamofficial));
+                result.getTeamOfficials().add(buildTeamOfficial(teamofficial));
             }
-            result.setTeamOfficials(teamOfficials);
         }
         return result;
     }
@@ -69,11 +65,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Manager.getTeam()", teamString);
         }
-        return null;
+        return result;
     }
 
     public static MatchBookingEntity buildMatchBookingEntity(Bookmatch bookMatch) throws InvalidEntityException {
-        MatchBookingEntity result = new MatchBookingEntity(new HashMap<String, String>());
+        MatchBookingEntity result = new MatchBookingEntity(new HashMap<>());
         result.setMatchId(bookMatch.getMatchid());
         result.setMessage(bookMatch.getMessage());
         try {
@@ -113,7 +109,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setDistance(match.getDistance());
         if (match.getTeamsreversed() != null) {
             try {
-                result.setTeamsReversed(TeamsReversed.findByValue(match.getTeamsreversed()));
+                result.setTeamsReversed(TeamsReversed.getTeamsReversedFromValue(match.getTeamsreversed()));
             } catch (UnknownEnumException e) {
                 throw new InvalidEntityException(e, "Match.getTeamsreversed()", String.valueOf(match.getTeamsreversed()));
             }
@@ -194,13 +190,13 @@ public class JaxbLiveScoutEntityFactoryHelper {
         Byte teamMatch = match.getTeammatch();
         if(teamMatch != null)
         {
-            result.setIsTeamMatch(teamMatch != 0);
+            result.setTeamMatch(teamMatch != 0);
         }
         result.setTeamMatchId(match.getTeammatchid());
         Byte isCancelled = match.getIscancelled();
         if(isCancelled != null)
         {
-            result.setIsCancelled(isCancelled != 0);
+            result.setCancelled(isCancelled != 0);
         }
         result.setVbpClassification(match.getVbpclassification());
         result.setSTime(match.getStime());
@@ -217,7 +213,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
 
     public static MatchListEntity buildMatchListEntity(Matchlist matchList) throws InvalidEntityException {
         checkNotNull(matchList.getMatch());
-        MatchListEntity result = new MatchListEntity(new HashMap<String, String>());
+        MatchListEntity result = new MatchListEntity(new HashMap<>());
         ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchList.getMatch().size());
         for (Match match : matchList.getMatch()) {
             matches.add(buildMatchUpdateEntity(match));
@@ -303,87 +299,42 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     break;
                 case "Firstkickoffteam1Sthalf":
                     Firstkickoffteam1Sthalf k1st = (Firstkickoffteam1Sthalf) item;
-                    Integer teamInt1 = k1st.getTeam();
-                    Team teamk1 = null;
-                    if (teamInt1 == 2) {
-                        teamk1 = Team.AWAY;
-                    } else if (teamInt1 == 1) {
-                        teamk1 = Team.HOME;
-                    }
+                    Team teamk1 = parseTeam(k1st.getTeam(), false);
                     result.setKickoffTeamFirstHalf(teamk1);
                     break;
                 case "Firstkickoffteam2Ndhalf":
                     Firstkickoffteam2Ndhalf k2ns = (Firstkickoffteam2Ndhalf) item;
-                    Integer teamInt2 = k2ns.getTeam();
-                    Team teamk2 = null;
-                    if (teamInt2 == 2) {
-                        teamk2 = Team.AWAY;
-                    } else if (teamInt2 == 1) {
-                        teamk2 = Team.HOME;
-                    }
+                    Team teamk2 = parseTeam(k2ns.getTeam(), false);
                     result.setKickoffTeamSecondHalf(teamk2);
                     break;
                 case "Firstkickoffteamot":
                     Firstkickoffteamot kiot = (Firstkickoffteamot) item;
-                    Integer teamIntOt = kiot.getTeam();
-                    Team teamOt = null;
-                    if (teamIntOt == 2) {
-                        teamOt = Team.AWAY;
-                    } else if (teamIntOt == 1) {
-                        teamOt = Team.HOME;
-                    }
+                    Team teamOt = parseTeam(kiot.getTeam(), false);
                     result.setKickoffTeamOt(teamOt);
+                    break;
+                case "Kickoffteam":
+                    Kickoffteam kot = (Kickoffteam) item;
+                    Team team = parseTeam(kot.getTeam(), false);
+                    result.setKickoffTeam(team);
                     break;
                 case "Openingfaceoff1Stperiod":
                     Openingfaceoff1Stperiod of1p = (Openingfaceoff1Stperiod) item;
-                    Integer teamIntof1p = of1p.getTeam();
-                    Team teamof1p = null;
-                    if (teamIntof1p == 2) {
-                        teamof1p = Team.AWAY;
-                    } else if (teamIntof1p == 1) {
-                        teamof1p = Team.HOME;
-                    } else if (teamIntof1p == 0) {
-                        teamof1p = Team.NONE;
-                    }
+                    Team teamof1p = parseTeam(of1p.getTeam(), true);
                     result.setOpeningFaceoff1StPeriod(teamof1p);
                     break;
                 case "Openingfaceoff2Ndperiod":
                     Openingfaceoff2Ndperiod of2p = (Openingfaceoff2Ndperiod) item;
-                    Integer teamIntof2p = of2p.getTeam();
-                    Team teamof2p = null;
-                    if (teamIntof2p == 2) {
-                        teamof2p = Team.AWAY;
-                    } else if (teamIntof2p == 1) {
-                        teamof2p = Team.HOME;
-                    } else if (teamIntof2p == 0) {
-                        teamof2p = Team.NONE;
-                    }
+                    Team teamof2p = parseTeam(of2p.getTeam(), true);
                     result.setOpeningFaceoff2NdPeriod(teamof2p);
                     break;
                 case "Openingfaceoff3Rdperiod":
                     Openingfaceoff3Rdperiod of3p = (Openingfaceoff3Rdperiod) item;
-                    Integer teamIntof3p = of3p.getTeam();
-                    Team teamof3p = null;
-                    if (teamIntof3p == 2) {
-                        teamof3p = Team.AWAY;
-                    } else if (teamIntof3p == 1) {
-                        teamof3p = Team.HOME;
-                    } else if (teamIntof3p == 0) {
-                        teamof3p = Team.NONE;
-                    }
+                    Team teamof3p = parseTeam(of3p.getTeam(), true);
                     result.setOpeningFaceoff3RdPeriod(teamof3p);
                     break;
                 case "Openingfaceoffovertime":
                     Openingfaceoffovertime ofop = (Openingfaceoffovertime) item;
-                    Integer teamIntofot = ofop.getTeam();
-                    Team teamofot = null;
-                    if (teamIntofot == 2) {
-                        teamofot = Team.AWAY;
-                    } else if (teamIntofot == 1) {
-                        teamofot = Team.HOME;
-                    } else if (teamIntofot == 0) {
-                        teamofot = Team.NONE;
-                    }
+                    Team teamofot = parseTeam(ofop.getTeam(), true);
                     result.setOpeningFaceoffOvertime(teamofot);
                     break;
                 case "Freekicks":
@@ -408,18 +359,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     break;
                 case "Innings":
                     Innings inn = (Innings) item;
-                    result.setInnings(buildInningsEntity(inn));
-                    break;
-                case "Kickoffteam":
-                    Kickoffteam kot = (Kickoffteam) item;
-                    Integer teamInt = kot.getTeam();
-                    Team team = null;
-                    if (teamInt == 2) {
-                        team = Team.AWAY;
-                    } else if (teamInt == 1) {
-                        team = Team.HOME;
-                    }
-                    result.setKickoffTeam(team);
+                    result.addInnings(buildInningsEntity(inn));
                     break;
                 case "Matchformat":
                     Matchformat mf = (Matchformat) item;
@@ -513,7 +453,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
                 case "Suspensions":
                     Suspensions susp = (Suspensions) item;
                     try {
-                        Team powerplay = Team.getTeamFromLiteralValue(susp.getPowerplay() + "");//avoiding nullpointer
+                        Team powerplay = Team.getTeamFromLiteralValue(String.valueOf(susp.getPowerplay()));
                         result.setSuspensions(new SuspensionsEntity(susp.getT1(), susp.getT2(), powerplay));
                     } catch (UnknownEnumException e) {
                         throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Suspensions.getPowerplay()", susp.getPowerplay() + "");
@@ -592,6 +532,20 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setScores(scores);
         result.setEvents(eventsList);
         return result;
+    }
+
+    //Do not know why it was done like this in a 1st place. Just had put common logic in one place.
+    //Much easier would be to allow NONE everywhere and throw exception if value is unknown as it was done everywhere.
+    private static Team parseTeam(Integer teamInt, boolean allowNone){
+        Team team = null;
+        if (teamInt == 2) {
+            team = Team.AWAY;
+        } else if (teamInt == 1) {
+            team = Team.HOME;
+        } else if (teamInt == 0 && allowNone) {
+            team = Team.NONE;
+        }
+        return team;
     }
 
     private static List<JerseyEntity> buildJerseysEntities(Jerseys jerseys) {
@@ -687,7 +641,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setPosY(event.getPosy());
         result.setRemainingTimeInPeriod(event.getRemainingtimeperiod());
         result.setRunsInInnings(event.getRunsininnings());
-        result.setServerTime(CommonUtils.fromTimestamp(event.getStime()));
+        if(event.getStime() > 0) {
+            result.setServerTime(CommonUtils.fromTimestamp(event.getStime()));
+        }
         result.setSetNumber(event.getSetnumber());
         result.setSetScore(event.getSetscore());
         try {
@@ -709,8 +665,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Event.getSide()", event.getSide());
         }
-        result.setTypeId(event.getType());
-        result.setType(EventType.getEventTypeFromLiteralValue(Integer.toString(event.getType())));
+        if(event.getType() > 0) {
+            result.setTypeId(event.getType());
+            result.setType(EventType.getEventTypeFromLiteralValue(Integer.toString(event.getType())));
+        }
 
         result.setSecondScoreType(event.getSecondscoretype());
         result.setScoreTypeQualifier(event.getScoretypequalifier());
@@ -732,13 +690,13 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (firstBaseLoaded != null) {
             result.setFirstBaseLoaded(firstBaseLoaded != 0);
         }
-        Byte firstbasecondbaseloadedeloaded = event.getSecondbaseloaded();
-        if (firstbasecondbaseloadedeloaded != null) {
-            result.setSecondBaseLoaded(firstbasecondbaseloadedeloaded != 0);
+        Byte secondBaseLoaded = event.getSecondbaseloaded();
+        if (secondBaseLoaded != null) {
+            result.setSecondBaseLoaded(secondBaseLoaded != 0);
         }
-        Integer thirdbaseloaded = event.getThirdbaseloaded() == null ? null : event.getThirdbaseloaded().intValue();
-        if (thirdbaseloaded != null) {
-            result.setThirdBaseLoaded(thirdbaseloaded != 0);
+        Byte thirdBaseLoaded = event.getThirdbaseloaded();
+        if (thirdBaseLoaded != null) {
+            result.setThirdBaseLoaded(thirdBaseLoaded != 0);
         }
         result.setFirstBasePlayer(event.getFirstbaseplayer());
         result.setSecondBasePlayer(event.getSecondbaseplayer());
@@ -938,7 +896,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "TeamOfficial.getTeam()", teamString);
         }
-        return null;
+        return result;
     }
 
     private static CourtEntity buildCourtEntity(Court court) {
@@ -953,7 +911,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     private static List<InningScoreEntity> buildInningsScores(List<Inningscore> inningscores) {
-        if (inningscores != null) {
+        if (!nte(inningscores).isEmpty()) {
             List<InningScoreEntity> result = new ArrayList<>();
             for (Inningscore inningscore : inningscores) {
                 InningScoreEntity resultEntry = buildInningScore(inningscore);
