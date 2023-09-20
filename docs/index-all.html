@@ -1055,7 +1055,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Connection test.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html#%3Cinit%3E(java.util.Map)">ConnectionTestEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ConnectionTestEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html#%3Cinit%3E()">ConnectionTestEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ConnectionTestEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/dispatch/livescout/LiveScoutDispatcherContainer.html#CONTAINER_FACTORY">CONTAINER_FACTORY</a></span> - Static variable in class com.sportradar.livedata.sdk.dispatch.livescout.<a href="com/sportradar/livedata/sdk/dispatch/livescout/LiveScoutDispatcherContainer.html" title="class in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcherContainer</a></dt>
 <dd>
@@ -1781,14 +1781,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">The match has ended</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><span class="typeNameLink">EntityBase</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/common/entities/package-summary.html">com.sportradar.livedata.sdk.feed.common.entities</a></dt>
-<dd>
-<div class="block">Serves as a base class for all client data contracts/entities.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html#%3Cinit%3E()">EntityBase()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html#%3Cinit%3E(java.util.Map)">EntityBase(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><span class="typeNameLink">EntityEnum</span></a> - Interface in <a href="com/sportradar/livedata/sdk/common/interfaces/package-summary.html">com.sportradar.livedata.sdk.common.interfaces</a></dt>
 <dd>
 <div class="block">Represents an entity enumeration</div>
@@ -1807,7 +1799,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/dispatch/livescout/EntityEventHandler.html" title="class in com.sportradar.livedata.sdk.dispatch.livescout"><code>EntityEventHandler</code></a> class</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">EntityMapper</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="type parameter in EntityMapper">I</a> extends <a href="com/sportradar/livedata/sdk/proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="type parameter in EntityMapper">E</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">EntityMapper</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="type parameter in EntityMapper">I</a> extends <a href="com/sportradar/livedata/sdk/proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="com/sportradar/livedata/sdk/feed/common/EntityMapper.html" title="type parameter in EntityMapper">E</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">Represents a class used to map protocol layer messages to feed layer entities</div>
 </dd>
@@ -1973,10 +1965,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/FileSdkLogger.html#%3Cinit%3E(com.sportradar.livedata.sdk.common.settings.LoggerSettings,com.sportradar.livedata.sdk.common.timer.Timer,java.lang.String)">FileSdkLogger(LoggerSettings, Timer, String)</a></span> - Constructor for class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/FileSdkLogger.html" title="class in com.sportradar.livedata.sdk.common.classes">FileSdkLogger</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html#findByValue(int)">findByValue(int)</a></span> - Static method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">TeamsReversed</a></dt>
-<dd>
-<div class="block">Gets enum from int value</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/proto/common/IncrementalMessageTokenizer.html#findElementEnd(byte%5B%5D,byte%5B%5D,int,int)">findElementEnd(byte[], byte[], int, int)</a></span> - Method in class com.sportradar.livedata.sdk.proto.common.<a href="com/sportradar/livedata/sdk/proto/common/IncrementalMessageTokenizer.html" title="class in com.sportradar.livedata.sdk.proto.common">IncrementalMessageTokenizer</a></dt>
 <dd>
 <div class="block">Finds the index of the first occurrence of bytes representing the end of the element in the <code>source</code>.</div>
@@ -2233,10 +2221,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/exceptions/InvalidEntityException.html#getActualValue()">getActualValue()</a></span> - Method in exception com.sportradar.livedata.sdk.feed.common.exceptions.<a href="com/sportradar/livedata/sdk/feed/common/exceptions/InvalidEntityException.html" title="class in com.sportradar.livedata.sdk.feed.common.exceptions">InvalidEntityException</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html#getAdditionalData()">getAdditionalData()</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettings.html#getAlertLogLevel()">getAlertLogLevel()</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#getAlertLogLevel()">getAlertLogLevel()</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
@@ -2616,6 +2600,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Gets the <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> representing the message held be the current <a href="com/sportradar/livedata/sdk/dispatch/livescout/LiveScoutDispatcherContainer.html" title="class in com.sportradar.livedata.sdk.dispatch.livescout"><code>LiveScoutDispatcherContainer</code></a></div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/EntityEnumHelper.html#getEnumMemberFromValue(T%5B%5D,java.lang.Object)">getEnumMemberFromValue(T[], Object)</a></span> - Static method in class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/EntityEnumHelper.html" title="class in com.sportradar.livedata.sdk.common.classes">EntityEnumHelper</a></dt>
+<dd>
+<div class="block">Gets the enumeration member associated with the passed <code>literalValue</code></div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/exceptions/UnknownEnumException.html#getEnumName()">getEnumName()</a></span> - Method in exception com.sportradar.livedata.sdk.common.exceptions.<a href="com/sportradar/livedata/sdk/common/exceptions/UnknownEnumException.html" title="class in com.sportradar.livedata.sdk.common.exceptions">UnknownEnumException</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/exceptions/InvalidEntityException.html#getErrorDetails()">getErrorDetails()</a></span> - Method in exception com.sportradar.livedata.sdk.feed.common.exceptions.<a href="com/sportradar/livedata/sdk/feed/common/exceptions/InvalidEntityException.html" title="class in com.sportradar.livedata.sdk.feed.common.exceptions">InvalidEntityException</a></dt>
@@ -2632,13 +2620,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Gets number of errors home</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html#getEventId()">getEventId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></dt>
-<dd>
-<div class="block">Get the unique event id.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/EventIdentifier.html#getEventId()">getEventId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a></dt>
 <dd>
 <div class="block">Gets event id</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html#getEventId()">getEventId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a></dt>
+<dd>
+<div class="block">Get the unique event id.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#getEventId()">getEventId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
 <dd>
@@ -3196,14 +3184,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/PropertiesParser.html#getLimitersProperty(java.lang.String,boolean)">getLimitersProperty(String, boolean)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/PropertiesParser.html" title="class in com.sportradar.livedata.sdk.common.settings">PropertiesParser</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html#getLiteralValue()">getLiteralValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">FormatType</a></dt>
-<dd>
-<div class="block">Gets literal value</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html#getLiteralValue()">getLiteralValue()</a></span> - Method in enum com.sportradar.livedata.sdk.proto.dto.<a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto">LiveScoutLoginType</a></dt>
-<dd>
-<div class="block">Gets the string value associated with the current instance.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/DefaultSettingsBuilderHelper.html#getLiveScout()">getLiveScout()</a></span> - Static method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/DefaultSettingsBuilderHelper.html" title="class in com.sportradar.livedata.sdk.common.settings">DefaultSettingsBuilderHelper</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/sdk/Sdk.html#getLiveScout()">getLiveScout()</a></span> - Method in class com.sportradar.livedata.sdk.feed.sdk.<a href="com/sportradar/livedata/sdk/feed/sdk/Sdk.html" title="class in com.sportradar.livedata.sdk.feed.sdk">Sdk</a></dt>
@@ -3537,9 +3517,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Get number of outs</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getPage()">getPage()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchHeaderEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html#getPage()">getPage()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PaginationEntity</a></dt>
 <dd>
 <div class="block">Returns page number of current feed partial.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getPagination()">getPagination()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchHeaderEntity</a></dt>
+<dd>
+<div class="block">Too big feed can be split if such configuration is activated in LiveData.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/SubteamEntity.html#getParentId()">getParentId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/SubteamEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">SubteamEntity</a></dt>
 <dd>&nbsp;</dd>
@@ -4093,6 +4077,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Shows whether order not confirmed or reversed</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html#getTeamsReversedFromValue(int)">getTeamsReversedFromValue(int)</a></span> - Static method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">TeamsReversed</a></dt>
+<dd>
+<div class="block">Gets enum from int value</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ScoutEventEntity.html#getTemperature()">getTemperature()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ScoutEventEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ScoutEventEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/interfaces/UserRequestManager.html#getTestManager()">getTestManager()</a></span> - Method in interface com.sportradar.livedata.sdk.feed.common.interfaces.<a href="com/sportradar/livedata/sdk/feed/common/interfaces/UserRequestManager.html" title="interface in com.sportradar.livedata.sdk.feed.common.interfaces">UserRequestManager</a></dt>
@@ -4125,7 +4113,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">ID of player who got the ball.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getTotalPages()">getTotalPages()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchHeaderEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html#getTotalPages()">getTotalPages()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PaginationEntity</a></dt>
 <dd>
 <div class="block">Returns total amount of pages in splitted feed.</div>
 </dd>
@@ -4221,16 +4209,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettings.html#getUsername()">getUsername()</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettings</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html#getUuid()">getUuid()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchHeaderEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html#getUuid()">getUuid()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PaginationEntity</a></dt>
 <dd>
-<div class="block">Too big feed can be splitted if such configuration is activated in LiveData.</div>
+<div class="block">Before splitting feed gets his own uuid.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ScoutEventEntity.html#getUuId()">getUuId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ScoutEventEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ScoutEventEntity</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html#getValue()">getValue()</a></span> - Method in interface com.sportradar.livedata.sdk.common.interfaces.<a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></dt>
+<dd>
+<div class="block">Returns value of concrete enum member.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/entities/TypeValueTuple.html#getValue()">getValue()</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.entities.<a href="com/sportradar/livedata/sdk/feed/common/entities/TypeValueTuple.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">TypeValueTuple</a></dt>
 <dd>
 <div class="block">Gets value</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.common.enums.<a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html" title="enum in com.sportradar.livedata.sdk.feed.common.enums">Team</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#getValue()">getValue()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
 <dd>
 <div class="block">Value</div>
@@ -4243,11 +4237,41 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns the property value</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">BookMatchResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Coverage</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
+<dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
+&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">FormatType</a></dt>
+<dd>
+<div class="block">Gets literal value</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">IceConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Inning</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">MatchBetStatus</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">PitchConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutFeedType</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutMatchStatus</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Sex</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">SurfaceType</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">TeamsReversed</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/EntityEnumHelper.html#getValueFromLiteralValue(com.sportradar.livedata.sdk.common.interfaces.EntityEnum%5B%5D,java.lang.String)">getValueFromLiteralValue(EntityEnum[], String)</a></span> - Static method in class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/EntityEnumHelper.html" title="class in com.sportradar.livedata.sdk.common.classes">EntityEnumHelper</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">WeatherConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html#getValue()">getValue()</a></span> - Method in enum com.sportradar.livedata.sdk.proto.dto.<a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto">LiveScoutLoginType</a></dt>
 <dd>
-<div class="block">Gets the enumeration member associated with the passed <code>literalValue</code></div>
+<div class="block">Gets the string value associated with the current instance.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#getValueId()">getValueId()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
 <dd>
@@ -4741,48 +4765,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Return true when logger with given appender type have current log level equal to  given level,
  otherwise false.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in interface com.sportradar.livedata.sdk.common.interfaces.<a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></dt>
-<dd>
-<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.common.enums.<a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html" title="enum in com.sportradar.livedata.sdk.feed.common.enums">Team</a></dt>
-<dd>
-<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">BookMatchResult</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Coverage</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
-&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">FormatType</a></dt>
-<dd>
-<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums"><code>FormatType</code></a></div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">IceConditions</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Inning</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">MatchBetStatus</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">PitchConditions</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutFeedType</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutMatchStatus</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Sex</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">SurfaceType</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">WeatherConditions</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual(String)</a></span> - Method in enum com.sportradar.livedata.sdk.proto.dto.<a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto">LiveScoutLoginType</a></dt>
-<dd>
-<div class="block">Determines whether the string value associated with the current instance is equal to passed <code>value</code></div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html#isOpened()">isOpened()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.classes.<a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutFeedImpl</a></dt>
 <dd>
 <div class="block">Gets the value specifying whether the current feed is opened</div>
@@ -4871,6 +4853,50 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/dispatch/livescout/LiveScoutDispatcherContainer.html#isValid()">isValid()</a></span> - Method in class com.sportradar.livedata.sdk.dispatch.livescout.<a href="com/sportradar/livedata/sdk/dispatch/livescout/LiveScoutDispatcherContainer.html" title="class in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcherContainer</a></dt>
 <dd>
 <div class="block">Checks if is container valid</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in interface com.sportradar.livedata.sdk.common.interfaces.<a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></dt>
+<dd>
+<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.common.enums.<a href="com/sportradar/livedata/sdk/feed/common/enums/Team.html" title="enum in com.sportradar.livedata.sdk.feed.common.enums">Team</a></dt>
+<dd>
+<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/BookMatchResult.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">BookMatchResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Coverage.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Coverage</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
+<dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
+&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">FormatType</a></dt>
+<dd>
+<div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="com/sportradar/livedata/sdk/feed/livescout/enums/FormatType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums"><code>FormatType</code></a></div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/IceConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">IceConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Inning.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Inning</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/MatchBetStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">MatchBetStatus</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/PitchConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">PitchConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutFeedType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutFeedType</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/ScoutMatchStatus.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">ScoutMatchStatus</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/Sex.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">Sex</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/SurfaceType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">SurfaceType</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/TeamsReversed.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">TeamsReversed</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/WeatherConditions.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">WeatherConditions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html#isValueEqual(java.lang.Object)">isValueEqual(Object)</a></span> - Method in enum com.sportradar.livedata.sdk.proto.dto.<a href="com/sportradar/livedata/sdk/proto/dto/LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto">LiveScoutLoginType</a></dt>
+<dd>
+<div class="block">Determines whether the string value associated with the current instance is equal to passed <code>value</code></div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/FileSdkLogger.html#isWarnEnabled(com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType)">isWarnEnabled(SdkLogAppenderType)</a></span> - Method in class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/FileSdkLogger.html" title="class in com.sportradar.livedata.sdk.common.classes">FileSdkLogger</a></dt>
 <dd>
@@ -5021,7 +5047,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">The current lineup.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#%3Cinit%3E(java.util.Map)">LineupsEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#%3Cinit%3E()">LineupsEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/rategate/RateGateBase.html#listener">listener</a></span> - Variable in class com.sportradar.livedata.sdk.common.rategate.<a href="com/sportradar/livedata/sdk/common/rategate/RateGateBase.html" title="class in com.sportradar.livedata.sdk.common.rategate">RateGateBase</a></dt>
 <dd>&nbsp;</dd>
@@ -5049,7 +5075,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">A <a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>ProtocolManager</code></a> implementation used to manage protocol which connects to a live-feed</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#%3Cinit%3E(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.common.MessageProcessor,com.sportradar.livedata.sdk.proto.common.RequestProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">LiveFeedProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, EntityBase&gt;, MessageProcessor&lt;EntityBase&gt;, RequestProducer&lt;OutgoingMessage&gt;, SdkLogger)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#%3Cinit%3E(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.common.MessageProcessor,com.sportradar.livedata.sdk.proto.common.RequestProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">LiveFeedProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, LiveScoutEntityBase&gt;, MessageProcessor&lt;LiveScoutEntityBase&gt;, RequestProducer&lt;OutgoingMessage&gt;, SdkLogger)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common"><code>LiveFeedProtocolManager</code></a> class</div>
 </dd>
@@ -5098,10 +5124,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Serves as a base class that all LiveScout should be derived from.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html#%3Cinit%3E()">LiveScoutEntityBase()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a></dt>
-<dd>
-<div class="block">For Serializable</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html#%3Cinit%3E(java.util.Map)">LiveScoutEntityBase(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/feed/livescout/interfaces/LiveScoutEntityFactory.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces"><span class="typeNameLink">LiveScoutEntityFactory</span></a> - Interface in <a href="com/sportradar/livedata/sdk/feed/livescout/interfaces/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.interfaces</a></dt>
 <dd>
@@ -5124,7 +5146,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">A <a href="com/sportradar/livedata/sdk/feed/livescout/interfaces/LiveScoutFeed.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces"><code>LiveScoutFeed</code></a> implementation used to manage live-scout feed.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html#%3Cinit%3E(com.sportradar.livedata.sdk.feed.common.ProtocolManager,com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager,com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">LiveScoutFeedImpl(ProtocolManager&lt;OutgoingMessage, EntityBase&gt;, LiveScoutUserRequestManager, LiveScoutDispatcher, SdkLogger, LiveScoutSettings)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.classes.<a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutFeedImpl</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html#%3Cinit%3E(com.sportradar.livedata.sdk.feed.common.ProtocolManager,com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager,com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">LiveScoutFeedImpl(ProtocolManager&lt;OutgoingMessage, LiveScoutEntityBase&gt;, LiveScoutUserRequestManager, LiveScoutDispatcher, SdkLogger, LiveScoutSettings)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.classes.<a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutFeedImpl</a></dt>
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/feed/livescout/classes/LiveScoutFeedImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes"><code>LiveScoutFeedImpl</code></a> class.</div>
 </dd>
@@ -5461,13 +5483,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Match booking reply.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#%3Cinit%3E(java.util.Map)">MatchBookingEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#%3Cinit%3E()">MatchBookingEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><span class="typeNameLink">MatchDataEntity</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/livescout/entities/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.entities</a></dt>
 <dd>
 <div class="block">Match time information during a game.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html#%3Cinit%3E(java.util.Map)">MatchDataEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchDataEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html#%3Cinit%3E()">MatchDataEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchDataEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchHeaderEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><span class="typeNameLink">MatchHeaderEntity</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/livescout/entities/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.entities</a></dt>
 <dd>
@@ -5483,13 +5505,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Contains information about multiple matches</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html#%3Cinit%3E(java.util.Map)">MatchListEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html#%3Cinit%3E()">MatchListEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><span class="typeNameLink">MatchListUpdateEntity</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/livescout/entities/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.entities</a></dt>
 <dd>
 <div class="block">List of matches sent unsolicited from server (uses same format as MatchList for now).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html#%3Cinit%3E(java.util.Map)">MatchListUpdateEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListUpdateEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html#%3Cinit%3E()">MatchListUpdateEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListUpdateEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchPropertyEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><span class="typeNameLink">MatchPropertyEntity</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/livescout/entities/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.entities</a></dt>
 <dd>
@@ -5511,7 +5533,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Reply sent when a client unsubscribes from a match or when a match subscription failed.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html#%3Cinit%3E(java.util.Map)">MatchStopEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchStopEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html#%3Cinit%3E()">MatchStopEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchStopEntity</a></dt>
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 </dd>
@@ -5523,7 +5545,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Match information message.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchUpdateEntity.html#%3Cinit%3E(java.util.Map)">MatchUpdateEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchUpdateEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchUpdateEntity.html#%3Cinit%3E()">MatchUpdateEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchUpdateEntity</a></dt>
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>MatchUpdateEntity</code></a> class.</div>
 </dd>
@@ -5598,7 +5620,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">A listener used to observe <code>MessageParser</code> instance.</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="class in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessagePipeline</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Class in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="class in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessagePipeline</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Class in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">A message - processing pipeline which consists of multiple <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances.</div>
 </dd>
@@ -5606,17 +5628,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Initializes a new instance of the <a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="class in com.sportradar.livedata.sdk.feed.common"><code>MessagePipeline</code></a> class from the passed <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances.</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessor</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="type parameter in MessageProcessor">T</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessor</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="type parameter in MessageProcessor">T</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">Represents a class capable of receiving an input message, processing it and passing in forward for further processing</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html" title="class in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessorComparator</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html" title="type parameter in MessageProcessorComparator">T</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Class in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html" title="class in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessorComparator</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html" title="type parameter in MessageProcessorComparator">T</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Class in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">A <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Comparator.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>Comparator</code></a> implementation used to compare <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html#%3Cinit%3E()">MessageProcessorComparator()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorComparator.html" title="class in com.sportradar.livedata.sdk.feed.common">MessageProcessorComparator</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessorListener</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorListener.html" title="type parameter in MessageProcessorListener">T</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">MessageProcessorListener</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorListener.html" title="type parameter in MessageProcessorListener">T</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">Represents a listener used to observer the <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances</div>
 </dd>
@@ -5787,7 +5809,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Notifies the observer that the current <a href="com/sportradar/livedata/sdk/proto/LiveFeedProtocol.html" title="class in com.sportradar.livedata.sdk.proto"><code>LiveFeedProtocol</code></a> has logged in.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#notifyOnMessageReceived(com.sportradar.livedata.sdk.feed.common.entities.EntityBase)">notifyOnMessageReceived(EntityBase)</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#notifyOnMessageReceived(com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase)">notifyOnMessageReceived(LiveScoutEntityBase)</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
 <dd>
 <div class="block">Notifies the observer that new message was received.</div>
 </dd>
@@ -6201,6 +6223,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">P</h2>
 <dl>
+<dt><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><span class="typeNameLink">PaginationEntity</span></a> - Class in <a href="com/sportradar/livedata/sdk/feed/livescout/entities/package-summary.html">com.sportradar.livedata.sdk.feed.livescout.entities</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html#%3Cinit%3E()">PaginationEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PaginationEntity</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/enums/FeedEventType.html#PARSE_ERROR">PARSE_ERROR</a></span> - com.sportradar.livedata.sdk.common.enums.<a href="com/sportradar/livedata/sdk/common/enums/FeedEventType.html" title="enum in com.sportradar.livedata.sdk.common.enums">FeedEventType</a></dt>
 <dd>
 <div class="block">Specifies that the message received from the server could not be parsed</div>
@@ -6421,8 +6447,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#%3Cinit%3E()">PlayerEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#%3Cinit%3E(java.util.Map)">PlayerEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#PLAYERS_WALK_ON">PLAYERS_WALK_ON</a></span> - com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
 <dd>
 <div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
@@ -6614,11 +6638,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html#processMessage(T)">processMessage(T)</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/MessagePipeline.html" title="class in com.sportradar.livedata.sdk.feed.common">MessagePipeline</a></dt>
 <dd>
-<div class="block">Processes the passed message derived from <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html#processMessage(T)">processMessage(T)</a></span> - Method in interface com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a></dt>
 <dd>
-<div class="block">Processes the passed message derived from <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 </dd>
 <dt><a href="com/sportradar/livedata/sdk/common/settings/PropertiesParser.html" title="class in com.sportradar.livedata.sdk.common.settings"><span class="typeNameLink">PropertiesParser</span></a> - Class in <a href="com/sportradar/livedata/sdk/common/settings/package-summary.html">com.sportradar.livedata.sdk.common.settings</a></dt>
 <dd>&nbsp;</dd>
@@ -6668,11 +6692,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Represents a listener used to observe the <code>Protocol</code> implementation</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">ProtocolManager</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="type parameter in ProtocolManager">O</a> extends <a href="com/sportradar/livedata/sdk/proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="type parameter in ProtocolManager">E</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">ProtocolManager</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="type parameter in ProtocolManager">O</a> extends <a href="com/sportradar/livedata/sdk/proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="type parameter in ProtocolManager">E</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">Represents a class used to manage access to the underlying <a href="com/sportradar/livedata/sdk/proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common"><code>Protocol</code></a>.</div>
 </dd>
-<dt><a href="com/sportradar/livedata/sdk/feed/common/ProtocolManagerListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">ProtocolManagerListener</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManagerListener.html" title="type parameter in ProtocolManagerListener">E</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
+<dt><a href="com/sportradar/livedata/sdk/feed/common/ProtocolManagerListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><span class="typeNameLink">ProtocolManagerListener</span></a>&lt;<a href="com/sportradar/livedata/sdk/feed/common/ProtocolManagerListener.html" title="type parameter in ProtocolManagerListener">E</a> extends <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt; - Interface in <a href="com/sportradar/livedata/sdk/feed/common/package-summary.html">com.sportradar.livedata.sdk.feed.common</a></dt>
 <dd>
 <div class="block">Represents a listener used to observe the <a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>ProtocolManager</code></a></div>
 </dd>
@@ -6686,9 +6710,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/GeneralInjectionModule.html#provideExecutorService(java.util.concurrent.ThreadFactory)">provideExecutorService(ThreadFactory)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/GeneralInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">GeneralInjectionModule</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider)">provideFeed(Provider&lt;ProtocolManager&lt;OutgoingMessage, EntityBase&gt;&gt;, Provider&lt;LiveScoutUserRequestManagerImpl&gt;, Provider&lt;LiveScoutDispatcher&gt;, Provider&lt;SdkLogger&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider)">provideFeed(Provider&lt;ProtocolManager&lt;OutgoingMessage, LiveScoutEntityBase&gt;&gt;, Provider&lt;LiveScoutUserRequestManagerImpl&gt;, Provider&lt;LiveScoutDispatcher&gt;, Provider&lt;SdkLogger&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed(Provider&lt;ProtocolManager&lt;OutgoingMessage, EntityBase&gt;&gt;, Provider&lt;LiveScoutUserRequestManagerImpl&gt;, Provider&lt;LiveScoutDispatcher&gt;, Provider&lt;SdkLogger&gt;, LiveScoutSettings)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed(Provider&lt;ProtocolManager&lt;OutgoingMessage, LiveScoutEntityBase&gt;&gt;, Provider&lt;LiveScoutUserRequestManagerImpl&gt;, Provider&lt;LiveScoutDispatcher&gt;, Provider&lt;SdkLogger&gt;, LiveScoutSettings)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideGateway(java.util.concurrent.ExecutorService,java.util.concurrent.ScheduledExecutorService,org.apache.commons.net.DefaultSocketFactory,javax.net.ssl.SSLSocketFactory)">provideGateway(ExecutorService, ScheduledExecutorService, DefaultSocketFactory, SSLSocketFactory)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
 <dd>&nbsp;</dd>
@@ -6696,9 +6720,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideProtocol(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocol(LiveScoutStatusFactory, ScheduledExecutorService, Gateway, SdkLogger)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, EntityBase&gt;, LiveScoutUserRequestManagerImpl, LiveScoutClientAliveProducer, SdkLogger)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, LiveScoutEntityBase&gt;, LiveScoutUserRequestManagerImpl, LiveScoutClientAliveProducer, SdkLogger)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModule</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, EntityBase&gt;, LiveScoutUserRequestManagerImpl, LiveScoutClientAliveProducer, SdkLogger)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager(Protocol&lt;IncomingMessage, OutgoingMessage&gt;, EntityMapper&lt;IncomingMessage, LiveScoutEntityBase&gt;, LiveScoutUserRequestManagerImpl, LiveScoutClientAliveProducer, SdkLogger)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/di/GeneralInjectionModule.html#provideScheduledExecutorService(java.util.concurrent.ThreadFactory)">provideScheduledExecutorService(ThreadFactory)</a></span> - Method in class com.sportradar.livedata.sdk.di.<a href="com/sportradar/livedata/sdk/di/GeneralInjectionModule.html" title="class in com.sportradar.livedata.sdk.di">GeneralInjectionModule</a></dt>
 <dd>&nbsp;</dd>
@@ -7276,7 +7300,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Caries server time</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html#%3Cinit%3E(java.util.Map)">ServerTimeEntity(Map&lt;String, String&gt;)</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ServerTimeEntity</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html#%3Cinit%3E()">ServerTimeEntity()</a></span> - Constructor for class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ServerTimeEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#SERVICE_TAKEN">SERVICE_TAKEN</a></span> - com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
 <dd>
@@ -7301,8 +7325,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setAlertLogLevel(ch.qos.logback.classic.Level)">setAlertLogLevel(Level)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setAttributes(java.util.List)">setAttributes(List&lt;AttributeEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setClientAliveMsgTimeout(org.joda.time.Duration)">setClientAliveMsgTimeout(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setClientInteractionLogLevel(ch.qos.logback.classic.Level)">setClientInteractionLogLevel(Level)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
@@ -7323,8 +7345,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Sets the listeners on the injected dependencies</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html#setDescription(java.lang.String)">setDescription(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchRoleEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setDisconnectOnParseError(boolean)">setDisconnectOnParseError(boolean)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/CommonSettingsBuilder.html#setDispatcherQueueSize(int)">setDispatcherQueueSize(int)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/CommonSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">CommonSettingsBuilder</a></dt>
@@ -7348,14 +7368,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Set the feed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setHostName(java.lang.String)">setHostName(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html#setId(int)">setId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ManagerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html#setId(int)">setId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchRoleEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setId(int)">setId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html#setId(int)">setId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">TeamOfficialEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setInitialReconnectWait(org.joda.time.Duration)">setInitialReconnectWait(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
@@ -7413,7 +7425,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Sets the <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessorListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessorListener</code></a> instance used to observe the current <a href="com/sportradar/livedata/sdk/feed/common/MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a></div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#setListener(com.sportradar.livedata.sdk.feed.common.ProtocolManagerListener)">setListener(ProtocolManagerListener&lt;EntityBase&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
+<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html#setListener(com.sportradar.livedata.sdk.feed.common.ProtocolManagerListener)">setListener(ProtocolManagerListener&lt;LiveScoutEntityBase&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.common.<a href="com/sportradar/livedata/sdk/feed/common/LiveFeedProtocolManager.html" title="class in com.sportradar.livedata.sdk.feed.common">LiveFeedProtocolManager</a></dt>
 <dd>
 <div class="block">Sets the listener used to observe the current <a href="com/sportradar/livedata/sdk/feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>ProtocolManager</code></a>.</div>
 </dd>
@@ -7459,27 +7471,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setLogPath(java.lang.String)">setLogPath(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#setManagers(java.util.List)">setManagers(List&lt;ManagerEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/SdkLoggerCfg.MatchingFilter.html#setMarker(java.lang.String)">setMarker(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/SdkLoggerCfg.MatchingFilter.html" title="class in com.sportradar.livedata.sdk.common.classes">SdkLoggerCfg.MatchingFilter</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html#setMatches(java.util.List)">setMatches(List&lt;MatchUpdateEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveScoutSettingsBuilder.html#setMatchExpireCheckInterval(org.joda.time.Duration)">setMatchExpireCheckInterval(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveScoutSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveScoutSettingsBuilder.html#setMatchExpireMaxAge(org.joda.time.Duration)">setMatchExpireMaxAge(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveScoutSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#setMatchId(long)">setMatchId(long)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html#setMatchId(long)">setMatchId(long)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchDataEntity</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html#setMatchId(long)">setMatchId(long)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchStopEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#setMatchId(java.lang.Long)">setMatchId(Long)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setMatchRequestLimiters(java.util.List)">setMatchRequestLimiters(List&lt;LimiterData&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setMatchRoles(java.util.List)">setMatchRoles(List&lt;MatchRoleEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html#setMatchTime(java.lang.String)">setMatchTime(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchDataEntity</a></dt>
 <dd>&nbsp;</dd>
@@ -7493,37 +7493,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setMaxRequestTimeAllowance(org.joda.time.Duration)">setMaxRequestTimeAllowance(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#setMessage(java.lang.String)">setMessage(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html#setName(java.lang.String)">setName(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ManagerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setName(java.lang.String)">setName(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html#setName(java.lang.String)">setName(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">TeamOfficialEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setNickname(java.lang.String)">setNickname(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/rategate/ContinuationQueueElement.html#setNum(int)">setNum(int)</a></span> - Method in class com.sportradar.livedata.sdk.common.rategate.<a href="com/sportradar/livedata/sdk/common/rategate/ContinuationQueueElement.html" title="class in com.sportradar.livedata.sdk.common.rategate">ContinuationQueueElement</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setOldLogCleanupInterval(org.joda.time.Duration)">setOldLogCleanupInterval(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setOldLogMaxAge(org.joda.time.Duration)">setOldLogMaxAge(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setOrder(java.lang.Integer)">setOrder(Integer)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setPassword(java.lang.String)">setPassword(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/JmxSettingsBuilder.html#setPasswordFile(java.lang.String)">setPasswordFile(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/JmxSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">JmxSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#setPlayers(java.util.List)">setPlayers(List&lt;PlayerEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setPort(java.lang.Integer)">setPort(Integer)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setPosition(java.lang.String)">setPosition(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/PropertiesParser.html#setProperty(java.lang.String,java.lang.String)">setProperty(String, String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/PropertiesParser.html" title="class in com.sportradar.livedata.sdk.common.settings">PropertiesParser</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html#setReason(java.lang.String)">setReason(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchStopEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setReceiveBufferSize(java.lang.Integer)">setReceiveBufferSize(Integer)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
@@ -7533,8 +7515,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setRequestLimiters(java.util.List)">setRequestLimiters(List&lt;LimiterData&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#setResult(com.sportradar.livedata.sdk.feed.livescout.enums.BookMatchResult)">setResult(BookMatchResult)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/rategate/ContinuationQueueElement.html#setRunnable(java.lang.Runnable)">setRunnable(Runnable)</a></span> - Method in class com.sportradar.livedata.sdk.common.rategate.<a href="com/sportradar/livedata/sdk/common/rategate/ContinuationQueueElement.html" title="class in com.sportradar.livedata.sdk.common.rategate">ContinuationQueueElement</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/InningScoreEntity.html#setScore(com.sportradar.livedata.sdk.feed.common.entities.HomeAway)">setScore(HomeAway&lt;Integer&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/InningScoreEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">InningScoreEntity</a></dt>
@@ -7542,18 +7522,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setServerAliveMsgTimeout(org.joda.time.Duration)">setServerAliveMsgTimeout(Duration)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html#setServerTime(org.joda.time.DateTime)">setServerTime(DateTime)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ServerTimeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ServerTimeEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setShirtNumber(int)">setShirtNumber(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setSubstitute(java.lang.Boolean)">setSubstitute(Boolean)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html#setTeam(com.sportradar.livedata.sdk.feed.common.enums.Team)">setTeam(Team)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ManagerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#setTeam(com.sportradar.livedata.sdk.feed.common.enums.Team)">setTeam(Team)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html#setTeam(com.sportradar.livedata.sdk.feed.common.enums.Team)">setTeam(Team)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">TeamOfficialEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#setTeamOfficials(java.util.List)">setTeamOfficials(List&lt;TeamOfficialEntity&gt;)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setTest(java.lang.Boolean)">setTest(Boolean)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
@@ -7565,17 +7533,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html#setTrafficLogLevel(ch.qos.logback.classic.Level)">setTrafficLogLevel(Level)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LoggerSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LoggerSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#setType(java.lang.String)">setType(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#setTypeId(int)">setTypeId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setUsername(java.lang.String)">setUsername(String)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html#setUseSSL(java.lang.Boolean)">setUseSSL(Boolean)</a></span> - Method in class com.sportradar.livedata.sdk.common.settings.<a href="com/sportradar/livedata/sdk/common/settings/LiveFeedSettingsBuilder.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveFeedSettingsBuilder</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#setValue(java.lang.String)">setValue(String)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#setValueId(int)">setValueId(int)</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html#SEVEN_METER_THROW">SEVEN_METER_THROW</a></span> - com.sportradar.livedata.sdk.feed.livescout.enums.<a href="com/sportradar/livedata/sdk/feed/livescout/enums/EventType.html" title="enum in com.sportradar.livedata.sdk.feed.livescout.enums">EventType</a></dt>
 <dd>
@@ -8202,54 +8162,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns international string, if available.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/AttributeEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">AttributeEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ConnectionTestEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ConnectionTestEntity</a></dt>
 <dd>
 <div class="block">Returns a string that represents the current object.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/InningScoreEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/InningScoreEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">InningScoreEntity</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/LineupsEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LineupsEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/ManagerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">ManagerEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchBookingEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchBookingEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchDataEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchDataEntity</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchListUpdateEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchListUpdateEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchRoleEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchRoleEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/MatchStopEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">MatchStopEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/PlayerEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PlayerEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html#toString()">toString()</a></span> - Method in class com.sportradar.livedata.sdk.feed.livescout.entities.<a href="com/sportradar/livedata/sdk/feed/livescout/entities/TeamOfficialEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">TeamOfficialEntity</a></dt>
-<dd>
-<div class="block">Returns a string that represents the current object.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/sportradar/livedata/sdk/common/classes/CommonUtils.html#toTimestamp(org.joda.time.DateTime)">toTimestamp(DateTime)</a></span> - Static method in class com.sportradar.livedata.sdk.common.classes.<a href="com/sportradar/livedata/sdk/common/classes/CommonUtils.html" title="class in com.sportradar.livedata.sdk.common.classes">CommonUtils</a></dt>
 <dd>
 <div class="block">Transforms DateTime timestamp to UNIX timestamp</div>

@@ -117,7 +117,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a></div>
-<h2 title="Class MessagePipeline" class="title">Class MessagePipeline&lt;T extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</h2>
+<h2 title="Class MessagePipeline" class="title">Class MessagePipeline&lt;T extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -136,7 +136,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">MessagePipeline&lt;T extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</span>
+<pre>public class <span class="typeNameLabel">MessagePipeline&lt;T extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</span>
 extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
 implements <a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;T&gt;</pre>
 <div class="block">A message - processing pipeline which consists of multiple <a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> instances.
@@ -202,7 +202,7 @@ implements <a href="MessageProcessor.html" title="interface in com.sportradar.li
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#processMessage(T)">processMessage</a></span>&#8203;(<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a>&nbsp;message)</code></th>
 <td class="colLast">
-<div class="block">Processes the passed message derived from <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -274,13 +274,13 @@ public&nbsp;MessagePipeline&#8203;(int&nbsp;index,
  order of message processors when there are multiple message processors processing the same message.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="MessageProcessor.html#getIndex()">getIndex</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</code></dd>
+<dd><code><a href="MessageProcessor.html#getIndex()">getIndex</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the index of the current <a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a> implementation</dd>
 </dl>
 </li>
 </ul>
-<a id="processMessage(com.sportradar.livedata.sdk.feed.common.entities.EntityBase)">
+<a id="processMessage(com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase)">
 <!--   -->
 </a><a id="processMessage(T)">
 <!--   -->
@@ -289,12 +289,12 @@ public&nbsp;MessagePipeline&#8203;(int&nbsp;index,
 <li class="blockList">
 <h4>processMessage</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;processMessage&#8203;(<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a>&nbsp;message)</pre>
-<div class="block">Processes the passed message derived from <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="MessageProcessor.html#processMessage(T)">processMessage</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</code></dd>
+<dd><code><a href="MessageProcessor.html#processMessage(T)">processMessage</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>message</code> - The <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> derived class representing the message.</dd>
+<dd><code>message</code> - The <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> derived class representing the message.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - the <code>message</code> is a null reference.</dd>
 </dl>
@@ -310,7 +310,7 @@ public&nbsp;MessagePipeline&#8203;(int&nbsp;index,
 <div class="block">Sets the <a href="MessageProcessorListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessorListener</code></a> instance used to observe the current <a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessor</code></a></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="MessageProcessor.html#setListener(com.sportradar.livedata.sdk.feed.common.MessageProcessorListener)">setListener</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</code></dd>
+<dd><code><a href="MessageProcessor.html#setListener(com.sportradar.livedata.sdk.feed.common.MessageProcessorListener)">setListener</a></code>&nbsp;in interface&nbsp;<code><a href="MessageProcessor.html" title="interface in com.sportradar.livedata.sdk.feed.common">MessageProcessor</a>&lt;<a href="MessagePipeline.html" title="type parameter in MessagePipeline">T</a> extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - The <a href="MessageProcessorListener.html" title="interface in com.sportradar.livedata.sdk.feed.common"><code>MessageProcessorListener</code></a> used to observe the processor.</dd>
 </dl>

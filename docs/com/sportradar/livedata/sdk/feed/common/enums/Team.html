@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":10,"i2":9,"i3":9};
+var data = {"i0":9,"i1":10,"i2":10,"i3":9,"i4":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -208,20 +208,27 @@ implements <a href="../../../common/interfaces/EntityEnum.html" title="interface
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>[]</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue()">getValue</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns value of concrete enum member.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;value)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isValueEqual(java.lang.Object)">isValueEqual</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static <a href="Team.html" title="enum in com.sportradar.livedata.sdk.feed.common.enums">Team</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#valueOf(java.lang.String)">valueOf</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;name)</code></th>
 <td class="colLast">
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static <a href="Team.html" title="enum in com.sportradar.livedata.sdk.feed.common.enums">Team</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#values()">values</a></span>()</code></th>
 <td class="colLast">
@@ -361,21 +368,38 @@ not permitted.)</div>
 </dl>
 </li>
 </ul>
-<a id="isLiteralValueEqual(java.lang.String)">
+<a id="isValueEqual(java.lang.Object)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
-<h4>isLiteralValueEqual</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isLiteralValueEqual&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;value)</pre>
+<h4>isValueEqual</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isValueEqual&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</pre>
 <div class="block">Determines whether the passed <code>value</code> is equal to value associated with the current <a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../common/interfaces/EntityEnum.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual</a></code>&nbsp;in interface&nbsp;<code><a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
+<dd><code><a href="../../../common/interfaces/EntityEnum.html#isValueEqual(java.lang.Object)">isValueEqual</a></code>&nbsp;in interface&nbsp;<code><a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - a value to be compared to the value associated with the current <a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>value true if passed <code>value</code> is equal to the value associated with the current <a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces"><code>EntityEnum</code></a>. Otherwise false.</dd>
+</dl>
+</li>
+</ul>
+<a id="getValue()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getValue</h4>
+<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>[]&nbsp;getValue()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../common/interfaces/EntityEnum.html#getValue()">EntityEnum</a></code></span></div>
+<div class="block">Returns value of concrete enum member.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../common/interfaces/EntityEnum.html#getValue()">getValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>enum value</dd>
 </dl>
 </li>
 </ul>

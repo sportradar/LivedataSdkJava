@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":9,"i2":10,"i3":9,"i4":9};
+var data = {"i0":9,"i1":10,"i2":10,"i3":9,"i4":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -191,22 +191,22 @@ implements <a href="../../common/interfaces/EntityEnum.html" title="interface in
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLiteralValue()">getLiteralValue</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the string value associated with the current instance.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto">LiveScoutLoginType</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTypeFromLiteralValue(java.lang.String)">getTypeFromLiteralValue</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Constructs and return <a href="LiveScoutLoginType.html" title="enum in com.sportradar.livedata.sdk.proto.dto"><code>LiveScoutLoginType</code></a> enum member from passed <code>value</code></div>
 </td>
 </tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue()">getValue</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Gets the string value associated with the current instance.</div>
+</td>
+</tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;value)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isValueEqual(java.lang.Object)">isValueEqual</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Determines whether the string value associated with the current instance is equal to passed <code>value</code></div>
 </td>
@@ -327,31 +327,33 @@ not permitted.)</div>
 </dl>
 </li>
 </ul>
-<a id="getLiteralValue()">
+<a id="getValue()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getLiteralValue</h4>
-<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;getLiteralValue()</pre>
+<h4>getValue</h4>
+<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;getValue()</pre>
 <div class="block">Gets the string value associated with the current instance.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../common/interfaces/EntityEnum.html#getValue()">getValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the string value associated with the current instance.</dd>
 </dl>
 </li>
 </ul>
-<a id="isLiteralValueEqual(java.lang.String)">
+<a id="isValueEqual(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isLiteralValueEqual</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isLiteralValueEqual&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;value)</pre>
+<h4>isValueEqual</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isValueEqual&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</pre>
 <div class="block">Determines whether the string value associated with the current instance is equal to passed <code>value</code></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../common/interfaces/EntityEnum.html#isLiteralValueEqual(java.lang.String)">isLiteralValueEqual</a></code>&nbsp;in interface&nbsp;<code><a href="../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
+<dd><code><a href="../../common/interfaces/EntityEnum.html#isValueEqual(java.lang.Object)">isValueEqual</a></code>&nbsp;in interface&nbsp;<code><a href="../../common/interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - The value to be compared.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>

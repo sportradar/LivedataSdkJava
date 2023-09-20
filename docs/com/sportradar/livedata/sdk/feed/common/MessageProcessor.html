@@ -117,7 +117,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a></div>
-<h2 title="Interface MessageProcessor" class="title">Interface MessageProcessor&lt;T extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</h2>
+<h2 title="Interface MessageProcessor" class="title">Interface MessageProcessor&lt;T extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -132,7 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="../livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a></code>, <code><a href="MessagePipeline.html" title="class in com.sportradar.livedata.sdk.feed.common">MessagePipeline</a></code></dd>
 </dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">MessageProcessor&lt;T extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">MessageProcessor&lt;T extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</span></pre>
 <div class="block">Represents a class capable of receiving an input message, processing it and passing in forward for further processing</div>
 </li>
 </ul>
@@ -166,7 +166,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#processMessage(T)">processMessage</a></span>&#8203;(<a href="MessageProcessor.html" title="type parameter in MessageProcessor">T</a>&nbsp;message)</code></th>
 <td class="colLast">
-<div class="block">Processes the passed message derived from <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -208,7 +208,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 </li>
 </ul>
-<a id="processMessage(com.sportradar.livedata.sdk.feed.common.entities.EntityBase)">
+<a id="processMessage(com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase)">
 <!--   -->
 </a><a id="processMessage(T)">
 <!--   -->
@@ -217,10 +217,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>processMessage</h4>
 <pre class="methodSignature">void&nbsp;processMessage&#8203;(<a href="MessageProcessor.html" title="type parameter in MessageProcessor">T</a>&nbsp;message)</pre>
-<div class="block">Processes the passed message derived from <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> class.</div>
+<div class="block">Processes the passed message derived from <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> class.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>message</code> - The <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> derived class representing the message.</dd>
+<dd><code>message</code> - The <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> derived class representing the message.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - the <code>message</code> is a null reference.</dd>
 </dl>

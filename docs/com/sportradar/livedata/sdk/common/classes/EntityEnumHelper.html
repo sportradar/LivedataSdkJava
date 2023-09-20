@@ -181,9 +181,9 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static &lt;T&gt;&nbsp;T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValueFromLiteralValue(com.sportradar.livedata.sdk.common.interfaces.EntityEnum%5B%5D,java.lang.String)">getValueFromLiteralValue</a></span>&#8203;(<a href="../interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a>[]&nbsp;members,
-                        <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;literalValue)</code></th>
+<td class="colFirst"><code>static &lt;T extends <a href="../interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a>&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEnumMemberFromValue(T%5B%5D,java.lang.Object)">getEnumMemberFromValue</a></span>&#8203;(T[]&nbsp;members,
+                      <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</code></th>
 <td class="colLast">
 <div class="block">Gets the enumeration member associated with the passed <code>literalValue</code></div>
 </td>
@@ -231,21 +231,23 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getValueFromLiteralValue(com.sportradar.livedata.sdk.common.interfaces.EntityEnum[],java.lang.String)">
+<a id="getEnumMemberFromValue(com.sportradar.livedata.sdk.common.interfaces.EntityEnum[],java.lang.Object)">
+<!--   -->
+</a><a id="getEnumMemberFromValue(T[],java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getValueFromLiteralValue</h4>
-<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;T&nbsp;getValueFromLiteralValue&#8203;(<a href="../interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a>[]&nbsp;members,
-                                             <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;literalValue)</pre>
+<h4>getEnumMemberFromValue</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="../interfaces/EntityEnum.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">EntityEnum</a>&gt;&nbsp;T&nbsp;getEnumMemberFromValue&#8203;(T[]&nbsp;members,
+                                                              <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;value)</pre>
 <div class="block">Gets the enumeration member associated with the passed <code>literalValue</code></div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The type of the enum</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>members</code> - The members of the target enumeration.</dd>
-<dd><code>literalValue</code> - The literal value to be compared with the literal value associated with the members</dd>
+<dd><code>value</code> - The value to be compared with the value associated with the members</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member of the target enum or a null reference.</dd>
 </dl>

@@ -117,7 +117,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.sportradar.livedata.sdk.feed.common</a></div>
-<h2 title="Interface EntityMapper" class="title">Interface EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</h2>
+<h2 title="Interface EntityMapper" class="title">Interface EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -128,7 +128,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="../livescout/classes/LiveScoutEntityMapper.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutEntityMapper</a></code></dd>
 </dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a>&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">EntityMapper&lt;I extends <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;E extends <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;</span></pre>
 <div class="block">Represents a class used to map protocol layer messages to feed layer entities</div>
 </li>
 </ul>
@@ -189,7 +189,7 @@ throws <a href="exceptions/InvalidEntityException.html" title="class in com.spor
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>message</code> - The <a href="../../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto"><code>IncomingMessage</code></a> derived message to be mapped to the feed layer entity.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The <a href="entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities"><code>EntityBase</code></a> derived class representing the passed message.</dd>
+<dd>The <a href="../livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities"><code>LiveScoutEntityBase</code></a> derived class representing the passed message.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - the <code>message</code> is a null reference</dd>
 <dd><code><a href="exceptions/InvalidEntityException.html" title="class in com.sportradar.livedata.sdk.feed.common.exceptions">InvalidEntityException</a></code> - wrong entity provided</dd>

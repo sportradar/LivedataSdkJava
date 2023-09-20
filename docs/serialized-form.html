@@ -222,26 +222,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </li>
 </ul>
 </li>
-<li class="blockList"><a id="com.sportradar.livedata.sdk.feed.common.entities.EntityBase">
-<!--   -->
-</a>
-<h3>Class <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">com.sportradar.livedata.sdk.feed.common.entities.EntityBase</a> extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a> implements Serializable</h3>
-<dl class="nameValue">
-<dt>serialVersionUID:</dt>
-<dd>6131509065819903558L</dd>
-</dl>
-<ul class="blockList">
-<li class="blockList">
-<h3>Serialized Fields</h3>
-<ul class="blockList">
-<li class="blockListLast">
-<h4>additionalData</h4>
-<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html?is-external=true" title="class or interface in java.util" class="externalLink">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>,&#8203;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt; additionalData</pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="blockList"><a id="com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier">
 <!--   -->
 </a>
@@ -738,7 +718,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList"><a id="com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase">
 <!--   -->
 </a>
-<h3>Class <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase</a> extends <a href="com/sportradar/livedata/sdk/feed/common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a> implements Serializable</h3>
+<h3>Class <a href="com/sportradar/livedata/sdk/feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase</a> extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a> implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>435631727372382886L</dd>
@@ -897,8 +877,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a> numberOfSets</pre>
 </li>
 <li class="blockList">
-<h4>page</h4>
-<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a> page</pre>
+<h4>pagination</h4>
+<pre><a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">PaginationEntity</a> pagination</pre>
 </li>
 <li class="blockList">
 <h4>region</h4>
@@ -987,14 +967,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>timeRunning</h4>
 <pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang" class="externalLink">Boolean</a> timeRunning</pre>
-</li>
-<li class="blockList">
-<h4>totalPages</h4>
-<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a> totalPages</pre>
-</li>
-<li class="blockList">
-<h4>uuid</h4>
-<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a> uuid</pre>
 </li>
 <li class="blockList">
 <h4>var</h4>
@@ -1328,6 +1300,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>score</h4>
 <pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html?is-external=true" title="class or interface in java.util" class="externalLink">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>,&#8203;<a href="com/sportradar/livedata/sdk/feed/common/entities/HomeAway.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">HomeAway</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Double.html?is-external=true" title="class or interface in java.lang" class="externalLink">Double</a>&gt;&gt; score</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 </li>
 <li class="blockList">
 <h4>scores</h4>
@@ -1416,6 +1389,34 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockListLast">
 <h4>team2</h4>
 <pre>int team2</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a id="com.sportradar.livedata.sdk.feed.livescout.entities.PaginationEntity">
+<!--   -->
+</a>
+<h3>Class <a href="com/sportradar/livedata/sdk/feed/livescout/entities/PaginationEntity.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">com.sportradar.livedata.sdk.feed.livescout.entities.PaginationEntity</a> extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>2985143044035983853L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>page</h4>
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a> page</pre>
+</li>
+<li class="blockList">
+<h4>totalPages</h4>
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html?is-external=true" title="class or interface in java.lang" class="externalLink">Integer</a> totalPages</pre>
+</li>
+<li class="blockListLast">
+<h4>uuid</h4>
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a> uuid</pre>
 </li>
 </ul>
 </li>

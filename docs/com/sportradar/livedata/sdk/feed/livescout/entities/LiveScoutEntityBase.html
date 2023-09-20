@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../../../../../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -92,7 +98,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -118,12 +124,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">com.sportradar.livedata.sdk.feed.common.entities.EntityBase</a></li>
-<li>
-<ul class="inheritance">
 <li>com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -140,7 +141,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public abstract class <span class="typeNameLabel">LiveScoutEntityBase</span>
-extends <a href="../../common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></pre>
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
+implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Serializable.html?is-external=true" title="class or interface in java.io" class="externalLink">Serializable</a></pre>
 <div class="block">Serves as a base class that all LiveScout should be derived from.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -162,20 +164,11 @@ extends <a href="../../common/entities/EntityBase.html" title="class in com.spor
 <table class="memberSummary">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Modifier</th>
-<th class="colSecond" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected </code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">LiveScoutEntityBase</a></span>()</code></th>
-<td class="colLast">
-<div class="block">For Serializable</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.Map)">LiveScoutEntityBase</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html?is-external=true" title="class or interface in java.util" class="externalLink">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>,&#8203;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;&nbsp;otherAttributes)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -189,13 +182,21 @@ extends <a href="../../common/entities/EntityBase.html" title="class in com.spor
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.com.sportradar.livedata.sdk.feed.common.entities.EntityBase">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;com.sportradar.livedata.sdk.feed.common.entities.<a href="../../common/entities/EntityBase.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EntityBase</a></h3>
-<code><a href="../../common/entities/EntityBase.html#getAdditionalData()">getAdditionalData</a>, <a href="../../common/entities/EntityBase.html#getEventId()">getEventId</a></code></li>
-</ul>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../common/entities/EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEventId()">getEventId</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the unique event id.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -222,20 +223,34 @@ extends <a href="../../common/entities/EntityBase.html" title="class in com.spor
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>LiveScoutEntityBase</h4>
-<pre>protected&nbsp;LiveScoutEntityBase()</pre>
-<div class="block">For Serializable</div>
+<pre>public&nbsp;LiveScoutEntityBase()</pre>
 </li>
 </ul>
-<a id="&lt;init&gt;(java.util.Map)">
+</li>
+</ul>
+</section>
+<!-- ============ METHOD DETAIL ========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="getEventId()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>LiveScoutEntityBase</h4>
-<pre>protected&nbsp;LiveScoutEntityBase&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html?is-external=true" title="class or interface in java.util" class="externalLink">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>,&#8203;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;&nbsp;otherAttributes)</pre>
+<h4>getEventId</h4>
+<pre class="methodSignature">public&nbsp;<a href="../../common/entities/EventIdentifier.html" title="class in com.sportradar.livedata.sdk.feed.common.entities">EventIdentifier</a>&nbsp;getEventId()</pre>
+<div class="block">Get the unique event id.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- an event id or null</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -299,7 +314,7 @@ extends <a href="../../common/entities/EntityBase.html" title="class in com.spor
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">
