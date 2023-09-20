@@ -15,436 +15,440 @@ import java.util.*;
 
 public class LiveScoutProtoEntityFactory {
     //------Match------>>>>>>-------------------------------------------------------------------------------------------
-    static Match buildMatch(final int dataSet) {
+    static Match buildMatch(final int valueBase) {
         Match match = new Match();
-        insertMatchHeaderData(match, dataSet);
-        addIncomingMessages(match, dataSet);
+        insertMatchHeaderData(match, valueBase);
+        addIncomingMessages(match, valueBase);
         return match;
     }
 
-    static MatchUpdateEntity buildMatchUpdateEntity(final int dataSet) {
+    static MatchUpdateEntity buildMatchUpdateEntity(final int valueBase) {
         MatchUpdateEntity result = new MatchUpdateEntity(new HashMap<>());
 
-        applyIncomingMessage(result, dataSet);
-        result.setMatchHeader(buildMatchHeaderEntity(dataSet));
+        applyIncomingMessage(result, valueBase);
+        result.setMatchHeader(buildMatchHeaderEntity(valueBase));
         return result;
     }
     //------MatchHeader------>>>>>>--------------------------------------------------------------<<<<<<------Match------
-    static Match insertMatchHeaderData(Match result, final int dataSet) {
-        result.setT2Name("match" + dataSet + " t2 name");
-        result.setT2Id(dataSet);
-        result.setT1Name("match" + dataSet + " t1 name");
-        result.setT1Id(2 + dataSet);
-        result.setStart(3L + dataSet);
-        result.setMatchid(4L + dataSet);
-        result.setFeedtype(getEnumValue(ScoutFeedType.values(), dataSet).name().toLowerCase());
-        result.setExtrainfo(5 + dataSet);
-        result.setDistance(6 + dataSet);
-        result.setBetstatus(getEnumValue(MatchBetStatus.values(), dataSet).name());
-        result.setFirstserve(getEnumValue(Team.values(), dataSet).name().toLowerCase());
-        result.setFirstservetiebreak(getEnumValue(Team.values(), dataSet).name().toLowerCase());
-        result.setNumberofsets(7 + dataSet);
-        result.setTiebreaklastset(dataSet % 2 == 1 ? 8 : 0);//false == 0, true non 0
-        result.setConnectionstatus(dataSet % 2 == 0 ? 9 : 0);
-        result.setDc(dataSet % 2 == 1 ? 10 : 0);
-        result.setCoveredfrom(getEnumValue(Coverage.values(), dataSet).name().toLowerCase());
-        result.setTimerunning(dataSet % 2 == 0 ? 11 : 0);
-        result.setWonjumpball(getEnumValue(Team.values(), dataSet).name().toLowerCase());
-        result.setBooked(dataSet % 2 == 1 ? 12 : 0);
-        result.setSt1Id(13 + dataSet);
-        result.setSt2Id(14 + dataSet);
-        result.setMatchtime((15 + dataSet) + ":" + dataSet);
-        result.setSex(getEnumValue(Sex.values(), dataSet).ordinal());
-        result.setActive((byte) (dataSet % 2 == 0 ? 16 : 0));
+    static Match insertMatchHeaderData(Match result, final int valueBase) {
+        result.setT2Name("match" + valueBase + " t2 name");
+        result.setT2Id(valueBase);
+        result.setT1Name("match" + valueBase + " t1 name");
+        result.setT1Id(2 + valueBase);
+        result.setStart(3L + valueBase);
+        result.setMatchid(4L + valueBase);
+        result.setFeedtype(getEnumValue(ScoutFeedType.values(), valueBase).name().toLowerCase());
+        result.setExtrainfo(5 + valueBase);
+        result.setDistance(6 + valueBase);
+        result.setBetstatus(getEnumValue(MatchBetStatus.values(), valueBase).name());
+        result.setFirstserve(getEnumValue(Team.values(), valueBase).name().toLowerCase());
+        result.setFirstservetiebreak(getEnumValue(Team.values(), valueBase).name().toLowerCase());
+        result.setNumberofsets(7 + valueBase);
+        result.setTiebreaklastset(valueBase % 2 == 1 ? 8 : 0);//false == 0, true non 0
+        result.setConnectionstatus(valueBase % 2 == 0 ? 9 : 0);
+        result.setDc(valueBase % 2 == 1 ? 10 : 0);
+        result.setCoveredfrom(getEnumValue(Coverage.values(), valueBase).name().toLowerCase());
+        result.setTimerunning(valueBase % 2 == 0 ? 11 : 0);
+        result.setWonjumpball(getEnumValue(Team.values(), valueBase).name().toLowerCase());
+        result.setBooked(valueBase % 2 == 1 ? 12 : 0);
+        result.setSt1Id(13 + valueBase);
+        result.setSt2Id(14 + valueBase);
+        result.setMatchtime((15 + valueBase) + ":" + valueBase);
+        result.setSex(getEnumValue(Sex.values(), valueBase).ordinal());
+        result.setActive((byte) (valueBase % 2 == 0 ? 16 : 0));
+        result.setUuid("23rfc1" + valueBase);
+        result.setPage(valueBase);
+        result.setTotalpages(19 + valueBase);
         return result;
     }
 
-    static MatchHeaderEntity buildMatchHeaderEntity(final int dataSet) {
+    static MatchHeaderEntity buildMatchHeaderEntity(final int valueBase) {
         MatchHeaderEntity result = new MatchHeaderEntity();
 
-        result.setTeam2(new IdNameTuple(dataSet, "match" + dataSet + " t2 name"));
-        result.setTeam1(new IdNameTuple(2L + dataSet, "match" + dataSet + " t1 name"));
-        result.setStart(new DateTime(3L + dataSet, DateTimeZone.getDefault()));
-        result.setMatchId(4L + dataSet);
-        result.setFeedType(getEnumValue(ScoutFeedType.values(), dataSet));
-        result.setExtraInfo(5 + dataSet);
-        result.setDistance(6 + dataSet);
-        result.setBetStatus(getEnumValue(MatchBetStatus.values(), dataSet));
-        result.setFirstServe(getEnumValue(Team.values(), dataSet));
-        result.setFirstServeTieBreak(getEnumValue(Team.values(), dataSet));
-        result.setNumberOfSets(7 + dataSet);
-        result.setTieBreakLastSet(dataSet % 2 == 1);
-        result.setConnectionStatus(dataSet % 2 == 0);
-        result.setDeepCoverage(dataSet % 2 == 1);
-        result.setCoveredFrom(getEnumValue(Coverage.values(), dataSet));
-        result.setTimeRunning(dataSet % 2 == 0);
-        result.setWonJumpBall(getEnumValue(Team.values(), dataSet));
-        result.setBooked(dataSet % 2 == 1);
-        result.setSt1Id(13 + dataSet);
-        result.setSt2Id(14 + dataSet);
-        result.setMatchTime((15 + dataSet) + ":" + dataSet);
-        result.setSex(getEnumValue(Sex.values(), dataSet));
-        result.setActive(dataSet % 2 == 0);
+        result.setTeam2(new IdNameTuple(valueBase, "match" + valueBase + " t2 name"));
+        result.setTeam1(new IdNameTuple(2L + valueBase, "match" + valueBase + " t1 name"));
+        result.setStart(new DateTime(3L + valueBase, DateTimeZone.getDefault()));
+        result.setMatchId(4L + valueBase);
+        result.setFeedType(getEnumValue(ScoutFeedType.values(), valueBase));
+        result.setExtraInfo(5 + valueBase);
+        result.setDistance(6 + valueBase);
+        result.setBetStatus(getEnumValue(MatchBetStatus.values(), valueBase));
+        result.setFirstServe(getEnumValue(Team.values(), valueBase));
+        result.setFirstServeTieBreak(getEnumValue(Team.values(), valueBase));
+        result.setNumberOfSets(7 + valueBase);
+        result.setTieBreakLastSet(valueBase % 2 == 1);
+        result.setConnectionStatus(valueBase % 2 == 0);
+        result.setDeepCoverage(valueBase % 2 == 1);
+        result.setCoveredFrom(getEnumValue(Coverage.values(), valueBase));
+        result.setTimeRunning(valueBase % 2 == 0);
+        result.setWonJumpBall(getEnumValue(Team.values(), valueBase));
+        result.setBooked(valueBase % 2 == 1);
+        result.setSt1Id(13 + valueBase);
+        result.setSt2Id(14 + valueBase);
+        result.setMatchTime((15 + valueBase) + ":" + valueBase);
+        result.setSex(getEnumValue(Sex.values(), valueBase));
+        result.setActive(valueBase % 2 == 0);
+        result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
 
         return result;
     }
     //------IncomingMessage------>>>>>>----------------------------------------------------<<<<<<------MatchHeader------
-    static Match addIncomingMessages(Match match, final int dataSet) {
+    static Match addIncomingMessages(Match match, final int valueBase) {
         List<IncomingMessage> msgs = match.getStatusOrScoreOrRed();
     //Attacks
         Attacks attacks = new Attacks();
-        attacks.setT1(11 + dataSet);
-        attacks.setT2(22 + dataSet);
+        attacks.setT1(11 + valueBase);
+        attacks.setT2(22 + valueBase);
         msgs.add(attacks);
     //Black
         Black black = new Black();
-        black.setT1(333 + dataSet);
-        black.setT2(444 + dataSet);
+        black.setT1(333 + valueBase);
+        black.setT2(444 + valueBase);
         msgs.add(black);
     //Category
         Category category = new Category();
-        category.setId(33 + dataSet);
-        category.setName("category"+ dataSet + " name");
+        category.setId(33 + valueBase);
+        category.setName("category"+ valueBase + " name");
         msgs.add(category);
     //Corners
         Corners corners = new Corners();
-        corners.setT1(44 + dataSet);
-        corners.setT2(55 + dataSet);
+        corners.setT1(44 + valueBase);
+        corners.setT2(55 + valueBase);
         msgs.add(corners);
     //Dangerousattacks
         Dangerousattacks dangerousattacks = new Dangerousattacks();
-        dangerousattacks.setT1(66 + dataSet);
-        dangerousattacks.setT2(77 + dataSet);
+        dangerousattacks.setT1(66 + valueBase);
+        dangerousattacks.setT2(77 + valueBase);
         msgs.add(dangerousattacks);
     //Directfoulsperiod
         Directfoulsperiod directfoulsperiod = new Directfoulsperiod();
-        directfoulsperiod.setT1(88 + dataSet);
-        directfoulsperiod.setT2(99 + dataSet);
+        directfoulsperiod.setT1(88 + valueBase);
+        directfoulsperiod.setT2(99 + valueBase);
         msgs.add(directfoulsperiod);
     //Directfreekicks
         Directfreekicks directfreekicks = new Directfreekicks();
-        directfreekicks.setT1(111 + dataSet);
-        directfreekicks.setT2(222 + dataSet);
+        directfreekicks.setT1(111 + valueBase);
+        directfreekicks.setT2(222 + valueBase);
         msgs.add(directfreekicks);
     //Court
         Court court = new Court();
-        court.setId(555 + dataSet);
-        court.setName("court" + dataSet + " name");
-        court.setCourtseq(7 + dataSet);
+        court.setId(555 + valueBase);
+        court.setName("court" + valueBase + " name");
+        court.setCourtseq(7 + valueBase);
         msgs.add(court);
     //Events
-        msgs.add(buildEvents(dataSet));
+        msgs.add(buildEvents(valueBase));
     //Firstkickoffteam1Sthalf
         Firstkickoffteam1Sthalf k1st = new Firstkickoffteam1Sthalf();
-        k1st.setTeam(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
+        k1st.setTeam(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
         msgs.add(k1st);
     //Kickoffteam
         Kickoffteam kickoffteam = new Kickoffteam();
-        kickoffteam.setTeam(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
+        kickoffteam.setTeam(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
         msgs.add(kickoffteam);
     //Freekicks
         Freekicks freekicks = new Freekicks();
-        freekicks.setT1(666 + dataSet);
-        freekicks.setT2(777 + dataSet);
+        freekicks.setT1(666 + valueBase);
+        freekicks.setT2(777 + valueBase);
         msgs.add(freekicks);
     //Freethrows
         Freethrows freethrows = new Freethrows();
-        freethrows.setT1(888 + dataSet);
-        freethrows.setT2(999 + dataSet);
+        freethrows.setT1(888 + valueBase);
+        freethrows.setT2(999 + valueBase);
         msgs.add(freethrows);
     //Goalkeepersaves
         Goalkeepersaves goalkeepersaves = new Goalkeepersaves();
-        goalkeepersaves.setT1(1111 + dataSet);
-        goalkeepersaves.setT2(2222 + dataSet);
+        goalkeepersaves.setT1(1111 + valueBase);
+        goalkeepersaves.setT2(2222 + valueBase);
         msgs.add(goalkeepersaves);
     //Goalkicks
         Goalkicks goalkicks = new Goalkicks();
-        goalkicks.setT1(3333 + dataSet);
-        goalkicks.setT2(4444 + dataSet);
+        goalkicks.setT1(3333 + valueBase);
+        goalkicks.setT2(4444 + valueBase);
         msgs.add(goalkicks);
     //Injuries
         Injuries injuries = new Injuries();
-        injuries.setT1(5555 + dataSet);
-        injuries.setT2(6666 + dataSet);
+        injuries.setT1(5555 + valueBase);
+        injuries.setT2(6666 + valueBase);
         msgs.add(injuries);
     //Offsides
         Offsides offsides = new Offsides();
-        offsides.setT1(8888 + dataSet);
-        offsides.setT2(9999 + dataSet);
+        offsides.setT1(8888 + valueBase);
+        offsides.setT2(9999 + valueBase);
         msgs.add(offsides);
     //Penalties
         Penalties penalties = new Penalties();
-        penalties.setT1(11111 + dataSet);
-        penalties.setT2(22222 + dataSet);
+        penalties.setT1(11111 + valueBase);
+        penalties.setT2(22222 + valueBase);
         msgs.add(penalties);
     //Pitchconditions
         Pitchconditions pitchconditions = new Pitchconditions();
-        pitchconditions.setId(33333 + dataSet);
-        pitchconditions.setName(getEnumValue(PitchConditions.values(), dataSet).getValue());
+        pitchconditions.setId(33333 + valueBase);
+        pitchconditions.setName(getEnumValue(PitchConditions.values(), valueBase).getValue());
         msgs.add(pitchconditions);
     //Possession
         Possession possession = new Possession();
-        possession.setT1(44444 + dataSet);
-        possession.setT2(55555 + dataSet);
-        possession.setTeam(getEnumValue(Team.values(), dataSet).getValue()[1]);
+        possession.setT1(44444 + valueBase);
+        possession.setT2(55555 + valueBase);
+        possession.setTeam(getEnumValue(Team.values(), valueBase).getValue()[1]);
         msgs.add(possession);
     //Red
         Red red = new Red();
-        red.setT1(66666 + dataSet);
-        red.setT2(77777 + dataSet);
+        red.setT1(66666 + valueBase);
+        red.setT2(77777 + valueBase);
         msgs.add(red);
     //Score
-        Score score = buildScore(dataSet);
+        Score score = buildScore(valueBase);
         if(score != null) {
-            msgs.add(buildScore(dataSet));
+            msgs.add(buildScore(valueBase));
         }
     //Serve
         Serve serve = new Serve();
-        serve.setTeam(getEnumValue(Team.values(), dataSet).getValue()[1]);
+        serve.setTeam(getEnumValue(Team.values(), valueBase).getValue()[1]);
         msgs.add(serve);
     //Shotsblocked
         Shotsblocked shotsblocked = new Shotsblocked();
-        shotsblocked.setT1(111111 + dataSet);
-        shotsblocked.setT2(222222 + dataSet);
+        shotsblocked.setT1(111111 + valueBase);
+        shotsblocked.setT2(222222 + valueBase);
         msgs.add(shotsblocked);
     //Shotsofftarget
         Shotsofftarget shotsofftarget = new Shotsofftarget();
-        shotsofftarget.setT1(333333 + dataSet);
-        shotsofftarget.setT2(444444 + dataSet);
+        shotsofftarget.setT1(333333 + valueBase);
+        shotsofftarget.setT2(444444 + valueBase);
         msgs.add(shotsofftarget);
     //Shotsontarget
         Shotsontarget shotsontarget = new Shotsontarget();
-        shotsontarget.setT1(555555 + dataSet);
-        shotsontarget.setT2(666666 + dataSet);
+        shotsontarget.setT1(555555 + valueBase);
+        shotsontarget.setT2(666666 + valueBase);
         msgs.add(shotsontarget);
     //Sport
         Sport sport = new Sport();
-        sport.setId(777777 + dataSet);
-        sport.setName("sport" + dataSet + " name");
+        sport.setId(777777 + valueBase);
+        sport.setName("sport" + valueBase + " name");
         msgs.add(sport);
     //Status
         Status status = new Status();
-        status.setId(888888 + dataSet);
-        status.setName(getEnumValue(ScoutMatchStatus.values(), dataSet).name());
-        status.setStart(999999 + dataSet);
+        status.setId(888888 + valueBase);
+        status.setName(getEnumValue(ScoutMatchStatus.values(), valueBase).name());
+        status.setStart(999999 + valueBase);
         msgs.add(status);
     //Surfacetype
         Surfacetype surfacetype = new Surfacetype();
-        surfacetype.setId(1111111 + dataSet);
-        surfacetype.setName(getEnumValue(SurfaceType.values(), dataSet).getValue());
+        surfacetype.setId(1111111 + valueBase);
+        surfacetype.setName(getEnumValue(SurfaceType.values(), valueBase).getValue());
         msgs.add(surfacetype);
     //Suspensions
         Suspensions suspensions = new Suspensions();
-        suspensions.setT1(2222222 + dataSet);
-        suspensions.setT2(3333333 + dataSet);
-        suspensions.setPowerplay(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
+        suspensions.setT1(2222222 + valueBase);
+        suspensions.setT2(3333333 + valueBase);
+        suspensions.setPowerplay(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
         msgs.add(suspensions);
     //Throwins
         Throwins throwins = new Throwins();
-        throwins.setT1(4444444 + dataSet);
-        throwins.setT2(5555555 + dataSet);
+        throwins.setT1(4444444 + valueBase);
+        throwins.setT2(5555555 + valueBase);
         msgs.add(throwins);
     //Tiebreak
         Tiebreak tiebreak = new Tiebreak();
-        tiebreak.setValue(dataSet % 3 == 0 ? 33 : 0);
+        tiebreak.setValue(valueBase % 3 == 0 ? 33 : 0);
         msgs.add(tiebreak);
     //Tournament
         Tournament tournament = new Tournament();
-        tournament.setId(7777777 + dataSet);
-        tournament.setName("tournament"+ dataSet + " name");
+        tournament.setId(7777777 + valueBase);
+        tournament.setName("tournament"+ valueBase + " name");
         msgs.add(tournament);
     //Weatherconditions
         Weatherconditions weatherconditions = new Weatherconditions();
-        weatherconditions.setId(8888888 + dataSet);
-        weatherconditions.setName(getEnumValue(WeatherConditions.values(), dataSet).getValue());
+        weatherconditions.setId(8888888 + valueBase);
+        weatherconditions.setName(getEnumValue(WeatherConditions.values(), valueBase).getValue());
         msgs.add(weatherconditions);
     //Yellow
         Yellow yellow = new Yellow();
-        yellow.setT1(9999999 + dataSet);
-        yellow.setT2(11111111 + dataSet);
+        yellow.setT1(9999999 + valueBase);
+        yellow.setT2(11111111 + valueBase);
         msgs.add(yellow);
 
         return match;
     }
 
-    static void applyIncomingMessage(final MatchUpdateEntity result, final int dataSet) {
+    static void applyIncomingMessage(final MatchUpdateEntity result, final int valueBase) {
     //Attacks
-        result.setAttacks(new HomeAway<>(11 + dataSet, 22 + dataSet));
+        result.setAttacks(new HomeAway<>(11 + valueBase, 22 + valueBase));
     //Black
-        result.setBlackCards(new HomeAway<>(333 + dataSet, 444 + dataSet));
+        result.setBlackCards(new HomeAway<>(333 + valueBase, 444 + valueBase));
     //Category
-        result.setCategory(new IdNameTuple(33 + dataSet, "category"+ dataSet + " name"));
+        result.setCategory(new IdNameTuple(33 + valueBase, "category"+ valueBase + " name"));
     //Corners
-        result.setCorners(new HomeAway<>(44 + dataSet, 55 + dataSet));
+        result.setCorners(new HomeAway<>(44 + valueBase, 55 + valueBase));
     //Dangerousattacks
-        result.setDangerousAttacks(new HomeAway<>(66 + dataSet, 77 + dataSet));
+        result.setDangerousAttacks(new HomeAway<>(66 + valueBase, 77 + valueBase));
     //Directfoulsperiod
-        result.setDirectFoulsPeriod(new HomeAway<>(88 + dataSet, 99 + dataSet));
+        result.setDirectFoulsPeriod(new HomeAway<>(88 + valueBase, 99 + valueBase));
     //Directfreekicks
-        result.setDirectFreeKicks(new HomeAway<>(111 + dataSet, 222 + dataSet));
+        result.setDirectFreeKicks(new HomeAway<>(111 + valueBase, 222 + valueBase));
     //Court
         CourtEntity court = new CourtEntity();
-        court.setCourtSeq(7 + dataSet);
-        court.setId(555 + dataSet);
-        court.setName("court" + dataSet + " name");
+        court.setCourtSeq(7 + valueBase);
+        court.setId(555 + valueBase);
+        court.setName("court" + valueBase + " name");
         result.setCourt(court);
     //Events
-        result.setEvents(buildScoutEventEntities(dataSet));
+        result.setEvents(buildScoutEventEntities(valueBase));
     //Firstkickoffteam1Sthalf
-        result.setKickoffTeamFirstHalf(getSpecificTeam(dataSet));
+        result.setKickoffTeamFirstHalf(getSpecificTeam(valueBase));
     //Kickoffteam
-        result.setKickoffTeam(getSpecificTeam(dataSet));
+        result.setKickoffTeam(getSpecificTeam(valueBase));
     //Freekicks
-        result.setFreeKicks(new HomeAway<>(666 + dataSet, 777 + dataSet));
+        result.setFreeKicks(new HomeAway<>(666 + valueBase, 777 + valueBase));
     //Freethrows
-        result.setFreeThrows(new HomeAway<>(888 + dataSet, 999 + dataSet));
+        result.setFreeThrows(new HomeAway<>(888 + valueBase, 999 + valueBase));
     //Goalkeepersaves
-        result.setGoalkeeperSaves(new HomeAway<>(1111 + dataSet, 2222 + dataSet));
+        result.setGoalkeeperSaves(new HomeAway<>(1111 + valueBase, 2222 + valueBase));
     //Goalkicks
-        result.setGoalKicks(new HomeAway<>(3333 + dataSet, 4444 + dataSet));
+        result.setGoalKicks(new HomeAway<>(3333 + valueBase, 4444 + valueBase));
     //Injuries
-        result.setInjuries(new HomeAway<>(5555 + dataSet, 6666 + dataSet));
+        result.setInjuries(new HomeAway<>(5555 + valueBase, 6666 + valueBase));
     //Offsides
-        result.setOffsides(new HomeAway<>(8888 + dataSet, 9999 + dataSet));
+        result.setOffsides(new HomeAway<>(8888 + valueBase, 9999 + valueBase));
     //Penalties
-        result.setPenalties(new HomeAway<>(11111 + dataSet, 22222 + dataSet));
+        result.setPenalties(new HomeAway<>(11111 + valueBase, 22222 + valueBase));
     //Pitchconditions
-        result.setPitchConditions(getEnumValue(PitchConditions.values(), dataSet));
+        result.setPitchConditions(getEnumValue(PitchConditions.values(), valueBase));
     //Possession
-        result.setPossessionTeam(getEnumValue(Team.values(), dataSet));
-        result.setPossession(new HomeAway<>(44444 + dataSet, 55555 + dataSet));
+        result.setPossessionTeam(getEnumValue(Team.values(), valueBase));
+        result.setPossession(new HomeAway<>(44444 + valueBase, 55555 + valueBase));
     //Red
-        result.setRedCards(new HomeAway<>(66666 + dataSet, 77777 + dataSet));
+        result.setRedCards(new HomeAway<>(66666 + valueBase, 77777 + valueBase));
     //Score
-        addScore(result, dataSet);
+        addScore(result, valueBase);
     //Serve
-        result.setServe(getEnumValue(Team.values(), dataSet));
+        result.setServe(getEnumValue(Team.values(), valueBase));
     //Shotsblocked
-        result.setShotsBlocked(new HomeAway<>(111111 + dataSet, 222222 + dataSet));
+        result.setShotsBlocked(new HomeAway<>(111111 + valueBase, 222222 + valueBase));
     //Shotsofftarget
-        result.setShotsOffTarget(new HomeAway<>(333333 + dataSet, 444444 + dataSet));
+        result.setShotsOffTarget(new HomeAway<>(333333 + valueBase, 444444 + valueBase));
     //Shotsontarget
-        result.setShotsOnTarget(new HomeAway<>(555555 + dataSet, 666666 + dataSet));
+        result.setShotsOnTarget(new HomeAway<>(555555 + valueBase, 666666 + valueBase));
     //Sport
-        result.setSport(new IdNameTuple(777777 + dataSet, "sport" + dataSet + " name"));
+        result.setSport(new IdNameTuple(777777 + valueBase, "sport" + valueBase + " name"));
     //Status
-        result.setMatchStatus(getEnumValue(ScoutMatchStatus.values(), dataSet));
-        result.setMatchStatusId(888888 + dataSet);
-        result.setMatchStatusStart(new DateTime(999999 + dataSet, DateTimeZone.UTC));
+        result.setMatchStatus(getEnumValue(ScoutMatchStatus.values(), valueBase));
+        result.setMatchStatusId(888888 + valueBase);
+        result.setMatchStatusStart(new DateTime(999999 + valueBase, DateTimeZone.UTC));
     //Surfacetype
-        result.setSurfaceType(getEnumValue(SurfaceType.values(), dataSet));
+        result.setSurfaceType(getEnumValue(SurfaceType.values(), valueBase));
     //Suspensions
-        result.setSuspensions(new SuspensionsEntity(2222222 + dataSet, 3333333 + dataSet,
-                getEnumValue(Team.values(), dataSet)));
+        result.setSuspensions(new SuspensionsEntity(2222222 + valueBase, 3333333 + valueBase,
+                getEnumValue(Team.values(), valueBase)));
     //Throwins
-        result.setThrowins(new HomeAway<>(4444444 + dataSet, 5555555 + dataSet));
+        result.setThrowins(new HomeAway<>(4444444 + valueBase, 5555555 + valueBase));
     //Tiebreak
-        result.setTieBreak(dataSet % 3 == 0);
+        result.setTieBreak(valueBase % 3 == 0);
     //Tournament
-        result.setTournament(new IdNameTuple(7777777 + dataSet, "tournament" + dataSet + " name"));
+        result.setTournament(new IdNameTuple(7777777 + valueBase, "tournament" + valueBase + " name"));
     //Weatherconditions
-        result.setWeatherConditions(getEnumValue(WeatherConditions.values(), dataSet));
+        result.setWeatherConditions(getEnumValue(WeatherConditions.values(), valueBase));
     //Yellow
-        result.setYellowCards(new HomeAway<>(9999999 + dataSet, 11111111 + dataSet));
+        result.setYellowCards(new HomeAway<>(9999999 + valueBase, 11111111 + valueBase));
     }
     //------IncomingMessage------Event------>>>>>>-------------------------------------<<<<<<------IncomingMessage------
-    static Events buildEvents(final int dataSet) {
+    static Events buildEvents(final int valueBase) {
         Events events = new Events();
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             events.getEvent().add(buildEvent(i));
         }
         return events;
     }
 
-    static List<ScoutEventEntity> buildScoutEventEntities(final int dataSet) {
+    static List<ScoutEventEntity> buildScoutEventEntities(final int valueBase) {
         List<ScoutEventEntity> eventsList = new ArrayList<>();
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             eventsList.add(buildScoutEventEntity(i));
         }
         return eventsList;
     }
 
-    static Event buildEvent(final int dataSet) {
+    static Event buildEvent(final int valueBase) {
         Event event = new Event();
-        event.setId(11337799 + dataSet);
-        event.setAutomatic(101102 + dataSet);
-        event.setBreakscore("event" + dataSet + " breakscore");
-        event.setExtrainfo(74123L + dataSet);
-        event.setExtrainfodarts(dataSet % 2 == 0 ? "extra info darts" : null);
-        event.setExtrainfosnooker(dataSet % 3 == 0 ? "extra info snooker" : null);
-        event.setFramenumber(14523 + dataSet);
-        event.setFramescore((5 + dataSet) + ":" + dataSet);
-        event.setGamenumber(11554422 + dataSet);
-        event.setGamescore((15 + dataSet) + ":" + dataSet);
-        event.setInfo("event" + dataSet + " info");
-        event.setLegscore((3 + dataSet) + ":" + dataSet);
-        event.setMatchscore((13 + dataSet) + ":" + dataSet);
-        event.setMtime((876 + dataSet) + ":" + dataSet);
-        event.setPeriodnumber(77440 + dataSet);
-        event.setPlayer1(1 + dataSet);
-        event.setPlayer2(2 + dataSet);
-        event.setPosx(3 + dataSet);
-        event.setPosy(4 + dataSet);
-        event.setRemainingtimeperiod((123 + dataSet) + ":" + dataSet);
-        event.setSetnumber(5 + dataSet);
-        event.setSetscore((13 + dataSet) + ":" + dataSet);
-        event.setInninghalf(getEnumValue(Inning.values(), dataSet).getValue());
-        event.setServer(getEnumValue(Team.values(), dataSet).getValue()[0]);
-        event.setSide(getEnumValue(Team.values(), dataSet).getValue()[1]);
-        event.setType(1126);// + dataSet);
-        event.setHappenedat(12234556L + dataSet);
-        event.setFirstbaseloaded((byte)(dataSet % 3 == 0 ? 9 : 0));
-        event.setSecondbaseloaded((byte)(dataSet % 2 == 0 ? 7 : 0));
-        event.setThirdbaseloaded((byte)(dataSet % 4 == 0 ? 8 : 0));
-        event.setConversiontype((byte)(1 - dataSet));
-        event.setTouchdowntype((byte)(7 + dataSet));
-        event.setStime(17 + dataSet);
+        event.setId(11337799 + valueBase);
+        event.setAutomatic(101102 + valueBase);
+        event.setBreakscore("event" + valueBase + " breakscore");
+        event.setExtrainfo(74123L + valueBase);
+        event.setExtrainfodarts(valueBase % 2 == 0 ? "extra info darts" : null);
+        event.setExtrainfosnooker(valueBase % 3 == 0 ? "extra info snooker" : null);
+        event.setFramenumber(14523 + valueBase);
+        event.setFramescore((5 + valueBase) + ":" + valueBase);
+        event.setGamenumber(11554422 + valueBase);
+        event.setGamescore((15 + valueBase) + ":" + valueBase);
+        event.setInfo("event" + valueBase + " info");
+        event.setLegscore((3 + valueBase) + ":" + valueBase);
+        event.setMatchscore((13 + valueBase) + ":" + valueBase);
+        event.setMtime((876 + valueBase) + ":" + valueBase);
+        event.setPeriodnumber(77440 + valueBase);
+        event.setPlayer1(1 + valueBase);
+        event.setPlayer2(2 + valueBase);
+        event.setPosx(3 + valueBase);
+        event.setPosy(4 + valueBase);
+        event.setRemainingtimeperiod((123 + valueBase) + ":" + valueBase);
+        event.setSetnumber(5 + valueBase);
+        event.setSetscore((13 + valueBase) + ":" + valueBase);
+        event.setInninghalf(getEnumValue(Inning.values(), valueBase).getValue());
+        event.setServer(getEnumValue(Team.values(), valueBase).getValue()[0]);
+        event.setSide(getEnumValue(Team.values(), valueBase).getValue()[1]);
+        event.setType(1126);// + valueBase);
+        event.setHappenedat(12234556L + valueBase);
+        event.setFirstbaseloaded((byte)(valueBase % 3 == 0 ? 9 : 0));
+        event.setSecondbaseloaded((byte)(valueBase % 2 == 0 ? 7 : 0));
+        event.setThirdbaseloaded((byte)(valueBase % 4 == 0 ? 8 : 0));
+        event.setConversiontype((byte)(1 - valueBase));
+        event.setTouchdowntype((byte)(7 + valueBase));
+        event.setStime(17 + valueBase);
         return event;
     }
 
-    static ScoutEventEntity buildScoutEventEntity(final int dataSet) {
+    static ScoutEventEntity buildScoutEventEntity(final int valueBase) {
         ScoutEventEntity result = new ScoutEventEntity();
 
-        result.setId(11337799 + dataSet);
-        result.setAutomatic(101102 + dataSet);
-        result.setBreakScore("event" + dataSet + " breakscore");
-        result.setExtraInfo(74123L + dataSet);
-        result.setExtraInfoDarts(dataSet % 2 == 0 ? "extra info darts" : null);
-        result.setExtraInfoSnooker(dataSet % 3 == 0 ? "extra info snooker" : null);
-        result.setFrameNumber(14523 + dataSet);
-        result.setFrameScore((5 + dataSet) + ":" + dataSet);
-        result.setGameNumber(11554422 + dataSet);
-        result.setGameScore((15 + dataSet) + ":" + dataSet);
-        result.setInfo("event" + dataSet + " info");
-        result.setLegScore((3 + dataSet) + ":" + dataSet);
-        result.setMatchScore((13 + dataSet) + ":" + dataSet);
-        result.setMatchTime((876 + dataSet) + ":" + dataSet);
-        result.setPeriodNumber(77440 + dataSet);
-        result.setPlayer1Id(1 + dataSet);
-        result.setPlayer2Id(2 + dataSet);
-        result.setPosX(3 + dataSet);
-        result.setPosY(4 + dataSet);
-        result.setRemainingTimeInPeriod((123 + dataSet) + ":" + dataSet);
-        result.setSetNumber(5 + dataSet);
-        result.setSetScore((13 + dataSet) + ":" + dataSet);
-        result.setInningHalf(getEnumValue(Inning.values(), dataSet));
-        result.setServer(getEnumValue(Team.values(), dataSet));
-        result.setSide(getEnumValue(Team.values(), dataSet));
+        result.setId(11337799 + valueBase);
+        result.setAutomatic(101102 + valueBase);
+        result.setBreakScore("event" + valueBase + " breakscore");
+        result.setExtraInfo(74123L + valueBase);
+        result.setExtraInfoDarts(valueBase % 2 == 0 ? "extra info darts" : null);
+        result.setExtraInfoSnooker(valueBase % 3 == 0 ? "extra info snooker" : null);
+        result.setFrameNumber(14523 + valueBase);
+        result.setFrameScore((5 + valueBase) + ":" + valueBase);
+        result.setGameNumber(11554422 + valueBase);
+        result.setGameScore((15 + valueBase) + ":" + valueBase);
+        result.setInfo("event" + valueBase + " info");
+        result.setLegScore((3 + valueBase) + ":" + valueBase);
+        result.setMatchScore((13 + valueBase) + ":" + valueBase);
+        result.setMatchTime((876 + valueBase) + ":" + valueBase);
+        result.setPeriodNumber(77440 + valueBase);
+        result.setPlayer1Id(1 + valueBase);
+        result.setPlayer2Id(2 + valueBase);
+        result.setPosX(3 + valueBase);
+        result.setPosY(4 + valueBase);
+        result.setRemainingTimeInPeriod((123 + valueBase) + ":" + valueBase);
+        result.setSetNumber(5 + valueBase);
+        result.setSetScore((13 + valueBase) + ":" + valueBase);
+        result.setInningHalf(getEnumValue(Inning.values(), valueBase));
+        result.setServer(getEnumValue(Team.values(), valueBase));
+        result.setSide(getEnumValue(Team.values(), valueBase));
         result.setType(EventType.ATTACK);//TODO that enum should be removed
-        result.setTypeId(1126);// + dataSet);
-        result.setHappenedAt(new DateTime(12234556L + dataSet, DateTimeZone.UTC));
-        result.setFirstBaseLoaded(dataSet % 3 == 0);
-        result.setSecondBaseLoaded(dataSet % 2 == 0);
-        result.setThirdBaseLoaded(dataSet % 4 == 0);
-        result.setConversionType(1 - dataSet);
-        result.setTouchdownType(7 + dataSet);
-        result.setServerTime(new DateTime(17 + dataSet, DateTimeZone.UTC));
+        result.setTypeId(1126);// + valueBase);
+        result.setHappenedAt(new DateTime(12234556L + valueBase, DateTimeZone.UTC));
+        result.setFirstBaseLoaded(valueBase % 3 == 0);
+        result.setSecondBaseLoaded(valueBase % 2 == 0);
+        result.setThirdBaseLoaded(valueBase % 4 == 0);
+        result.setConversionType(1 - valueBase);
+        result.setTouchdownType(7 + valueBase);
+        result.setServerTime(new DateTime(17 + valueBase, DateTimeZone.UTC));
         return result;
     }
     //------IncomingMessage------others------>>>>>>-------------------------<<<<<<------IncomingMessage------Event------
-    static Score buildScore(final int dataSet) {
+    static Score buildScore(final int valueBase) {
         Score score = null;
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             Score newScore = new Score();
             newScore.setT1(80000 + i);
             newScore.setT2(90000 + i);
@@ -455,12 +459,12 @@ public class LiveScoutProtoEntityFactory {
         return score;
     }
 
-    static void addScore(final MatchUpdateEntity result, final int dataSet) {
+    static void addScore(final MatchUpdateEntity result, final int valueBase) {
         result.setScore(result.getScore() != null ? result.getScore() : new HashMap<>());
         result.setScores(result.getScores() != null ? result.getScores() : new ArrayList<>());
 
         ScoreEntity score = null;
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             score = new ScoreEntity("score" + i + " type", 80000 + i, 90000 + i, score);
         }
         if(score != null) {
@@ -470,87 +474,87 @@ public class LiveScoutProtoEntityFactory {
         }
     }
 
-    static Lineups buildLineups(final int dataSet) {
+    static Lineups buildLineups(final int valueBase) {
         Lineups result = new Lineups();
-        result.setMatchid(741852 + dataSet);
-        for(int i = 0; i < dataSet; i++) {
+        result.setMatchid(741852 + valueBase);
+        for(int i = 0; i < valueBase; i++) {
             result.getPlayer().add(buildPlayer(i));
         }
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             result.getManager().add(buildManager(i));
         }
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             result.getTeamofficial().add(buildTeamOfficial(i));
         }
         return result;
     }
 
-    static LineupsEntity buildLineupsEntity(final int dataSet) {
+    static LineupsEntity buildLineupsEntity(final int valueBase) {
         LineupsEntity result = new LineupsEntity(new HashMap<>());
-        result.setMatchId(741852 + dataSet);
-        for(int i = 0; i < dataSet; i++) {
+        result.setMatchId(741852 + valueBase);
+        for(int i = 0; i < valueBase; i++) {
             result.getPlayers().add(buildPlayerEntity(i));
         }
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             result.getManagers().add(buildManagerEntity(i));
         }
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             result.getTeamOfficials().add(buildTeamOfficialEntity(i));
         }
         return result;
     }
 
-    static Manager buildManager(final int dataSet) {
+    static Manager buildManager(final int valueBase) {
         Manager result = new Manager();
-        result.setId(452 + dataSet);
-        result.setName("manager" + dataSet + " name");
-        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
+        result.setId(452 + valueBase);
+        result.setName("manager" + valueBase + " name");
+        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
         return result;
     }
 
-    static ManagerEntity buildManagerEntity(final int dataSet) {
+    static ManagerEntity buildManagerEntity(final int valueBase) {
         ManagerEntity result = new ManagerEntity();
-        result.setId(452 + dataSet);
-        result.setName("manager" + dataSet + " name");
-        result.setTeam(getEnumValue(Team.values(), dataSet));
+        result.setId(452 + valueBase);
+        result.setName("manager" + valueBase + " name");
+        result.setTeam(getEnumValue(Team.values(), valueBase));
         return result;
     }
 
-    static Teamofficial buildTeamOfficial(final int dataSet) {
+    static Teamofficial buildTeamOfficial(final int valueBase) {
         Teamofficial result = new Teamofficial();
-        result.setId(878 + dataSet);
-        result.setName("teamofficial" + dataSet + " name");
-        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
+        result.setId(878 + valueBase);
+        result.setName("teamofficial" + valueBase + " name");
+        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
         return result;
     }
 
-    static TeamOfficialEntity buildTeamOfficialEntity(final int dataSet) {
+    static TeamOfficialEntity buildTeamOfficialEntity(final int valueBase) {
         TeamOfficialEntity result = new TeamOfficialEntity();
-        result.setId(878 + dataSet);
-        result.setName("teamofficial" + dataSet + " name");
-        result.setTeam(getEnumValue(Team.values(), dataSet));
+        result.setId(878 + valueBase);
+        result.setName("teamofficial" + valueBase + " name");
+        result.setTeam(getEnumValue(Team.values(), valueBase));
         return result;
     }
 
-    static Player buildPlayer(final int dataSet) {
+    static Player buildPlayer(final int valueBase) {
         Player result = new Player();
-        result.setId(113355 + dataSet);
-        result.setName("player" + dataSet + " name");
-        result.setShirtnumber(123654789 + dataSet);
-        result.setSubstitute(dataSet % 2 == 0);
-        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), dataSet).getValue()[0]));
-        result.setPosition((12 + dataSet) + ":" + (7 + dataSet));
-        result.setNickname("player" + dataSet + " nickname");
-        result.setOrder(dataSet);
+        result.setId(113355 + valueBase);
+        result.setName("player" + valueBase + " name");
+        result.setShirtnumber(123654789 + valueBase);
+        result.setSubstitute(valueBase % 2 == 0);
+        result.setTeam(Integer.parseInt(getEnumValue(Team.values(), valueBase).getValue()[0]));
+        result.setPosition((12 + valueBase) + ":" + (7 + valueBase));
+        result.setNickname("player" + valueBase + " nickname");
+        result.setOrder(valueBase);
 
         Attributes attributes = new Attributes();
-        for(int i = 0; i < dataSet; i++) {
-            attributes.getAttribute().add(buildAttribute(dataSet));
+        for(int i = 0; i < valueBase; i++) {
+            attributes.getAttribute().add(buildAttribute(valueBase));
         }
         result.setAttributes(attributes);
 
         Matchroles matchroles = new Matchroles();
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             Matchrole matchrole = new Matchrole();
             matchrole.setId(17 + i);
             matchrole.setDescription("matchrole" + i + " description");
@@ -561,25 +565,25 @@ public class LiveScoutProtoEntityFactory {
         return result;
     }
 
-    static PlayerEntity buildPlayerEntity(final int dataSet) {
+    static PlayerEntity buildPlayerEntity(final int valueBase) {
         PlayerEntity result = new PlayerEntity(new HashMap<>());
-        result.setId(113355 + dataSet);
-        result.setName("player" + dataSet + " name");
-        result.setShirtNumber(123654789 + dataSet);
-        result.setSubstitute(dataSet % 2 == 0);
-        result.setTeam(getEnumValue(Team.values(), dataSet));
-        result.setPosition((12 + dataSet) + ":" + (7 + dataSet));
-        result.setNickname("player" + dataSet + " nickname");
-        result.setOrder(dataSet);
+        result.setId(113355 + valueBase);
+        result.setName("player" + valueBase + " name");
+        result.setShirtNumber(123654789 + valueBase);
+        result.setSubstitute(valueBase % 2 == 0);
+        result.setTeam(getEnumValue(Team.values(), valueBase));
+        result.setPosition((12 + valueBase) + ":" + (7 + valueBase));
+        result.setNickname("player" + valueBase + " nickname");
+        result.setOrder(valueBase);
 
         List<AttributeEntity> attributes = new ArrayList<>();
-        for(int i = 0; i < dataSet; i++) {
-            attributes.add(buildAttributeEntity(dataSet));
+        for(int i = 0; i < valueBase; i++) {
+            attributes.add(buildAttributeEntity(valueBase));
         }
         result.setAttributes(attributes);
 
         List<MatchRoleEntity> matchRoles = new ArrayList<>();
-        for(int i = 0; i < dataSet; i++) {
+        for(int i = 0; i < valueBase; i++) {
             MatchRoleEntity matchRole = new MatchRoleEntity();
             matchRole.setId(17 + i);
             matchRole.setDescription("matchrole" + i + " description");
@@ -590,61 +594,61 @@ public class LiveScoutProtoEntityFactory {
         return result;
     }
 
-    static Attribute buildAttribute(final int dataSet) {
+    static Attribute buildAttribute(final int valueBase) {
         Attribute result = new Attribute();
-        result.setType("Attribute" + dataSet + " type");
-        result.setTypeid(166+ dataSet);
-        result.setValue("Attribute" + dataSet + " value");
-        result.setValueid(661 + dataSet);
+        result.setType("Attribute" + valueBase + " type");
+        result.setTypeid(166+ valueBase);
+        result.setValue("Attribute" + valueBase + " value");
+        result.setValueid(661 + valueBase);
         return result;
     }
 
-    static AttributeEntity buildAttributeEntity(final int dataSet) {
+    static AttributeEntity buildAttributeEntity(final int valueBase) {
         AttributeEntity result = new AttributeEntity();
-        result.setType("Attribute" + dataSet + " type");
-        result.setTypeId(166+ dataSet);
-        result.setValue("Attribute" + dataSet + " value");
-        result.setValueId(661 + dataSet);
+        result.setType("Attribute" + valueBase + " type");
+        result.setTypeId(166+ valueBase);
+        result.setValue("Attribute" + valueBase + " value");
+        result.setValueId(661 + valueBase);
         return result;
     }
 
-    static Matchstop buildMatchstop(final int dataSet) {
+    static Matchstop buildMatchstop(final int valueBase) {
         Matchstop matchstop = new Matchstop();
-        matchstop.setMatchid(112211 + dataSet);
-        matchstop.setReason("matchstop"+ dataSet + " reason");
+        matchstop.setMatchid(112211 + valueBase);
+        matchstop.setReason("matchstop"+ valueBase + " reason");
         return matchstop;
     }
 
-    static MatchStopEntity buildMatchStopEntity(final int dataSet) {
+    static MatchStopEntity buildMatchStopEntity(final int valueBase) {
         MatchStopEntity result = new MatchStopEntity(new HashMap<>());
-        result.setMatchId(112211 + dataSet);
-        result.setReason("matchstop"+ dataSet + " reason");
+        result.setMatchId(112211 + valueBase);
+        result.setReason("matchstop"+ valueBase + " reason");
         return result;
     }
 
-    static Bookmatch buildBookmatch(final int dataSet) {
+    static Bookmatch buildBookmatch(final int valueBase) {
         Bookmatch bookmatch = new Bookmatch();
-        bookmatch.setMatchid(54223L + dataSet);
-        bookmatch.setMessage("bookmatch" + dataSet + " message");
-        bookmatch.setResult(getEnumValue(BookMatchResult.values(), dataSet).getValue());
+        bookmatch.setMatchid(54223L + valueBase);
+        bookmatch.setMessage("bookmatch" + valueBase + " message");
+        bookmatch.setResult(getEnumValue(BookMatchResult.values(), valueBase).getValue());
         return bookmatch;
     }
 
-    static MatchBookingEntity buildMatchBookingEntity(final int dataSet) {
+    static MatchBookingEntity buildMatchBookingEntity(final int valueBase) {
         MatchBookingEntity result = new MatchBookingEntity(new HashMap<>());
-        result.setMatchId(54223L + dataSet);
-        result.setMessage("bookmatch" + dataSet + " message");
-        result.setResult(getEnumValue(BookMatchResult.values(), dataSet));
+        result.setMatchId(54223L + valueBase);
+        result.setMessage("bookmatch" + valueBase + " message");
+        result.setResult(getEnumValue(BookMatchResult.values(), valueBase));
         return result;
     }
     //------Utils------>>>>>>----------------------------------------------<<<<<<------IncomingMessage------simple------
-    private static <T extends EntityEnum> T getEnumValue(T[] members, int dataSet) {
-        int index = dataSet % members.length;
+    private static <T extends EntityEnum> T getEnumValue(T[] members, int valueBase) {
+        int index = valueBase % members.length;
         return members[index];
     }
     //hack for kickoff team fields
-    private static Team getSpecificTeam(int dataSet) {
-        Team team = getEnumValue(Team.values(), dataSet);
+    private static Team getSpecificTeam(int valueBase) {
+        Team team = getEnumValue(Team.values(), valueBase);
         return team == Team.NONE ? null : team;
     }
 }

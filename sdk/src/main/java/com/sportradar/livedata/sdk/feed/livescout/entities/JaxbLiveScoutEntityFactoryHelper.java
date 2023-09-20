@@ -204,10 +204,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayState(match.getAwaystate());
         result.setVenue(match.getVenue());
         result.setRegion(match.getRegion());
-        result.setUuid(match.getUuid());
-        result.setPage(match.getPage());
-        result.setTotalPages(match.getTotalpages());
-
+        if(!nte(match.getUuid()).isEmpty()){
+            result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
+        }
         return result;
     }
 

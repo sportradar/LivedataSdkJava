@@ -68,9 +68,7 @@ public class MatchHeaderEntity implements Serializable {
     private String awayState;
     private String venue;
     private String region;
-    private String uuid;
-    private Integer page;
-    private Integer totalPages;
+    private PaginationEntity pagination;
 
     /**
      * For Serializable
@@ -458,24 +456,11 @@ public class MatchHeaderEntity implements Serializable {
     public String getRegion() { return region; }
 
     /**
-     * Too big feed can be splitted if such configuration is activated in LiveData.
-     * Before splitting feed gets his own uuid. All partials after splitting will have same uuid.
+     * Too big feed can be split if such configuration is activated in LiveData.
      *
-     * @return uuid of splitted feed.
+     * @return {@link PaginationEntity}
      */
-    public String getUuid() { return uuid; }
-
-    /**
-     * Returns page number of current feed partial.
-     *
-     * @return page of current partial.
-     */
-    public Integer getPage() { return page; }
-
-    /**
-     * Returns total amount of pages in splitted feed.
-     *
-     * @return total pages.
-     */
-    public Integer getTotalPages() { return totalPages; }
+    public PaginationEntity getPagination() {
+        return pagination;
+    }
 }
