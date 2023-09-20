@@ -33,10 +33,6 @@ public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
     public PlayerEntity() {
     }
 
-    protected PlayerEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
-    }
-
     /**
      * List of attributes
      *

@@ -20,11 +20,11 @@ import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDisruptorDispatcher;
 import com.sportradar.livedata.sdk.feed.common.*;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutFeedImpl;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutTestManagerImpl;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.proto.LiveFeedProtocol;
 import com.sportradar.livedata.sdk.proto.common.*;
@@ -152,7 +152,7 @@ public abstract class LiveScoutInjectionModuleBase implements Module {
     }
 
     protected LiveScoutFeed provideFeed(
-            Provider<ProtocolManager<OutgoingMessage, EntityBase>> protocolManagerProvider,
+            Provider<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> protocolManagerProvider,
             Provider<LiveScoutUserRequestManagerImpl> userRequestManagerProvider,
             Provider<LiveScoutDispatcher> dispatcherProvider,
             Provider<SdkLogger> sdkLoggerProvider,
@@ -200,17 +200,17 @@ public abstract class LiveScoutInjectionModuleBase implements Module {
     }
 
     @SuppressWarnings("unchecked")
-    protected ProtocolManager<OutgoingMessage, EntityBase> provideProtocolManager(
+    protected ProtocolManager<OutgoingMessage, LiveScoutEntityBase> provideProtocolManager(
             Protocol<IncomingMessage, OutgoingMessage> protocol,
-            EntityMapper<IncomingMessage, EntityBase> entityMapper,
+            EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             LiveScoutUserRequestManagerImpl userRequestManager,
             LiveScoutClientAliveProducer aliveProducer,
             SdkLogger sdkLogger) throws JAXBException {
 
-        MessageProcessor<EntityBase>[] processors = new MessageProcessor[]{
+        MessageProcessor<LiveScoutEntityBase>[] processors = new MessageProcessor[]{
                 userRequestManager,
         };
-        MessageProcessor<EntityBase> pipeline = new MessagePipeline<>(1, processors);
+        MessageProcessor<LiveScoutEntityBase> pipeline = new MessagePipeline<>(1, processors);
 
         RequestProducer<OutgoingMessage>[] producers = new RequestProducer[]{
                 aliveProducer,

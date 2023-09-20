@@ -13,9 +13,7 @@ public class MatchDataEntity extends LiveScoutEntityBase implements Serializable
     private String matchTime;
     private String remainingTimeInPeriod;
 
-
-    protected MatchDataEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected MatchDataEntity() {
     }
 
     /**

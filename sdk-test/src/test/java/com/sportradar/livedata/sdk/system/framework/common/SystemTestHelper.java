@@ -10,8 +10,8 @@ import com.sportradar.livedata.sdk.common.settings.*;
 import com.sportradar.livedata.sdk.di.LiveScoutInjectionModule;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutFeedImpl;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
@@ -27,8 +27,8 @@ public class SystemTestHelper {
         LiveScoutInjectionModule liveScoutInjectionModule = new LiveScoutInjectionModule(liveScoutSettings);
         Modules.override(liveScoutInjectionModule).with(new LiveScoutInjectionModuleMock(liveScoutSettings, gateway));
         Injector injector = TestInjectionHelper.getInjector(liveScoutInjectionModule);
-        Key<ProtocolManager<OutgoingMessage, EntityBase>> protocolManagerKey = Key.get(
-                new TypeLiteral<ProtocolManager<OutgoingMessage, EntityBase>>() {
+        Key<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> protocolManagerKey = Key.get(
+                new TypeLiteral<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>>() {
                 });
         Key<LiveScoutUserRequestManager> userRequestManagerKey = Key.get(
                 LiveScoutUserRequestManager.class);

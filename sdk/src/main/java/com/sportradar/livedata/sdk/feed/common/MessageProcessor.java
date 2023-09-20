@@ -1,13 +1,13 @@
 package com.sportradar.livedata.sdk.feed.common;
 
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 
 /**
  * Represents a class capable of receiving an input message, processing it and passing in forward for further processing
  *
  * @param <T> specifies the type of the messages processed by the {@link MessageProcessor}
  */
-public interface MessageProcessor<T extends EntityBase> {
+public interface MessageProcessor<T extends LiveScoutEntityBase> {
 
     /**
      * Gets the index of the current {@link MessageProcessor} implementation used to determine the correct
@@ -18,9 +18,9 @@ public interface MessageProcessor<T extends EntityBase> {
     int getIndex();
 
     /**
-     * Processes the passed message derived from {@link EntityBase} class.
+     * Processes the passed message derived from {@link LiveScoutEntityBase} class.
      *
-     * @param message The {@link EntityBase} derived class representing the message.
+     * @param message The {@link LiveScoutEntityBase} derived class representing the message.
      * @throws IllegalArgumentException the {@code message} is a null reference.
      */
     void processMessage(T message);

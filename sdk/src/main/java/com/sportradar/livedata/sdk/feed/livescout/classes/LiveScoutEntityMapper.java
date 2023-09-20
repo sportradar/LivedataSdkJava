@@ -3,7 +3,6 @@ package com.sportradar.livedata.sdk.feed.livescout.classes;
 import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.common.EntityMapper;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
 import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
@@ -17,7 +16,7 @@ import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 /**
  * A {@link EntityMapper} implementation used to map protocol layer scout messages into feed layer scout entities.
  */
-public class LiveScoutEntityMapper implements EntityMapper<IncomingMessage, EntityBase> {
+public class LiveScoutEntityMapper implements EntityMapper<IncomingMessage, LiveScoutEntityBase> {
 
     /**
      * A {@link LiveScoutEntityFactory} used to build live scout entities.

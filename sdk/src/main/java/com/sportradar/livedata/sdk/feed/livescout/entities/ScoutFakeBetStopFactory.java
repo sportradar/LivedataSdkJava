@@ -29,7 +29,7 @@ public class ScoutFakeBetStopFactory {
         List<ScoutEventEntity> events = new ArrayList<>(1);
         events.add(event);
 
-        MatchUpdateEntity ret = new MatchUpdateEntity(null);
+        MatchUpdateEntity ret = new MatchUpdateEntity();
         ret.setMatchHeader(matchHeader);
         ret.setEvents(events);
 

@@ -23,8 +23,7 @@ public class MatchListEntity extends LiveScoutEntityBase implements Serializable
     private static final long serialVersionUID = 4362493347787349301L;
     private List<MatchUpdateEntity> matches;
 
-    protected MatchListEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected MatchListEntity() {
     }
 
     /**

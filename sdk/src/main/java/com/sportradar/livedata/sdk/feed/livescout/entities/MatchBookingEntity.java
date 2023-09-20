@@ -9,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Match booking reply. This reply is sent when a client books a match.
@@ -26,8 +25,7 @@ public class MatchBookingEntity extends LiveScoutEntityBase implements Serializa
     private BookMatchResult result;
 
 
-    protected MatchBookingEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected MatchBookingEntity() {
     }
 
     /**

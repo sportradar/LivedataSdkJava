@@ -1,7 +1,5 @@
 package com.sportradar.livedata.sdk.dispatch.livescout;
 
-import com.sportradar.livedata.sdk.dispatch.livescout.EntityEventHandler;
-import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcherContainer;
 import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import com.sportradar.livedata.sdk.feed.livescout.entities.*;
 import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
@@ -166,7 +164,6 @@ public class EntityEventHandlerTest {
         private final EventIdentifier eventId;
 
         TestMatchListUpdateEntity(EventIdentifier eventId) {
-            super(null);
             this.eventId = eventId;
         }
 
@@ -186,7 +183,6 @@ public class EntityEventHandlerTest {
         private final EventIdentifier eventId;
 
         TestMatchListEntity(EventIdentifier eventId) {
-            super(null);
             this.eventId = eventId;
         }
 
@@ -201,7 +197,6 @@ public class EntityEventHandlerTest {
         private final EventIdentifier eventId;
 
         TestMatchStopEntity(EventIdentifier eventId) {
-            super(null);
             this.eventId = eventId;
         }
 
@@ -217,7 +212,7 @@ public class EntityEventHandlerTest {
         private final MatchHeaderEntity matchHeader;
 
         TestMatchUpdateEntity(EventIdentifier eventId, MatchHeaderEntity matchHeader) {
-            super(null);
+            super();
             this.eventId = eventId;
             this.matchHeader = matchHeader;
         }
@@ -251,7 +246,7 @@ public class EntityEventHandlerTest {
         private final EventIdentifier eventId;
 
         TestMatchBookingEntity(EventIdentifier eventId) {
-            super(null);
+            super();
             this.eventId = eventId;
         }
 
@@ -266,7 +261,6 @@ public class EntityEventHandlerTest {
         private final EventIdentifier eventId;
 
         TestLineupsEntity(EventIdentifier eventId) {
-            super(null);
             this.eventId = eventId;
         }
 

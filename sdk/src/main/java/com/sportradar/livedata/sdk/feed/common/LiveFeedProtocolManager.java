@@ -3,8 +3,8 @@ package com.sportradar.livedata.sdk.feed.common;
 import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
@@ -16,7 +16,7 @@ import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 /**
  * A {@link ProtocolManager} implementation used to manage protocol which connects to a live-feed
  */
-public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage, EntityBase> {
+public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage, LiveScoutEntityBase> {
 
     /**
      * A {@link Logger} implementation used for logging.
@@ -29,11 +29,11 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
     /**
      * The {@link EntityMapper} implementation used to map received messages to feed entities.
      */
-    private final EntityMapper<IncomingMessage, EntityBase> entityMapper;
+    private final EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper;
     /**
      * The {@link MessageProcessor} used to process incoming messages
      */
-    private final MessageProcessor<EntityBase> messageProcessor;
+    private final MessageProcessor<LiveScoutEntityBase> messageProcessor;
     /**
      * The {@link Protocol} implementation used to communicate with the target feed.
      */
@@ -45,7 +45,7 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
     /**
      * The listener used to observe the current {@link ProtocolManager}
      */
-    private volatile ProtocolManagerListener<EntityBase> listener;
+    private volatile ProtocolManagerListener<LiveScoutEntityBase> listener;
 
     /**
      * Initializes a new instance of the {@link LiveFeedProtocolManager} class
@@ -58,8 +58,8 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
      */
     public LiveFeedProtocolManager(
             Protocol<IncomingMessage, OutgoingMessage> protocol,
-            EntityMapper<IncomingMessage, EntityBase> entityMapper,
-            MessageProcessor<EntityBase> messageProcessor,
+            EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
+            MessageProcessor<LiveScoutEntityBase> messageProcessor,
             RequestProducer<OutgoingMessage> requestProducer,
             SdkLogger sdkLogger) {
         checkNotNull(protocol, "the protocol cannot be a null reference");
@@ -118,7 +118,7 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
      * @param listener The {@link ProtocolManagerListener} used to observe the {@link ProtocolManager}
      */
     @Override
-    public void setListener(ProtocolManagerListener<EntityBase> listener) {
+    public void setListener(ProtocolManagerListener<LiveScoutEntityBase> listener) {
         this.listener = listener;
     }
 
@@ -145,10 +145,10 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
     /**
      * Notifies the observer that new message was received.
      *
-     * @param message The {@link EntityBase} derived instance representing the received message.
+     * @param message The {@link LiveScoutEntityBase} derived instance representing the received message.
      */
-    protected final void notifyOnMessageReceived(EntityBase message) {
-        ProtocolManagerListener<EntityBase> copy = this.listener;
+    protected final void notifyOnMessageReceived(LiveScoutEntityBase message) {
+        ProtocolManagerListener<LiveScoutEntityBase> copy = this.listener;
         if (copy != null) {
             try {
                 copy.onMessageReceived(message);
@@ -167,7 +167,7 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
         checkNotNull(message, "message cannot be a null reference");
 
         // map the received message to feed entity.
-        EntityBase entity = null;
+        LiveScoutEntityBase entity = null;
 
         try {
             entity = entityMapper.map(message);
@@ -259,9 +259,9 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
         }
 
         if (messageProcessor != null) {
-            messageProcessor.setListener(new MessageProcessorListener<EntityBase>() {
+            messageProcessor.setListener(new MessageProcessorListener<LiveScoutEntityBase>() {
                 @Override
-                public void onMessageProcessed(EntityBase message, MessageProcessor<EntityBase> processor) {
+                public void onMessageProcessed(LiveScoutEntityBase message, MessageProcessor<LiveScoutEntityBase> processor) {
                     notifyOnMessageReceived(message);
                 }
             });

@@ -4,7 +4,6 @@ import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
 import com.sportradar.livedata.sdk.feed.common.entities.HomeAway;
 import com.sportradar.livedata.sdk.feed.common.entities.IdNameTuple;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
-import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
 import com.sportradar.livedata.sdk.feed.livescout.enums.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
@@ -23,7 +22,7 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static MatchUpdateEntity buildMatchUpdateEntity(final int valueBase) {
-        MatchUpdateEntity result = new MatchUpdateEntity(new HashMap<>());
+        MatchUpdateEntity result = new MatchUpdateEntity();
 
         applyIncomingMessage(result, valueBase);
         result.setMatchHeader(buildMatchHeaderEntity(valueBase));
@@ -490,7 +489,7 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static LineupsEntity buildLineupsEntity(final int valueBase) {
-        LineupsEntity result = new LineupsEntity(new HashMap<>());
+        LineupsEntity result = new LineupsEntity();
         result.setMatchId(741852 + valueBase);
         for(int i = 0; i < valueBase; i++) {
             result.getPlayers().add(buildPlayerEntity(i));
@@ -566,7 +565,7 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static PlayerEntity buildPlayerEntity(final int valueBase) {
-        PlayerEntity result = new PlayerEntity(new HashMap<>());
+        PlayerEntity result = new PlayerEntity();
         result.setId(113355 + valueBase);
         result.setName("player" + valueBase + " name");
         result.setShirtNumber(123654789 + valueBase);
@@ -620,7 +619,7 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static MatchStopEntity buildMatchStopEntity(final int valueBase) {
-        MatchStopEntity result = new MatchStopEntity(new HashMap<>());
+        MatchStopEntity result = new MatchStopEntity();
         result.setMatchId(112211 + valueBase);
         result.setReason("matchstop"+ valueBase + " reason");
         return result;
@@ -635,7 +634,7 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static MatchBookingEntity buildMatchBookingEntity(final int valueBase) {
-        MatchBookingEntity result = new MatchBookingEntity(new HashMap<>());
+        MatchBookingEntity result = new MatchBookingEntity();
         result.setMatchId(54223L + valueBase);
         result.setMessage("bookmatch" + valueBase + " message");
         result.setResult(getEnumValue(BookMatchResult.values(), valueBase));

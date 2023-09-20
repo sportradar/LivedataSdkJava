@@ -14,8 +14,7 @@ public class ServerTimeEntity extends LiveScoutEntityBase implements Serializabl
     private DateTime serverTime;
 
 
-    protected ServerTimeEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected ServerTimeEntity() {
     }
 
     /**

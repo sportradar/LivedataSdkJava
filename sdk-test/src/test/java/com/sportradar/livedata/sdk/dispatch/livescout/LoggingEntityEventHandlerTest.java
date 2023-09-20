@@ -312,9 +312,9 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
                 final Long eventId,
                 final long sequenceNumber,
                 Class<T> clazz) throws Exception {
-            Constructor<T> ctor = clazz.getDeclaredConstructor(Map.class);
+            Constructor<T> ctor = clazz.getDeclaredConstructor();
             ctor.setAccessible(true);
-            T ret = ctor.newInstance(new HashMap<String, String>());
+            T ret = ctor.newInstance();
             CommonTestUtils.setFieldValue(clazz, "timeOffset", ret, 0L);
             CommonTestUtils.setFieldValue(clazz, "timeStamp", ret, TimeProvider.getCurrent().getCurrentTime());
             CommonTestUtils.setFieldValue(clazz, "sequenceNumber", ret, sequenceNumber);

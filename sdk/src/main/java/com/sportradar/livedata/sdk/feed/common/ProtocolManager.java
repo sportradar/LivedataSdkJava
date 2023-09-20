@@ -1,12 +1,12 @@
 package com.sportradar.livedata.sdk.feed.common;
 
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 
 /**
  * Represents a class used to manage access to the underlying {@link com.sportradar.livedata.sdk.proto.common.Protocol}.
  */
-public interface ProtocolManager<O extends OutgoingMessage, E extends EntityBase> {
+public interface ProtocolManager<O extends OutgoingMessage, E extends LiveScoutEntityBase> {
 
 
     /**

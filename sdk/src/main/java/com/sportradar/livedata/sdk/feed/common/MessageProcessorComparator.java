@@ -1,13 +1,13 @@
 package com.sportradar.livedata.sdk.feed.common;
 
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 
 import java.util.Comparator;
 
 /**
  * A {@link Comparator} implementation used to compare {@link MessageProcessor} instances.
  */
-public class MessageProcessorComparator<T extends EntityBase> implements Comparator<MessageProcessor<T>> {
+public class MessageProcessorComparator<T extends LiveScoutEntityBase> implements Comparator<MessageProcessor<T>> {
 
     /**
      * Compares its two arguments for order.  Returns a negative integer,

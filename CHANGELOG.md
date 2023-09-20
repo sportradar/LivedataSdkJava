@@ -19,6 +19,7 @@ It also makes a client solution more stable and robust when it comes to feed han
   - homePlayerStats
   - awayPlayerStats
 * ScoutEventEntity inningsScore will be null instead of empty collection
+* EntityBase replaced with LiveScoutEntityBase
 * LineupsEntity managers and teamOfficials fixed
 * Lombok has been added: setters could be changed, getters remains unchanged
 

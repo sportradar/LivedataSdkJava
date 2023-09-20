@@ -10,8 +10,7 @@ public class ConnectionTestEntity extends LiveScoutEntityBase implements Seriali
 
     private static final long serialVersionUID = -4504343003126345374L;
 
-    protected ConnectionTestEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected ConnectionTestEntity() {
     }
 
 

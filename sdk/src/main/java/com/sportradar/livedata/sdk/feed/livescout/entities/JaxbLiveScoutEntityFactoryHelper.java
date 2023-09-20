@@ -13,7 +13,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static LineupsEntity buildLineupsEntity(Lineups lineups) throws InvalidEntityException {
-        LineupsEntity result = new LineupsEntity(new HashMap<>());
+        LineupsEntity result = new LineupsEntity();
         result.setMatchId(lineups.getMatchid());
         if (lineups.getPlayer() != null) {//always not null
             for (Player player : lineups.getPlayer()) {
@@ -69,7 +68,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static MatchBookingEntity buildMatchBookingEntity(Bookmatch bookMatch) throws InvalidEntityException {
-        MatchBookingEntity result = new MatchBookingEntity(new HashMap<>());
+        MatchBookingEntity result = new MatchBookingEntity();
         result.setMatchId(bookMatch.getMatchid());
         result.setMessage(bookMatch.getMessage());
         try {
@@ -81,7 +80,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static MatchDataEntity buildMatchDataEntity(Matchdata matchdata) {
-        MatchDataEntity result = new MatchDataEntity(new HashMap<String, String>());
+        MatchDataEntity result = new MatchDataEntity();
         result.setMatchId(matchdata.getMatchid());
         result.setMatchTime(matchdata.getMtime());
         result.setRemainingTimeInPeriod(matchdata.getRemainingtimeperiod());
@@ -212,7 +211,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
 
     public static MatchListEntity buildMatchListEntity(Matchlist matchList) throws InvalidEntityException {
         checkNotNull(matchList.getMatch());
-        MatchListEntity result = new MatchListEntity(new HashMap<>());
+        MatchListEntity result = new MatchListEntity();
         ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchList.getMatch().size());
         for (Match match : matchList.getMatch()) {
             matches.add(buildMatchUpdateEntity(match));
@@ -223,7 +222,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
 
     public static MatchListUpdateEntity buildMatchListUpdateEntity(Matchlistupdate matchListUpdate) throws
                                                                                                     InvalidEntityException {
-        MatchListUpdateEntity result = new MatchListUpdateEntity(new HashMap<String, String>());
+        MatchListUpdateEntity result = new MatchListUpdateEntity();
         ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchListUpdate.getMatch().size());
         for (Match match : matchListUpdate.getMatch()) {
             matches.add(buildMatchUpdateEntity(match));
@@ -240,14 +239,14 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static MatchStopEntity buildMatchStopEntity(Matchstop matchStop) {
-        MatchStopEntity result = new MatchStopEntity(new HashMap<String, String>());
+        MatchStopEntity result = new MatchStopEntity();
         result.setMatchId(matchStop.getMatchid());
         result.setReason(matchStop.getReason());
         return result;
     }
 
     public static MatchUpdateEntity buildMatchUpdateEntity(Match match) throws InvalidEntityException {
-        MatchUpdateEntity result = new MatchUpdateEntity(new HashMap<String, String>());
+        MatchUpdateEntity result = new MatchUpdateEntity();
         result.setMatchHeader(buildMatchHeaderEntity(match));
         HashMap<String, HomeAway<Double>> scoresOld = new HashMap<>();
         ArrayList<ScoreEntity> scores = new ArrayList<>();
@@ -556,7 +555,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static PlayerEntity buildPlayerEntity(Player player) throws InvalidEntityException {
-        PlayerEntity result = new PlayerEntity(new HashMap<String, String>());
+        PlayerEntity result = new PlayerEntity();
         result.setId(player.getId());
         result.setName(player.getName());
         result.setShirtNumber(player.getShirtnumber());
@@ -880,7 +879,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static ServerTimeEntity buildServerTimeEntity(Servertime servertime) {
-        ServerTimeEntity entity = new ServerTimeEntity(new HashMap<String, String>());
+        ServerTimeEntity entity = new ServerTimeEntity();
         entity.setServerTime(new DateTime(servertime.getValue()));
         return entity;
     }

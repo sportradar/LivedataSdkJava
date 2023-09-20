@@ -22,7 +22,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildMatchListEntity_Empty_Input_Test() throws Exception {
         Matchlist input = new Matchlist();
-        MatchListEntity expected = new MatchListEntity(new HashMap<>());
+        MatchListEntity expected = new MatchListEntity();
         expected.setMatches(new ArrayList<>());
 
         MatchListEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(input);
@@ -34,7 +34,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         Matchlist input = new Matchlist();
         input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(38));
 
-        MatchListEntity expected = new MatchListEntity(new HashMap<>());
+        MatchListEntity expected = new MatchListEntity();
         expected.setMatches(List.of(LiveScoutProtoEntityFactory.buildMatchUpdateEntity(38)));
 
         MatchListEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(input);
@@ -49,7 +49,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildMatchListUpdateEntity_Empty_Input_Test() throws Exception {
         Matchlistupdate input = new Matchlistupdate();
-        MatchListUpdateEntity expected = new MatchListUpdateEntity(new HashMap<>());
+        MatchListUpdateEntity expected = new MatchListUpdateEntity();
         expected.setMatches(new ArrayList<>());
 
         MatchListUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(input);
@@ -61,7 +61,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         Matchlistupdate input = new Matchlistupdate();
         input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(33));
 
-        MatchListUpdateEntity expected = new MatchListUpdateEntity(new HashMap<>());
+        MatchListUpdateEntity expected = new MatchListUpdateEntity();
         expected.setMatches(List.of(LiveScoutProtoEntityFactory.buildMatchUpdateEntity(33)));
 
         MatchListUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(input);
@@ -76,7 +76,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildMatchUpdateEntity_Empty_Input_Test() throws Exception {
         Match input = new Match();
-        MatchUpdateEntity expected = new MatchUpdateEntity(new HashMap<>());
+        MatchUpdateEntity expected = new MatchUpdateEntity();
         expected.setMatchHeader(new MatchHeaderEntity());
         expected.setEvents(new ArrayList<>());
         expected.setScore(new HashMap<>());
@@ -199,7 +199,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildMatchStopEntity_Empty_Input_Test() {
         MatchStopEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(new Matchstop());
-        assertThat(result, equalTo(new MatchStopEntity(new HashMap<>())));
+        assertThat(result, equalTo(new MatchStopEntity()));
     }
 
     @Test
@@ -219,7 +219,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildMatchBookingEntity_Empty_Input_Test() throws Exception {
         MatchBookingEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(new Bookmatch());
-        assertThat(result, equalTo(new MatchBookingEntity(new HashMap<>())));
+        assertThat(result, equalTo(new MatchBookingEntity()));
     }
 
     @Test
@@ -239,7 +239,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     @Test
     public void buildLineupsEntity_Empty_Input_Test() throws Exception {
         LineupsEntity result = JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(new Lineups());
-        assertThat(result, equalTo(new LineupsEntity(new HashMap<>())));
+        assertThat(result, equalTo(new LineupsEntity()));
     }
 
     @Test
@@ -258,7 +258,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
 
     @Test
     public void buildPlayerEntity_Empty_Input_Test() throws Exception {
-        PlayerEntity expected = new PlayerEntity(new HashMap<>());
+        PlayerEntity expected = new PlayerEntity();
         expected.setTeam(Team.NONE);//because incoming msg is using primitive, which cannot be null, only 0
         PlayerEntity result = JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(new Player());
         assertThat(result, equalTo(expected));

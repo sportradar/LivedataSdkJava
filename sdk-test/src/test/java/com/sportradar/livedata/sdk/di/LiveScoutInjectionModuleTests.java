@@ -7,9 +7,9 @@ import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
@@ -63,12 +63,12 @@ public class LiveScoutInjectionModuleTests {
 
     @Test
     public void protocolManagerIsResolvedAsSingleton() {
-        Key<ProtocolManager<OutgoingMessage, EntityBase>> key = Key.get(
-                new TypeLiteral<ProtocolManager<OutgoingMessage, EntityBase>>() {
+        Key<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> key = Key.get(
+                new TypeLiteral<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>>() {
                 });
 
-        ProtocolManager<OutgoingMessage, EntityBase> manager1 = injector.getInstance(key);
-        ProtocolManager<OutgoingMessage, EntityBase> manager2 = injector.getInstance(key);
+        ProtocolManager<OutgoingMessage, LiveScoutEntityBase> manager1 = injector.getInstance(key);
+        ProtocolManager<OutgoingMessage, LiveScoutEntityBase> manager2 = injector.getInstance(key);
 
         assertThat(manager1.equals(manager2), is(true));
     }

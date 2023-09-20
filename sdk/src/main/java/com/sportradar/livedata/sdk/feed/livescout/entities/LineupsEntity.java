@@ -26,8 +26,7 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
     private List<PlayerEntity> players;
     private List<TeamOfficialEntity> teamOfficials;
 
-    protected LineupsEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected LineupsEntity() {
     }
 
     /**

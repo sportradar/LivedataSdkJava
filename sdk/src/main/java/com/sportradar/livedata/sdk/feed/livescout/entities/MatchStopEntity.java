@@ -25,10 +25,9 @@ public class MatchStopEntity extends LiveScoutEntityBase implements Serializable
 
     /**
      * Initializes a new instance of the {@link LiveScoutEntityBase} class.
-     * @param otherAttributes additional XML attributes not supported in the current version of the data contract.
      */
-    protected MatchStopEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected MatchStopEntity() {
+        super();
     }
 
     /**

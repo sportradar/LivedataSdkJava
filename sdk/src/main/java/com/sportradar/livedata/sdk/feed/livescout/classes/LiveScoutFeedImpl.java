@@ -9,7 +9,6 @@ import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManagerListener;
 import com.sportradar.livedata.sdk.feed.common.entities.ConnectionParams;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
@@ -52,7 +51,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
     /**
      * A {@link ProtocolManager} implementation used to manage the underlying protocol and related components
      */
-    private final ProtocolManager<OutgoingMessage, EntityBase> protocolManager;
+    private final ProtocolManager<OutgoingMessage, LiveScoutEntityBase> protocolManager;
     /**
      * The {@link LiveScoutUserRequestManager} used to process user requests.
      */
@@ -91,7 +90,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      *                                  a {@code dispatcher} is a null reference.
      */
     public LiveScoutFeedImpl(
-            ProtocolManager<OutgoingMessage, EntityBase> protocolManager,
+            ProtocolManager<OutgoingMessage, LiveScoutEntityBase> protocolManager,
             LiveScoutUserRequestManager userRequestManager,
             LiveScoutDispatcher dispatcher,
             SdkLogger sdkLogger,
@@ -335,7 +334,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      * Sets listeners on injected dependencies
      */
     private void setDependencyListeners() {
-        this.protocolManager.setListener(new ProtocolManagerListener<EntityBase>() {
+        this.protocolManager.setListener(new ProtocolManagerListener<LiveScoutEntityBase>() {
             @Override
             public void onDisconnected() {
                 dispatcher.dispatchOnClosed(LiveScoutFeedImpl.this);
@@ -360,7 +359,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
             }
 
             @Override
-            public void onMessageReceived(EntityBase message) {
+            public void onMessageReceived(LiveScoutEntityBase message) {
                 // After first FULL update arrives we are initialized
                 if (message instanceof MatchUpdateEntity) {
                     MatchUpdateEntity entity = (MatchUpdateEntity) message;

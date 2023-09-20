@@ -1,6 +1,6 @@
 package com.sportradar.livedata.sdk.feed.common;
 
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +15,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  *
  * @author uros.bregar
  */
-public class MessagePipeline<T extends EntityBase> implements MessageProcessor<T> {
+public class MessagePipeline<T extends LiveScoutEntityBase> implements MessageProcessor<T> {
 
     /**
      * the index of the current {@link MessageProcessor} implementation
@@ -94,9 +94,9 @@ public class MessagePipeline<T extends EntityBase> implements MessageProcessor<T
     }
 
     /**
-     * Processes the passed message derived from {@link EntityBase} class.
+     * Processes the passed message derived from {@link LiveScoutEntityBase} class.
      *
-     * @param message The {@link EntityBase} derived class representing the message.
+     * @param message The {@link LiveScoutEntityBase} derived class representing the message.
      * @throws IllegalArgumentException the {@code message} is a null reference.
      */
     @Override

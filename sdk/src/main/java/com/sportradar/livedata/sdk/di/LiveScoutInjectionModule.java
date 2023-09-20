@@ -10,10 +10,10 @@ import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.common.EntityMapper;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
 import com.sportradar.livedata.sdk.feed.common.TestManager;
-import com.sportradar.livedata.sdk.feed.common.entities.EntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutEntityMapper;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
 import com.sportradar.livedata.sdk.feed.livescout.entities.JaxbLiveScoutEntityFactory;
+import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
@@ -61,7 +61,7 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
                 .to(JaxbLiveScoutEntityFactory.class)
                 .in(Singleton.class);
 
-        binder.bind(new TypeLiteral<EntityMapper<IncomingMessage, EntityBase>>() {})
+        binder.bind(new TypeLiteral<EntityMapper<IncomingMessage, LiveScoutEntityBase>>() {})
                 .to(LiveScoutEntityMapper.class)
                 .in(Singleton.class);
 
@@ -115,9 +115,9 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
     @Override
     @Provides
     @Singleton
-    protected ProtocolManager<OutgoingMessage, EntityBase> provideProtocolManager(
+    protected ProtocolManager<OutgoingMessage, LiveScoutEntityBase> provideProtocolManager(
             Protocol<IncomingMessage, OutgoingMessage> protocol,
-            EntityMapper<IncomingMessage, EntityBase> entityMapper,
+            EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             LiveScoutUserRequestManagerImpl userRequestManager,
             LiveScoutClientAliveProducer aliveProducer,
             SdkLogger sdkLogger) throws JAXBException {
@@ -138,7 +138,7 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
     @Provides
     @Singleton
     protected LiveScoutFeed provideFeed(
-            Provider<ProtocolManager<OutgoingMessage, EntityBase>> protocolManagerProvider,
+            Provider<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> protocolManagerProvider,
             Provider<LiveScoutUserRequestManagerImpl> userRequestManagerProvider,
             Provider<LiveScoutDispatcher> dispatcherProvider,
             Provider<SdkLogger> sdkLoggerProvider) {

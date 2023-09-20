@@ -15,7 +15,7 @@ public class MatchListUpdateEntity extends MatchListEntity implements Serializab
 
     private static final long serialVersionUID = 6552178870615738909L;
 
-    protected MatchListUpdateEntity(Map<String, String> otherAttributes) {
-        super(otherAttributes);
+    protected MatchListUpdateEntity() {
+        super();
     }
 }
