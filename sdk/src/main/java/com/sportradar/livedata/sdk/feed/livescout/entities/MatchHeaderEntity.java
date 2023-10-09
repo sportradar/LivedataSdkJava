@@ -68,7 +68,7 @@ public class MatchHeaderEntity implements Serializable {
     private String awayState;
     private String venue;
     private String region;
-    private PaginationEntity pagination;
+//    private PaginationEntity pagination;
 
     /**
      * For Serializable
@@ -460,7 +460,7 @@ public class MatchHeaderEntity implements Serializable {
      *
      * @return {@link PaginationEntity}
      */
-    public PaginationEntity getPagination() {
-        return pagination;
-    }
+//    public PaginationEntity getPagination() {
+//        return pagination;
+//    }
 }

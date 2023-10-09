@@ -266,8 +266,8 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
                 logger.debug("LOGIN_OK response received");
                 notifyOnLoggedIn();
             }else{
-                logger.debug("LOGIN_FAILED: result={} | reason={} | error_code={}",
-                        login.getResult(), login.getReason(), login.getErrorcode());
+                logger.debug("LOGIN_FAILED: result={}",// | reason={} | error_code={}",
+                        login.getResult());//, login.getReason(), login.getErrorcode());
             }
         }else{
             super.onMessageParsed(message);

@@ -203,9 +203,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayState(match.getAwaystate());
         result.setVenue(match.getVenue());
         result.setRegion(match.getRegion());
-        if(!nte(match.getUuid()).isEmpty()){
-            result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
-        }
+//        if(!nte(match.getUuid()).isEmpty()){
+//            result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
+//        }
         return result;
     }
 
@@ -810,8 +810,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayPlayerStatsPass(event.getAwayplayerstatspass());
         result.setHomePlayerStatsRush(event.getHomeplayerstatsrush());
         result.setAwayPlayerStatsRush(event.getAwayplayerstatsrush());
-        result.setHomePlayerStats(event.getHomeplayerstats());
-        result.setAwayPlayerStats(event.getAwayplayerstats());
+//        result.setHomePlayerStats(event.getHomeplayerstats());
+//        result.setAwayPlayerStats(event.getAwayplayerstats());
         result.setHomePlayerStatsRec(event.getHomeplayerstatsrec());
         result.setAwayPlayerStatsRec(event.getAwayplayerstatsrec());
         result.setPuntDistance(event.getPuntdistance());

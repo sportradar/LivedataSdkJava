@@ -207,8 +207,8 @@ public class ScoutEventEntity implements Serializable {
     private String awayPlayerStatsPass;
     private String homePlayerStatsRush;
     private String awayPlayerStatsRush;
-    private String homePlayerStats;
-    private String awayPlayerStats;
+//    private String homePlayerStats;
+//    private String awayPlayerStats;
     private String homePlayerStatsRec;
     private String awayPlayerStatsRec;
     private String puntDistance;
@@ -1437,13 +1437,13 @@ public class ScoutEventEntity implements Serializable {
         return awayPlayerStatsRush;
     }
 
-    public String getHomePlayerStats() {
-        return homePlayerStats;
-    }
-
-    public String getAwayPlayerStats() {
-        return awayPlayerStats;
-    }
+//    public String getHomePlayerStats() {
+//        return homePlayerStats;
+//    }
+//
+//    public String getAwayPlayerStats() {
+//        return awayPlayerStats;
+//    }
 
     public String getHomePlayerStatsRec() {
         return homePlayerStatsRec;
