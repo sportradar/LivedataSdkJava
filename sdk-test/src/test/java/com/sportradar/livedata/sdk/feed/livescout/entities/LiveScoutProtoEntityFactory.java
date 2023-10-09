@@ -55,9 +55,9 @@ public class LiveScoutProtoEntityFactory {
         result.setMatchtime((15 + valueBase) + ":" + valueBase);
         result.setSex(getEnumValue(Sex.values(), valueBase).ordinal());
         result.setActive((byte) (valueBase % 2 == 0 ? 16 : 0));
-        result.setUuid("23rfc1" + valueBase);
-        result.setPage(valueBase);
-        result.setTotalpages(19 + valueBase);
+//        result.setUuid("23rfc1" + valueBase);
+//        result.setPage(valueBase);
+//        result.setTotalpages(19 + valueBase);
         return result;
     }
 
@@ -87,7 +87,7 @@ public class LiveScoutProtoEntityFactory {
         result.setMatchTime((15 + valueBase) + ":" + valueBase);
         result.setSex(getEnumValue(Sex.values(), valueBase));
         result.setActive(valueBase % 2 == 0);
-        result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
+//        result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
 
         return result;
     }
