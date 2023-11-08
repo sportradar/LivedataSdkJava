@@ -212,9 +212,9 @@ we will check this  */
                     case FULL:
                         dispatchFullMatchUpdateReceived(matchUpdate);
                         break;
-                    case PARTIAL:
-                        dispatchPartialMatchUpdateReceived(matchUpdate);
-                        break;
+//                    case PARTIAL:
+//                        dispatchPartialMatchUpdateReceived(matchUpdate);
+//                        break;
                     case DELTA:
                         dispatchOnMatchDeltaUpdateReceived(matchUpdate);
                         break;
@@ -223,7 +223,6 @@ we will check this  */
                         break;
                     default:
                         logger.warn("Unknown type of the ScoutFeedType encountered. type: {}", feedType);
-
                 }
             }
         } else if (entity instanceof MatchBookingEntity) {

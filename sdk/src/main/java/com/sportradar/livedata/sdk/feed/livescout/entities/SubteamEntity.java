@@ -21,9 +21,13 @@ public class SubteamEntity  implements Serializable {
 
 
     SubteamEntity(Subteam subteam){
-        this.id = subteam.getId();
-        this.name = subteam.getName();
-        this.parentId = subteam.getParent();
+        this(subteam.getId(), subteam.getName(), subteam.getParent());
+    }
+
+    protected SubteamEntity(int id, String name, int parentId){
+        this.id = id;
+        this.name = name;
+        this.parentId = parentId;
     }
 
     public int getId() {

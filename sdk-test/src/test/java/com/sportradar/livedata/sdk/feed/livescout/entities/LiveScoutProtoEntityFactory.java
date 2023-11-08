@@ -197,10 +197,7 @@ public class LiveScoutProtoEntityFactory {
         red.setT2(77777 + valueBase);
         msgs.add(red);
     //Score
-        Score score = buildScore(valueBase);
-        if(score != null) {
-            msgs.add(buildScore(valueBase));
-        }
+        addScores(msgs, valueBase);
     //Serve
         Serve serve = new Serve();
         serve.setTeam(getEnumValue(Team.values(), valueBase).getValue()[1]);
@@ -266,6 +263,8 @@ public class LiveScoutProtoEntityFactory {
         yellow.setT1(9999999 + valueBase);
         yellow.setT2(11111111 + valueBase);
         msgs.add(yellow);
+    //Subteams
+        addSubteams(msgs, valueBase);
 
         return match;
     }
@@ -319,7 +318,7 @@ public class LiveScoutProtoEntityFactory {
     //Red
         result.setRedCards(new HomeAway<>(66666 + valueBase, 77777 + valueBase));
     //Score
-        addScore(result, valueBase);
+        addScores(result, valueBase);
     //Serve
         result.setServe(getEnumValue(Team.values(), valueBase));
     //Shotsblocked
@@ -349,6 +348,8 @@ public class LiveScoutProtoEntityFactory {
         result.setWeatherConditions(getEnumValue(WeatherConditions.values(), valueBase));
     //Yellow
         result.setYellowCards(new HomeAway<>(9999999 + valueBase, 11111111 + valueBase));
+    //Subteams
+        result.setSubteams(buildSubteams(valueBase));
     }
     //------IncomingMessage------Event------>>>>>>-------------------------------------<<<<<<------IncomingMessage------
     static Events buildEvents(final int valueBase) {
@@ -444,7 +445,26 @@ public class LiveScoutProtoEntityFactory {
         result.setServerTime(new DateTime(17 + valueBase, DateTimeZone.UTC));
         return result;
     }
-    //------IncomingMessage------others------>>>>>>-------------------------<<<<<<------IncomingMessage------Event------
+    //------IncomingMessage------Score------>>>>>>--------------------------<<<<<<------IncomingMessage------Event------
+    static void addScores(List<IncomingMessage> msgs, final int valueBase) {
+        for(int i = 0; i < valueBase % 3; i++){
+            msgs.add(buildScore(Math.abs(valueBase - i)));
+        }
+    }
+
+    static void addScores(final MatchUpdateEntity result, final int valueBase) {
+        result.setScore(result.getScore() != null ? result.getScore() : new HashMap<>());
+        result.setScores(result.getScores() != null ? result.getScores() : new ArrayList<>());
+
+        for(int i = 0; i < valueBase % 3; i++){
+            ScoreEntity score = buildScoreEntitty(Math.abs(valueBase - i));
+            if(score != null) {
+                result.getScore().put(score.getType(), new HomeAway<>(score.getTeam1(), score.getTeam2()));
+                result.getScores().add(score);
+            }
+        }
+    }
+
     static Score buildScore(final int valueBase) {
         Score score = null;
         for(int i = 0; i < valueBase; i++) {
@@ -458,21 +478,14 @@ public class LiveScoutProtoEntityFactory {
         return score;
     }
 
-    static void addScore(final MatchUpdateEntity result, final int valueBase) {
-        result.setScore(result.getScore() != null ? result.getScore() : new HashMap<>());
-        result.setScores(result.getScores() != null ? result.getScores() : new ArrayList<>());
-
+    static ScoreEntity buildScoreEntitty(final int valueBase){
         ScoreEntity score = null;
         for(int i = 0; i < valueBase; i++) {
             score = new ScoreEntity("score" + i + " type", 80000 + i, 90000 + i, score);
         }
-        if(score != null) {
-            result.getScore().put(score.getType(), new HomeAway<>(score.getTeam1(), score.getTeam2()));
-            result.getScores().add(score);
-
-        }
+        return score;
     }
-
+    //------IncomingMessage------others------>>>>>>-------------------------<<<<<<------IncomingMessage------Score------
     static Lineups buildLineups(final int valueBase) {
         Lineups result = new Lineups();
         result.setMatchid(741852 + valueBase);
@@ -639,6 +652,24 @@ public class LiveScoutProtoEntityFactory {
         result.setMessage("bookmatch" + valueBase + " message");
         result.setResult(getEnumValue(BookMatchResult.values(), valueBase));
         return result;
+    }
+
+    static void addSubteams(List<IncomingMessage> msgs, final int valueBase) {
+        for(int i = 0; i < valueBase % 3; i++){
+            Subteam team = new Subteam();
+            team.setId(12 + valueBase);
+            team.setName("team" + valueBase);
+            team.setParent(134 + valueBase);
+            msgs.add(team);
+        }
+    }
+
+    static List<SubteamEntity> buildSubteams(final int valueBase) {
+        List<SubteamEntity> subs = new ArrayList<>();
+        for(int i = 0; i < valueBase % 3; i++){
+            subs.add(new SubteamEntity(12 + valueBase, "team" + valueBase, 134 + valueBase));
+        }
+        return subs;
     }
     //------Utils------>>>>>>----------------------------------------------<<<<<<------IncomingMessage------simple------
     private static <T extends EntityEnum> T getEnumValue(T[] members, int valueBase) {

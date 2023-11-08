@@ -85,7 +85,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private BehindsEntity behinds;
     private List<MatchPropertyEntity> matchProperties;
     private List<MatchTeamEntity> matchTeams;
-    private SubteamEntity subteam;
+    private List<SubteamEntity> subteams;
     private HomeAway<Integer> greenCards;
 
     /**
@@ -612,8 +612,8 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
      * Returns the subteam.
      * @return {@link SubteamEntity}
      */
-    public SubteamEntity getSubteam() {
-        return subteam;
+    public List<SubteamEntity> getSubteams() {
+        return subteams;
     }
 
     protected void addInnings(InningsEntity innings) {

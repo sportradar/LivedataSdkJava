@@ -248,9 +248,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static MatchUpdateEntity buildMatchUpdateEntity(Match match) throws InvalidEntityException {
         MatchUpdateEntity result = new MatchUpdateEntity();
         result.setMatchHeader(buildMatchHeaderEntity(match));
-        HashMap<String, HomeAway<Double>> scoresOld = new HashMap<>();
-        ArrayList<ScoreEntity> scores = new ArrayList<>();
-        ArrayList<ScoutEventEntity> eventsList = new ArrayList<>();
+        result.setScore(new HashMap<>());
+        result.setScores(new ArrayList<>());
+        result.setEvents(new ArrayList<>());
+        result.setSubteams(new ArrayList<>());
         for (IncomingMessage item : match.getStatusOrScoreOrRed()) {
             switch (item.getClass().getSimpleName()) {
                 case "Attacks":
@@ -289,9 +290,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     Events events = (Events) item;
                     if (events.getEvent() != null) {
                         // realloc now that we know the exact size
-                        eventsList = new ArrayList<>(events.getEvent().size());
+                        result.setEvents(new ArrayList<>(events.getEvent().size()));
                         for (Event event : events.getEvent()) {
-                            eventsList.add(buildScoutEventEntity(event));
+                            result.getEvents().add(buildScoutEventEntity(event));
                         }
                     }
                     break;
@@ -403,8 +404,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
                 case "Score":
                     // Field score.score1 will be ignored
                     Score score = (Score) item;
-                    scoresOld.put(score.getType(), new HomeAway<>(score.getT1(), score.getT2()));
-                    scores.add(new ScoreEntity(score));
+                    result.getScore().put(score.getType(), new HomeAway<>(score.getT1(), score.getT2()));
+                    result.getScores().add(new ScoreEntity(score));
                     break;
                 case "Serve":
                     Serve srv = (Serve) item;
@@ -516,7 +517,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     break;
                 case "Subteam":
                     Subteam subteam = (Subteam) item;
-                    result.setSubteam(new SubteamEntity(subteam));
+                    result.getSubteams().add(new SubteamEntity(subteam));
                     break;
                 case "Green":
                     Green green = (Green) item;
@@ -526,9 +527,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     throw new InvalidEntityException("Match.getStatusOrScoreOrRed", "Unknown event", item.getClass().getSimpleName());
             }
         }
-        result.setScore(scoresOld);
-        result.setScores(scores);
-        result.setEvents(eventsList);
         return result;
     }
 
@@ -810,8 +808,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayPlayerStatsPass(event.getAwayplayerstatspass());
         result.setHomePlayerStatsRush(event.getHomeplayerstatsrush());
         result.setAwayPlayerStatsRush(event.getAwayplayerstatsrush());
-//        result.setHomePlayerStats(event.getHomeplayerstats());
-//        result.setAwayPlayerStats(event.getAwayplayerstats());
+        result.setHomePlayerStats(event.getHomeplayerstats());
+        result.setAwayPlayerStats(event.getAwayplayerstats());
         result.setHomePlayerStatsRec(event.getHomeplayerstatsrec());
         result.setAwayPlayerStatsRec(event.getAwayplayerstatsrec());
         result.setPuntDistance(event.getPuntdistance());
