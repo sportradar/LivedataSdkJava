@@ -94,10 +94,10 @@ public class LiveScoutListenerImpl implements LiveScoutFeedListener {
      * @param sender      The {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} sender of the event.
      * @param matchUpdate The {@link com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity} representing the received match-update message
      */
-    @Override
-    public void onPartialMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
-
-    }
+//    @Override
+//    public void onPartialMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
+//
+//    }
 
     /**
      * Invoked by the observed {@link com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed} when match delta update is received. For more information see the

@@ -150,13 +150,13 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
         }
     }
 
-    protected void dispatchPartialMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
-        try {
-            listener.onPartialMatchUpdateReceived(feed, matchUpdate);
-        } catch (Exception e) {
-            logger.warn("User handler for onPartialMatchUpdateReceived threw exception", e);
-        }
-    }
+//    protected void dispatchPartialMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
+//        try {
+//            listener.onPartialMatchUpdateReceived(feed, matchUpdate);
+//        } catch (Exception e) {
+//            logger.warn("User handler for onPartialMatchUpdateReceived threw exception", e);
+//        }
+//    }
 
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         try {
