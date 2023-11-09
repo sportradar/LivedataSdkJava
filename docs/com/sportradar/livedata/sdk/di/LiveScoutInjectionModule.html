@@ -227,10 +227,10 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected <a href="../feed/livescout/interfaces/LiveScoutFeed.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces">LiveScoutFeed</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider)">provideFeed</a></span>&#8203;(javax.inject.Provider&lt;<a href="../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;&gt;&nbsp;protocolManagerProvider,
-           javax.inject.Provider&lt;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&gt;&nbsp;userRequestManagerProvider,
-           javax.inject.Provider&lt;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&gt;&nbsp;dispatcherProvider,
-           javax.inject.Provider&lt;<a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&gt;&nbsp;sdkLoggerProvider)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#provideFeed(jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider)">provideFeed</a></span>&#8203;(jakarta.inject.Provider&lt;<a href="../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;&gt;&nbsp;protocolManagerProvider,
+           jakarta.inject.Provider&lt;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&gt;&nbsp;userRequestManagerProvider,
+           jakarta.inject.Provider&lt;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&gt;&nbsp;dispatcherProvider,
+           jakarta.inject.Provider&lt;<a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&gt;&nbsp;sdkLoggerProvider)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
@@ -276,7 +276,7 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.sportradar.livedata.sdk.di.<a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></h3>
-<code><a href="LiveScoutInjectionModuleBase.html#buildProtocol(java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.proto.common.OutgoingMessageInspector,com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">buildProtocol</a>, <a href="LiveScoutInjectionModuleBase.html#provideDispatcher(java.util.concurrent.ExecutorService,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX,com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter)">provideDispatcher</a>, <a href="LiveScoutInjectionModuleBase.html#provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed</a>, <a href="LiveScoutInjectionModuleBase.html#provideTestManager(com.sportradar.livedata.sdk.proto.common.Protocol)">provideTestManager</a></code></li>
+<code><a href="LiveScoutInjectionModuleBase.html#buildProtocol(java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.proto.common.OutgoingMessageInspector,com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">buildProtocol</a>, <a href="LiveScoutInjectionModuleBase.html#provideDispatcher(java.util.concurrent.ExecutorService,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX,com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter)">provideDispatcher</a>, <a href="LiveScoutInjectionModuleBase.html#provideFeed(jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed</a>, <a href="LiveScoutInjectionModuleBase.html#provideTestManager(com.sportradar.livedata.sdk.proto.common.Protocol)">provideTestManager</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -442,7 +442,7 @@ protected&nbsp;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="i
                                                 <a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</pre>
 </li>
 </ul>
-<a id="provideFeed(javax.inject.Provider,javax.inject.Provider,javax.inject.Provider,javax.inject.Provider)">
+<a id="provideFeed(jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -450,10 +450,10 @@ protected&nbsp;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="i
 <h4>provideFeed</h4>
 <pre class="methodSignature">@Provides
 @Singleton
-protected&nbsp;<a href="../feed/livescout/interfaces/LiveScoutFeed.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces">LiveScoutFeed</a>&nbsp;provideFeed&#8203;(javax.inject.Provider&lt;<a href="../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;&gt;&nbsp;protocolManagerProvider,
-                                    javax.inject.Provider&lt;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&gt;&nbsp;userRequestManagerProvider,
-                                    javax.inject.Provider&lt;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&gt;&nbsp;dispatcherProvider,
-                                    javax.inject.Provider&lt;<a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&gt;&nbsp;sdkLoggerProvider)</pre>
+protected&nbsp;<a href="../feed/livescout/interfaces/LiveScoutFeed.html" title="interface in com.sportradar.livedata.sdk.feed.livescout.interfaces">LiveScoutFeed</a>&nbsp;provideFeed&#8203;(jakarta.inject.Provider&lt;<a href="../feed/common/ProtocolManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">ProtocolManager</a>&lt;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>,&#8203;<a href="../feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;&gt;&nbsp;protocolManagerProvider,
+                                    jakarta.inject.Provider&lt;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&gt;&nbsp;userRequestManagerProvider,
+                                    jakarta.inject.Provider&lt;<a href="../dispatch/livescout/LiveScoutDispatcher.html" title="interface in com.sportradar.livedata.sdk.dispatch.livescout">LiveScoutDispatcher</a>&gt;&nbsp;dispatcherProvider,
+                                    jakarta.inject.Provider&lt;<a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&gt;&nbsp;sdkLoggerProvider)</pre>
 </li>
 </ul>
 <a id="provideProtocol(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">

@@ -72,11 +72,8 @@
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.11</logback.version>
         <simplejmx.version>2.2</simplejmx.version>
-        <junit.version>4.13.2</junit.version><!-- migrate to junit-jupiter-api -->
-        <jmock.version>2.12.0</jmock.version><!-- migrate jmock-junit5 -->
         <hamcrest.version>1.3</hamcrest.version><!-- last update was in 2012 -->
-        <javax.inject.version>1</javax.inject.version><!-- migrate to jakarta.inject-api -->
-        <guice.version>6.0.0</guice.version><!-- guice 7 requires jakarta.inject-api -->
+        <guice.version>7.0.0</guice.version>
         <guava.version>32.1.3-jre</guava.version>
         <jodatime.version>2.12.5</jodatime.version>
         <commonsnet.version>3.10.0</commonsnet.version>
@@ -90,6 +87,8 @@
         <jaxb-impl.version>4.0.4</jaxb-impl.version><!-- seems will be replaced with jaxb-runtime-->
         <classgraph.version>4.8.164</classgraph.version>
         <lombok.version>1.18.30</lombok.version>
+        <junit.version>4.13.2</junit.version><!-- migrate to junit-jupiter-api -->
+        <jmock.version>2.12.0</jmock.version><!-- migrate jmock-junit5 -->
 
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
@@ -367,25 +366,9 @@
 
             <!-- Dependency Injection Container -->
             <dependency>
-                <groupId>javax.inject</groupId>
-                <artifactId>javax.inject</artifactId>
-                <version>${javax.inject.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.inject</groupId>
-                        <artifactId>javax.inject</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.google.inject.extensions</groupId>

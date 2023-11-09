@@ -13,7 +13,7 @@ import com.sportradar.livedata.sdk.common.thread.SRThreadPoolExecutor;
 import com.sportradar.livedata.sdk.feed.sdk.Sdk;
 import org.apache.commons.net.DefaultSocketFactory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import javax.net.ssl.SSLSocketFactory;
 import java.util.concurrent.*;
 

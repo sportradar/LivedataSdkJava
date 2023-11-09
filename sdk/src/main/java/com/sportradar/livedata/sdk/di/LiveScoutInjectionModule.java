@@ -25,8 +25,8 @@ import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspe
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
 import org.apache.commons.net.DefaultSocketFactory;
 
-import javax.inject.Provider;
-import javax.inject.Singleton;
+import jakarta.inject.Provider;
+import jakarta.inject.Singleton;
 import javax.net.ssl.SSLSocketFactory;
 import jakarta.xml.bind.JAXBException;
 import java.util.concurrent.ExecutorService;

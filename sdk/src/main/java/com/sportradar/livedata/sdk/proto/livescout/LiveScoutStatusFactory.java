@@ -9,7 +9,7 @@ import com.sportradar.livedata.sdk.proto.common.StatusFactory;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.*;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Collection;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.nte;

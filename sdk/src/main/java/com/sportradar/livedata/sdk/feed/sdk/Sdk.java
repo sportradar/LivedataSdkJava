@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;

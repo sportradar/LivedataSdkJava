@@ -7,7 +7,7 @@ package com.sportradar.livedata.sdk.proto.common;
 
 import org.xml.sax.SAXException;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;

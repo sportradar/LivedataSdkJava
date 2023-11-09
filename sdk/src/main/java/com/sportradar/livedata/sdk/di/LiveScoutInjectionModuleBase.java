@@ -35,7 +35,7 @@ import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.joda.time.Duration;
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
 import javax.net.ssl.SSLSocketFactory;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
