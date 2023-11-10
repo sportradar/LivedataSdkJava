@@ -7,12 +7,12 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,13 +21,13 @@ import java.util.concurrent.Executors;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ReconnectingGatewayTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
     GatewayListener gatewayListenerMock = context.mock(GatewayListener.class);
@@ -43,7 +43,7 @@ public class ReconnectingGatewayTest {
     private TimerListenerImpl timerListener;
     private final Logger logger = LoggerFactory.getLogger(ReconnectingGatewayTest.class);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fakeGateway = new FakeGateway();
         reconnectTimer = new PeriodicTimer(Executors.newScheduledThreadPool(2));
@@ -64,7 +64,7 @@ public class ReconnectingGatewayTest {
         this.reconnectingGateway.setListener(gatewayListenerMock);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     }
 

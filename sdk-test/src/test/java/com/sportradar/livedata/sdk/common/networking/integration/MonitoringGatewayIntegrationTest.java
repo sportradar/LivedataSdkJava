@@ -22,15 +22,17 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import org.junit.jupiter.api.Timeout;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
@@ -42,12 +44,12 @@ import java.util.concurrent.ScheduledExecutorService;
  * Integration tests for the {@link ConnectionMonitoringGateway} class
  */
 
-@Ignore
+@Disabled
 public class MonitoringGatewayIntegrationTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
 
@@ -60,7 +62,7 @@ public class MonitoringGatewayIntegrationTest {
     private FakeServer serverDriver;
     private Gateway client;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException, JAXBException {
 
         JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
@@ -81,7 +83,7 @@ public class MonitoringGatewayIntegrationTest {
         this.client.setListener(clientListener);
     }
 
-    @Test(timeout = 3000)
+    @Timeout(3)
     public void gatewayConnectsToTheServerWhenServerStarted() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -104,7 +106,8 @@ public class MonitoringGatewayIntegrationTest {
         serverDriver.stop();
     }
 
-    @Test(timeout = 3000)
+    @Test
+    @Timeout(3)
     public void gatewayDetectWhenServerDropsTheConnection() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -123,7 +126,8 @@ public class MonitoringGatewayIntegrationTest {
         client.disconnect(false);
     }
 
-    @Test(timeout = 3000)
+    @Test
+    @Timeout(3)
     public void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -151,7 +155,8 @@ public class MonitoringGatewayIntegrationTest {
 
     }
 
-    @Test(timeout = 3000)
+    @Test
+    @Timeout(3)
     public void gatewayReceivesData() throws IOException, InterruptedException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -174,7 +179,8 @@ public class MonitoringGatewayIntegrationTest {
         serverDriver.stop();
     }
 
-    @Test(timeout = 3000)
+    @Test
+    @Timeout(3)
     public void gatewayDisconnectsWhenAliveTimeoutElapses() throws IOException, InterruptedException {
         //This test fails when the debugger is attached because the gateway does not check alive messages
         if (DevHelper.isDebuggerAttached()) {
@@ -214,7 +220,8 @@ public class MonitoringGatewayIntegrationTest {
         serverDriver.stop();
     }
 
-    @Test(timeout = 3000)
+    @Test
+    @Timeout(3)
     public void gatewayDoesNotDisconnectIfReceivingAliveMessages() throws IOException, InterruptedException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();

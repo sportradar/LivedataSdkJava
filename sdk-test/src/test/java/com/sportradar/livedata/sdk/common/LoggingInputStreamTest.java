@@ -11,9 +11,9 @@ import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LoggingInputStreamTest {
 
@@ -43,7 +43,7 @@ public class LoggingInputStreamTest {
     public LoggingInputStreamTest() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         loggerSettings = DefaultSettingsBuilderHelper.getLiveScout().getLoggerSettingsBuilder().build();
         timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
@@ -62,7 +62,7 @@ public class LoggingInputStreamTest {
         ignoreHeader = true;
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         try {
             if (inputStream != null) {

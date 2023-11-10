@@ -28,12 +28,13 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,14 +50,14 @@ import java.util.concurrent.ScheduledExecutorService;
 /**
  * Server test
  */
-@Ignore
+@Disabled
 public class BetradarServerTest {
 
     private static final Logger logger = LoggerFactory.getLogger(BetradarServerTest.class);
 
     private final Synchroniser synchronizer = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchronizer);
     }};
 
@@ -74,7 +75,7 @@ public class BetradarServerTest {
     MessageWriter<OutgoingMessage> clientMessageWriter;
     private Protocol<IncomingMessage, OutgoingMessage> protocol;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(IncomingMessage.class, OutgoingMessage.class);
         JaxbBuilder jaxbBuilder = new JaxbFactory(jaxbContext);
@@ -95,7 +96,8 @@ public class BetradarServerTest {
         clientMessageWriter = new JaxbMessageWriter<>(jaxbBuilder);
     }
 
-    @Test(timeout = 25000)
+    @Test
+    @Timeout(25)
     public void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
 
         LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()

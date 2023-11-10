@@ -6,19 +6,19 @@ package com.sportradar.livedata.sdk.common;
 
 import ch.qos.logback.core.spi.FilterReply;
 import com.sportradar.livedata.sdk.common.classes.SdkLoggerCfg;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MatchingFilterTest {
 
     private SdkLoggerCfg.MatchingFilter matchingFilter;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         matchingFilter = new SdkLoggerCfg.MatchingFilter();
     }

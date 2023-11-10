@@ -4,14 +4,15 @@
 
 package com.sportradar.livedata.sdk.common.networking;
 
-import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import org.apache.commons.net.DefaultSocketFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for the {@link TcpGateway} class.
@@ -20,14 +21,16 @@ public class TcpGatewayTest {
 
     private TcpGateway gateway;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         gateway = new TcpGateway(Executors.newCachedThreadPool(), new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);
     }
 
-    @Test(expected = IOException.class)
-    public void throwsExceptionWhenConnectionFails() throws IOException {
-        gateway.connect();
+    @Test
+    public void throwsExceptionWhenConnectionFails() {
+        Exception exception = assertThrows(IOException.class, () -> {
+            gateway.connect();
+        });
     }
 
     @Test
@@ -35,8 +38,10 @@ public class TcpGatewayTest {
         gateway.disconnect(false);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void throwsIfSendingWhenDisconnected() throws IOException {
-        gateway.sendData(new byte[]{0x00, 0x01});
+    @Test
+    public void throwsIfSendingWhenDisconnected() {
+        Exception exception = assertThrows(IllegalStateException.class, () -> {
+            gateway.sendData(new byte[]{0x00, 0x01});
+        });
     }
 }

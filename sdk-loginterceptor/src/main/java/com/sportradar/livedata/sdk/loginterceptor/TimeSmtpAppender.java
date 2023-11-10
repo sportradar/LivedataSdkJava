@@ -4,10 +4,10 @@ import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -74,7 +74,7 @@ public class TimeSmtpAppender extends AppenderBase<ILoggingEvent> {
         props.put("mail.smtp.port", smtpPort);
 
         Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
+                new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }

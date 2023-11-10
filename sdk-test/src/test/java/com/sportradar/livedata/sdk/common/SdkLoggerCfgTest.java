@@ -15,14 +15,14 @@ import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -30,13 +30,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SdkLoggerCfgTest {
 
-    File logDirectory = new File(System.getProperty("java.io.tmpdir") + File.separator + "logs");
-    @Rule
-    public TemporaryFolder directory;
+    private final String tmpLogPath = System.getProperty("java.io.tmpdir") + File.separator + "logs";
+
+    @TempDir
+    public File directory;
     final private String LIVE_SCOUT_SUBDIRECTORY = "LiveScout";
 
     private Logger rootLogger = (Logger) LoggerFactory.getLogger(FileSdkLogger.ROOT_NS);
@@ -50,14 +51,13 @@ public class SdkLoggerCfgTest {
     public SdkLoggerCfgTest() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
+        File logDirectory = new File(directory, tmpLogPath);
         if (!logDirectory.exists() && !logDirectory.isDirectory()) {
             logDirectory.mkdir();
         }
-        directory = new TemporaryFolder(logDirectory);
-        directory.create();
-        File tmpDirectory = directory.newFolder();
+        File tmpDirectory = Files.createTempDirectory(directory.toPath(), "file_logger_test").toFile();
         loggerSettings = createLoggerSettings(tmpDirectory, "");
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
         testLogger = (Logger) LoggerFactory.getLogger(SdkLoggerCfg.class);

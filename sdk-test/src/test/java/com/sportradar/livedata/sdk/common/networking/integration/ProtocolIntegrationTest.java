@@ -30,15 +30,16 @@ import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import org.junit.jupiter.api.Timeout;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -49,11 +50,11 @@ import java.util.concurrent.ScheduledExecutorService;
 /**
  * Protocol integration test
  */
-@Ignore
+@Disabled
 public class ProtocolIntegrationTest {
     private final Synchroniser synchronizer = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchronizer);
     }};
 
@@ -71,7 +72,7 @@ public class ProtocolIntegrationTest {
     MessageWriter<OutgoingMessage> clientMessageWriter;
     private Protocol<IncomingMessage, OutgoingMessage> protocol;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(IncomingMessage.class, OutgoingMessage.class);
         JaxbBuilder liveOddsJaxbFactory = new JaxbFactory(jaxbContext);
@@ -122,7 +123,8 @@ public class ProtocolIntegrationTest {
         protocol.setListener(protocolListener);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(5)
     public void protocolLogsInAndStops() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
             allowing(protocolListener).onMessageReceived(with(any(IncomingMessage.class)));

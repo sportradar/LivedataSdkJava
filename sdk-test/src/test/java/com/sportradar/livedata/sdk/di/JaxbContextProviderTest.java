@@ -1,12 +1,11 @@
 package com.sportradar.livedata.sdk.di;
 
-import com.sportradar.livedata.sdk.di.JaxbContextProvider;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import jakarta.xml.bind.JAXBContext;
 
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Contains unit tests for the

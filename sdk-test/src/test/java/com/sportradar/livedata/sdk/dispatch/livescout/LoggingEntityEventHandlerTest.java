@@ -12,17 +12,13 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.integration.junit4.JUnit4Mockery;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.jmock.junit5.JUnit5Mockery;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase {
 
@@ -32,9 +28,9 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     private static long virtualGameId = 1;
     private final int id = 1;
     private final int dispatcherCount = 1;
-    private final Mockery context = new JUnit4Mockery();
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
+    private final Mockery context = new JUnit5Mockery();
+//    @TempDir
+//    public File tempFolder;
     private EntityEventHandler entityEventHandler;
     private LiveScoutFeedListener feedListenerMock = context.mock(LiveScoutFeedListener.class);
     private LiveScoutFeed feedMock = context.mock(LiveScoutFeed.class);
@@ -42,7 +38,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     public LoggingEntityEventHandlerTest() {
     }
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();

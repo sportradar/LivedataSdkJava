@@ -2,7 +2,7 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,13 +10,16 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"unchecked", "JavaDoc"})
 public class JaxbLiveScoutEntityFactoryHelperTest {
 
-    @Test(expected = NullPointerException.class)
-    public void buildMatchListEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(null);
+    @Test
+    public void buildMatchListEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(null);
+        });
     }
 
     @Test
@@ -41,9 +44,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildMatchListUpdateEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(null);
+    @Test
+    public void buildMatchListUpdateEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(null);
+        });
     }
 
     @Test
@@ -68,9 +73,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildMatchUpdateEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(null);
+    @Test
+    public void buildMatchUpdateEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(null);
+        });
     }
 
     @Test
@@ -151,9 +158,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildMatchHeaderEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchHeaderEntity(null);
+    @Test
+    public void buildMatchHeaderEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchHeaderEntity(null);
+        });
     }
 
     @Test
@@ -172,9 +181,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildScoutEventEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(null);
+    @Test
+    public void buildScoutEventEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(null);
+        });
     }
 
     @Test
@@ -192,9 +203,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void buildMatchStopEntity_Null_Input_Test() {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(null);
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(null);
+        });
     }
 
     @Test
@@ -212,9 +225,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildMatchBookingEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(null);
+    @Test
+    public void buildMatchBookingEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(null);
+        });
     }
 
     @Test
@@ -232,9 +247,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildLineupsEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(null);
+    @Test
+    public void buildLineupsEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(null);
+        });
     }
 
     @Test
@@ -252,9 +269,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void buildPlayerEntity_Null_Input_Test() throws Exception {
-        JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(null);
+    @Test
+    public void buildPlayerEntity_Null_Input_Test() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(null);
+        });
     }
 
     @Test

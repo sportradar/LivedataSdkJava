@@ -9,7 +9,7 @@ import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
 import com.sportradar.livedata.sdk.common.settings.LimiterData;
 import com.sportradar.livedata.sdk.common.settings.PropertiesParser;
 import org.joda.time.Duration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Properties;
@@ -19,7 +19,8 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -66,11 +67,13 @@ public class PropertiesParserTest {
         assertThat(result.get(0), is(equalTo(new LimiterData(10, Duration.standardSeconds(1), "name"))));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void parseCSVProperty_Null_Test() throws Exception {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         String key = null;
-        propertiesParser.parseCSVProperty(key);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            propertiesParser.parseCSVProperty(key);
+        });
     }
 
     @Test

@@ -9,13 +9,13 @@ import com.sportradar.livedata.sdk.common.rategate.RateGate;
 import com.sportradar.livedata.sdk.common.rategate.SimpleRateGate;
 import org.joda.time.Duration;
 import org.joda.time.ReadableDuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executors;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CombinedRateGateTest {
 

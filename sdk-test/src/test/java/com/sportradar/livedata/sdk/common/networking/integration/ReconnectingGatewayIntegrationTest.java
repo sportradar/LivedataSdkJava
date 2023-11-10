@@ -20,32 +20,35 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import org.junit.jupiter.api.Timeout;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Integration tests for the {@link ReconnectingGateway} class.
  */
-@Ignore
+@Disabled
 public class ReconnectingGatewayIntegrationTest {
 
     private final static Exception nullException = null;
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
 
@@ -59,7 +62,7 @@ public class ReconnectingGatewayIntegrationTest {
     private Gateway client;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
@@ -114,7 +117,8 @@ public class ReconnectingGatewayIntegrationTest {
         synchroniser.waitUntil(clientState.is("disconnected"));
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(5)//(value = 5000, unit = TimeUnit.MICROSECONDS)
     public void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();

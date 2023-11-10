@@ -13,11 +13,11 @@ import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 /**
  * Contains unit-tests for the {@link LiveScoutInjectionModule} class
@@ -26,7 +26,7 @@ public class LiveScoutInjectionModuleTests {
 
     private static Injector injector;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpStatic() {
         injector = DiTestHelper.getInjector();
     }

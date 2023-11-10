@@ -7,13 +7,13 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.integration.junit4.JUnit4Mockery;
-import org.junit.Test;
+import org.jmock.junit5.JUnit5Mockery;
+import org.junit.jupiter.api.Test;
 
 
 public class EntityEventHandlerTest {
 
-    private final Mockery context = new JUnit4Mockery();
+    private final Mockery context = new JUnit5Mockery();
     private final LiveScoutFeedListener listenerMock = context.mock(LiveScoutFeedListener.class);
     private final LiveScoutFeed feed = context.mock(LiveScoutFeed.class);
     private EntityEventHandler handler = new TestEntityEventHandler(

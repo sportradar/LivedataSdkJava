@@ -82,12 +82,13 @@
         <disruptor.version>3.4.4</disruptor.version>
         <findbugs.version>3.0.2</findbugs.version>
         <xerces.version>2.12.2</xerces.version>
-        <javax.mail.version>1.4.7</javax.mail.version><!-- migrate to jakarta.mail-api -->
+        <jakarta.mail.version>2.1.2</jakarta.mail.version>
         <jakarta.xml.bind-api.version>4.0.1</jakarta.xml.bind-api.version>
         <jaxb-impl.version>4.0.4</jaxb-impl.version><!-- seems will be replaced with jaxb-runtime-->
         <classgraph.version>4.8.164</classgraph.version>
         <lombok.version>1.18.30</lombok.version>
-        <junit.version>4.13.2</junit.version><!-- migrate to junit-jupiter-api -->
+        <jupiter.version>5.10.1</jupiter.version><!-- migrate to junit-jupiter-api -->
+        <junit-platform.version>1.10.1</junit-platform.version>
         <jmock.version>2.12.0</jmock.version><!-- migrate jmock-junit5 -->
 
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
@@ -310,29 +311,30 @@
 
             <!-- testing -->
 
+<!--            <dependency>-->
+<!--                <groupId>org.hamcrest</groupId>-->
+<!--                <artifactId>hamcrest-all</artifactId>-->
+<!--                <version>${hamcrest.version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+
             <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-all</artifactId>
-                <version>${hamcrest.version}</version>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit-platform.version}</version>
                 <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <dependency>
                 <groupId>org.jmock</groupId>
-                <artifactId>jmock-junit4</artifactId>
+                <artifactId>jmock-junit5</artifactId>
                 <version>${jmock.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -421,9 +423,9 @@
 
             <!-- Java Mail API -->
             <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>${javax.mail.version}</version>
+                <groupId>jakarta.mail</groupId>
+                <artifactId>jakarta.mail-api</artifactId>
+                <version>${jakarta.mail.version}</version>
             </dependency>
 
             <dependency>

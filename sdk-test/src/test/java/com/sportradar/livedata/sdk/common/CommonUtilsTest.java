@@ -8,12 +8,13 @@ import com.sportradar.livedata.sdk.common.classes.CommonUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CommonUtilsTest {
 
@@ -27,36 +28,45 @@ public class CommonUtilsTest {
         assertThat(expected, is(result));
     }
 
-
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void timestampToDateTime_Invalid_TimeZone_Test() {
         String time = "2013-9-26T23:11:52";
         String zone = "Mars/Hellas Planitia";
-        assertNull(CommonUtils.timeStringToDateTime(time, zone));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            assertNull(CommonUtils.timeStringToDateTime(time, zone));
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void timestampToDateTime_Invalid_CreatedTime_Test() {
         String time = "2013-9-26T25:11:52";
         String zone = "Europe/Oslo";
-        assertNull(CommonUtils.timeStringToDateTime(time, zone));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            assertNull(CommonUtils.timeStringToDateTime(time, zone));
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void timestampToDateTime_Null_CreatedTime_Test() {
         String zone = "Europe/Oslo";
-        CommonUtils.timeStringToDateTime(null, zone);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            CommonUtils.timeStringToDateTime(null, zone);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void timestampToDateTime_Null_TimeZone_Test() {
         String time = "2013-9-26T23:11:52";
-        CommonUtils.timeStringToDateTime(time, null);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            CommonUtils.timeStringToDateTime(time, null);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void toTimestamp_Null_DateTime_Test() {
-        CommonUtils.toTimestamp(null);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            CommonUtils.toTimestamp(null);
+        });
     }
 
     @Test
@@ -71,9 +81,11 @@ public class CommonUtilsTest {
         assertThat(CommonUtils.toTimestamp(dateTime), is(946688461000L));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void durationToString_Null_Test() {
-        CommonUtils.durationToString(null);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            CommonUtils.durationToString(null);
+        });
     }
 
     @Test

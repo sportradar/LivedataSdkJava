@@ -8,10 +8,10 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ import java.io.InputStream;
 public class IncrementalMessageTokenizerTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
     private States state;
@@ -30,7 +30,7 @@ public class IncrementalMessageTokenizerTest {
     private InputStream inputStream;
     private MessageTokenizerListener messageTokenizerListener;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         sequence = context.sequence("sequence");
         state = context.states("state");

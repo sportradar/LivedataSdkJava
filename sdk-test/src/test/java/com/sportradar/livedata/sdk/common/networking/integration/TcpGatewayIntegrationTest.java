@@ -16,12 +16,9 @@ import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -35,14 +32,14 @@ import java.util.concurrent.TimeUnit;
 /**
  * Contains end-to-end tests for the SDK
  */
-@Ignore
+@Disabled
 public class TcpGatewayIntegrationTest {
 
     private final static Exception nullException = null;
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
     private final ExecutorService executor = Executors.newCachedThreadPool();
@@ -57,7 +54,7 @@ public class TcpGatewayIntegrationTest {
     private FakeServer serverDriver;
     private Gateway client;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException, JAXBException {
         jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder builder = new JaxbFactory(jaxbContext);
@@ -71,13 +68,13 @@ public class TcpGatewayIntegrationTest {
         client.setListener(clientListener);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws InterruptedException {
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.SECONDS);
     }
 
-    @Test(timeout = 1000)
+    @Timeout(1)
     public void sdkStartsAndStopsConnection() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -100,7 +97,7 @@ public class TcpGatewayIntegrationTest {
         serverDriver.stop();
     }
 
-    @Test(timeout = 1000)
+    @Timeout(1)
     public void gatewayDetectsWhenServerDropsConnection() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
@@ -119,7 +116,7 @@ public class TcpGatewayIntegrationTest {
         synchroniser.waitUntil(clientState.is("disconnected"), 200);
     }
 
-    @Test(timeout = 5000)
+    @Timeout(5)
     public void gatewayReceivesData() throws InterruptedException, IOException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();

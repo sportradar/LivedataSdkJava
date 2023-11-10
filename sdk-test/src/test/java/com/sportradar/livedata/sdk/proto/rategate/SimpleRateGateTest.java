@@ -11,14 +11,14 @@ import com.sportradar.livedata.sdk.util.FakeTimeProvider;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.api.Invocation;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.action.CustomAction;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.ReadableDuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -26,29 +26,36 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SimpleRateGateTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validatesNumberParameter() {
-        new SimpleRateGate(-1, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new SimpleRateGate(-1, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validatesDurationParameter() {
-        new SimpleRateGate(1, Duration.millis(-1), Executors.newSingleThreadScheduledExecutor(), "name");
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new SimpleRateGate(1, Duration.millis(-1), Executors.newSingleThreadScheduledExecutor(), "name");
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validatesRunAfterParameter() {
-        new SimpleRateGate(1, Duration.millis(1), null, "name");
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new SimpleRateGate(1, Duration.millis(1), null, "name");
+        });
     }
 
     @Test

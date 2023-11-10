@@ -5,24 +5,21 @@ import com.sportradar.livedata.sdk.util.TcpServer;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-@Ignore
+@Disabled
 public class FakeServerTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
 
@@ -34,19 +31,20 @@ public class FakeServerTest {
 
     private TcpServer server;
 
-    @Before
+    @BeforeEach
     public void setUp() throws IOException {
         server = new TcpServer(executor, 5051);
         server.setListener(listener);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws InterruptedException {
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.SECONDS);
     }
 
-    @Test(timeout = 500)
+    @Test
+    @Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
     public void serverNotifiesWhenStartedOrStopped() throws InterruptedException, IOException {
         serverState.startsAs("none");
         context.checking(new Expectations() {{

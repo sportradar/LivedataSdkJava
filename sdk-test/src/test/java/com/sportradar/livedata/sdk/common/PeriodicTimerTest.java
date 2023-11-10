@@ -9,8 +9,8 @@ import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
 import com.sportradar.livedata.sdk.common.timer.TimerListener;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Unit tests for the {@link PeriodicTimerTest} class.
@@ -27,7 +27,7 @@ public class PeriodicTimerTest {
 
     private PeriodicTimerDriver driver = null;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         driver = new PeriodicTimerDriver(new PeriodicTimer(Executors.newScheduledThreadPool(1)));
     }

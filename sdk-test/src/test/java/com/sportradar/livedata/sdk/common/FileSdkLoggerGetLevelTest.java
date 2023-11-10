@@ -6,34 +6,24 @@ package com.sportradar.livedata.sdk.common;
 
 import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(value = Parameterized.class)
 public class FileSdkLoggerGetLevelTest {
 
-    private Level level;
-
-    public FileSdkLoggerGetLevelTest(Level level) {
-        this.level = level;
-    }
-
-    @Test
-    public void testGetLevel() {
-        Level inputLevel = this.level;
+    @ParameterizedTest
+    @MethodSource("getData")
+    public void testGetLevel(Level inputLevel) {
         Level outPutLevel = FileSdkLogger.getLevel(inputLevel.levelStr);
         assertThat(outPutLevel, equalTo(inputLevel));
     }
 
-    @Parameters
     public static Collection<Object[]> getData() {
         Object[][] data = new Object[][]{
                 {Level.ALL},

@@ -21,12 +21,10 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.hamcrest.CoreMatchers;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 
@@ -34,6 +32,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -42,13 +41,15 @@ import java.util.concurrent.Executors;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileSdkLoggerTestBase {
 
     private final String tmpLogPath = System.getProperty("java.io.tmpdir") + File.separator + "logs";
-    @Rule
-    public TemporaryFolder directory;
+    @TempDir
+    File directory;
     private File tmpDirectory;
     private LoggerSettings loggerSettings;
     private FileSdkLogger fileSdkLogger;
@@ -69,22 +70,17 @@ public class FileSdkLoggerTestBase {
     private Timer timer;
     private final String markerName = "markerName";
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     public FileSdkLoggerTestBase() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        File logDirectory = new File(tmpLogPath);
+        File logDirectory = new File(directory, tmpLogPath);
         if (!logDirectory.exists() && !logDirectory.isDirectory()) {
             logDirectory.mkdir();
         }
-        directory = new TemporaryFolder(logDirectory);
-        directory.create();
         logger = (Logger) LoggerFactory.getLogger(ROOT_NS);
-        tmpDirectory = directory.newFolder();
+        tmpDirectory = Files.createTempDirectory(directory.toPath(), "file_logger_test").toFile();
         logPath = tmpDirectory.getAbsolutePath();
 
         oldLogCleanupInterval = Duration.standardHours(1);
@@ -134,7 +130,7 @@ public class FileSdkLoggerTestBase {
         rootListAppender.start();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         TimeProvider.setCurrent(new RealTimeProvider());
     }
@@ -345,16 +341,18 @@ public class FileSdkLoggerTestBase {
 
     @Test
     public void testLoggerLevelIsNull() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("level");
-        FileSdkLogger.getLevel(null);
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            FileSdkLogger.getLevel(null);
+        });
+        assertTrue(e.getMessage().contains("level"));
     }
 
     @Test
     public void testLoggerLevelIsEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("level");
-        FileSdkLogger.getLevel("");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            FileSdkLogger.getLevel("");
+        });
+        assertTrue(e.getMessage().contains("level"));
     }
 
     @Test
@@ -375,9 +373,10 @@ public class FileSdkLoggerTestBase {
     public void testAppenderTypeNull() {
         SdkLogAppenderType appenderTypeAlert = null;
         final String markerName = "marker";
-        thrown.expectMessage("appenderType");
-        thrown.expect(IllegalArgumentException.class);
-        SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
+        });
+        assertTrue(e.getMessage().contains("appenderType"));
     }
 
     @Test
@@ -400,9 +399,12 @@ public class FileSdkLoggerTestBase {
         final SdkLogAppenderType inputAppenderType = SdkLogAppenderType.ALERT;
         final String suffix = "new";
         final String appenderName = FileSdkLogger.ROOT_NS + inputAppenderType.name() + "." + suffix;
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("No enum constant " + inputAppenderType.getClass().getName() + "." + inputAppenderType.name() + suffix);
-        SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(appenderName);
+
+        final String expected = "No enum constant " + inputAppenderType.getClass().getName() + "." + inputAppenderType.name() + suffix;
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(appenderName);
+        });
+        assertTrue(e.getMessage().contains(expected));
     }
 
     @Test

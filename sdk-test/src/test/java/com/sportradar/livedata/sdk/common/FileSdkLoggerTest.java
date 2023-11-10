@@ -4,14 +4,14 @@
 
 package com.sportradar.livedata.sdk.common;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
 /**
  * Test FileSdkLogger class
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@Suite
+@SelectClasses({
         FileSkdLoggerGetAppenderTypeTest.class,
         FileSdkLoggerGetLevelTest.class,
         FileSdkLoggerTestBase.class,

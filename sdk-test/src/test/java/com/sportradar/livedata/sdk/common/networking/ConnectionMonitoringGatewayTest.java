@@ -6,11 +6,12 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
 import org.jmock.States;
-import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
 import org.joda.time.Duration;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,14 +20,14 @@ import java.util.concurrent.Executors;
 
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ConnectionMonitoringGatewayTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ConnectionMonitoringGatewayTest.class);
     GatewayListener gatewayListenerMock = null;
     private final Synchroniser synchroniser = new Synchroniser();
-    private final Mockery context = new JUnit4Mockery() {{
+    private final Mockery context = new JUnit5Mockery() {{
         setThreadingPolicy(synchroniser);
     }};
     private States state;
@@ -37,7 +38,7 @@ public class ConnectionMonitoringGatewayTest {
     private final Duration checkInterval = new Duration(10);
     private final Duration noActivityTimeout = new Duration(15);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         gatewayListenerMock = context.mock(GatewayListener.class);
         state = context.states("state");
@@ -91,7 +92,8 @@ public class ConnectionMonitoringGatewayTest {
         context.assertIsSatisfied();
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(5)
     public void onDisconnectedWithExceptionParameter() throws Exception {
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 1);
         this.fakeGateway.setFakeGatewayListener(impl);

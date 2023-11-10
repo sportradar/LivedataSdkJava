@@ -6,34 +6,27 @@ package com.sportradar.livedata.sdk.common;
 
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(value = Parameterized.class)
 public class FileSkdLoggerGetAppenderTypeTest {
 
     private SdkLogAppenderType sdkLogAppenderType;
 
-    public FileSkdLoggerGetAppenderTypeTest(SdkLogAppenderType sdkLogAppenderType) {
-        this.sdkLogAppenderType = sdkLogAppenderType;
-    }
-
-    @Test
-    public void testGetAppenderType() {
-        String name = FileSdkLogger.ROOT_NS + this.sdkLogAppenderType.name();
+    @ParameterizedTest
+    @MethodSource("getData")
+    public void testGetAppenderType(SdkLogAppenderType expected) {
+        String name = FileSdkLogger.ROOT_NS + expected.name();
         SdkLogAppenderType sdkLogAppenderType = FileSdkLogger.getAppenderType(name);
-        assertThat(this.sdkLogAppenderType, equalTo(sdkLogAppenderType));
+        assertThat(expected, equalTo(sdkLogAppenderType));
     }
 
-    @Parameters
     public static Collection<Object[]> getData() {
         Object[][] data = new Object[SdkLogAppenderType.values().length][1];
         int index = 0;
