@@ -3,6 +3,8 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +35,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchListEntity_OK_Input_TestYellow() throws Exception {
+    public void buildMatchListEntity_OK_Input_Test() throws Exception {
         Matchlist input = new Matchlist();
         input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(38));
 
@@ -94,65 +96,11 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    //Junit5: @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}") @ValueSource(ints = {0,1,2,3,4,33,58})
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_0() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(0);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(0);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_1() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(1);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(1);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_2() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(2);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(2);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_3() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(3);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(3);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_4() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(4);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(4);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_33() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(33);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(33);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    public void buildMatchUpdateEntity_OK_Input_56() throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(56);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(56);
+    @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}")
+    @ValueSource(ints = {0,1,2,3,4,33,56})
+    public void buildMatchUpdateEntity_OK_Input(int valueBase) throws Exception {
+        Match input = LiveScoutProtoEntityFactory.buildMatch(valueBase);
+        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(valueBase);
 
         MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
         assertThat(result, equalTo(expected));

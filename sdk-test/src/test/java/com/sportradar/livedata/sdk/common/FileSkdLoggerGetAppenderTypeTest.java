@@ -17,8 +17,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FileSkdLoggerGetAppenderTypeTest {
 
-    private SdkLogAppenderType sdkLogAppenderType;
-
     @ParameterizedTest
     @MethodSource("getData")
     public void testGetAppenderType(SdkLogAppenderType expected) {

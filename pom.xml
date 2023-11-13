@@ -87,9 +87,8 @@
         <jaxb-impl.version>4.0.4</jaxb-impl.version><!-- seems will be replaced with jaxb-runtime-->
         <classgraph.version>4.8.164</classgraph.version>
         <lombok.version>1.18.30</lombok.version>
-        <jupiter.version>5.10.1</jupiter.version><!-- migrate to junit-jupiter-api -->
-        <junit-platform.version>1.10.1</junit-platform.version>
-        <jmock.version>2.12.0</jmock.version><!-- migrate jmock-junit5 -->
+        <junit.version>5.10.1</junit.version>
+        <jmock.version>2.12.0</jmock.version>
 
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
@@ -155,9 +154,9 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerVersion>${maven.compiler.source}</compilerVersion>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
+                    <compilerArgs>
+                        <arg>-Djava.endorsed.dirs=${endorsed.dir}</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -307,36 +306,6 @@
                 <groupId>com.j256.simplejmx</groupId>
                 <artifactId>simplejmx</artifactId>
                 <version>${simplejmx.version}</version>
-            </dependency>
-
-            <!-- testing -->
-
-<!--            <dependency>-->
-<!--                <groupId>org.hamcrest</groupId>-->
-<!--                <artifactId>hamcrest-all</artifactId>-->
-<!--                <version>${hamcrest.version}</version>-->
-<!--                <scope>test</scope>-->
-<!--            </dependency>-->
-
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-suite</artifactId>
-                <version>${junit-platform.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jmock</groupId>
-                <artifactId>jmock-junit5</artifactId>
-                <version>${jmock.version}</version>
-                <scope>test</scope>
             </dependency>
 
             <!-- XML Binding -->
