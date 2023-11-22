@@ -104,7 +104,6 @@ public class TcpServer implements NetworkServer {
     private void read() {
         logger.debug("Client has established the connection, notifying the listener");
         listener.onClientConnected();
-        this.clientDisconnectRequested = false;
         byte[] buffer = new byte[1024];
         int bufferSize = 1024;
         while (true) {

@@ -49,12 +49,11 @@ public class LiveScoutTestManagerImpl extends LiveFeedTestManagerBase implements
             sb.append("startmessage=\"");
             sb.append(delay.getMsgNr());
             sb.append("\" ");
-        }
-
-        if (delay.getDelay() != null && delay.getDelay().getMillis() > 0) {
-            sb.append("messagedelay=\"");
-            sb.append(delay.getDelay().getMillis());
-            sb.append("\" ");
+            if (delay.getDelay() != null && delay.getDelay().getMillis() > 0) {
+                sb.append("messagedelay=\"");
+                sb.append(delay.getDelay().getMillis());
+                sb.append("\" ");
+            }
         }
 
         sb.append("/>");

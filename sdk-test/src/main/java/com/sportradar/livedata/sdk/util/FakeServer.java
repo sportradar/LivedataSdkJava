@@ -139,7 +139,8 @@ public class FakeServer implements NetworkServerListener, MessageParserListener<
 
         if (message != null && Login.class.equals(message.getClass())) {
             Credential cred = ((Login)message).getCredential();
-            if (cred.getLoginname().equals(settings.getUsername()) && settings.getPassword().equals(cred.getPassword())) {
+            if (cred.getLoginname().getValue().equals(settings.getUsername())
+                    && settings.getPassword().equals(cred.getPassword().getValue())) {
                 try {
                     sendData(buildLoginResponse(LiveScoutLoginType.VALID));
                 } catch (Exception e) {

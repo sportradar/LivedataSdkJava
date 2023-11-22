@@ -733,11 +733,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setItemName(event.getItemname());
         Byte conversionType = event.getConversiontype();
         if (conversionType != null) {
-            result.setConversionType(Integer.valueOf(conversionType));
+            result.setConversionType(conversionType);
         }
         Byte touchdownType = event.getTouchdowntype();
         if (touchdownType != null) {
-            result.setTouchdownType(Integer.valueOf(touchdownType));
+            result.setTouchdownType(touchdownType);
         }
         result.setGoals(event.getGoals());
         result.setBehinds(event.getBehinds());

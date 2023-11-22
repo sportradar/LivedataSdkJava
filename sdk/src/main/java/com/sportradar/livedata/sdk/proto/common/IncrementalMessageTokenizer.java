@@ -227,7 +227,7 @@ public class IncrementalMessageTokenizer extends MessageTokenizerBase {
         }
 
         if (startIndex > offset + 1) {
-            String elementStr = source == null || source.length == 0 ? "" : new String(source, StandardCharsets.UTF_8);
+            String elementStr = source.length == 0 ? "" : new String(source, StandardCharsets.UTF_8);
             elementStr = elementStr.replace("\0", "");
             sdkLogger.logInvalidMessage(Level.WARN, String.format("Discarded data before '<' character: '%s'. Source: %s",
                     new String(Arrays.copyOfRange(source, offset, startIndex)),

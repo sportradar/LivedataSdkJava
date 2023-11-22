@@ -38,7 +38,6 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
     public static final String LOG_SUFFIX = ".log";
     public static final String ZIP_SUFFIX = ".zip";
     public static final String LOG_PATTERN = "%d [%logger{3}] [%t] [%.5p] %m%n";
-    private static final Pattern oddsClear = Pattern.compile("key=\"[^\"]*\"");
     private static final Pattern scoutClear = Pattern.compile("password value=\"[^\"]*\"");
     private static final Duration TIME_SPAN_MIN = Duration.ZERO;
     public static String ROOT_NS = "com.sportradar";
@@ -295,8 +294,13 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
      */
     @Override
     public void logTraffic(boolean outgoing, String message) {
-        if (message != null) {
-            message = message.replaceAll("\r|\n", "");
+        if (message == null) {
+            message = "NULL";
+        }
+        message = message.replaceAll("\r|\n", "");
+        if (message.contains("password")) {
+            Matcher matcher = scoutClear.matcher(message);
+            message = matcher.replaceAll("password value=\"***\"");
         }
         if (outgoing) {
             log(trafficLogger, Level.INFO, String.format("-> %s", censor(message)));
@@ -310,9 +314,8 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
      */
     @Override
     public void logTraffic(String message) {
-        log(trafficLogger, Level.INFO, String.format("-> %s", censor(message)));
+        this.logTraffic(true, message);
     }
-
 
     @Override
     protected void log(Logger logger, Level level, String message) {
@@ -376,10 +379,7 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
     }
 
     private static String censor(String message) {
-        if (message.contains("type=\"login\"")) {
-            Matcher matcher = oddsClear.matcher(message);
-            return matcher.replaceAll("key=\"***\"");
-        } else if (message.contains("password")) {
+        if (message.contains("password")) {
             Matcher matcher = scoutClear.matcher(message);
             return matcher.replaceAll("password value=\"***\"");
         } else {
@@ -390,11 +390,17 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
     private static void deletePath(String path) {
         try {
             File file = new File(path);
-            if (file.isDirectory() && file.listFiles().length > 0) {
-                logger.error("Will not delete filepath " + path);
-            }
             logger.info("Delete path " + path);
-            file.delete();
+            boolean success = file.delete();
+            if(!success){
+                if(file.isDirectory()){
+                    File[] files = file.listFiles();
+                    if(files != null && files.length > 0){
+                        logger.error("Could not delete. Directory must be empty. Filepath " + path);
+                    }
+                }
+                logger.error("Could not delete filepath " + path);
+            }
         } catch (Exception e) {
             logger.warn(String.format("Could not delete path %s", path), e);
         }
