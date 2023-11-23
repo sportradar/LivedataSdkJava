@@ -1,6 +1,6 @@
 include:
   - project: smp/iac/pipeline-common
-    ref: 3.4.2
+    ref: 4.4.0
     file: common.yml
 
 workflow:

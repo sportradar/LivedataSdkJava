@@ -24,6 +24,7 @@ public enum ScoutFeedType implements EntityEnum {
      *
      */
     PARTIAL("partial");
+    //lightweight is not used on customer side
 
 
     private String literalValue;
