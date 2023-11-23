@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SimpleRateGateTest {
+class SimpleRateGateTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 

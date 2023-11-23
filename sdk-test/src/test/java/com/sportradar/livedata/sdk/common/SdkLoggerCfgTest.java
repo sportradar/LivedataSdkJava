@@ -32,7 +32,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SdkLoggerCfgTest {
+class SdkLoggerCfgTest {
 
     private final String tmpLogPath = System.getProperty("java.io.tmpdir") + File.separator + "logs";
 

@@ -17,8 +17,8 @@
 //        FileSdkLoggerTestBase.class,
 //        MatchingFilterTest.class,
 //})
-//public class FileSdkLoggerTest {
+//class FileSdkLoggerTest {
 //
-//    public FileSdkLoggerTest() {
+//    FileSdkLoggerTest() {
 //    }
 //}

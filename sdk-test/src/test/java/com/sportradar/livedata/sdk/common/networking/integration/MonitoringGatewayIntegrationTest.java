@@ -45,7 +45,7 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 
 @Disabled
-public class MonitoringGatewayIntegrationTest {
+class MonitoringGatewayIntegrationTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 

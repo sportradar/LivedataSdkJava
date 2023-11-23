@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"unchecked", "JavaDoc"})
-public class JaxbLiveScoutEntityFactoryHelperTest {
+class JaxbLiveScoutEntityFactoryHelperTest {
 
     @Test
     void buildMatchListEntity_Null_Input_Test() {

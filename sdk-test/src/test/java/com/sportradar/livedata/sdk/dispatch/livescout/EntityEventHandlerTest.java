@@ -11,7 +11,7 @@ import org.jmock.junit5.JUnit5Mockery;
 import org.junit.jupiter.api.Test;
 
 
-public class EntityEventHandlerTest {
+class EntityEventHandlerTest {
 
     private final Mockery context = new JUnit5Mockery();
     private final LiveScoutFeedListener listenerMock = context.mock(LiveScoutFeedListener.class);

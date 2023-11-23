@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CombinedRateGateTest {
+class CombinedRateGateTest {
 
     @Test
     void honoursAndBehaviourForWaitToProceed() throws InterruptedException {

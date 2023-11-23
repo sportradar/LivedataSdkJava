@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ReconnectingGatewayTest {
+class ReconnectingGatewayTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
 

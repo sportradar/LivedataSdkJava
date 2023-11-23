@@ -15,7 +15,7 @@ import java.util.Collection;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class FileSkdLoggerGetAppenderTypeTest {
+class FileSkdLoggerGetAppenderTypeTest {
 
     @ParameterizedTest
     @MethodSource("getData")

@@ -20,7 +20,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase {
+class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase {
 
     private static long eventId = 1;
     private static boolean isEndOfBatch = false;

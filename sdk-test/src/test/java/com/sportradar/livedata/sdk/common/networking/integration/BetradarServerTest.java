@@ -51,7 +51,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * Server test
  */
 @Disabled
-public class BetradarServerTest {
+class BetradarServerTest {
 
     private static final Logger logger = LoggerFactory.getLogger(BetradarServerTest.class);
 

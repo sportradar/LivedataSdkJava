@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
  * Contains end-to-end tests for the SDK
  */
 @Disabled
-public class TcpGatewayIntegrationTest {
+class TcpGatewayIntegrationTest {
 
     private final static Exception nullException = null;
 

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Unit tests for the {@link TcpGateway} class.
  */
-public class TcpGatewayTest {
+class TcpGatewayTest {
 
     private TcpGateway gateway;
 

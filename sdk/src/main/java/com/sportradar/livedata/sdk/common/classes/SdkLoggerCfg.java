@@ -134,7 +134,7 @@ public class SdkLoggerCfg {
         thresholdFilter.start();
 
         SizeAndTimeBasedFNATP<ILoggingEvent> sizeAndTimeBasedFNATP = new SizeAndTimeBasedFNATP<>();
-        sizeAndTimeBasedFNATP.setMaxFileSize(new FileSize(new Long(maxFileSize)));
+        sizeAndTimeBasedFNATP.setMaxFileSize(new FileSize(maxFileSize));
         TimeBasedRollingPolicy<ILoggingEvent> timeBasedRollingPolicy = new TimeBasedRollingPolicy<>();
         timeBasedRollingPolicy.setContext(loggerContext);
         timeBasedRollingPolicy.setTimeBasedFileNamingAndTriggeringPolicy(sizeAndTimeBasedFNATP);

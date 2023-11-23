@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  *
  */
-public class PropertiesParserTest {
+class PropertiesParserTest {
 
     @Test
     void getDurationProperty_Full_String_Test() throws MissingPropertyException {

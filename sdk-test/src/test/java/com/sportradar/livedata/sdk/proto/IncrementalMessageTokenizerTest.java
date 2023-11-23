@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-public class IncrementalMessageTokenizerTest {
+class IncrementalMessageTokenizerTest {
 
     private final Synchroniser synchroniser = new Synchroniser();
     private final Mockery context = new JUnit5Mockery() {{

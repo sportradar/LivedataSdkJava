@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
  * Integration tests for the {@link ReconnectingGateway} class.
  */
 @Disabled
-public class ReconnectingGatewayIntegrationTest {
+class ReconnectingGatewayIntegrationTest {
 
     private final static Exception nullException = null;
 

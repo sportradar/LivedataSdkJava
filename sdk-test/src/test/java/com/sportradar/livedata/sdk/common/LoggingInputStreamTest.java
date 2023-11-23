@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LoggingInputStreamTest {
+class LoggingInputStreamTest {
 
     private LoggingInputStream loggingInputStream;
     private InputStream inputStream;

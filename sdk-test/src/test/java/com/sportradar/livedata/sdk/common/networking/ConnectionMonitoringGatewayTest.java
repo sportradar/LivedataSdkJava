@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ConnectionMonitoringGatewayTest {
+class ConnectionMonitoringGatewayTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ConnectionMonitoringGatewayTest.class);
     GatewayListener gatewayListenerMock = null;
@@ -39,7 +39,7 @@ public class ConnectionMonitoringGatewayTest {
     private final Duration noActivityTimeout = new Duration(15);
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         gatewayListenerMock = context.mock(GatewayListener.class);
         state = context.states("state");
         sequence = context.sequence("sequence");
@@ -56,7 +56,7 @@ public class ConnectionMonitoringGatewayTest {
     }
 
     //TODO: @Test(timeout = 10000)
-    public void connectionClosedDuringUnstableConnection() throws Exception {
+    void connectionClosedDuringUnstableConnection() throws Exception {
         final int CONNECTION_REQUESTS = 3;
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, CONNECTION_REQUESTS);
         this.fakeGateway.setFakeGatewayListener(impl);
@@ -94,7 +94,7 @@ public class ConnectionMonitoringGatewayTest {
 
     @Test
     @Timeout(5)
-    public void onDisconnectedWithExceptionParameter() throws Exception {
+    void onDisconnectedWithExceptionParameter() throws Exception {
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 1);
         this.fakeGateway.setFakeGatewayListener(impl);
 
@@ -127,7 +127,7 @@ public class ConnectionMonitoringGatewayTest {
     }
 
     //TODO: fix @Test(timeout = 5000)
-    public void onDataReceived() throws Exception {
+    void onDataReceived() throws Exception {
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 1);
         this.fakeGateway.setFakeGatewayListener(impl);
 

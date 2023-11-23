@@ -51,7 +51,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * Protocol integration test
  */
 @Disabled
-public class ProtocolIntegrationTest {
+class ProtocolIntegrationTest {
     private final Synchroniser synchronizer = new Synchroniser();
 
     private final Mockery context = new JUnit5Mockery() {{

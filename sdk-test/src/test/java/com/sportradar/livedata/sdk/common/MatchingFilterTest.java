@@ -14,7 +14,7 @@ import org.slf4j.MarkerFactory;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MatchingFilterTest {
+class MatchingFilterTest {
 
     private SdkLoggerCfg.MatchingFilter matchingFilter;
 

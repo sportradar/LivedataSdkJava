@@ -23,6 +23,8 @@ import org.slf4j.Marker;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -389,18 +391,8 @@ public class FileSdkLogger extends BaseSdkLogger implements SdkLogger {
 
     private static void deletePath(String path) {
         try {
-            File file = new File(path);
             logger.info("Delete path " + path);
-            boolean success = file.delete();
-            if(!success){
-                if(file.isDirectory()){
-                    File[] files = file.listFiles();
-                    if(files != null && files.length > 0){
-                        logger.error("Could not delete. Directory must be empty. Filepath " + path);
-                    }
-                }
-                logger.error("Could not delete filepath " + path);
-            }
+            Files.delete(Paths.get(path));
         } catch (Exception e) {
             logger.warn(String.format("Could not delete path %s", path), e);
         }

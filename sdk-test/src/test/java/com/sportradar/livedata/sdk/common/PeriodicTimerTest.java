@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Unit tests for the {@link PeriodicTimerTest} class.
  */
-public class PeriodicTimerTest {
+class PeriodicTimerTest {
 
     private PeriodicTimerDriver driver = null;
 

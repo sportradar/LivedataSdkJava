@@ -4,7 +4,7 @@ import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.Test;
 
-public class EventTypeTest {
+class EventTypeTest {
 
 
     @Test

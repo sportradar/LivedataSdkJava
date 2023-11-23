@@ -70,11 +70,11 @@ public class FileSdkLoggerTestBase {
     private Timer timer;
     private final String markerName = "markerName";
 
-    public FileSdkLoggerTestBase() {
+    FileSdkLoggerTestBase() {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         File logDirectory = new File(directory, tmpLogPath);
         if (!logDirectory.exists() && !logDirectory.isDirectory()) {
             logDirectory.mkdir();
@@ -131,7 +131,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         TimeProvider.setCurrent(new RealTimeProvider());
     }
 

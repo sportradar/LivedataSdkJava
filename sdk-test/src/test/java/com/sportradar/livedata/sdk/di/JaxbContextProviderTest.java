@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Contains unit tests for the
  */
-public class JaxbContextProviderTest {
+class JaxbContextProviderTest {
 
     private final JaxbContextProvider provider = new JaxbContextProvider();
 

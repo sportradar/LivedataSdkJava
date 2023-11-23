@@ -31,7 +31,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Disabled
-public class LiveScoutSystemTest {
+class LiveScoutSystemTest {
 
     private Mockery context;
     private List<LiveScoutEntityBase> dispatchedEntities;
