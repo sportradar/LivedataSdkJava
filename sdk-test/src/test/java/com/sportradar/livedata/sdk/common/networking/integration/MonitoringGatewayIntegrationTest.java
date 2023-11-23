@@ -108,7 +108,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    public void gatewayDetectWhenServerDropsTheConnection() throws IOException, InterruptedException {
+    void gatewayDetectWhenServerDropsTheConnection() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));
@@ -128,7 +128,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    public void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
+    void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));
@@ -157,7 +157,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    public void gatewayReceivesData() throws IOException, InterruptedException, SdkException {
+    void gatewayReceivesData() throws IOException, InterruptedException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));
@@ -181,7 +181,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    public void gatewayDisconnectsWhenAliveTimeoutElapses() throws IOException, InterruptedException {
+    void gatewayDisconnectsWhenAliveTimeoutElapses() throws IOException, InterruptedException {
         //This test fails when the debugger is attached because the gateway does not check alive messages
         if (DevHelper.isDebuggerAttached()) {
             return;
@@ -222,7 +222,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    public void gatewayDoesNotDisconnectIfReceivingAliveMessages() throws IOException, InterruptedException, SdkException {
+    void gatewayDoesNotDisconnectIfReceivingAliveMessages() throws IOException, InterruptedException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));

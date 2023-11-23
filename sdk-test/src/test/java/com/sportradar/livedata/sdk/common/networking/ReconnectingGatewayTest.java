@@ -125,7 +125,7 @@ class ReconnectingGatewayTest {
     }
 
     @Test//(timeout = 500)
-    public void connectionDataIsSend() throws Exception {
+    void connectionDataIsSend() throws Exception {
         final int CONNECTION_REQUESTS = 1;
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, CONNECTION_REQUESTS);
         this.fakeGateway.setFakeGatewayListener(impl);
@@ -164,7 +164,7 @@ class ReconnectingGatewayTest {
     }
 
     @Test//(timeout = 500)
-    public void onDisconnectedWithExceptionParameter() throws Exception {
+    void onDisconnectedWithExceptionParameter() throws Exception {
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 1);
         this.fakeGateway.setFakeGatewayListener(impl);
         Exception exception = new Exception("The server closed the connection");

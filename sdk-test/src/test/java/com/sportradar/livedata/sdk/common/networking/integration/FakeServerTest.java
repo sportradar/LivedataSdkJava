@@ -45,7 +45,7 @@ class FakeServerTest {
 
     @Test
     @Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
-    public void serverNotifiesWhenStartedOrStopped() throws InterruptedException, IOException {
+    void serverNotifiesWhenStartedOrStopped() throws InterruptedException, IOException {
         serverState.startsAs("none");
         context.checking(new Expectations() {{
             oneOf(listener).onStarted();

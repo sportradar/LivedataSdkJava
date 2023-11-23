@@ -125,7 +125,7 @@ class ProtocolIntegrationTest {
 
     @Test
     @Timeout(5)
-    public void protocolLogsInAndStops() throws InterruptedException, IOException {
+    void protocolLogsInAndStops() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
             allowing(protocolListener).onMessageReceived(with(any(IncomingMessage.class)));
 

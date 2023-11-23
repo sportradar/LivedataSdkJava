@@ -119,7 +119,7 @@ class ReconnectingGatewayIntegrationTest {
 
     @Test
     @Timeout(5)//(value = 5000, unit = TimeUnit.MICROSECONDS)
-    public void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
+    void gatewayReconnectsIfConnectionClosed() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));

@@ -98,7 +98,7 @@ class BetradarServerTest {
 
     @Test
     @Timeout(25)
-    public void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
+    void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
 
         LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
                 .setUsername("1762")
