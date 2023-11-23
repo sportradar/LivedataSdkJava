@@ -105,7 +105,7 @@ public class LiveScoutSystemTest {
 
 
     @Test
-    public void handle_Full_Match_onInitialized() throws Exception {
+    void handle_Full_Match_onInitialized() throws Exception {
         context.checking(new Expectations() {{
             oneOf(mockListener).onInitialized(with(any(LiveScoutFeed.class)));
         }});
@@ -120,7 +120,7 @@ public class LiveScoutSystemTest {
 
 
     @Test
-    public void handle_Logout_If_Ct_Not_Recived() throws Exception {
+    void handle_Logout_If_Ct_Not_Recived() throws Exception {
 
         assertThat(testFramework.server().isLoggedin(), is(true));
         //wait until server automatic log out user
@@ -130,7 +130,7 @@ public class LiveScoutSystemTest {
 
 
     @Test
-    public void handle_Invalid_Message_Logging() throws Exception {
+    void handle_Invalid_Message_Logging() throws Exception {
         context.checking(new Expectations() {{
             oneOf(mockListener).onInitialized(with(any(LiveScoutFeed.class)));
         }});

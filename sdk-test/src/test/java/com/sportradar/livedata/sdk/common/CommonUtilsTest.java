@@ -20,7 +20,7 @@ public class CommonUtilsTest {
 
 
     @Test
-    public void timestampToDateTime_OK_Test() {
+    void timestampToDateTime_OK_Test() {
         DateTime expected = new DateTime(2013, 9, 26, 23, 11, 52, DateTimeZone.forID("Europe/Oslo"));
         String time = "2013-9-26T23:11:52";
         String zone = "Europe/Oslo";
@@ -29,7 +29,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void timestampToDateTime_Invalid_TimeZone_Test() {
+    void timestampToDateTime_Invalid_TimeZone_Test() {
         String time = "2013-9-26T23:11:52";
         String zone = "Mars/Hellas Planitia";
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -38,7 +38,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void timestampToDateTime_Invalid_CreatedTime_Test() {
+    void timestampToDateTime_Invalid_CreatedTime_Test() {
         String time = "2013-9-26T25:11:52";
         String zone = "Europe/Oslo";
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -47,7 +47,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void timestampToDateTime_Null_CreatedTime_Test() {
+    void timestampToDateTime_Null_CreatedTime_Test() {
         String zone = "Europe/Oslo";
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtils.timeStringToDateTime(null, zone);
@@ -55,7 +55,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void timestampToDateTime_Null_TimeZone_Test() {
+    void timestampToDateTime_Null_TimeZone_Test() {
         String time = "2013-9-26T23:11:52";
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtils.timeStringToDateTime(time, null);
@@ -63,40 +63,40 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void toTimestamp_Null_DateTime_Test() {
+    void toTimestamp_Null_DateTime_Test() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtils.toTimestamp(null);
         });
     }
 
     @Test
-    public void toTimestamp_OK_UTC_TimeZone_Test() {
+    void toTimestamp_OK_UTC_TimeZone_Test() {
         DateTime dateTime = new DateTime(2000, 1, 1, 1, 1, 1, DateTimeZone.UTC);
         assertThat(CommonUtils.toTimestamp(dateTime), is(946688461000L));
     }
 
     @Test
-    public void toTimestamp_OK_Not_UTC_TimeZone_Test() {
+    void toTimestamp_OK_Not_UTC_TimeZone_Test() {
         DateTime dateTime = new DateTime(2000, 1, 1, 2, 1, 1, DateTimeZone.forID("Europe/Ljubljana"));
         assertThat(CommonUtils.toTimestamp(dateTime), is(946688461000L));
     }
 
     @Test
-    public void durationToString_Null_Test() {
+    void durationToString_Null_Test() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtils.durationToString(null);
         });
     }
 
     @Test
-    public void durationToString_DurationIsZero_Test() {
+    void durationToString_DurationIsZero_Test() {
         Duration duration = Duration.ZERO;
         String result = CommonUtils.durationToString(duration);
         assertThat(result, equalTo("0"));
     }
 
     @Test
-    public void durationToString_Millis_Test() {
+    void durationToString_Millis_Test() {
         DateTime dateTime = new DateTime(2013, 11, 15, 12, 34, 45, 67);
         Duration duration = new Duration(dateTime.getMillisOfDay());
         String result = CommonUtils.durationToString(duration);
@@ -104,7 +104,7 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void durationToString_Days_Test() {
+    void durationToString_Days_Test() {
         Duration duration = Duration.millis(2 * 24 * 60 * 60 * 1000 - 1);
         String result = CommonUtils.durationToString(duration);
         assertThat(result, equalTo("47:59:59.999"));

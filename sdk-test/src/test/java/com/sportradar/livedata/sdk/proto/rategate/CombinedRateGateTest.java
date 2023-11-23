@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CombinedRateGateTest {
 
     @Test
-    public void honoursAndBehaviourForWaitToProceed() throws InterruptedException {
+    void honoursAndBehaviourForWaitToProceed() throws InterruptedException {
         RateGate combined = new CombinedRateGate(
                 new SimpleRateGate(2, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "test"),
                 new SimpleRateGate(3, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "test")
@@ -32,7 +32,7 @@ public class CombinedRateGateTest {
     }
 
     @Test
-    public void returnsMaxForHowLongToWait() throws InterruptedException {
+    void returnsMaxForHowLongToWait() throws InterruptedException {
         RateGate combined = new CombinedRateGate(
                 new SimpleRateGate(2, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "test"),
                 new SimpleRateGate(3, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "test")
@@ -46,7 +46,7 @@ public class CombinedRateGateTest {
     }
 
     @Test
-    public void oneUsedUpAffectsCombo() throws InterruptedException {
+    void oneUsedUpAffectsCombo() throws InterruptedException {
         RateGate one = new SimpleRateGate(1, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "test");
 
         RateGate combined = new CombinedRateGate(

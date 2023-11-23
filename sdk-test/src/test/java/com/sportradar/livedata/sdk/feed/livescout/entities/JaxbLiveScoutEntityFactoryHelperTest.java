@@ -18,14 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class JaxbLiveScoutEntityFactoryHelperTest {
 
     @Test
-    public void buildMatchListEntity_Null_Input_Test() {
+    void buildMatchListEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(null);
         });
     }
 
     @Test
-    public void buildMatchListEntity_Empty_Input_Test() throws Exception {
+    void buildMatchListEntity_Empty_Input_Test() throws Exception {
         Matchlist input = new Matchlist();
         MatchListEntity expected = new MatchListEntity();
         expected.setMatches(new ArrayList<>());
@@ -35,7 +35,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchListEntity_OK_Input_Test() throws Exception {
+    void buildMatchListEntity_OK_Input_Test() throws Exception {
         Matchlist input = new Matchlist();
         input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(38));
 
@@ -47,14 +47,14 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchListUpdateEntity_Null_Input_Test() {
+    void buildMatchListUpdateEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(null);
         });
     }
 
     @Test
-    public void buildMatchListUpdateEntity_Empty_Input_Test() throws Exception {
+    void buildMatchListUpdateEntity_Empty_Input_Test() throws Exception {
         Matchlistupdate input = new Matchlistupdate();
         MatchListUpdateEntity expected = new MatchListUpdateEntity();
         expected.setMatches(new ArrayList<>());
@@ -64,7 +64,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchListUpdateEntity_OK_Input() throws Exception {
+    void buildMatchListUpdateEntity_OK_Input() throws Exception {
         Matchlistupdate input = new Matchlistupdate();
         input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(33));
 
@@ -76,14 +76,14 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchUpdateEntity_Null_Input_Test() {
+    void buildMatchUpdateEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(null);
         });
     }
 
     @Test
-    public void buildMatchUpdateEntity_Empty_Input_Test() throws Exception {
+    void buildMatchUpdateEntity_Empty_Input_Test() throws Exception {
         Match input = new Match();
         MatchUpdateEntity expected = new MatchUpdateEntity();
         expected.setMatchHeader(new MatchHeaderEntity());
@@ -98,7 +98,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
 
     @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}")
     @ValueSource(ints = {0,1,2,3,4,33,56})
-    public void buildMatchUpdateEntity_OK_Input(int valueBase) throws Exception {
+    void buildMatchUpdateEntity_OK_Input(int valueBase) throws Exception {
         Match input = LiveScoutProtoEntityFactory.buildMatch(valueBase);
         MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(valueBase);
 
@@ -107,20 +107,20 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchHeaderEntity_Null_Input_Test() {
+    void buildMatchHeaderEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchHeaderEntity(null);
         });
     }
 
     @Test
-    public void buildMatchHeaderEntity_Empty_Input_Test() throws Exception {
+    void buildMatchHeaderEntity_Empty_Input_Test() throws Exception {
         MatchHeaderEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchHeaderEntity(new Match());
         assertThat(result, equalTo(new MatchHeaderEntity()));
     }
 
     @Test
-    public void buildMatchHeaderEntity_OK_Input_Test() throws Exception {
+    void buildMatchHeaderEntity_OK_Input_Test() throws Exception {
         Match match = new Match();
         LiveScoutProtoEntityFactory.insertMatchHeaderData(match, 57);
         MatchHeaderEntity expected = LiveScoutProtoEntityFactory.buildMatchHeaderEntity(57);
@@ -130,20 +130,20 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildScoutEventEntity_Null_Input_Test() {
+    void buildScoutEventEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(null);
         });
     }
 
     @Test
-    public void buildScoutEventEntity_Empty_Input_Test() throws Exception {
+    void buildScoutEventEntity_Empty_Input_Test() throws Exception {
         ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(new Event());
         assertThat(result, equalTo(new ScoutEventEntity()));
     }
 
     @Test
-    public void buildScoutEventEntity_OK_Input_Test() throws Exception {
+    void buildScoutEventEntity_OK_Input_Test() throws Exception {
         Event input = LiveScoutProtoEntityFactory.buildEvent(27);
         ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(27);
 
@@ -152,20 +152,20 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchStopEntity_Null_Input_Test() {
+    void buildMatchStopEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(null);
         });
     }
 
     @Test
-    public void buildMatchStopEntity_Empty_Input_Test() {
+    void buildMatchStopEntity_Empty_Input_Test() {
         MatchStopEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(new Matchstop());
         assertThat(result, equalTo(new MatchStopEntity()));
     }
 
     @Test
-    public void buildMatchStopEntity_OK_Input_Test() {
+    void buildMatchStopEntity_OK_Input_Test() {
         Matchstop input = LiveScoutProtoEntityFactory.buildMatchstop(23);
         MatchStopEntity expected = LiveScoutProtoEntityFactory.buildMatchStopEntity(23);
 
@@ -174,20 +174,20 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildMatchBookingEntity_Null_Input_Test() {
+    void buildMatchBookingEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(null);
         });
     }
 
     @Test
-    public void buildMatchBookingEntity_Empty_Input_Test() throws Exception {
+    void buildMatchBookingEntity_Empty_Input_Test() throws Exception {
         MatchBookingEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(new Bookmatch());
         assertThat(result, equalTo(new MatchBookingEntity()));
     }
 
     @Test
-    public void buildMatchBookingEntity_OK_Input_Test() throws Exception {
+    void buildMatchBookingEntity_OK_Input_Test() throws Exception {
         Bookmatch input = LiveScoutProtoEntityFactory.buildBookmatch(71);
         MatchBookingEntity expected = LiveScoutProtoEntityFactory.buildMatchBookingEntity(71);
 
@@ -196,20 +196,20 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildLineupsEntity_Null_Input_Test() {
+    void buildLineupsEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(null);
         });
     }
 
     @Test
-    public void buildLineupsEntity_Empty_Input_Test() throws Exception {
+    void buildLineupsEntity_Empty_Input_Test() throws Exception {
         LineupsEntity result = JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(new Lineups());
         assertThat(result, equalTo(new LineupsEntity()));
     }
 
     @Test
-    public void buildLineupsEntity_OK_Input_Test() throws Exception {
+    void buildLineupsEntity_OK_Input_Test() throws Exception {
         Lineups input = LiveScoutProtoEntityFactory.buildLineups(17);
         LineupsEntity expected = LiveScoutProtoEntityFactory.buildLineupsEntity(17);
 
@@ -218,14 +218,14 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildPlayerEntity_Null_Input_Test() {
+    void buildPlayerEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(null);
         });
     }
 
     @Test
-    public void buildPlayerEntity_Empty_Input_Test() throws Exception {
+    void buildPlayerEntity_Empty_Input_Test() throws Exception {
         PlayerEntity expected = new PlayerEntity();
         expected.setTeam(Team.NONE);//because incoming msg is using primitive, which cannot be null, only 0
         PlayerEntity result = JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(new Player());
@@ -233,7 +233,7 @@ public class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
-    public void buildPlayerEntity_OK_Input_Test() throws Exception {
+    void buildPlayerEntity_OK_Input_Test() throws Exception {
         Player input = LiveScoutProtoEntityFactory.buildPlayer(81);
         PlayerEntity expected = LiveScoutProtoEntityFactory.buildPlayerEntity(81);
 

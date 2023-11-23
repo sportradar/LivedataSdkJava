@@ -201,7 +201,7 @@ public class SdkLoggerCfgTest {
     }
 
     @Test
-    public void perfomanceTest() throws Exception {
+    void perfomanceTest() throws Exception {
         LoggerContext loggerContext = getLoggerContext();
 
         LiveScoutFileSdkLogger liveScoutFileSdkLogger = new LiveScoutFileSdkLogger(liveScoutLoggerSettings);
@@ -223,7 +223,7 @@ public class SdkLoggerCfgTest {
     }
 
     @Test
-    public void testFileSdkLogger() throws Exception {
+    void testFileSdkLogger() throws Exception {
         LoggerContext loggerContext = getLoggerContext();
 
         final ConcurrentLinkedQueue<Object> concurrentQueue = new ConcurrentLinkedQueue<>();

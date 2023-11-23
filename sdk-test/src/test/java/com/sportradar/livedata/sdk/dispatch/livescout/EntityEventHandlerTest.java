@@ -24,7 +24,7 @@ public class EntityEventHandlerTest {
 
 
     @Test
-    public void matchListUpdateEntityIsDispatched() {
+    void matchListUpdateEntityIsDispatched() {
         final MatchListUpdateEntity entity = new TestMatchListUpdateEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
             oneOf(listenerMock).onMatchListUpdateReceived(with(feed), with(entity));
@@ -37,7 +37,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void matchListEntityIsDispatched() {
+    void matchListEntityIsDispatched() {
         final MatchListEntity entity = new TestMatchListEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
             oneOf(listenerMock).onMatchListReceived(with(feed), with(entity));
@@ -50,7 +50,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void matchStopEntityIsDispatched() {
+    void matchStopEntityIsDispatched() {
         final MatchStopEntity entity = new TestMatchStopEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
             oneOf(listenerMock).onMatchStopped(with(feed), with(entity));
@@ -63,7 +63,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void matchUpdateEntityIsDispatched() {
+    void matchUpdateEntityIsDispatched() {
         final MatchUpdateEntity matchUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), null);
         final MatchUpdateEntity fullUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.FULL));
 //        final MatchUpdateEntity partialUpdateEntity = new TestMatchUpdateEntity(EventIdentifier.id(1L), new TestMatchHeaderEntity(ScoutFeedType.PARTIAL));
@@ -90,7 +90,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void matchBookEntityIsDispatched() {
+    void matchBookEntityIsDispatched() {
         final MatchBookingEntity entity = new TestMatchBookingEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
             oneOf(listenerMock).onMatchBooked(with(feed), with(entity));
@@ -103,7 +103,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void lineupsEntityIsDispatched() {
+    void lineupsEntityIsDispatched() {
         final LineupsEntity entity = new TestLineupsEntity(EventIdentifier.id(1L));
         context.checking(new Expectations() {{
             oneOf(listenerMock).onLineupsReceived(with(feed), with(entity));
@@ -117,7 +117,7 @@ public class EntityEventHandlerTest {
     }
 
     @Test
-    public void entityIsDispatchedExactlyOneTime() {
+    void entityIsDispatchedExactlyOneTime() {
         EntityEventHandler handler1 = new TestEntityEventHandler(
                 1,
                 2,

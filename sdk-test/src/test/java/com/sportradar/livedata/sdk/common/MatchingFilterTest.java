@@ -24,14 +24,14 @@ public class MatchingFilterTest {
     }
 
     @Test
-    public void testNeutralFilterReply() {
+    void testNeutralFilterReply() {
         Marker marker = null;
         FilterReply filterReply = matchingFilter.decide(marker, null, null, null, null, null);
         assertThat(filterReply, equalTo(FilterReply.NEUTRAL));
     }
 
     @Test
-    public void testNonWhitelistWithDenyFilterReply() {
+    void testNonWhitelistWithDenyFilterReply() {
         String markerString = "test deny";
         matchingFilter.setMarker(markerString);
         Marker marker = MarkerFactory.getMarker(markerString);
@@ -41,7 +41,7 @@ public class MatchingFilterTest {
     }
 
     @Test
-    public void testNonWhitelistWithAcceptFilterReply() {
+    void testNonWhitelistWithAcceptFilterReply() {
         String markerString = "acceptMarker";
         matchingFilter.setMarker(markerString);
         matchingFilter.start();
@@ -53,7 +53,7 @@ public class MatchingFilterTest {
     }
 
     @Test
-    public void testWhitelistWithAcceptFilterReply() {
+    void testWhitelistWithAcceptFilterReply() {
         String markerString = "denyMarker";
         matchingFilter.setMarker(markerString);
         matchingFilter.start();
@@ -64,7 +64,7 @@ public class MatchingFilterTest {
     }
 
     @Test
-    public void testWhitelistWithDenyFilterReply() {
+    void testWhitelistWithDenyFilterReply() {
         String markerString = "acceptMarker";
         matchingFilter.setMarker(markerString);
         matchingFilter.start();

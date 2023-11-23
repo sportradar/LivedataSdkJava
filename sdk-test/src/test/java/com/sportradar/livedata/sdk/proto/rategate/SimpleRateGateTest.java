@@ -38,28 +38,28 @@ public class SimpleRateGateTest {
     }};
 
     @Test
-    public void validatesNumberParameter() {
+    void validatesNumberParameter() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new SimpleRateGate(-1, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
         });
     }
 
     @Test
-    public void validatesDurationParameter() {
+    void validatesDurationParameter() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new SimpleRateGate(1, Duration.millis(-1), Executors.newSingleThreadScheduledExecutor(), "name");
         });
     }
 
     @Test
-    public void validatesRunAfterParameter() {
+    void validatesRunAfterParameter() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new SimpleRateGate(1, Duration.millis(1), null, "name");
         });
     }
 
     @Test
-    public void canReturnFalseWhenWaitToProceedInvokedTooOften() throws InterruptedException {
+    void canReturnFalseWhenWaitToProceedInvokedTooOften() throws InterruptedException {
         RateGate r = new SimpleRateGate(2, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
 
         assertThat(r.waitToProceed(Duration.millis(1)), is(true));
@@ -68,7 +68,7 @@ public class SimpleRateGateTest {
     }
 
     @Test
-    public void canReturnFalseWhenWaitToProceedInvokedTooOftenUsingDifferentAmounts() throws InterruptedException {
+    void canReturnFalseWhenWaitToProceedInvokedTooOftenUsingDifferentAmounts() throws InterruptedException {
         RateGate r = new SimpleRateGate(4, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
 
         assertThat(r.waitToProceed(2, Duration.millis(1)), is(true));
@@ -80,7 +80,7 @@ public class SimpleRateGateTest {
     }
 
     @Test
-    public void canBlockWithWaitToProceed() throws InterruptedException {
+    void canBlockWithWaitToProceed() throws InterruptedException {
         RateGate r = new SimpleRateGate(2, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
 
         assertThat(r.waitToProceed(Duration.millis(1)), is(true));
@@ -93,7 +93,7 @@ public class SimpleRateGateTest {
     }
 
     @Test
-    public void canBlockWithWaitToProceedUsingDifferentAmounts() throws InterruptedException {
+    void canBlockWithWaitToProceedUsingDifferentAmounts() throws InterruptedException {
         RateGate r = new SimpleRateGate(4, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
         assertThat(r.waitToProceed(1, Duration.millis(1)), is(true));
         assertThat(r.waitToProceed(2, Duration.millis(1)), is(true));
@@ -108,7 +108,7 @@ public class SimpleRateGateTest {
 
 
     @Test
-    public void reportsTrueAfterWaitToProceedExpiration() throws InterruptedException {
+    void reportsTrueAfterWaitToProceedExpiration() throws InterruptedException {
         final FakeTimeProvider fakeTime = new FakeTimeProvider(DateTime.now());
         final ExecutorTrace trace = new ExecutorTrace();
         final ScheduledExecutorService executor = getScheduledExecutorService(trace);
@@ -177,7 +177,7 @@ public class SimpleRateGateTest {
     }
 
     @Test
-    public void canUnblockWaitToProceedAfterExpiration() throws InterruptedException {
+    void canUnblockWaitToProceedAfterExpiration() throws InterruptedException {
         final ExecutorTrace trace = new ExecutorTrace();
         final ScheduledExecutorService executor = getScheduledExecutorService(trace);
         final FakeTimeProvider timeProvider = new FakeTimeProvider(DateTime.now());
@@ -213,7 +213,7 @@ public class SimpleRateGateTest {
     }
 
     @Test
-    public void canReturnMeaningfulDataWithHowLongToWait() throws InterruptedException {
+    void canReturnMeaningfulDataWithHowLongToWait() throws InterruptedException {
         RateGate r = new SimpleRateGate(2, Duration.standardDays(1), Executors.newSingleThreadScheduledExecutor(), "name");
 
         assertThat(r.howLongToWait(), lessThan((ReadableDuration) Duration.millis(1)));

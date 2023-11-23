@@ -15,7 +15,7 @@ public class JaxbContextProviderTest {
     private final JaxbContextProvider provider = new JaxbContextProvider();
 
     @Test
-    public void jaxbContextIsConstructed() {
+    void jaxbContextIsConstructed() {
         JAXBContext context = provider.get();
         assertThat(context, notNullValue());
     }

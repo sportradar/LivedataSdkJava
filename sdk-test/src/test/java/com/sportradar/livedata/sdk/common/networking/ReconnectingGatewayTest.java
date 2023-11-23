@@ -188,7 +188,7 @@ public class ReconnectingGatewayTest {
     }
 
     @Test
-    public void onDataReceived() throws Exception {
+    void onDataReceived() throws Exception {
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 1);
         this.fakeGateway.setFakeGatewayListener(impl);
 
@@ -219,7 +219,7 @@ public class ReconnectingGatewayTest {
     }
 
     @Test
-    public void testReconnectionAttempt() throws Exception {
+    void testReconnectionAttempt() throws Exception {
 
         FakeGatewayListenerImpl impl = new FakeGatewayListenerImpl(fakeGateway, 5);
         this.fakeGateway.setFakeGatewayListener(impl);

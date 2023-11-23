@@ -19,12 +19,12 @@ public class FileSdkLoggerGetLevelTest {
 
     @ParameterizedTest
     @MethodSource("getData")
-    public void testGetLevel(Level inputLevel) {
+    void testGetLevel(Level inputLevel) {
         Level outPutLevel = FileSdkLogger.getLevel(inputLevel.levelStr);
         assertThat(outPutLevel, equalTo(inputLevel));
     }
 
-    public static Collection<Object[]> getData() {
+    static Collection<Object[]> getData() {
         Object[][] data = new Object[][]{
                 {Level.ALL},
                 {Level.TRACE},

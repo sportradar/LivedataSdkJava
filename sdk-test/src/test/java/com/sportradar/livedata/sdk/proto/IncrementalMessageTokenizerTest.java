@@ -41,28 +41,28 @@ public class IncrementalMessageTokenizerTest {
     }
 
     @Test
-    public void testEmptyMessage_Without_CRLF_CRLF() throws Exception {
+    void testEmptyMessage_Without_CRLF_CRLF() throws Exception {
         String message = "";
         inputStream = new ByteArrayInputStream(message.getBytes());
         incrementalMessageTokenizerCrLfCrLf.processData(inputStream);
     }
 
     @Test
-    public void testEmptyTagValue_Without_CRLF_CRLF() throws Exception {
+    void testEmptyTagValue_Without_CRLF_CRLF() throws Exception {
         String message = "<tag></tag>";
         inputStream = new ByteArrayInputStream(message.getBytes());
         incrementalMessageTokenizerCrLfCrLf.processData(inputStream);
     }
 
     @Test
-    public void testEmptyBetradarTagValue_Without_CRLF_CRLF() throws Exception {
+    void testEmptyBetradarTagValue_Without_CRLF_CRLF() throws Exception {
         String message = "<BetradarLiveOdds></BetradarLiveOdds>";
         inputStream = new ByteArrayInputStream(message.getBytes());
         incrementalMessageTokenizerCrLfCrLf.processData(inputStream);
     }
 
     @Test
-    public void test_Junk_Beetween_Two_Messages() throws Exception {
+    void test_Junk_Beetween_Two_Messages() throws Exception {
         final String message = "<BetradarLiveOdds></BetradarLiveOdds>\r\n\r\nTHISISJUNK!09<BetradarLiveOdds></BetradarLiveOdds>\r\n\r\n";
         context.checking(new Expectations() {{
             exactly(2).of(messageTokenizerListener).onMessageReady(with(any(InputStream.class)));
@@ -76,7 +76,7 @@ public class IncrementalMessageTokenizerTest {
     }
 
     @Test
-    public void test_Too_Long_Message() throws Exception {
+    void test_Too_Long_Message() throws Exception {
         final String message = new String(new char[bufferSize - 1]).replace('\0', 'X');
         context.checking(new Expectations() {{
             oneOf(sdkLogger).logInvalidMessage(with(Level.ERROR),
@@ -91,7 +91,7 @@ public class IncrementalMessageTokenizerTest {
     }
 
     @Test
-    public void testEmptyBetradarTagValue_With_CRLF_CRLF() throws Exception {
+    void testEmptyBetradarTagValue_With_CRLF_CRLF() throws Exception {
         final String message = "<BetradarLiveOdds></BetradarLiveOdds>\r\n\r\n";
         inputStream = new ByteArrayInputStream(message.getBytes());
 
@@ -108,7 +108,7 @@ public class IncrementalMessageTokenizerTest {
     }
 
     @Test
-    public void testLoginOK_With_CRLF_CRLF() throws Exception {
+    void testLoginOK_With_CRLF_CRLF() throws Exception {
         final String message = "<BetradarLiveOdds xmlns=\"http://www.betradar.com/BetradarLiveOdds\" serverversion=\"2012.5\" status=\"loginok\" timestamp=\"1389696329303\"/>\r\n\r\n";
         inputStream = new ByteArrayInputStream(message.getBytes());
 

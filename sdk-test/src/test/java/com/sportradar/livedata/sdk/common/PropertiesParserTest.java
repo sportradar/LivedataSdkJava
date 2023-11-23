@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PropertiesParserTest {
 
     @Test
-    public void getDurationProperty_Full_String_Test() throws MissingPropertyException {
+    void getDurationProperty_Full_String_Test() throws MissingPropertyException {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         propertiesParser.setProperty("duration", "11:23:13:05.337");
         Duration duration = propertiesParser.getDurationProperty("duration");
@@ -37,7 +37,7 @@ public class PropertiesParserTest {
 
 
     @Test
-    public void getDurationProperty_No_Miliseconds_Test() throws MissingPropertyException {
+    void getDurationProperty_No_Miliseconds_Test() throws MissingPropertyException {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         propertiesParser.setProperty("duration", "11:23:13:05");
         Duration duration = propertiesParser.getDurationProperty("duration");
@@ -46,7 +46,7 @@ public class PropertiesParserTest {
 
 
     @Test
-    public void getLimitersProperty_Multiple_Test() throws MissingPropertyException, InvalidPropertyException {
+    void getLimitersProperty_Multiple_Test() throws MissingPropertyException, InvalidPropertyException {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         propertiesParser.setProperty("limiters", "\"10;00:00:00:01\",\"100;00:00:00:05\",\"1000;00:00:01:00\"");
         List<LimiterData> result = propertiesParser.getLimitersProperty("limiters");
@@ -58,7 +58,7 @@ public class PropertiesParserTest {
     }
 
     @Test
-    public void getLimitersProperty_Single_Test() throws MissingPropertyException, InvalidPropertyException {
+    void getLimitersProperty_Single_Test() throws MissingPropertyException, InvalidPropertyException {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         propertiesParser.setProperty("limiters", "\"10;00:00:00:01\"");
         List<LimiterData> result = propertiesParser.getLimitersProperty("limiters");
@@ -68,7 +68,7 @@ public class PropertiesParserTest {
     }
 
     @Test
-    public void parseCSVProperty_Null_Test() throws Exception {
+    void parseCSVProperty_Null_Test() throws Exception {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         String key = null;
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -77,7 +77,7 @@ public class PropertiesParserTest {
     }
 
     @Test
-    public void parseCSVProperty_Empty_Test() throws Exception {
+    void parseCSVProperty_Empty_Test() throws Exception {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         String value = "";
         propertiesParser.setProperty("languages", value);
@@ -87,7 +87,7 @@ public class PropertiesParserTest {
     }
 
     @Test
-    public void parseCSVProperty_OK_Test() throws Exception {
+    void parseCSVProperty_OK_Test() throws Exception {
         PropertiesParser propertiesParser = new PropertiesParser(new Properties());
         String value = "en,de,ru,de,en";
         propertiesParser.setProperty("languages", value);

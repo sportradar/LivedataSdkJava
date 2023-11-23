@@ -57,7 +57,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
 
 
     @Test
-    public void testOnEvent_DispatchMatchList_DebugLevel() throws Exception {
+    void testOnEvent_DispatchMatchList_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchListEntity entity = EntityMock.createFake(virtualGameId, eventId, sequenceNumber, MatchListEntity.class);
         List<MatchUpdateEntity> matchUpdateEntities = new ArrayList<>();
@@ -77,7 +77,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_DispatchMatchList_InfoLevel() throws Exception {
+    void testOnEvent_DispatchMatchList_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchListEntity entity = EntityMock.createFake(virtualGameId, eventId, sequenceNumber, MatchListEntity.class);
         List<MatchUpdateEntity> matchUpdateEntities = new ArrayList<>();
@@ -92,7 +92,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_DispatchMatchList_InfoLevel_EmptyMatchList() throws Exception {
+    void testOnEvent_DispatchMatchList_InfoLevel_EmptyMatchList() throws Exception {
         logger.setLevel(Level.INFO);
         MatchListEntity entity = EntityMock.<MatchListEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchListEntity.class);
         LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
@@ -102,7 +102,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_LineupsEntity_InfoLevel() throws Exception {
+    void testOnEvent_LineupsEntity_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         LineupsEntity entity = EntityMock.<LineupsEntity>createFake(virtualGameId, eventId, sequenceNumber, LineupsEntity.class);
         List<PlayerEntity> players = new ArrayList<>();
@@ -118,7 +118,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchBookingEntity_DebugLevel() throws Exception {
+    void testOnEvent_MatchBookingEntity_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchBookingEntity entity = EntityMock.<MatchBookingEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchBookingEntity.class);
         BookMatchResult result = BookMatchResult.INVALID;
@@ -133,7 +133,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchBookingEntity_InfoLevel() throws Exception {
+    void testOnEvent_MatchBookingEntity_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchBookingEntity entity = EntityMock.<MatchBookingEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchBookingEntity.class);
         BookMatchResult result = BookMatchResult.VALID;
@@ -148,7 +148,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchListUpdateEntity_DebugLevel() throws Exception {
+    void testOnEvent_MatchListUpdateEntity_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchListUpdateEntity entity = EntityMock.<MatchListUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchListUpdateEntity.class);
         List<MatchUpdateEntity> matchUpdateEntities = new ArrayList<>();
@@ -163,7 +163,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchListUpdateEntity_DebugLevel_EmptyMatchOdds() throws Exception {
+    void testOnEvent_MatchListUpdateEntity_DebugLevel_EmptyMatchOdds() throws Exception {
         logger.setLevel(Level.INFO);
         MatchListUpdateEntity entity = EntityMock.<MatchListUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchListUpdateEntity.class);
         LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
@@ -173,7 +173,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchListUpdateEntity_InfoLevel() throws Exception {
+    void testOnEvent_MatchListUpdateEntity_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchListUpdateEntity entity = EntityMock.<MatchListUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchListUpdateEntity.class);
         List<MatchUpdateEntity> matchUpdateEntities = new ArrayList<>();
@@ -188,7 +188,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchStopEntity_InfoLevel() throws Exception {
+    void testOnEvent_MatchStopEntity_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchStopEntity entity = EntityMock.<MatchStopEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchStopEntity.class);
         long matchId = 123;
@@ -202,7 +202,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchStopEntity_InfoLevel_EmptyValues() throws Exception {
+    void testOnEvent_MatchStopEntity_InfoLevel_EmptyValues() throws Exception {
         logger.setLevel(Level.INFO);
         MatchStopEntity entity = EntityMock.<MatchStopEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchStopEntity.class);
         LiveScoutDispatcherContainer entityContainer = new LiveScoutDispatcherContainer(entity);
@@ -212,7 +212,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeDeltaUpdate_DebugLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeDeltaUpdate_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchUpdateEntity entity = EntityMock.<MatchUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;
@@ -227,7 +227,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeDeltaUpdate_InfoLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeDeltaUpdate_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchUpdateEntity entity = EntityMock.createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;
@@ -242,7 +242,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeDelta_DebugLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeDelta_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchUpdateEntity entity = EntityMock.<MatchUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;
@@ -257,7 +257,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeDelta_InfoLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeDelta_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchUpdateEntity entity = EntityMock.<MatchUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;
@@ -272,7 +272,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeFull_DebugLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeFull_DebugLevel() throws Exception {
         logger.setLevel(Level.DEBUG);
         MatchUpdateEntity entity = EntityMock.<MatchUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;
@@ -287,7 +287,7 @@ public class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase
     }
 
     @Test
-    public void testOnEvent_MatchUpdateEntity_FeedTypeFull_InfoLevel() throws Exception {
+    void testOnEvent_MatchUpdateEntity_FeedTypeFull_InfoLevel() throws Exception {
         logger.setLevel(Level.INFO);
         MatchUpdateEntity entity = EntityMock.<MatchUpdateEntity>createFake(virtualGameId, eventId, sequenceNumber, MatchUpdateEntity.class);
         long matchId = 123;

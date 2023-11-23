@@ -158,7 +158,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogTraffic() {
+    void testLogTraffic() {
         assertThat(trafficLogger, CoreMatchers.instanceOf(Logger.class));
         boolean result = fileSdkLogger.isLevelEnabled(Level.INFO, SdkLogAppenderType.TRAFFIC);
         assertThat(result, is(true));
@@ -183,7 +183,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteraction() {
+    void testLogClientInteraction() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
         boolean result = fileSdkLogger.isLevelEnabled(Level.INFO, SdkLogAppenderType.CLIENT_INTERACTION);
         assertThat(result, is(true));
@@ -201,7 +201,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogAlert() {
+    void testLogAlert() {
         assertThat(alertLogger, CoreMatchers.instanceOf(Logger.class));
         boolean result = fileSdkLogger.isLevelEnabled(Level.INFO, SdkLogAppenderType.ALERT);
         assertThat(result, is(true));
@@ -220,7 +220,7 @@ public class FileSdkLoggerTestBase {
 
 
     @Test
-    public void testLogInvalidMessage() {
+    void testLogInvalidMessage() {
         assertThat(invalidMessageLogger, CoreMatchers.instanceOf(Logger.class));
 
         final String message = "test 123 invalid message logger";
@@ -235,7 +235,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteractionExceptionMessage() {
+    void testLogClientInteractionExceptionMessage() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
 
         List<ILoggingEvent> loggingEvents = listAppender.list;
@@ -257,7 +257,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteractionDurationIsZero() {
+    void testLogClientInteractionDurationIsZero() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
 
         List<ILoggingEvent> loggingEvents = listAppender.list;
@@ -281,7 +281,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteractionDurationIs1324() {
+    void testLogClientInteractionDurationIs1324() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
 
         List<ILoggingEvent> loggingEvents = listAppender.list;
@@ -305,7 +305,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteractionDurationIsNull() {
+    void testLogClientInteractionDurationIsNull() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
 
         List<ILoggingEvent> loggingEvents = listAppender.list;
@@ -322,7 +322,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLogClientInteractionWithEmptyArray() {
+    void testLogClientInteractionWithEmptyArray() {
         assertThat(clientInteractionLogger, CoreMatchers.instanceOf(Logger.class));
 
         List<ILoggingEvent> loggingEvents = listAppender.list;
@@ -340,7 +340,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLoggerLevelIsNull() {
+    void testLoggerLevelIsNull() {
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
             FileSdkLogger.getLevel(null);
         });
@@ -348,7 +348,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLoggerLevelIsEmpty() {
+    void testLoggerLevelIsEmpty() {
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
             FileSdkLogger.getLevel("");
         });
@@ -356,13 +356,13 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testLoggerLevelIsEmp() {
+    void testLoggerLevelIsEmp() {
         Level level = FileSdkLogger.getLevel("foo bar");
         assertThat(level, equalTo(Level.OFF));
     }
 
     @Test
-    public void testAppenderTypeNonNull() {
+    void testAppenderTypeNonNull() {
         SdkLogAppenderType appenderTypeAlert = SdkLogAppenderType.ALERT;
         final String markerName = "marker";
         String appenderName = SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
@@ -370,7 +370,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testAppenderTypeNull() {
+    void testAppenderTypeNull() {
         SdkLogAppenderType appenderTypeAlert = null;
         final String markerName = "marker";
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
@@ -380,7 +380,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testMarker() {
+    void testMarker() {
         SdkLogAppenderType appenderType = SdkLogAppenderType.TRAFFIC;
         final String markerName = "LiveOdds";
         Marker marker = appenderType.getMarker(markerName);
@@ -388,14 +388,14 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testGetAppenderType_InvalidCharacters() {
+    void testGetAppenderType_InvalidCharacters() {
         final SdkLogAppenderType inputAppenderType = SdkLogAppenderType.ALERT;
         SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(FileSdkLogger.ROOT_NS + inputAppenderType.name() + "\"[!@#$%^");
         assertThat(outputAppenderType, equalTo(inputAppenderType));
     }
 
     @Test
-    public void testGetAppenderType_InvalidName() {
+    void testGetAppenderType_InvalidName() {
         final SdkLogAppenderType inputAppenderType = SdkLogAppenderType.ALERT;
         final String suffix = "new";
         final String appenderName = FileSdkLogger.ROOT_NS + inputAppenderType.name() + "." + suffix;
@@ -408,7 +408,7 @@ public class FileSdkLoggerTestBase {
     }
 
     @Test
-    public void testDeletingOldFiles() throws Exception {
+    void testDeletingOldFiles() throws Exception {
         Method cleanUpMethod = fileSdkLogger.getClass().getDeclaredMethod("oldLogsCleanup");
         cleanUpMethod.setAccessible(true);
 

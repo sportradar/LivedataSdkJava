@@ -81,7 +81,7 @@ public class ReconnectingGatewayIntegrationTest {
     }
 
     @Test
-    public void gatewayConnectsToServerWhenServerIsStarted() throws IOException, InterruptedException {
+    void gatewayConnectsToServerWhenServerIsStarted() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));
@@ -100,7 +100,7 @@ public class ReconnectingGatewayIntegrationTest {
     }
 
     @Test
-    public void gatewayDetectWhenServerDropsTheConnection() throws IOException, InterruptedException {
+    void gatewayDetectWhenServerDropsTheConnection() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));
@@ -146,7 +146,7 @@ public class ReconnectingGatewayIntegrationTest {
     }
 
     @Test
-    public void gatewayReceivesData() throws IOException, InterruptedException, SdkException {
+    void gatewayReceivesData() throws IOException, InterruptedException, SdkException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));

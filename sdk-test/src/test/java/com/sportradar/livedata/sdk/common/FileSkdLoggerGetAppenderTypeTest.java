@@ -19,13 +19,13 @@ public class FileSkdLoggerGetAppenderTypeTest {
 
     @ParameterizedTest
     @MethodSource("getData")
-    public void testGetAppenderType(SdkLogAppenderType expected) {
+    void testGetAppenderType(SdkLogAppenderType expected) {
         String name = FileSdkLogger.ROOT_NS + expected.name();
         SdkLogAppenderType sdkLogAppenderType = FileSdkLogger.getAppenderType(name);
         assertThat(expected, equalTo(sdkLogAppenderType));
     }
 
-    public static Collection<Object[]> getData() {
+    static Collection<Object[]> getData() {
         Object[][] data = new Object[SdkLogAppenderType.values().length][1];
         int index = 0;
 

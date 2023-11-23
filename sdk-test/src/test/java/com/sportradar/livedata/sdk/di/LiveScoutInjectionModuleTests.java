@@ -32,7 +32,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void SdkLoggerIsResolvedAsSingleton() {
+    void SdkLoggerIsResolvedAsSingleton() {
         Key<SdkLogger> key = Key.get(SdkLogger.class);
         SdkLogger logger1 = injector.getInstance(key);
         SdkLogger logger2 = injector.getInstance(key);
@@ -41,7 +41,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void gatewayIsResolvedAsSingleton() {
+    void gatewayIsResolvedAsSingleton() {
         Key<Gateway> key = Key.get(Gateway.class);
 
         Gateway gateway1 = injector.getInstance(key);
@@ -51,7 +51,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void userRequestManagerAndItsImplementationAreResolvedAsSingleton() {
+    void userRequestManagerAndItsImplementationAreResolvedAsSingleton() {
         Key<LiveScoutUserRequestManager> interfaceKey = Key.get(LiveScoutUserRequestManager.class);
         Key<LiveScoutUserRequestManagerImpl> key = Key.get(LiveScoutUserRequestManagerImpl.class);
 
@@ -62,7 +62,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void protocolManagerIsResolvedAsSingleton() {
+    void protocolManagerIsResolvedAsSingleton() {
         Key<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> key = Key.get(
                 new TypeLiteral<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>>() {
                 });
@@ -74,7 +74,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void dispatcherIsResolvedAsSingleton() {
+    void dispatcherIsResolvedAsSingleton() {
         Key<LiveScoutDispatcher> key = Key.get(LiveScoutDispatcher.class);
         LiveScoutDispatcher dispatcher1 = injector.getInstance(key);
         LiveScoutDispatcher dispatcher2 = injector.getInstance(key);
@@ -83,7 +83,7 @@ public class LiveScoutInjectionModuleTests {
     }
 
     @Test
-    public void feedIsResolvedAsSingleton() {
+    void feedIsResolvedAsSingleton() {
         Key<LiveScoutFeed> key = Key.get(LiveScoutFeed.class);
         LiveScoutFeed feed1 = injector.getInstance(key);
         LiveScoutFeed feed2 = injector.getInstance(key);

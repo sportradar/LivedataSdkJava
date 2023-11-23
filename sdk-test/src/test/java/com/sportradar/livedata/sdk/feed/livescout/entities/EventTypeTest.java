@@ -8,7 +8,7 @@ public class EventTypeTest {
 
 
     @Test
-    public void MultipleUnkownEventsTest() {
+    void MultipleUnkownEventsTest() {
         EventType unknown1 = EventType.getEventTypeFromLiteralValue("unknown1");
         EventType unknown2 = EventType.getEventTypeFromLiteralValue("unknown2");
 

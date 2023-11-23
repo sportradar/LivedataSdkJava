@@ -33,28 +33,28 @@ public class PeriodicTimerTest {
     }
 
     @Test
-    public void elapsesExpectedNumberOfTimes() throws InterruptedException {
+    void elapsesExpectedNumberOfTimes() throws InterruptedException {
         driver.receiveEvents(200, 5);
     }
 
     @Test
-    public void stopsBeforeFirstEventIsRaised() throws InterruptedException {
+    void stopsBeforeFirstEventIsRaised() throws InterruptedException {
         driver.stopsBeforeFirstEvent(200, 20);
     }
 
     @Test
-    public void stopsBeforeOneShotIsRaised() throws InterruptedException {
+    void stopsBeforeOneShotIsRaised() throws InterruptedException {
         driver.stopsBeforeOneShot(200);
     }
 
     @Test
-    public void timerCanBeReused() throws InterruptedException {
+    void timerCanBeReused() throws InterruptedException {
         driver.receiveEvents(200, 5);
         driver.receiveEvents(200, 5);
     }
 
     @Test
-    public void timerDoesNotThrowWhenStoppedMultipleTimes() {
+    void timerDoesNotThrowWhenStoppedMultipleTimes() {
         Timer timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
         timer.stop();
         timer.stop();

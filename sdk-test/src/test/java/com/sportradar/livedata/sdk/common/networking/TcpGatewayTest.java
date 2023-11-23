@@ -27,19 +27,19 @@ public class TcpGatewayTest {
     }
 
     @Test
-    public void throwsExceptionWhenConnectionFails() {
+    void throwsExceptionWhenConnectionFails() {
         Exception exception = assertThrows(IOException.class, () -> {
             gateway.connect();
         });
     }
 
     @Test
-    public void doesNotThrowIfDisconnectCallWhenNotConnected() {
+    void doesNotThrowIfDisconnectCallWhenNotConnected() {
         gateway.disconnect(false);
     }
 
     @Test
-    public void throwsIfSendingWhenDisconnected() {
+    void throwsIfSendingWhenDisconnected() {
         Exception exception = assertThrows(IllegalStateException.class, () -> {
             gateway.sendData(new byte[]{0x00, 0x01});
         });

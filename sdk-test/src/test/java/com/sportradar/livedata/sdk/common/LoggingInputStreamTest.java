@@ -74,7 +74,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testEmptyMessage() throws Exception {
+    void testEmptyMessage() throws Exception {
         ignoreHeader = false;
         final String SHORT_MESSAGE = "";
         initInputStream(SHORT_MESSAGE, bufferSize, true);
@@ -84,7 +84,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testShortMessage() throws Exception {
+    void testShortMessage() throws Exception {
         final String SHORT_MESSAGE = "test string";
         initInputStream(SHORT_MESSAGE, bufferSize, true);
         readInputStream();
@@ -93,7 +93,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testResetMethod() throws Exception {
+    void testResetMethod() throws Exception {
         final String SHORT_MESSAGE = "test string 123456";
         initInputStream(SHORT_MESSAGE, bufferSize, true);
         readInputStream();
@@ -106,7 +106,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testResetMethod2() throws Exception {
+    void testResetMethod2() throws Exception {
         final String SHORT_MESSAGE = "test string 1234567";
         final int newBufferSize = SHORT_MESSAGE.length() / 3;
         initInputStream(SHORT_MESSAGE, newBufferSize, true);
@@ -128,7 +128,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testResetMethod3() throws Exception {
+    void testResetMethod3() throws Exception {
         final String SHORT_MESSAGE = "test string 123456";
         final int newBufferSize = SHORT_MESSAGE.length() / 3;
         initInputStream(SHORT_MESSAGE, newBufferSize, true);
@@ -170,7 +170,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testResetMethodOnLargeText() throws Exception {
+    void testResetMethodOnLargeText() throws Exception {
         final int j = 32;
         final int actualBufferSize = bufferSize * j;
         final String LONG_MESSAGE = getLongMessage(actualBufferSize);
@@ -190,7 +190,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testLongMessageEqualToBufferSize() throws Exception {
+    void testLongMessageEqualToBufferSize() throws Exception {
         final String LONG_MESSAGE = getLongMessage(0);
         initInputStream(LONG_MESSAGE, bufferSize, true);
         readInputStream();
@@ -199,7 +199,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testLongMessageLargerThanBufferSize() throws Exception {
+    void testLongMessageLargerThanBufferSize() throws Exception {
         final String LONG_MESSAGE = getLongMessage(1);
         initInputStream(LONG_MESSAGE, bufferSize, true);
         readInputStream();
@@ -211,7 +211,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testLarge() throws Exception {
+    void testLarge() throws Exception {
         final int j = 128;
         final int actualBufferSize = bufferSize * j;
         final String LONG_MESSAGE = getLongMessage(actualBufferSize);
@@ -229,7 +229,7 @@ public class LoggingInputStreamTest {
     }
 
     @Test
-    public void testReadToEndOfStream() throws Exception {
+    void testReadToEndOfStream() throws Exception {
         final String SHORT_MESSAGE = "test string";
         initInputStream(SHORT_MESSAGE, bufferSize, true);
         for (int i = 0; i < SHORT_MESSAGE.length() / 3; ++i) {
