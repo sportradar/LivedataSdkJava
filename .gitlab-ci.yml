@@ -1,6 +1,6 @@
 include:
   - project: smp/iac/pipeline-common
-    ref: 4.4.0
+    ref: 4.5.0
     file: common.yml
 
 workflow:
@@ -15,6 +15,7 @@ cache:
     - .m2/repository
     
 variables:
+  RULES_MASTER_BRANCH_OVERRIDE: main
   MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
