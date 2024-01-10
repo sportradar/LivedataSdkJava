@@ -1241,6 +1241,7 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="full"/>
+                        <xs:enumeration value="full_paginated"/>
                         <xs:enumeration value="delta"/>
                         <xs:enumeration value="deltaupdate"/>
                         <xs:enumeration value="lightweight"/>
@@ -1472,6 +1473,21 @@
             <xs:attribute name="region" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="uuid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="page" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="totalpages" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>
@@ -2755,6 +2771,11 @@
             <xs:attribute name="spin" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="scorernotconfirmed" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>

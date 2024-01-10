@@ -108,7 +108,7 @@ public interface LiveScoutFeedListener {
      * @param sender      The {@link LiveScoutFeed} sender of the event.
      * @param matchUpdate The {@link MatchUpdateEntity} representing the received match-update message
      */
-//    void onPartialMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate);
+    void onFullPaginatedMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate);
 
     /**
      * Invoked by the observed {@link LiveScoutFeed} when match delta update is received. For more information see the

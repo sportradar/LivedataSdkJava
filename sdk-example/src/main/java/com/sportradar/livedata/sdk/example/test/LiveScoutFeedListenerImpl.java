@@ -92,11 +92,11 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
         logger.info("Full match update");
     }
 
-//    @Override
-//    public void onPartialMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
-//        matchUpdate = Serilizator.inAndOut(matchUpdate);
-//        logger.info("Partial match update");
-//    }
+    @Override
+    public void onFullPaginatedMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
+        matchUpdate = Serilizator.inAndOut(matchUpdate);
+        logger.info("Full paginated match update");
+    }
 
     @Override
     public void onMatchDeltaUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {

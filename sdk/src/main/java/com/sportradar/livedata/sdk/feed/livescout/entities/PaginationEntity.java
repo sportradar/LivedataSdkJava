@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.io.Serializable;
 
+/**
+ * Stores paging information.
+ */
 @Setter(AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode

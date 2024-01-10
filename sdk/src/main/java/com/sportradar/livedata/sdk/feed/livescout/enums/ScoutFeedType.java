@@ -13,17 +13,17 @@ public enum ScoutFeedType implements EntityEnum {
      */
     FULL("full"),
     /**
+     * Full message that was split into partials.
+     */
+    FULL_PAGINATED("full_paginated"),
+    /**
      * Delta message
      */
     DELTA("delta"),
     /**
      * Delta update message
      */
-    DELTAUPDATE("deltaupdate"),
-    /**
-     *
-     */
-    PARTIAL("partial");
+    DELTAUPDATE("deltaupdate");
     //lightweight is not used on customer side
 
 

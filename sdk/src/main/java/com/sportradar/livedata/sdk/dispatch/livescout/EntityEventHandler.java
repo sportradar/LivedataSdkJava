@@ -150,13 +150,13 @@ public abstract class EntityEventHandler implements EventHandler<LiveScoutDispat
         }
     }
 
-//    protected void dispatchPartialMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
-//        try {
-//            listener.onPartialMatchUpdateReceived(feed, matchUpdate);
-//        } catch (Exception e) {
-//            logger.warn("User handler for onPartialMatchUpdateReceived threw exception", e);
-//        }
-//    }
+    protected void dispatchFullPaginatedMatchUpdateReceived(MatchUpdateEntity matchUpdate) {
+        try {
+            listener.onFullPaginatedMatchUpdateReceived(feed, matchUpdate);
+        } catch (Exception e) {
+            logger.warn("User handler for onFullPaginatedMatchUpdateReceived threw exception", e);
+        }
+    }
 
     protected void dispatchOnMatchDeltaUpdateDeltaReceived(MatchUpdateEntity matchUpdate) {
         try {
@@ -212,9 +212,9 @@ we will check this  */
                     case FULL:
                         dispatchFullMatchUpdateReceived(matchUpdate);
                         break;
-//                    case PARTIAL:
-//                        dispatchPartialMatchUpdateReceived(matchUpdate);
-//                        break;
+                    case FULL_PAGINATED:
+                        dispatchFullPaginatedMatchUpdateReceived(matchUpdate);
+                        break;
                     case DELTA:
                         dispatchOnMatchDeltaUpdateReceived(matchUpdate);
                         break;

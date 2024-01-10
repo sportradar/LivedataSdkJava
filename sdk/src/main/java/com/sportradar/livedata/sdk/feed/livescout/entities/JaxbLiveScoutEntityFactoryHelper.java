@@ -203,9 +203,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayState(match.getAwaystate());
         result.setVenue(match.getVenue());
         result.setRegion(match.getRegion());
-//        if(!nte(match.getUuid()).isEmpty()){
-//            result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
-//        }
+        if(ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())){
+            result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
+        }
         return result;
     }
 
@@ -869,6 +869,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setHomeRunsAway(event.getHomerunsaway());
         result.setNextBatter(event.getNextbatter());
         result.setStrokeType(event.getStroketype());
+        if(event.getScorernotconfirmed() != null) {
+            result.setScorerNotConfirmed(event.getScorernotconfirmed() != 0);
+        }
         result.setSpin(event.getSpin());
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());

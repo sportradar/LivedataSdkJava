@@ -55,9 +55,9 @@ public class LiveScoutProtoEntityFactory {
         result.setMatchtime((15 + valueBase) + ":" + valueBase);
         result.setSex(getEnumValue(Sex.values(), valueBase).ordinal());
         result.setActive((byte) (valueBase % 2 == 0 ? 16 : 0));
-//        result.setUuid("23rfc1" + valueBase);
-//        result.setPage(valueBase);
-//        result.setTotalpages(19 + valueBase);
+        result.setUuid("23rfc1" + valueBase);
+        result.setPage(valueBase);
+        result.setTotalpages(19 + valueBase);
         return result;
     }
 
@@ -69,6 +69,7 @@ public class LiveScoutProtoEntityFactory {
         result.setStart(new DateTime(3L + valueBase, DateTimeZone.getDefault()));
         result.setMatchId(4L + valueBase);
         result.setFeedType(getEnumValue(ScoutFeedType.values(), valueBase));
+        System.out.println("------------>" + result.getFeedType());
         result.setExtraInfo(5 + valueBase);
         result.setDistance(6 + valueBase);
         result.setBetStatus(getEnumValue(MatchBetStatus.values(), valueBase));
@@ -87,7 +88,9 @@ public class LiveScoutProtoEntityFactory {
         result.setMatchTime((15 + valueBase) + ":" + valueBase);
         result.setSex(getEnumValue(Sex.values(), valueBase));
         result.setActive(valueBase % 2 == 0);
-//        result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
+        if(ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
+            result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
+        }
 
         return result;
     }
@@ -403,6 +406,9 @@ public class LiveScoutProtoEntityFactory {
         event.setConversiontype((byte)(1 - valueBase));
         event.setTouchdowntype((byte)(7 + valueBase));
         event.setStime(17 + valueBase);
+        if(valueBase % 3 != 0){
+            event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
+        }
         return event;
     }
 
@@ -443,6 +449,9 @@ public class LiveScoutProtoEntityFactory {
         result.setConversionType(1 - valueBase);
         result.setTouchdownType(7 + valueBase);
         result.setServerTime(new DateTime(17 + valueBase, DateTimeZone.UTC));
+        if(valueBase % 3 != 0){
+            result.setScorerNotConfirmed(valueBase % 2 == 0 ? true : false);
+        }
         return result;
     }
     //------IncomingMessage------Score------>>>>>>--------------------------<<<<<<------IncomingMessage------Event------

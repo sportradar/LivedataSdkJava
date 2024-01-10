@@ -269,6 +269,7 @@ public class ScoutEventEntity implements Serializable {
     private Integer nextBatter;
     private String strokeType;
     private String spin;
+    private Boolean scorerNotConfirmed;
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
 
@@ -1670,6 +1671,15 @@ public class ScoutEventEntity implements Serializable {
      */
     public String getSpin() {
         return spin;
+    }
+
+    /**
+     * Get scorer not confirmed. Null is value not exists.
+     *
+     * @return true if scorer not confirmed
+     */
+    public Boolean getScorerNotConfirmed() {
+        return scorerNotConfirmed;
     }
 
     /**
