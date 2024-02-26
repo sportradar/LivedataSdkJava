@@ -782,8 +782,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setIntendedReceiver(event.getIntendedreceiver());
         result.setThrownTo(event.getThrownto());
         result.setDefensedBy(event.getDefensedby());
-        result.setHomeTeamStats(event.getHometeamstats());
-        result.setAwayTeamStats(event.getAwayteamstats());
         result.setBlockedBy(event.getBlockedby());
         result.setYardLine(event.getYardline());
         result.setPassedBy(event.getPassedby());

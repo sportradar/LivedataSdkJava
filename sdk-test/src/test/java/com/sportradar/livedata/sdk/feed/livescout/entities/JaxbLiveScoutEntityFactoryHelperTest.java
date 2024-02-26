@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -96,9 +97,9 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(expected));
     }
 
-    @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}")
+    @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}_Test")
     @ValueSource(ints = {0,1,2,3,4,33,56})
-    void buildMatchUpdateEntity_OK_Input(int valueBase) throws Exception {
+    void buildMatchUpdateEntity_OK_Input_Test(int valueBase) throws Exception {
         Match input = LiveScoutProtoEntityFactory.buildMatch(valueBase);
         MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(valueBase);
 
@@ -146,6 +147,42 @@ class JaxbLiveScoutEntityFactoryHelperTest {
     void buildScoutEventEntity_OK_Input_Test() throws Exception {
         Event input = LiveScoutProtoEntityFactory.buildEvent(27);
         ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(27);
+
+        ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
+        assertThat(result, equalTo(expected));
+    }
+
+    @Test
+    void buildScoutEventEntity_1743_Test() throws Exception {
+        Event input = LiveScoutProtoEntityFactory.buildEvent(3);
+        input.setType(1743);
+        input.setAwayteamstatsi5("Stats 5");
+        input.setAwayteamstatstotal("Stats total");
+        ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(3);
+        expected.setTypeId(1743);
+        expected.setType(EventType.UNKNOWN);
+        TeamStatisticsEntity stats = new TeamStatisticsEntity();
+        stats.setAwayTeamStatsI5("Stats 5");
+        stats.setAwayTeamStatsTotal("Stats total");
+        expected.setTeamStatistics(stats);
+
+        ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
+        assertThat(result, equalTo(expected));
+    }
+
+    @Test
+    void buildScoutEventEntity_1714_Test() throws Exception {
+        Event input = LiveScoutProtoEntityFactory.buildEvent(3);
+        input.setType(1714);
+        input.setAwaypitchersstatstotal("Pitcher Stats total");
+        input.setHomebattersstatstotal("Batter Stats total");
+        ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(3);
+        expected.setTypeId(1714);
+        expected.setType(EventType.UNKNOWN);
+        PlayerStatisticsEntity stats = new PlayerStatisticsEntity();
+        stats.setAwayPitchersStatsTotal("Pitcher Stats total");
+        stats.setHomeBattersStatsTotal("Batter Stats total");
+        expected.setPlayerStatistics(stats);
 
         ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
         assertThat(result, equalTo(expected));
@@ -208,10 +245,11 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(result, equalTo(new LineupsEntity()));
     }
 
-    @Test
-    void buildLineupsEntity_OK_Input_Test() throws Exception {
-        Lineups input = LiveScoutProtoEntityFactory.buildLineups(17);
-        LineupsEntity expected = LiveScoutProtoEntityFactory.buildLineupsEntity(17);
+    @ParameterizedTest(name = "buildLineupsEntity_OK_Input_{0}_Test")
+    @ValueSource(ints = {0,10,17})
+    void buildLineupsEntity_OK_Input_Test(int valueBase) throws Exception {
+        Lineups input = LiveScoutProtoEntityFactory.buildLineups(valueBase);
+        LineupsEntity expected = LiveScoutProtoEntityFactory.buildLineupsEntity(valueBase);
 
         LineupsEntity result = JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(input);
         assertThat(result, equalTo(expected));

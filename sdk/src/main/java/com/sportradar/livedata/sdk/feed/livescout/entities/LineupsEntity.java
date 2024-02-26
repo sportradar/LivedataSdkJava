@@ -23,7 +23,7 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
     private static final long serialVersionUID = 2690053709380185769L;
     private List<ManagerEntity> managers;
     private long matchId;
-    //would prefer boolean, but Utku states that it should be nullable:
+    //would prefer boolean, but LDS states that it should be nullable:
     //"1 means it is preliminary. all other states should be null, client should not receive anything"
     private Boolean preliminary;
     private List<PlayerEntity> players;

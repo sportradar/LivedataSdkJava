@@ -179,8 +179,6 @@ public class ScoutEventEntity implements Serializable {
     private Integer intendedReceiver;
     private String thrownTo;
     private String defensedBy;
-    private String homeTeamStats;
-    private String awayTeamStats;
     private String blockedBy;
     private String yardLine;
     private String passedBy;
@@ -1311,14 +1309,6 @@ public class ScoutEventEntity implements Serializable {
 
     public String getDefensedBy() {
         return defensedBy;
-    }
-
-    public String getHomeTeamStats() {
-        return homeTeamStats;
-    }
-
-    public String getAwayTeamStats() {
-        return awayTeamStats;
     }
 
     public String getBlockedBy() {

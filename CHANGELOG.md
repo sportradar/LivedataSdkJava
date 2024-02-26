@@ -4,6 +4,8 @@ It also makes a client solution more stable and robust when it comes to feed han
 
 **2.0.8 (2024-02-26)**
 * New entity - TeamStatisticsEntity under ScoutEventEntity that stores team statistics for TEAM_MATCH_STATS(1743) event:
+  - homeTeamStats
+  - awayTeamStats
   - homeTeamStatsTotal
   - awayTeamStatsTotal
   - homeTeamStatsP1

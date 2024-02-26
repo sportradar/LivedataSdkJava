@@ -8,8 +8,8 @@ import java.io.Serializable;
 /**
  * Stores team statics fields that are coming with TEAM_MATCH_STATS(1743) event.
  */
-//@Setter(AccessLevel.PROTECTED)
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class TeamStatisticsEntity implements Serializable {
@@ -22,42 +22,48 @@ public class TeamStatisticsEntity implements Serializable {
         }
         return null;
     }
+    //common
+    private String homeTeamStats;
+    private String awayTeamStats;
     //Pitching stats
-    private final String homeTeamStatsTotal;
-    private final String awayTeamStatsTotal;
-    private final String homeTeamStatsP1;
-    private final String awayTeamStatsP1;
-    private final String homeTeamStatsP2;
-    private final String awayTeamStatsP2;
-    private final String homeTeamStatsP3;
-    private final String awayTeamStatsP3;
-    private final String homeTeamStatsP4;
-    private final String awayTeamStatsP4;
-    private final String homeTeamStatsOt;
-    private final String awayTeamStatsOt;
+    private String homeTeamStatsTotal;
+    private String awayTeamStatsTotal;
+    private String homeTeamStatsP1;
+    private String awayTeamStatsP1;
+    private String homeTeamStatsP2;
+    private String awayTeamStatsP2;
+    private String homeTeamStatsP3;
+    private String awayTeamStatsP3;
+    private String homeTeamStatsP4;
+    private String awayTeamStatsP4;
+    private String homeTeamStatsOt;
+    private String awayTeamStatsOt;
     //inning stats
-    private final String homeTeamStatsI1;
-    private final String awayTeamStatsI1;
-    private final String homeTeamStatsI2;
-    private final String awayTeamStatsI2;
-    private final String homeTeamStatsI3;
-    private final String awayTeamStatsI3;
-    private final String homeTeamStatsI4;
-    private final String awayTeamStatsI4;
-    private final String homeTeamStatsI5;
-    private final String awayTeamStatsI5;
-    private final String homeTeamStatsI6;
-    private final String awayTeamStatsI6;
-    private final String homeTeamStatsI7;
-    private final String awayTeamStatsI7;
-    private final String homeTeamStatsI8;
-    private final String awayTeamStatsI8;
-    private final String homeTeamStatsI9;
-    private final String awayTeamStatsI9;
-    private final String homeTeamStatsIe;
-    private final String awayTeamStatsIe;
+    private String homeTeamStatsI1;
+    private String awayTeamStatsI1;
+    private String homeTeamStatsI2;
+    private String awayTeamStatsI2;
+    private String homeTeamStatsI3;
+    private String awayTeamStatsI3;
+    private String homeTeamStatsI4;
+    private String awayTeamStatsI4;
+    private String homeTeamStatsI5;
+    private String awayTeamStatsI5;
+    private String homeTeamStatsI6;
+    private String awayTeamStatsI6;
+    private String homeTeamStatsI7;
+    private String awayTeamStatsI7;
+    private String homeTeamStatsI8;
+    private String awayTeamStatsI8;
+    private String homeTeamStatsI9;
+    private String awayTeamStatsI9;
+    private String homeTeamStatsIe;
+    private String awayTeamStatsIe;
 
-    private TeamStatisticsEntity(Event event){
+    protected TeamStatisticsEntity(Event event){
+        this.homeTeamStats = event.getHometeamstats();
+        this.awayTeamStats = event.getAwayteamstats();
+
         this.homeTeamStatsTotal = event.getHometeamstatstotal();
         this.awayTeamStatsTotal = event.getAwayteamstatstotal();
         this.homeTeamStatsP1 = event.getHometeamstatsp1();

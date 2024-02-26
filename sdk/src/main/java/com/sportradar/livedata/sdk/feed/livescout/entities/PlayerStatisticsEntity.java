@@ -2,16 +2,15 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Event;
 import jakarta.xml.bind.annotation.XmlAttribute;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
 /**
  * Stores player statics fields that are coming with PLAYER_MATCH_STATS(1714) event.
  */
-//@Setter(AccessLevel.PROTECTED)
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class PlayerStatisticsEntity implements Serializable {
@@ -25,22 +24,22 @@ public class PlayerStatisticsEntity implements Serializable {
         return null;
     }
 
-    private final String homePlayerStatsTotal;
-    private final String awayPlayerStatsTotal;
-    private final String homePlayerStatsP1;
-    private final String awayPlayerStatsP1;
-    private final String homePlayerStatsP2;
-    private final String awayPlayerStatsP2;
-    private final String homePlayerStatsP3;
-    private final String awayPlayerStatsP3;
-    private final String homePlayerStatsP4;
-    private final String awayPlayerStatsP4;
-    private final String homePlayerStatsOt;
-    private final String awayPlayerStatsOt;
-    private final String homePitchersStatsTotal;
-    private final String awayPitchersStatsTotal;
-    private final String homeBattersStatsTotal;
-    private final String awayBattersStatsTotal;
+    private String homePlayerStatsTotal;
+    private String awayPlayerStatsTotal;
+    private String homePlayerStatsP1;
+    private String awayPlayerStatsP1;
+    private String homePlayerStatsP2;
+    private String awayPlayerStatsP2;
+    private String homePlayerStatsP3;
+    private String awayPlayerStatsP3;
+    private String homePlayerStatsP4;
+    private String awayPlayerStatsP4;
+    private String homePlayerStatsOt;
+    private String awayPlayerStatsOt;
+    private String homePitchersStatsTotal;
+    private String awayPitchersStatsTotal;
+    private String homeBattersStatsTotal;
+    private String awayBattersStatsTotal;
 
 
     private PlayerStatisticsEntity(Event event){

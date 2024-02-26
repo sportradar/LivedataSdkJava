@@ -397,8 +397,9 @@ public class LiveScoutProtoEntityFactory {
         event.setInninghalf(getEnumValue(Inning.values(), valueBase).getValue());
         event.setServer(getEnumValue(Team.values(), valueBase).getValue()[0]);
         event.setSide(getEnumValue(Team.values(), valueBase).getValue()[1]);
-        event.setType(1126);// + valueBase);
+        event.setType(1126);// cannot valueBase, because of EventType enum. EventType has duplicates
         event.setHappenedat(12234556L + valueBase);
+        event.setRefstime(valueBase % 2 == 0 ? (long) valueBase : null);
         event.setFirstbaseloaded((byte)(valueBase % 3 == 0 ? 9 : 0));
         event.setSecondbaseloaded((byte)(valueBase % 2 == 0 ? 7 : 0));
         event.setThirdbaseloaded((byte)(valueBase % 4 == 0 ? 8 : 0));
@@ -442,6 +443,7 @@ public class LiveScoutProtoEntityFactory {
         result.setType(EventType.ATTACK);//TODO that enum should be removed
         result.setTypeId(1126);// + valueBase);
         result.setHappenedAt(new DateTime(12234556L + valueBase, DateTimeZone.UTC));
+        result.setRefsTime(valueBase % 2 == 0 ? (long) valueBase : null);
         result.setFirstBaseLoaded(valueBase % 3 == 0);
         result.setSecondBaseLoaded(valueBase % 2 == 0);
         result.setThirdBaseLoaded(valueBase % 4 == 0);
@@ -497,6 +499,7 @@ public class LiveScoutProtoEntityFactory {
     static Lineups buildLineups(final int valueBase) {
         Lineups result = new Lineups();
         result.setMatchid(741852 + valueBase);
+        result.setPreliminary(valueBase % 2 != 0 ? 1 : null);
         for(int i = 0; i < valueBase; i++) {
             result.getPlayer().add(buildPlayer(i));
         }
@@ -512,6 +515,7 @@ public class LiveScoutProtoEntityFactory {
     static LineupsEntity buildLineupsEntity(final int valueBase) {
         LineupsEntity result = new LineupsEntity();
         result.setMatchId(741852 + valueBase);
+        result.setPreliminary(valueBase % 2 != 0 ? true : null);
         for(int i = 0; i < valueBase; i++) {
             result.getPlayers().add(buildPlayerEntity(i));
         }
