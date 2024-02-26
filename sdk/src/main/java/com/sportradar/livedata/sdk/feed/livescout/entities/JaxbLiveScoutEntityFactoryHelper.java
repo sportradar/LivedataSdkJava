@@ -34,6 +34,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static LineupsEntity buildLineupsEntity(Lineups lineups) throws InvalidEntityException {
         LineupsEntity result = new LineupsEntity();
         result.setMatchId(lineups.getMatchid());
+        result.setPreliminary(lineups.getPreliminary() != null && 1 == lineups.getPreliminary());
         if (lineups.getPlayer() != null) {//always not null
             for (Player player : lineups.getPlayer()) {
                 result.getPlayers().add(buildPlayerEntity(player));
@@ -671,6 +672,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if(event.getHappenedat() != null) {
             result.setHappenedAt(CommonUtils.fromTimestamp(event.getHappenedat()));
         }
+        result.setRefsTime(event.getRefstime());
         result.setShotDistance(event.getShotdistance());
         result.setShotProjectedGoalRate(event.getShotprojectedgoalrate());
         result.setShotRatingCategory(event.getShotratingcategory());
@@ -825,18 +827,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAttackingPlayers(event.getAttackingplayers());
         result.setUnavailablePlayersHome(event.getUnavailableplayershome());
         result.setUnavailablePlayersAway(event.getUnavailableplayersaway());
-        result.setHomePlayerStatsTotal(event.getHomeplayerstatstotal());
-        result.setAwayPlayerStatsTotal(event.getAwayplayerstatstotal());
-        result.setHomePlayerStatsP1(event.getHomeplayerstatsp1());
-        result.setAwayPlayerStatsP1(event.getAwayplayerstatsp1());
-        result.setHomePlayerStatsP2(event.getHomeplayerstatsp2());
-        result.setAwayPlayerStatsP2(event.getAwayplayerstatsp2());
-        result.setHomePlayerStatsP3(event.getHomeplayerstatsp3());
-        result.setAwayPlayerStatsP3(event.getAwayplayerstatsp3());
-        result.setHomePlayerStatsP4(event.getHomeplayerstatsp4());
-        result.setAwayPlayerStatsP4(event.getAwayplayerstatsp4());
-        result.setHomePlayerStatsOt(event.getHomeplayerstatsot());
-        result.setAwayPlayerStatsOt(event.getAwayplayerstatsot());
+        result.setPlayerStatistics(PlayerStatisticsEntity.create(event));
         result.setHomeTimeOnCourt(event.getHometimeoncourt());
         result.setAwayTimeOnCourt(event.getAwaytimeoncourt());
         result.setHomePlayers(event.getHomeplayers());
@@ -850,18 +841,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFieldingPlayers(event.getFieldingplayers());
         result.setPreliminaryMatchStatistics(event.getPreliminarymatchstatistics());
         result.setActualMatchStatistics(event.getActualmatchstatistics());
-        result.setHomeTeamStatsTotal(event.getHometeamstatstotal());
-        result.setAwayTeamStatsTotal(event.getAwayteamstatstotal());
-        result.setHomeTeamStatsP1(event.getHometeamstatsp1());
-        result.setAwayTeamStatsP1(event.getAwayteamstatsp1());
-        result.setHomeTeamStatsP2(event.getHometeamstatsp2());
-        result.setAwayTeamStatsP2(event.getAwayteamstatsp2());
-        result.setHomeTeamStatsP3(event.getHometeamstatsp3());
-        result.setAwayTeamStatsP3(event.getAwayteamstatsp3());
-        result.setHomeTeamStatsP4(event.getHometeamstatsp4());
-        result.setAwayTeamStatsP4(event.getAwayteamstatsp4());
-        result.setHomeTeamStatsOt(event.getHometeamstatsot());
-        result.setAwayTeamStatsOt(event.getAwayteamstatsot());
+        result.setTeamStatistics(TeamStatisticsEntity.create(event));
         result.setFreeKickReason(event.getFreekickreason());
         result.setMaxBreakFrame(event.getMaxbreakframe());
         result.setHomeRunsHome(event.getHomerunshome());

@@ -2,9 +2,67 @@
 Livedata SDK is a client library that enables easier integration with the Livescout XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. 
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.* ScoutFeedType extended with new type - PARTIAL
 
+**2.0.8 (2024-02-26)**
+* New entity - TeamStatisticsEntity under ScoutEventEntity that stores team statistics for TEAM_MATCH_STATS(1743) event:
+  - homeTeamStatsTotal
+  - awayTeamStatsTotal
+  - homeTeamStatsP1
+  - awayTeamStatsP1
+  - homeTeamStatsP2
+  - awayTeamStatsP2
+  - homeTeamStatsP3
+  - awayTeamStatsP3
+  - homeTeamStatsP4
+  - awayTeamStatsP4
+  - homeTeamStatsOt
+  - awayTeamStatsOt
+  - homeTeamStatsI1
+  - awayTeamStatsI1
+  - homeTeamStatsI2
+  - awayTeamStatsI2
+  - homeTeamStatsI3
+  - awayTeamStatsI3
+  - homeTeamStatsI4
+  - awayTeamStatsI4
+  - homeTeamStatsI5
+  - awayTeamStatsI5
+  - homeTeamStatsI6
+  - awayTeamStatsI6
+  - homeTeamStatsI7
+  - awayTeamStatsI7
+  - homeTeamStatsI8
+  - awayTeamStatsI8
+  - homeTeamStatsI9
+  - awayTeamStatsI9
+  - homeTeamStatsIe
+  - awayTeamStatsIe
+* New entity - PlayerStatisticsEntity under ScoutEventEntity that stores player statistics for PLAYER_MATCH_STATS(1714) event
+  - homePlayerStatsTotal
+  - awayPlayerStatsTotal
+  - homePlayerStatsP1
+  - awayPlayerStatsP1
+  - homePlayerStatsP2
+  - awayPlayerStatsP2
+  - homePlayerStatsP3
+  - awayPlayerStatsP3
+  - homePlayerStatsP4
+  - awayPlayerStatsP4
+  - homePlayerStatsOt
+  - awayPlayerStatsOt
+  - homePitchersStatsTotal
+  - awayPitchersStatsTotal
+  - homeBattersStatsTotal
+  - awayBattersStatsTotal
+* As player pitching statistics were moved to new class it is now reachable by event.getPlayerStatistics().getAwayPlayerStatsP2(), same for others
+* As team pitching statistics were moved to new class it is now reachable by event.getTeamStatistics().getAwayTeamStatsP2(), same for others
+* Reason and error code added to debug login failed message
+* Method name fixed in ScoutEventEntity: gethomePlayers -> getHomePlayers
+* ScoutEventEntity extended with new property - refsTime
+* LineupsEntity extended with new property - isPreliminary
+
 **2.0.7 (2024-01-10)**
 * LiveScoutFeedListener extended with new method - onFullPaginatedMatchUpdateReceived
-* new entity - PaginationEntity(uuid, page, totalPages)
+* New entity - PaginationEntity(uuid, page, totalPages)
 * MatchHeaderEntity extended with new property - pagination
 * ScoutFeedType extended with new enum value - FULL_PAGINATED
 * ScoutEventEntity extended with new property - scorerNotConfirmed

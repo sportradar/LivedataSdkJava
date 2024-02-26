@@ -69,7 +69,6 @@ public class LiveScoutProtoEntityFactory {
         result.setStart(new DateTime(3L + valueBase, DateTimeZone.getDefault()));
         result.setMatchId(4L + valueBase);
         result.setFeedType(getEnumValue(ScoutFeedType.values(), valueBase));
-        System.out.println("------------>" + result.getFeedType());
         result.setExtraInfo(5 + valueBase);
         result.setDistance(6 + valueBase);
         result.setBetStatus(getEnumValue(MatchBetStatus.values(), valueBase));

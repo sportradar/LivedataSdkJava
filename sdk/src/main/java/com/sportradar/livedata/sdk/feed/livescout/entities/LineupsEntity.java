@@ -23,6 +23,7 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
     private static final long serialVersionUID = 2690053709380185769L;
     private List<ManagerEntity> managers;
     private long matchId;
+    private boolean isPreliminary;
     private List<PlayerEntity> players;
     private List<TeamOfficialEntity> teamOfficials;
 
@@ -48,6 +49,15 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
      */
     public long getMatchId() {
         return matchId;
+    }
+
+    /**
+     * Flag for Ice Hockey that show if we are dealing with provisional lineup.
+     *
+     * @return true if provisional lineup
+     */
+    public boolean isPreliminary() {
+        return isPreliminary;
     }
 
     /**

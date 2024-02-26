@@ -1878,6 +1878,11 @@
                     <xs:restriction base="xs:long"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="refstime" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="shotdistance" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:double"/>
@@ -1975,6 +1980,126 @@
             <xs:attribute name="thirdbaseplayer" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:long" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi1" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi2" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi3" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi4" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi5" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi5" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi6" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi6" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi7" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi7" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi8" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi8" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsi9" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsi9" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="hometeamstatsie" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayteamstatsie" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string" />
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homepitchersstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awaypitchersstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homebattersstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awaybattersstatstotal" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="kills" use="optional">
@@ -2909,6 +3034,22 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="reason" type="xs:string"/>
+            <xs:attribute name="errorcode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="unauthenticated"/>
+                        <xs:enumeration value="insecure"/>
+                        <xs:enumeration value="missing"/>
+                        <xs:enumeration value="incorrect"/>
+                        <xs:enumeration value="expired"/>
+                        <xs:enumeration value="flooding"/>
+                        <xs:enumeration value="connection_quota"/>
+                        <xs:enumeration value="not_whitelisted"/>
+                        <xs:enumeration value="internal_error"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="flashconfig">
@@ -3014,6 +3155,11 @@
             <xs:attribute name="matchid" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="preliminary" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>

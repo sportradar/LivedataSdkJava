@@ -3,7 +3,6 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
-import jakarta.xml.bind.annotation.XmlAttribute;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
@@ -108,6 +107,7 @@ public class ScoutEventEntity implements Serializable {
     private Integer secondScoreType;
     private String scoreTypeQualifier;
     private DateTime happenedAt;
+    private Long refsTime;
     private Double shotDistance;
     private Double shotProjectedGoalRate;
     private Integer shotRatingCategory;
@@ -224,18 +224,7 @@ public class ScoutEventEntity implements Serializable {
     private String attackingPlayers;
     private String unavailablePlayersHome;
     private String unavailablePlayersAway;
-    private String homePlayerStatsTotal;
-    private String awayPlayerStatsTotal;
-    private String homePlayerStatsP1;
-    private String awayPlayerStatsP1;
-    private String homePlayerStatsP2;
-    private String awayPlayerStatsP2;
-    private String homePlayerStatsP3;
-    private String awayPlayerStatsP3;
-    private String homePlayerStatsP4;
-    private String awayPlayerStatsP4;
-    private String homePlayerStatsOt;
-    private String awayPlayerStatsOt;
+    private PlayerStatisticsEntity playerStatistics;
     private String homeTimeOnCourt;
     private String awayTimeOnCourt;
     private String homePlayers;
@@ -249,18 +238,7 @@ public class ScoutEventEntity implements Serializable {
     private String fieldingPlayers;
     private String preliminaryMatchStatistics;
     private String actualMatchStatistics;
-    private String homeTeamStatsTotal;
-    private String awayTeamStatsTotal;
-    private String homeTeamStatsP1;
-    private String awayTeamStatsP1;
-    private String homeTeamStatsP2;
-    private String awayTeamStatsP2;
-    private String homeTeamStatsP3;
-    private String awayTeamStatsP3;
-    private String homeTeamStatsP4;
-    private String awayTeamStatsP4;
-    private String homeTeamStatsOt;
-    private String awayTeamStatsOt;
+    private TeamStatisticsEntity teamStatistics;
     private Integer freeKickReason;
     private Integer maxBreakFrame;
     private Integer homeRunsHome;
@@ -766,6 +744,15 @@ public class ScoutEventEntity implements Serializable {
      * @return {@link DateTime} of happenedat.
      */
     public DateTime getHappenedAt() { return happenedAt; }
+
+    /**
+     * Refstime containing the millisecond timestamp of the referenced event on event type DELETED_EVENT_ALERT(1044).
+     *
+     * @return time of deleted event
+     */
+    public Long getRefsTime() {
+        return refsTime;
+    }
 
     /**
      * shotdistance
@@ -1511,43 +1498,22 @@ public class ScoutEventEntity implements Serializable {
     }
 
     public String getUnavailablePlayersAway() { return unavailablePlayersAway; }
-
-    public String getHomePlayerStatsTotal() { return homePlayerStatsTotal; }
-
-    public String getAwayPlayerStatsTotal() { return awayPlayerStatsTotal; }
-
-    public String getHomePlayerStatsP1() { return homePlayerStatsP1; }
-
-    public String getAwayPlayerStatsP1() { return awayPlayerStatsP1; }
-
-    public String getHomePlayerStatsP2() { return homePlayerStatsP2; }
-
-    public String getAwayPlayerStatsP2() { return awayPlayerStatsP2; }
-
-    public String getHomePlayerStatsP3() { return homePlayerStatsP3; }
-
-    public String getAwayPlayerStatsP3() { return awayPlayerStatsP3; }
-
-    public String getHomePlayerStatsP4() { return homePlayerStatsP4; }
-
-    public String getAwayPlayerStatsP4() { return awayPlayerStatsP4; }
-
-    public String getHomePlayerStatsOt() { return homePlayerStatsOt; }
-
-    public String getAwayPlayerStatsOt() { return awayPlayerStatsOt; }
+    /**
+     * Objects stores player statics fields that are coming with PLAYER_MATCH_STATS(1714) event
+     * @return team statics object
+     */
+    public PlayerStatisticsEntity getPlayerStatistics() { return playerStatistics; }
 
     public String getHomeTimeOnCourt() { return homeTimeOnCourt; }
 
     public String getAwayTimeOnCourt() { return awayTimeOnCourt; }
-
     /**
      * Homeplayers: List of home player IDs which are currently on court.
      * Format: "PID;PID;PID" (list of players ids split by semicolon)
      *
      * @return {@link String} of players ids
      */
-    public String getHomeplayers() { return homePlayers; }
-
+    public String getHomePlayers() { return homePlayers; }
     /**
      * Awayplayers: List of away player IDs which are currently on court.
      * Format: "PID;PID;PID" (list of players ids split by semicolon)
@@ -1572,30 +1538,13 @@ public class ScoutEventEntity implements Serializable {
     public String getPreliminaryMatchStatistics() { return preliminaryMatchStatistics; }
 
     public String getActualMatchStatistics() { return actualMatchStatistics; }
-
-    public String getHomeTeamStatsTotal() { return homeTeamStatsTotal; }
-
-    public String getAwayTeamStatsTotal() { return awayTeamStatsTotal; }
-
-    public String getHomeTeamStatsP1() { return homeTeamStatsP1; }
-
-    public String getAwayTeamStatsP1() { return awayTeamStatsP1; }
-
-    public String getHomeTeamStatsP2() { return homeTeamStatsP2; }
-
-    public String getAwayTeamStatsP2() { return awayTeamStatsP2; }
-
-    public String getHomeTeamStatsP3() { return homeTeamStatsP3; }
-
-    public String getAwayTeamStatsP3() { return awayTeamStatsP3; }
-
-    public String getHomeTeamStatsP4() { return homeTeamStatsP4; }
-
-    public String getAwayTeamStatsP4() { return awayTeamStatsP4; }
-
-    public String getHomeTeamStatsOt() { return homeTeamStatsOt; }
-
-    public String getAwayTeamStatsOt() { return awayTeamStatsOt; }
+    /**
+     * Objects stores team statics fields that are coming with TEAM_MATCH_STATS(1743) event
+     * @return team statics object
+     */
+    public TeamStatisticsEntity getTeamStatistics() {
+        return this.teamStatistics;
+    }
 
     /**
      * FreeKickReason: Description of the free kick. Possible values:
