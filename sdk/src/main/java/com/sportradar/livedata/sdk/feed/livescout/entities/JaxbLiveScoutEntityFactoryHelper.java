@@ -34,7 +34,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static LineupsEntity buildLineupsEntity(Lineups lineups) throws InvalidEntityException {
         LineupsEntity result = new LineupsEntity();
         result.setMatchId(lineups.getMatchid());
-        result.setPreliminary(lineups.getPreliminary() != null && 1 == lineups.getPreliminary());
+        result.setPreliminary(lineups.getPreliminary() != null ? 1 == lineups.getPreliminary() : null);
         if (lineups.getPlayer() != null) {//always not null
             for (Player player : lineups.getPlayer()) {
                 result.getPlayers().add(buildPlayerEntity(player));

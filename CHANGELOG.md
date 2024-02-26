@@ -58,7 +58,7 @@ It also makes a client solution more stable and robust when it comes to feed han
 * Reason and error code added to debug login failed message
 * Method name fixed in ScoutEventEntity: gethomePlayers -> getHomePlayers
 * ScoutEventEntity extended with new property - refsTime
-* LineupsEntity extended with new property - isPreliminary
+* LineupsEntity extended with new property - preliminary
 
 **2.0.7 (2024-01-10)**
 * LiveScoutFeedListener extended with new method - onFullPaginatedMatchUpdateReceived

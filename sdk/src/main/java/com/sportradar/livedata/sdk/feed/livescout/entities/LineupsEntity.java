@@ -23,7 +23,9 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
     private static final long serialVersionUID = 2690053709380185769L;
     private List<ManagerEntity> managers;
     private long matchId;
-    private boolean isPreliminary;
+    //would prefer boolean, but Utku states that it should be nullable:
+    //"1 means it is preliminary. all other states should be null, client should not receive anything"
+    private Boolean preliminary;
     private List<PlayerEntity> players;
     private List<TeamOfficialEntity> teamOfficials;
 
@@ -56,8 +58,8 @@ public class LineupsEntity extends LiveScoutEntityBase implements Serializable {
      *
      * @return true if provisional lineup
      */
-    public boolean isPreliminary() {
-        return isPreliminary;
+    public Boolean getPreliminary() {
+        return preliminary;
     }
 
     /**
