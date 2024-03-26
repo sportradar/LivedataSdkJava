@@ -147,6 +147,7 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
             toSubscribe[i] = element.getEventId();
         }
         sender.subscribe(toSubscribe);
+
 //        sender.subscribe(new EventIdentifier[]{EventIdentifier.id(23053636)});
 //        sender.subscribe(new EventIdentifier[]{EventIdentifier.id(22878272)});
 
