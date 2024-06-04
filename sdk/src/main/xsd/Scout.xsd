@@ -1504,6 +1504,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="inningscore" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="statistics" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
             <xs:attribute name="type" use="required">
                 <xs:simpleType>
@@ -1545,6 +1546,41 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="refuuid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="numberofshots">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pointoutcome">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="situation">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="errortype">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="shotsequence">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="primaryshottype">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="secondaryshottype">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -1740,6 +1776,11 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="extrainfotennis" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="extrainfobowls" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -1852,6 +1893,11 @@
             <xs:attribute name="ballnumber" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="supervisoraction">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="correctedfrom" use="optional">
@@ -2101,6 +2147,16 @@
             <xs:attribute name="awaybattersstatstotal" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ondeck" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="inhole" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:long"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="kills" use="optional">
@@ -2894,6 +2950,11 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="laststroke">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="spin" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -3348,4 +3409,96 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="statistics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="battersstatstotal" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="pitchersstatstotal" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="teamstats" minOccurs="0" maxOccurs="4"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="battersstatstotal">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="playerstats" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="pitchersstatstotal">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="playerstats" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="playerstats">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="stats" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="pid" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="stats">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="teamstats">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="stats" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="total"/>
+                        <xs:enumeration value="inning1"/>
+                        <xs:enumeration value="inning2"/>
+                        <xs:enumeration value="inning3"/>
+                        <xs:enumeration value="inning4"/>
+                        <xs:enumeration value="inning5"/>
+                        <xs:enumeration value="inning6"/>
+                        <xs:enumeration value="inning7"/>
+                        <xs:enumeration value="inning8"/>
+                        <xs:enumeration value="inning9"/>
+                        <xs:enumeration value="inninge"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
 </xs:schema>
