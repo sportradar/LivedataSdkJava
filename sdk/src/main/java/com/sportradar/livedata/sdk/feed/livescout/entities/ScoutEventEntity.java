@@ -250,6 +250,8 @@ public class ScoutEventEntity implements Serializable {
     private String foulTypeQualifier;
 
     private StatisticsEntity statistics;
+    private Long onDeck;
+    private Long inHole;
 
     /**
      * For Serializable
@@ -1673,5 +1675,13 @@ public class ScoutEventEntity implements Serializable {
 
     public StatisticsEntity getStatistics() {
         return statistics;
+    }
+
+    public Long getOnDeck() {
+        return onDeck;
+    }
+
+    public Long getInHole() {
+        return inHole;
     }
 }

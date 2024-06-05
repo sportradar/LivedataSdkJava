@@ -854,6 +854,9 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 
+        result.setOnDeck(event.getOndeck());
+        result.setInHole(event.getInhole());
+
         if (event.getStatistics() != null) {
             try {
                 result.setStatistics(new StatisticsEntity(event.getStatistics()));
