@@ -252,6 +252,15 @@ public class ScoutEventEntity implements Serializable {
     private StatisticsEntity statistics;
     private Long onDeck;
     private Long inHole;
+    private String numberOfShots;
+    private String pointOutcome;
+    private String situation;
+    private String errorType;
+    private String shotSequence;
+    private String primaryShotType;
+    private String secondaryShotType;
+    private String extraInfoTennis;
+    private String lastStroke;
 
     /**
      * For Serializable
@@ -1684,4 +1693,41 @@ public class ScoutEventEntity implements Serializable {
     public Long getInHole() {
         return inHole;
     }
+
+    public String getNumberOfShots() {
+        return numberOfShots;
+    }
+
+    public String getPointOutcome() {
+        return pointOutcome;
+    }
+
+    public String getSituation() {
+        return situation;
+    }
+
+    public String getErrorType() {
+        return errorType;
+    }
+
+    public String getShotSequence() {
+        return shotSequence;
+    }
+
+    public String getPrimaryShotType() {
+        return primaryShotType;
+    }
+
+    public String getSecondaryShotType() {
+        return secondaryShotType;
+    }
+
+    public String getExtraInfoTennis() {
+        return extraInfoTennis;
+    }
+
+    public String getLastStroke() {
+        return lastStroke;
+    }
+
 }

@@ -856,6 +856,15 @@ public class JaxbLiveScoutEntityFactoryHelper {
 
         result.setOnDeck(event.getOndeck());
         result.setInHole(event.getInhole());
+        result.setNumberOfShots(event.getNumberofshots());
+        result.setPointOutcome(event.getPointoutcome());
+        result.setSituation(event.getSituation());
+        result.setErrorType(event.getErrortype());
+        result.setShotSequence(event.getShotsequence());
+        result.setPrimaryShotType(event.getPrimaryshottype());
+        result.setSecondaryShotType(event.getSecondaryshottype());
+        result.setExtraInfoTennis(event.getExtrainfotennis());
+        result.setLastStroke(event.getLaststroke());
 
         if (event.getStatistics() != null) {
             try {
