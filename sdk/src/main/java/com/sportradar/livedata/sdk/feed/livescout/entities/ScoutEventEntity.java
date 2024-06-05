@@ -261,6 +261,7 @@ public class ScoutEventEntity implements Serializable {
     private String secondaryShotType;
     private String extraInfoTennis;
     private String lastStroke;
+    private Integer supervisorAction;
 
     /**
      * For Serializable
@@ -1730,4 +1731,7 @@ public class ScoutEventEntity implements Serializable {
         return lastStroke;
     }
 
+    public Integer getSupervisorAction() {
+        return supervisorAction;
+    }
 }

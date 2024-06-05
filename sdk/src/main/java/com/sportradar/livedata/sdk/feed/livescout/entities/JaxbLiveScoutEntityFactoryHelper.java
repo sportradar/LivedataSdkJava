@@ -865,6 +865,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setSecondaryShotType(event.getSecondaryshottype());
         result.setExtraInfoTennis(event.getExtrainfotennis());
         result.setLastStroke(event.getLaststroke());
+        result.setSupervisorAction(event.getSupervisoraction());
 
         if (event.getStatistics() != null) {
             try {
