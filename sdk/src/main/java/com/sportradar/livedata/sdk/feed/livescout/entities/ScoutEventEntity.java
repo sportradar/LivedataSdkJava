@@ -249,6 +249,8 @@ public class ScoutEventEntity implements Serializable {
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
 
+    private StatisticsEntity statistics;
+
     /**
      * For Serializable
      */
@@ -1668,4 +1670,8 @@ public class ScoutEventEntity implements Serializable {
      * @return {@link String} of types
      */
     public String getFoulTypeQualifier() { return foulTypeQualifier; }
+
+    public StatisticsEntity getStatistics() {
+        return statistics;
+    }
 }

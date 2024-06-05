@@ -854,6 +854,14 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFoulTypeDescriptor(event.getFoultypedescriptor());
         result.setFoulTypeQualifier(event.getFoultypequalifier());
 
+        if (event.getStatistics() != null) {
+            try {
+                result.setStatistics(new StatisticsEntity(event.getStatistics()));
+            } catch (UnknownEnumException e) {
+                throw new InvalidEntityException(e, "Event.getStatistics()", event.getStatistics().toString());
+            }
+        }
+
         return result;
     }
 
