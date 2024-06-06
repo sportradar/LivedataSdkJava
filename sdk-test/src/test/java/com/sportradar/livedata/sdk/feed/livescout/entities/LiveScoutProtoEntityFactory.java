@@ -409,7 +409,57 @@ public class LiveScoutProtoEntityFactory {
         if(valueBase % 3 != 0){
             event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
         }
+
         return event;
+    }
+
+    static Statistics buildScoutEventStatistics() {
+        Playerstats playerstats1 = new Playerstats();
+        playerstats1.setPid(1L);
+        playerstats1.getStats().add(buildStats("stats1", "value1"));
+        playerstats1.getStats().add(buildStats("stats2", "value2"));
+
+        Playerstats playerstats2 = new Playerstats();
+        playerstats2.setPid(2L);
+        playerstats2.getStats().add(buildStats("stats3", "value3"));
+        playerstats2.getStats().add(buildStats("stats4", "value4"));
+
+        Battersstatstotal battersstatstotal = new Battersstatstotal();
+        battersstatstotal.setSide("home");
+        battersstatstotal.getPlayerstats().add(playerstats1);
+        battersstatstotal.getPlayerstats().add(playerstats2);
+
+        Pitchersstatstotal pitchersstatstotal = new Pitchersstatstotal();
+        pitchersstatstotal.setSide("away");
+        pitchersstatstotal.getPlayerstats().add(playerstats1);
+        pitchersstatstotal.getPlayerstats().add(playerstats2);
+
+        Teamstats teamstats1 = new Teamstats();
+        teamstats1.getStats().add(buildStats("stats5", "value5"));
+        teamstats1.getStats().add(buildStats("stats6", "value6"));
+        teamstats1.setSide("home");
+        teamstats1.setType("total");
+
+        Teamstats teamstats2 = new Teamstats();
+        teamstats2.getStats().add(buildStats("stats7", "value7"));
+        teamstats2.getStats().add(buildStats("stats8", "value8"));
+        teamstats2.setSide("away");
+        teamstats2.setType("inning5");
+
+        Statistics statistics = new Statistics();
+        statistics.setBattersstatstotal(battersstatstotal);
+        statistics.setPitchersstatstotal(pitchersstatstotal);
+        statistics.getTeamstats().add(teamstats1);
+        statistics.getTeamstats().add(teamstats2);
+
+        return statistics;
+    }
+
+    static Stats buildStats(String name, String value) {
+        Stats stats = new Stats();
+        stats.setName(name);
+        stats.setValue(value);
+        return stats;
     }
 
     static ScoutEventEntity buildScoutEventEntity(final int valueBase) {
