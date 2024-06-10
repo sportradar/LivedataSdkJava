@@ -29,8 +29,10 @@ public class StatisticsEntity implements Serializable {
             Pitchersstatstotal pitchersstatstotals,
             List<Teamstats> teamstats
     ) throws UnknownEnumException {
-        this.battersStatsTotal = new BattersStatsTotalEntity(battersstatstotals);
-        this.pitchersStatsTotal = new PitchersStatsTotalEntity(pitchersstatstotals);
+        this.battersStatsTotal = battersstatstotals != null ?
+                new BattersStatsTotalEntity(battersstatstotals) : null;
+        this.pitchersStatsTotal = pitchersstatstotals != null ?
+                new PitchersStatsTotalEntity(pitchersstatstotals): null;
 
         List<TeamStatsEntity> list = new ArrayList<>();
         for (Teamstats teamstat : teamstats) {
