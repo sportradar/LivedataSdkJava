@@ -188,14 +188,12 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setExtMatchId(match.getExtmatchid());
         result.setVar(match.getVar());
         Byte teamMatch = match.getTeammatch();
-        if(teamMatch != null)
-        {
+        if (teamMatch != null) {
             result.setTeamMatch(teamMatch != 0);
         }
         result.setTeamMatchId(match.getTeammatchid());
         Byte isCancelled = match.getIscancelled();
-        if(isCancelled != null)
-        {
+        if (isCancelled != null) {
             result.setCancelled(isCancelled != 0);
         }
         result.setVbpClassification(match.getVbpclassification());
@@ -204,7 +202,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAwayState(match.getAwaystate());
         result.setVenue(match.getVenue());
         result.setRegion(match.getRegion());
-        if(ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())){
+        if (ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
             result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
         }
         return result;
@@ -222,7 +220,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
     }
 
     public static MatchListUpdateEntity buildMatchListUpdateEntity(Matchlistupdate matchListUpdate) throws
-                                                                                                    InvalidEntityException {
+            InvalidEntityException {
         MatchListUpdateEntity result = new MatchListUpdateEntity();
         ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchListUpdate.getMatch().size());
         for (Match match : matchListUpdate.getMatch()) {
@@ -533,7 +531,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
 
     //Do not know why it was done like this in a 1st place. Just had put common logic in one place.
     //Much easier would be to allow NONE everywhere and throw exception if value is unknown as it was done everywhere.
-    private static Team parseTeam(Integer teamInt, boolean allowNone){
+    private static Team parseTeam(Integer teamInt, boolean allowNone) {
         Team team = null;
         if (teamInt == 2) {
             team = Team.AWAY;
@@ -632,13 +630,17 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setErrors(event.getErrors());
         result.setMatchTime(event.getMtime());
         result.setPeriodNumber(event.getPeriodnumber());
+        result.setBallEventType(event.getBallevent() != null ?
+                BallEventType.getEventTypeFromValue(event.getBallevent()) : null);
+        result.setPlayerId(event.getPlayerid());
         result.setPlayer1Id(event.getPlayer1());
         result.setPlayer2Id(event.getPlayer2());
         result.setPosX(event.getPosx());
         result.setPosY(event.getPosy());
+        TrackEntity.apply(event, result);
         result.setRemainingTimeInPeriod(event.getRemainingtimeperiod());
         result.setRunsInInnings(event.getRunsininnings());
-        if(event.getStime() > 0) {
+        if (event.getStime() > 0) {
             result.setServerTime(CommonUtils.fromTimestamp(event.getStime()));
         }
         result.setSetNumber(event.getSetnumber());
@@ -662,14 +664,14 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Event.getSide()", event.getSide());
         }
-        if(event.getType() > 0) {
+        if (event.getType() > 0) {
             result.setTypeId(event.getType());
             result.setType(EventType.getEventTypeFromLiteralValue(Integer.toString(event.getType())));
         }
 
         result.setSecondScoreType(event.getSecondscoretype());
         result.setScoreTypeQualifier(event.getScoretypequalifier());
-        if(event.getHappenedat() != null) {
+        if (event.getHappenedat() != null) {
             result.setHappenedAt(CommonUtils.fromTimestamp(event.getHappenedat()));
         }
         result.setRefsTime(event.getRefstime());
@@ -825,7 +827,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setAttackingPlayers(event.getAttackingplayers());
         result.setUnavailablePlayersHome(event.getUnavailableplayershome());
         result.setUnavailablePlayersAway(event.getUnavailableplayersaway());
-        result.setPlayerStatistics(PlayerStatisticsEntity.create(event));
+        result.setPlayerStatistics(PlayerStatisticsEntity.tryCreate(event));
         result.setHomeTimeOnCourt(event.getHometimeoncourt());
         result.setAwayTimeOnCourt(event.getAwaytimeoncourt());
         result.setHomePlayers(event.getHomeplayers());
@@ -839,7 +841,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setFieldingPlayers(event.getFieldingplayers());
         result.setPreliminaryMatchStatistics(event.getPreliminarymatchstatistics());
         result.setActualMatchStatistics(event.getActualmatchstatistics());
-        result.setTeamStatistics(TeamStatisticsEntity.create(event));
+        result.setTeamStatistics(TeamStatisticsEntity.tryCreate(event));
         result.setFreeKickReason(event.getFreekickreason());
         result.setMaxBreakFrame(event.getMaxbreakframe());
         result.setHomeRunsHome(event.getHomerunshome());
@@ -847,7 +849,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setHomeRunsAway(event.getHomerunsaway());
         result.setNextBatter(event.getNextbatter());
         result.setStrokeType(event.getStroketype());
-        if(event.getScorernotconfirmed() != null) {
+        if (event.getScorernotconfirmed() != null) {
             result.setScorerNotConfirmed(event.getScorernotconfirmed() != 0);
         }
         result.setSpin(event.getSpin());

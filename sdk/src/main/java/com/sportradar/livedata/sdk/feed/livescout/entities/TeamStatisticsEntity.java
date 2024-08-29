@@ -16,7 +16,7 @@ public class TeamStatisticsEntity implements Serializable {
     private static final long serialVersionUID = 2985143044035983853L;
 
     public static final int TEAM_MATCH_STATS = 1743;
-    static TeamStatisticsEntity create(Event event){
+    static TeamStatisticsEntity tryCreate(Event event){
         if(TEAM_MATCH_STATS == event.getType()){//type is int, so null is not an option
             return new TeamStatisticsEntity(event);
         }

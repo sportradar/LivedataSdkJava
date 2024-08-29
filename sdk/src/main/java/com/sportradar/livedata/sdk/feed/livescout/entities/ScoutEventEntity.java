@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import com.sportradar.livedata.sdk.feed.livescout.enums.BallEventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
 import lombok.AccessLevel;
@@ -89,6 +90,8 @@ public class ScoutEventEntity implements Serializable {
     private Integer periodNumber;
     private String periodScore;
     private Integer pitchCount;
+    private BallEventType ballEventType;
+    private Integer playerId;
     private Integer player1Id;
     private Integer player2Id;
     private Integer player3Id;
@@ -96,6 +99,7 @@ public class ScoutEventEntity implements Serializable {
     private Integer tippedTo;
     private Integer posX;
     private Integer posY;
+    private TrackEntity track;
     private String remainingTimeInPeriod;
     private Integer roundNumber;
     private Integer pitchingSubstitution;
@@ -629,6 +633,25 @@ public class ScoutEventEntity implements Serializable {
     public Integer getPitchCount() { return pitchCount; }
 
     /**
+     * Represents the type of ball event. If the specified value does not match any constant in the
+     * {@link BallEventType} enum, it will return {@link BallEventType#UNKNOWN} with the given value.
+     * @return {@link BallEventType}
+     */
+    public BallEventType getBallEventType() {
+        return ballEventType;
+    }
+
+    /**
+     * Some events send playerid, while others send player1, player2, etc.
+     * These formats won't change due to client dependencies.
+     *
+     * @return player id
+     */
+    public Integer getPlayerId() {
+        return playerId;
+    }
+
+    /**
      * Sportradar player id for player 1 connected to this event.
      * The meaning of this attribute depends on event type:
      * <ul>
@@ -704,6 +727,15 @@ public class ScoutEventEntity implements Serializable {
      * @return position y
      */
     public Integer getPosY() { return posY; }
+
+    /**
+     * The TrackEntity object contains x, y, and z parameters if they exist. It will return null if all three parameters are null.
+     *
+     * @return track object
+     */
+    public TrackEntity getTrack() {
+        return this.track;
+    }
 
     /**
      * Remaining time in period, mm:ss

@@ -1,7 +1,6 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Event;
-import jakarta.xml.bind.annotation.XmlAttribute;
 import lombok.*;
 
 import java.io.Serializable;
@@ -17,7 +16,7 @@ public class PlayerStatisticsEntity implements Serializable {
     private static final long serialVersionUID = 2985143044035983853L;
 
     public static final int PLAYER_MATCH_STATS = 1714;
-    static PlayerStatisticsEntity create(Event event){
+    static PlayerStatisticsEntity tryCreate(Event event){
         if(PLAYER_MATCH_STATS == event.getType()){
             return new PlayerStatisticsEntity(event);
         }

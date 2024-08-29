@@ -31,6 +31,7 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListen
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
@@ -177,17 +178,9 @@ public class LiveScoutUserRequestManagerImpl
      * @param eventIds Array of event ids
      */
     @Override
-    public void subscribe(final EventIdentifier[] eventIds) {
-        checkNotNull(eventIds);
+    public void subscribe(final EventIdentifier... eventIds) {
         sdkLogger.logClientInteraction(Level.INFO, String.format("Subscribe: %s", ArrayUtils.toString(eventIds)));
-        List<Long> ids = new ArrayList<>(Math.min(eventIds.length, MAX_SUBSCRIPTION_AMOUNT));
-        for(int i = 1; i <= eventIds.length; i++){
-            ids.add(eventIds[i-1].getEventId());
-            if(i % MAX_SUBSCRIPTION_AMOUNT == 0 || i == eventIds.length){//maybe we should pass collection instead of an array and use guava partition?
-                notifyOnRequestReady(requestFactory.buildMatchSubscribe(ids));
-                ids.clear();
-            }
-        }
+        sendBatchRequest(requestFactory::buildMatchSubscribe, eventIds);
     }
 
     /**
@@ -198,12 +191,9 @@ public class LiveScoutUserRequestManagerImpl
      * @param eventIds Array of match ids from which to un-subscribe
      */
     @Override
-    public void unsubscribe(EventIdentifier[] eventIds) {
-        checkNotNull(eventIds);
+    public void unsubscribe(EventIdentifier... eventIds) {
         sdkLogger.logClientInteraction(Level.INFO, String.format("Unsubscribe: %s", ArrayUtils.toString(eventIds)));
-        for (final Long id : getIds(eventIds)) {
-            notifyOnRequestReady(requestFactory.buildMatchUnsubscribe(id));
-        }
+        sendBatchRequest(requestFactory::buildMatchUnsubscribe, eventIds);
     }
 
     /**
@@ -296,6 +286,18 @@ public class LiveScoutUserRequestManagerImpl
         DateTime now = TimeProvider.getCurrent().getCurrentTime();
         for (EventIdentifier id : getAllSubscribedMatches()) {
             notifyOnMessageProcessed(ScoutFakeBetStopFactory.generateBetStop(id, now));
+        }
+    }
+
+    private void sendBatchRequest(Function<Iterable<Long>, OutgoingMessage> requestSupplier, EventIdentifier... eventIds){
+        checkNotNull(eventIds);
+        List<Long> ids = new ArrayList<>(Math.min(eventIds.length, MAX_SUBSCRIPTION_AMOUNT));
+        for(int i = 1; i <= eventIds.length; i++){
+            ids.add(eventIds[i-1].getEventId());
+            if(i % MAX_SUBSCRIPTION_AMOUNT == 0 || i == eventIds.length){//maybe we should pass collection instead of an array and use guava partition?
+                notifyOnRequestReady(requestSupplier.apply(ids));
+                ids.clear();
+            }
         }
     }
 

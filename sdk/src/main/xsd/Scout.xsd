@@ -1600,6 +1600,31 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="trackx" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tracky" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="trackz" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ballevent" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="playerid" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="player1" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
@@ -3086,7 +3111,6 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="user" minOccurs="0"/>
-                <xs:element ref="flashconfig" minOccurs="0"/>
             </xs:sequence>
             <xs:attribute name="result" use="required">
                 <xs:simpleType>
@@ -3112,36 +3136,6 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="flashconfig">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="eventconfig" maxOccurs="unbounded" minOccurs="0"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="eventconfig">
-        <xs:complexType>
-            <xs:attribute name="popup" type="xs:boolean" use="required"/>
-            <xs:attribute name="playsound" type="xs:boolean" use="required"/>
-            <xs:attribute name="eventtype" type="xs:int" use="required"/>
-            <xs:attribute name="changebackgroundcolourpossible" type="xs:boolean" use="optional"/>
-            <xs:attribute name="changebackgroundcolour" type="xs:boolean" use="required"/>
-            <xs:attribute name="audio" type="xs:string" use="optional"/>
-            <xs:attribute name="sportid" type="xs:int" use="optional"/>
-            <xs:attribute name="extrainfo" type="xs:int" use="optional"/>
-            <xs:attribute name="side" use="optional">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="away"/>
-                        <xs:enumeration value="home"/>
-                        <xs:enumeration value="none"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
-            <xs:attribute name="p3" type="xs:int" use="optional"/>
-            <xs:attribute name="p4" type="xs:int" use="optional"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="dbfail">

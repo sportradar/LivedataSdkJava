@@ -74,21 +74,25 @@ public class LiveScoutStatusFactory implements StatusFactory {
     }
 
     public OutgoingMessage buildMatchSubscribe(Iterable<Long> matchIds) {
-        Matchsubscription matchsubscription = new Matchsubscription();
+        Matchsubscription subscription = new Matchsubscription();
         for (Long matchId : matchIds) {
             Match ret = new Match();
             ret.setMatchid(matchId);
             ret.setFeedtype("delta");
-            matchsubscription.getMatch().add(ret);
+            subscription.getMatch().add(ret);
         }
-        return matchsubscription;
+        return subscription;
     }
 
-    public OutgoingMessage buildMatchUnsubscribe(long matchId) {
-        Matchstop ret = new Matchstop();
-        ret.setMatchid((int) matchId);
-
-        return ret;
+    public OutgoingMessage buildMatchUnsubscribe(Iterable<Long> matchIds) {
+        Matchunsubscription unsubscription = new Matchunsubscription();
+        for(Long matchId : matchIds){
+            Match ret = new Match();
+            ret.setMatchid(matchId);
+            ret.setFeedtype("delta");
+            unsubscription.getMatch().add(ret);
+        }
+        return unsubscription;
     }
 
     public OutgoingMessage buildMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds) {

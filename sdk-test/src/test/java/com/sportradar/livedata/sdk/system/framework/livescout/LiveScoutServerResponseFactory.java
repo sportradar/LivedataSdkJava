@@ -45,29 +45,9 @@ public class LiveScoutServerResponseFactory {
         Login login = new ObjectFactory().createLogin();
         login.setResult(loggedin ? VALID : INVALID);
         if (loggedin) {
-            Flashconfig flashconfig = new Flashconfig();
-
             User user = new User();
             user.setBookmakerid(bookmakerid);
             login.setUser(user);
-
-            Eventconfig eventconfig = new Eventconfig();
-            eventconfig.setChangebackgroundcolour(false);
-            eventconfig.setChangebackgroundcolourpossible(false);
-            eventconfig.setEventtype(30);
-            eventconfig.setPlaysound(false);
-            eventconfig.setPopup(true);
-            flashconfig.getEventconfig().add(eventconfig);
-
-            eventconfig = new Eventconfig();
-            eventconfig.setChangebackgroundcolour(false);
-            eventconfig.setChangebackgroundcolourpossible(false);
-            eventconfig.setEventtype(40);
-            eventconfig.setPlaysound(false);
-            eventconfig.setPopup(false);
-            flashconfig.getEventconfig().add(eventconfig);
-
-            login.setFlashconfig(flashconfig);
         }
         return login;
     }

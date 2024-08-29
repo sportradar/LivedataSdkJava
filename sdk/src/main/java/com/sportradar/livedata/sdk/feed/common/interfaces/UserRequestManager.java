@@ -61,7 +61,7 @@ public interface UserRequestManager {
      *
      * @param eventIds Array of eventIds
      */
-    void subscribe(EventIdentifier[] eventIds);
+    void subscribe(EventIdentifier... eventIds);
 
     /**
      * Un-subscribe from the specified matches. After this no more events associated with these matches will be sent.
@@ -72,5 +72,5 @@ public interface UserRequestManager {
      * @param eventIds Array of event ids from which to un-subscribe
      * @throws IllegalArgumentException if {@code eventIds} is a null reference.
      */
-    void unsubscribe(EventIdentifier[] eventIds);
+    void unsubscribe(EventIdentifier... eventIds);
 }
