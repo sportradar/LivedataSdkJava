@@ -9,12 +9,14 @@ import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException
 import com.sportradar.livedata.sdk.feed.livescout.enums.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
+import org.apache.commons.lang3.BooleanUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 import static com.sportradar.livedata.sdk.common.classes.Nulls.nte;
@@ -91,21 +93,21 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static MatchHeaderEntity buildMatchHeaderEntity(Match match) throws InvalidEntityException {
         MatchHeaderEntity result = new MatchHeaderEntity();
         if (match.getActive() != null) {
-            result.setActive(CommonUtils.intToBoolean(match.getActive()));
+            result.setActive(BooleanUtils.toBoolean(match.getActive()));
         }
         try {
             result.setBetStatus(MatchBetStatus.getMatchBetStatusFromLiteralValue(match.getBetstatus()));
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Match.getBetstatus()", match.getBetstatus());
         }
-        result.setBooked(CommonUtils.integerToBoolean(match.getBooked()));
-        result.setConnectionStatus(CommonUtils.integerToBoolean(match.getConnectionstatus()));
+        result.setBooked(BooleanUtils.toBooleanObject(match.getBooked()));
+        result.setConnectionStatus(BooleanUtils.toBooleanObject(match.getConnectionstatus()));
         try {
             result.setCoveredFrom(Coverage.getCoverageFromLiteralValue(match.getCoveredfrom()));
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Match.getCoveredfrom()", match.getCoveredfrom());
         }
-        result.setDeepCoverage(CommonUtils.integerToBoolean(match.getDc()));
+        result.setDeepCoverage(BooleanUtils.toBooleanObject(match.getDc()));
         result.setDistance(match.getDistance());
         if (match.getTeamsreversed() != null) {
             try {
@@ -174,8 +176,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setTeam2Abbreviation(match.getT2Abbr());
         result.setTeam1Division(match.getT1Division());
         result.setTeam2Division(match.getT2Division());
-        result.setTieBreakLastSet(CommonUtils.integerToBoolean(match.getTiebreaklastset()));
-        result.setTimeRunning(CommonUtils.integerToBoolean(match.getTimerunning()));
+        result.setTieBreakLastSet(BooleanUtils.toBooleanObject(match.getTiebreaklastset()));
+        result.setTimeRunning(BooleanUtils.toBooleanObject(match.getTimerunning()));
         try {
             result.setWonJumpBall(Team.getTeamFromLiteralValue(match.getWonjumpball()));
         } catch (UnknownEnumException e) {
@@ -247,10 +249,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
     public static MatchUpdateEntity buildMatchUpdateEntity(Match match) throws InvalidEntityException {
         MatchUpdateEntity result = new MatchUpdateEntity();
         result.setMatchHeader(buildMatchHeaderEntity(match));
-        result.setScore(new HashMap<>());
-        result.setScores(new ArrayList<>());
-        result.setEvents(new ArrayList<>());
-        result.setSubteams(new ArrayList<>());
         for (IncomingMessage item : match.getStatusOrScoreOrRed()) {
             switch (item.getClass().getSimpleName()) {
                 case "Attacks":
@@ -281,13 +279,17 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     Directfreekicks dfk = (Directfreekicks) item;
                     result.setDirectFreeKicks(new HomeAway<>(dfk.getT1(), dfk.getT2()));
                     break;
+                case "Fouls":
+                    Fouls fouls = (Fouls) item;
+                    result.setFouls(new HomeAway<>(fouls.getT1(), fouls.getT2()));
+                    break;
                 case "Court":
                     Court court = (Court) item;
                     result.setCourt(buildCourtEntity(court));
                     break;
                 case "Events":
                     Events events = (Events) item;
-                    if (events.getEvent() != null) {
+                    if (!nte(events.getEvent()).isEmpty()) {
                         // realloc now that we know the exact size
                         result.setEvents(new ArrayList<>(events.getEvent().size()));
                         for (Event event : events.getEvent()) {
@@ -356,8 +358,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     result.setInjuries(new HomeAway<>(inj.getT1(), inj.getT2()));
                     break;
                 case "Innings":
-                    Innings inn = (Innings) item;
-                    result.addInnings(buildInningsEntity(inn));
+                    addToList(buildInningsEntity((Innings) item), result::getInnings, result::setInnings);
                     break;
                 case "Matchformat":
                     Matchformat mf = (Matchformat) item;
@@ -403,8 +404,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
                 case "Score":
                     // Field score.score1 will be ignored
                     Score score = (Score) item;
-                    result.getScore().put(score.getType(), new HomeAway<>(score.getT1(), score.getT2()));
-                    result.getScores().add(new ScoreEntity(score));
+                    addToMap(score.getType(), new HomeAway<>(score.getT1(), score.getT2()), result::getScore, result::setScore);
+                    addToList(new ScoreEntity(score), result::getScores, result::setScores);
                     break;
                 case "Serve":
                     Serve srv = (Serve) item;
@@ -463,7 +464,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     break;
                 case "Tiebreak":
                     Tiebreak tb = (Tiebreak) item;
-                    result.setTieBreak(CommonUtils.integerToBoolean(tb.getValue()));
+                    result.setTieBreak(BooleanUtils.toBooleanObject(tb.getValue()));
                     break;
                 case "Tournament":
                     Tournament tour = (Tournament) item;
@@ -515,8 +516,19 @@ public class JaxbLiveScoutEntityFactoryHelper {
                     result.setMatchTeams(buildMatchTeams(teams));
                     break;
                 case "Subteam":
-                    Subteam subteam = (Subteam) item;
-                    result.getSubteams().add(new SubteamEntity(subteam));
+                    addToList(new SubteamEntity((Subteam) item), result::getSubteams, result::setSubteams);
+                    break;
+                case "Trycount":
+                    Trycount tryCount = (Trycount) item;
+                    try {
+                        addToMap(
+                                ScoutMatchStatus.getScoutMatchStatusFromLiteralValue(tryCount.getType()),
+                                new HomeAway<>(tryCount.getT1(), tryCount.getT2()),
+                                result::getTryCounts,
+                                result::setTryCounts);
+                    } catch (UnknownEnumException e) {
+                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Trycount.getType()", tryCount.getType());
+                    }
                     break;
                 case "Green":
                     Green green = (Green) item;
@@ -527,6 +539,24 @@ public class JaxbLiveScoutEntityFactoryHelper {
             }
         }
         return result;
+    }
+
+    private static <T> void addToList(T item, Supplier<List<T>> getter, Consumer<List<T>> setter) {
+        List<T> list = getter.get();
+        if (list == null) {
+            list = new ArrayList<>();
+            setter.accept(list);
+        }
+        list.add(item);
+    }
+
+    private static <K, T> void addToMap(K key, T item, Supplier<Map<K, T>> getter, Consumer<Map<K, T>> setter) {
+        Map<K, T> map = getter.get();
+        if (map == null) {
+            map = new HashMap<>();
+            setter.accept(map);
+        }
+        map.put(key, item);
     }
 
     //Do not know why it was done like this in a 1st place. Just had put common logic in one place.
@@ -576,6 +606,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
                 matchRoles.add(buildMatchRole(matchrole));
             }
             result.setMatchRoles(matchRoles);
+        }
+        if (player.getSpecificcontracts() != null) {
+            List<String> scs = nte(player.getSpecificcontracts().getSpecificcontract()).stream()
+                    .map(Specificcontract::getValue).filter(Objects::nonNull).collect(Collectors.toList());
+            result.setSpecificContracts(scs);
         }
         result.setNickname(player.getNickname());
         result.setOrder(player.getOrder());
@@ -865,6 +900,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setShotSequence(event.getShotsequence());
         result.setPrimaryShotType(event.getPrimaryshottype());
         result.setSecondaryShotType(event.getSecondaryshottype());
+        result.setFinalConfidence(CommonUtils.parseBooleanProperty(event.getFinalconfidence(), "ScoutEvent.finalConfidence"));
         result.setExtraInfoTennis(event.getExtrainfotennis());
         result.setLastStroke(event.getLaststroke());
         result.setSupervisorAction(event.getSupervisoraction());

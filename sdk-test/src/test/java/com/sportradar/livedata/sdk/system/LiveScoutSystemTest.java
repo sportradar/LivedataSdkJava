@@ -41,10 +41,10 @@ class LiveScoutSystemTest {
     private LiveScoutFeedListener mockListener;
     private States allMsgs;
     private List<OutgoingMessage> requests;
-    private SdkDataListener sdkDataListener;
+    private SdkDataListener sdkDataListener;//test
     private Synchroniser synchronizer;
-    private LiveScoutSystemTestFramework testFramework;
-    private LiveScoutEntityDispatchAction dispatchAction;
+    private LiveScoutSystemTestFramework testFramework;//test
+    private LiveScoutEntityDispatchAction dispatchAction;//test
 
 
     @BeforeEach
@@ -60,23 +60,20 @@ class LiveScoutSystemTest {
         dispatchAction = new LiveScoutEntityDispatchAction(allMsgs);
         dispatchedEntities = dispatchAction.getEntities();
         requests = new ArrayList<>();
-        context.checking(new Expectations() {{
+        context.checking(new Expectations() {{//order is important
+            oneOf(mockDispatcher).dispatchOnFeedEvent(with(any(LiveScoutFeed.class)), with(equal(FeedEventType.CONNECTED)));
+            //runs inside Dispatcher realisation, as it was mocked, listener was not called
             oneOf(mockListener).onFeedEvent(with(any(LiveScoutFeed.class)), with(equal(FeedEventType.CONNECTED)));
             oneOf(mockDispatcher).setFeed(with(any(LiveScoutFeed.class)));
             oneOf(mockDispatcher).start(mockListener);
+            //should come as login event from server
             oneOf(mockListener).onOpened(with(any(LiveScoutFeed.class)));
+            //he action is triggered by the mockListener.onOpened method is called, LoginAction is executed.
             will(doAll(new LoginAction(loginState)));
             allowing(mockDispatcher).dispatchEntity((with(any(LiveScoutEntityBase.class))));
             will(doAll(dispatchAction));
         }});
-        sdkDataListener = new
-
-                SdkDataListener() {
-                    @Override
-                    public void sdkEntitySend(OutgoingMessage entity) {
-                        requests.add(entity);
-                    }
-                };
+        sdkDataListener = entity -> requests.add(entity);
         testFramework = new LiveScoutSystemTestFramework(
                 mockDispatcher,
                 sdkDataListener);
@@ -92,8 +89,8 @@ class LiveScoutSystemTest {
         testFramework.server().setSendAliveDelay(1000);
 
         feed = testFramework.createFeed();
-        feed.open(mockListener);
-        testFramework.gateway().notifyConnected();
+        feed.open(mockListener);//shoots connected message
+        testFramework.gateway().notifyConnected();//normal listener is null, so event does not shoot
         synchronizer.waitUntil(loginState.is("OK"), 1000);
     }
 

@@ -90,10 +90,6 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         Match input = new Match();
         MatchUpdateEntity expected = new MatchUpdateEntity();
         expected.setMatchHeader(new MatchHeaderEntity());
-        expected.setEvents(new ArrayList<>());
-        expected.setScore(new HashMap<>());
-        expected.setScores(new ArrayList<>());
-        expected.setSubteams(new ArrayList<>());
 
         MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
         assertThat(result, equalTo(expected));

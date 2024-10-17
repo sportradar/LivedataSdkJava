@@ -13,25 +13,29 @@ public enum ScoutMatchStatus implements EntityEnum {
      */
     NOT_STARTED("NOT_STARTED"),
     /**
+     * Current. Used by try counts in Rugby
+     */
+    CURRENT("current"),
+    /**
      * 1st period of the match
      */
-    FIRST_PERIOD("FIRST_PERIOD"),
+    FIRST_PERIOD("FIRST_PERIOD", "period1"),
     /**
      * 2nd period of the match
      */
-    SECOND_PERIOD("SECOND_PERIOD"),
+    SECOND_PERIOD("SECOND_PERIOD", "period2"),
     /**
      * 3rd period of the match
      */
-    THIRD_PERIOD("THIRD_PERIOD"),
+    THIRD_PERIOD("THIRD_PERIOD", "period3"),
     /**
      * 4th period of the match
      */
-    FOURTH_PERIOD("FOURTH_PERIOD"),
+    FOURTH_PERIOD("FOURTH_PERIOD", "period4"),
     /**
      * 5th period of the match
      */
-    FIFTH_PERIOD("FIFTH_PERIOD"),
+    FIFTH_PERIOD("FIFTH_PERIOD", "period5"),
     /**
      * 1st half of the match
      */
@@ -111,19 +115,19 @@ public enum ScoutMatchStatus implements EntityEnum {
     /**
      * Match overtime
      */
-    OVERTIME("OVERTIME"),
+    OVERTIME("OVERTIME", "overtime"),
     /**
      * 1st half of overtime
      */
-    FIRST_HALF_OT("FIRST_HALF_OT"),
+    FIRST_HALF_OT("FIRST_HALF_OT", "overtime1"),
     /**
      * 2nd half of overtime
      */
-    SECOND_HALF_OT("SECOND_HALF_OT"),
+    SECOND_HALF_OT("SECOND_HALF_OT", "overtime2"),
     /**
      * Penalty shooting
      */
-    PENALTY_SHOOTING("PENALTY_SHOOTING"),
+    PENALTY_SHOOTING("PENALTY_SHOOTING", "penalties"),
     /**
      * The match has been postponed and will be played later.
      * <p>
@@ -235,7 +239,7 @@ public enum ScoutMatchStatus implements EntityEnum {
     /**
      * Sudden death
      */
-    SUDDEN_DEATH("SUDDEN_DEATH"),
+    SUDDEN_DEATH("SUDDEN_DEATH", "sudden death"),
     /**
      * Awaiting sudden death
      */
@@ -577,13 +581,12 @@ public enum ScoutMatchStatus implements EntityEnum {
     /**
      * Fifth game
      */
-    FIFTH_GAME("FIFTH_GAME")
-    ;
+    FIFTH_GAME("FIFTH_GAME");
 
-    private String literalValue;
+    private String[] literalValues;
 
-    ScoutMatchStatus(String literalValue) {
-        this.literalValue = literalValue;
+    ScoutMatchStatus(String... literalValues) {
+        this.literalValues = literalValues;
     }
 
     /**
@@ -603,7 +606,14 @@ public enum ScoutMatchStatus implements EntityEnum {
 
     @Override
     public boolean isValueEqual(Object value) {
-        return literalValue.equals(value);
+        if(value instanceof String) {
+            for (String literalValue : literalValues) {
+                if (literalValue.equalsIgnoreCase(value.toString())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -643,7 +653,7 @@ public enum ScoutMatchStatus implements EntityEnum {
     }
 
     @Override
-    public String getValue() {
-        return literalValue;
+    public String[] getValue() {
+        return literalValues;
     }
 }

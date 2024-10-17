@@ -606,6 +606,30 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="trycount">
+        <xs:complexType>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="period[12]"/>
+                        <xs:pattern value="overtime[12]?"/>
+                        <xs:pattern value="current"/>
+                        <xs:pattern value="penalties"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="red">
         <xs:complexType>
             <xs:attribute name="t2" use="required">
@@ -1115,6 +1139,20 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="fouls">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="match">
         <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -1159,6 +1197,7 @@
                 <xs:element ref="attacks" minOccurs="0"/>
                 <xs:element ref="directfoulsperiod" minOccurs="0"/>
                 <xs:element ref="directfreekicks" minOccurs="0"/>
+                <xs:element ref="fouls" minOccurs="0"/>
                 <xs:element ref="black" minOccurs="0"/>
                 <xs:element ref="court" minOccurs="0"/>
                 <xs:element ref="matchformat" minOccurs="0"/>
@@ -1172,6 +1211,7 @@
                 <xs:element ref="matchproperties" minOccurs="0"/>
                 <xs:element ref="teams" minOccurs="0"/>
                 <xs:element ref="subteam" minOccurs="0"/>
+                <xs:element ref="trycount" minOccurs="0" maxOccurs="unbounded"/>
             </xs:choice>
             <xs:attribute name="extmatchid">
                 <xs:simpleType>
@@ -1581,6 +1621,11 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="secondaryshottype">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="finalconfidence">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -3225,6 +3270,7 @@
             <xs:sequence>
                 <xs:element ref="attributes" minOccurs="0" maxOccurs="1"/>
                 <xs:element ref="matchroles" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="specificcontracts" minOccurs="0" />
             </xs:sequence>
 
             <xs:attribute name="id" type="xs:int" use="required"/>
@@ -3490,6 +3536,24 @@
                         <xs:enumeration value="inning9"/>
                         <xs:enumeration value="inninge"/>
                     </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="specificcontracts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="specificcontract" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="specificcontract">
+        <xs:complexType>
+            <xs:attribute name="value" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
         </xs:complexType>

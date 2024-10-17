@@ -263,6 +263,7 @@ public class ScoutEventEntity implements Serializable {
     private String shotSequence;
     private String primaryShotType;
     private String secondaryShotType;
+    private Boolean finalConfidence;
     private String extraInfoTennis;
     private String lastStroke;
     private Integer supervisorAction;
@@ -1753,6 +1754,15 @@ public class ScoutEventEntity implements Serializable {
 
     public String getSecondaryShotType() {
         return secondaryShotType;
+    }
+
+    /**
+     * Indicates that current updates are the ultimate ones, no further updates are expected for any of attributes
+     *
+     * @return {@link Boolean}
+     */
+    public Boolean getFinalConfidence() {
+        return finalConfidence;
     }
 
     public String getExtraInfoTennis() {

@@ -183,12 +183,9 @@ public class TcpGateway implements Gateway {
                 throw ex;
             }
 
-            this.socketReadLoop = executor.submit(new Runnable() {
-                @Override
-                public void run() {
-                    readLoopThreadId = Thread.currentThread().getId();
-                    read();
-                }
+            this.socketReadLoop = executor.submit(() -> {
+                readLoopThreadId = Thread.currentThread().getId();
+                read();
             });
 
         } finally {

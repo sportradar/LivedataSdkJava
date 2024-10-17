@@ -4,6 +4,8 @@
 
 package com.sportradar.livedata.sdk.common.classes;
 
+import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
+import org.apache.commons.lang3.BooleanUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
@@ -43,26 +45,22 @@ public class CommonUtils {
     }
 
     /**
-     * Converts int to boolean
+     * During parsing properties it is better to get error on wrong value than null.
      *
-     * @param value Input int
-     * @return False if value 0, else true
+     * @param value value
+     * @param propertyName property name to show in error message
+     * @return parsed boolean value
+     * @throws InvalidEntityException if could not parse non-null value
      */
-    public static boolean intToBoolean(int value) {
-        return value != 0;
-    }
-
-    /**
-     * Converts Integer to Boolean
-     *
-     * @param value Input Integer
-     * @return False if value 0, else true
-     */
-    public static Boolean integerToBoolean(Integer value) {
-        if (value == null) {
+    public static Boolean parseBooleanProperty(String value, String propertyName) throws InvalidEntityException {
+        if(value == null) {
             return null;
         }
-        return value != 0;
+        Boolean result = BooleanUtils.toBooleanObject(value);
+        if(result == null){
+            throw new InvalidEntityException(propertyName, "Cannot parse boolean from: " + value);
+        }
+        return result;
     }
 
     /**
@@ -131,6 +129,16 @@ public class CommonUtils {
                 .appendSeconds()
                 .appendSeparator(".")
                 .appendMillis();
+        /*
+        From docs:
+        public Period toPeriod() Converts this duration to a Period instance using the standard period type and the ISO chronology.
+        Only precise fields in the period type will be used.
+        Thus, only the hour, minute, second and millisecond fields on the period will be used.
+        The year, month, week and day fields will not be populated.
+
+        In other words: Period instance can't be calculated properly without start date (or end date),
+        because some days can be 24h or 23h (due to DST)
+         */
         Period period = new Period(duration.getMillis());
         return period.toString(builder.toFormatter());
     }

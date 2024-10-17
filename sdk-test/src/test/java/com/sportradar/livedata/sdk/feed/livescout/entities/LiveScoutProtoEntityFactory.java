@@ -12,7 +12,11 @@ import org.joda.time.DateTimeZone;
 
 import java.util.*;
 
+import static com.sportradar.livedata.sdk.common.classes.Nulls.etn;
+
 public class LiveScoutProtoEntityFactory {
+    private static final String[] BOOLEAN_TEST_VALUES = {"0", "1", "false", "true"};
+
     //------Match------>>>>>>-------------------------------------------------------------------------------------------
     static Match buildMatch(final int valueBase) {
         Match match = new Match();
@@ -131,6 +135,11 @@ public class LiveScoutProtoEntityFactory {
         directfreekicks.setT1(111 + valueBase);
         directfreekicks.setT2(222 + valueBase);
         msgs.add(directfreekicks);
+    //Fouls
+        Fouls fouls = new Fouls();
+        fouls.setT1(21 + valueBase);
+        fouls.setT2(12 + valueBase);
+        msgs.add(fouls);
     //Court
         Court court = new Court();
         court.setId(555 + valueBase);
@@ -267,6 +276,8 @@ public class LiveScoutProtoEntityFactory {
         msgs.add(yellow);
     //Subteams
         addSubteams(msgs, valueBase);
+    //Trycouts
+        addTrycounts(msgs, valueBase);
 
         return match;
     }
@@ -286,6 +297,8 @@ public class LiveScoutProtoEntityFactory {
         result.setDirectFoulsPeriod(new HomeAway<>(88 + valueBase, 99 + valueBase));
     //Directfreekicks
         result.setDirectFreeKicks(new HomeAway<>(111 + valueBase, 222 + valueBase));
+    //Fouls
+        result.setFouls(new HomeAway<>(21 + valueBase, 12 + valueBase));
     //Court
         CourtEntity court = new CourtEntity();
         court.setCourtSeq(7 + valueBase);
@@ -352,6 +365,8 @@ public class LiveScoutProtoEntityFactory {
         result.setYellowCards(new HomeAway<>(9999999 + valueBase, 11111111 + valueBase));
     //Subteams
         result.setSubteams(buildSubteams(valueBase));
+    //Trycount
+        result.setTryCounts(buildTryCounts(valueBase));
     }
     //------IncomingMessage------Event------>>>>>>-------------------------------------<<<<<<------IncomingMessage------
     static Events buildEvents(final int valueBase) {
@@ -367,7 +382,7 @@ public class LiveScoutProtoEntityFactory {
         for(int i = 0; i < valueBase; i++) {
             eventsList.add(buildScoutEventEntity(i));
         }
-        return eventsList;
+        return etn(eventsList);
     }
 
     static Event buildEvent(final int valueBase) {
@@ -406,6 +421,7 @@ public class LiveScoutProtoEntityFactory {
         event.setConversiontype((byte)(1 - valueBase));
         event.setTouchdowntype((byte)(7 + valueBase));
         event.setStime(17 + valueBase);
+        event.setFinalconfidence(BOOLEAN_TEST_VALUES[valueBase % BOOLEAN_TEST_VALUES.length]);
         if(valueBase % 3 != 0){
             event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
         }
@@ -500,8 +516,9 @@ public class LiveScoutProtoEntityFactory {
         result.setConversionType(1 - valueBase);
         result.setTouchdownType(7 + valueBase);
         result.setServerTime(new DateTime(17 + valueBase, DateTimeZone.UTC));
+        result.setFinalConfidence(valueBase % 2 == 1);
         if(valueBase % 3 != 0){
-            result.setScorerNotConfirmed(valueBase % 2 == 0 ? true : false);
+            result.setScorerNotConfirmed(valueBase % 2 == 0);
         }
         return result;
     }
@@ -513,16 +530,20 @@ public class LiveScoutProtoEntityFactory {
     }
 
     static void addScores(final MatchUpdateEntity result, final int valueBase) {
-        result.setScore(result.getScore() != null ? result.getScore() : new HashMap<>());
-        result.setScores(result.getScores() != null ? result.getScores() : new ArrayList<>());
+        //result.setScore(result.getScore() != null ? result.getScore() : new HashMap<>());
+        Map<String, HomeAway<Double>> scoresMap = new HashMap<>();
+        List<ScoreEntity> scores = new ArrayList<>();
+        //result.setScores(result.getScores() != null ? result.getScores() : new ArrayList<>());
 
         for(int i = 0; i < valueBase % 3; i++){
             ScoreEntity score = buildScoreEntitty(Math.abs(valueBase - i));
             if(score != null) {
-                result.getScore().put(score.getType(), new HomeAway<>(score.getTeam1(), score.getTeam2()));
-                result.getScores().add(score);
+                scoresMap.put(score.getType(), new HomeAway<>(score.getTeam1(), score.getTeam2()));
+                scores.add(score);
             }
         }
+        result.setScore(etn(scoresMap));
+        result.setScores(etn(scores));
     }
 
     static Score buildScore(final int valueBase) {
@@ -544,6 +565,27 @@ public class LiveScoutProtoEntityFactory {
             score = new ScoreEntity("score" + i + " type", 80000 + i, 90000 + i, score);
         }
         return score;
+    }
+    //------IncomingMessage------Trycounts------>>>>>>----------------------<<<<<<------IncomingMessage------Score------
+    static Map<ScoutMatchStatus, HomeAway<Integer>> buildTryCounts(final int valueBase) {
+        Map<ScoutMatchStatus, HomeAway<Integer>> counts = new HashMap<>();
+        for(int i = 1; i < valueBase % 4; i++){
+            HomeAway<Integer> value = new HomeAway<>(valueBase / i, valueBase % i);
+            counts.put(getEnumValue(ScoutMatchStatus.values(), valueBase), value);
+        }
+        return etn(counts);
+    }
+
+    static void addTrycounts(List<IncomingMessage> msgs, final int valueBase) {
+        for(int i = 1; i < valueBase % 4; i++){
+            Trycount count = new Trycount();
+            ScoutMatchStatus type = getEnumValue(ScoutMatchStatus.values(), valueBase);
+            String value = type.getValue()[valueBase % type.getValue().length];
+            count.setType(value);
+            count.setT1(valueBase / i);
+            count.setT2(valueBase % i);
+            msgs.add(count);
+        }
     }
     //------IncomingMessage------others------>>>>>>-------------------------<<<<<<------IncomingMessage------Score------
     static Lineups buildLineups(final int valueBase) {
@@ -636,6 +678,14 @@ public class LiveScoutProtoEntityFactory {
         }
         result.setMatchroles(matchroles);
 
+        Specificcontracts specificContracts = new Specificcontracts();
+        for(int i = 0; i < valueBase; i++) {
+            Specificcontract specificContract = new Specificcontract();
+            specificContract.setValue("contract" + valueBase);
+            specificContracts.getSpecificcontract().add(specificContract);
+        }
+        result.setSpecificcontracts(specificContracts);
+
         return result;
     }
 
@@ -664,6 +714,12 @@ public class LiveScoutProtoEntityFactory {
             matchRoles.add(matchRole);
         }
         result.setMatchRoles(matchRoles);
+
+        List<String> specificContracts = new ArrayList<>();
+        for(int i = 0; i < valueBase; i++) {
+            specificContracts.add("contract" + valueBase);
+        }
+        result.setSpecificContracts(specificContracts);
 
         return result;
     }
@@ -731,8 +787,9 @@ public class LiveScoutProtoEntityFactory {
         for(int i = 0; i < valueBase % 3; i++){
             subs.add(new SubteamEntity(12 + valueBase, "team" + valueBase, 134 + valueBase));
         }
-        return subs;
+        return etn(subs);
     }
+
     //------Utils------>>>>>>----------------------------------------------<<<<<<------IncomingMessage------simple------
     private static <T extends EntityEnum> T getEnumValue(T[] members, int valueBase) {
         int index = valueBase % members.length;

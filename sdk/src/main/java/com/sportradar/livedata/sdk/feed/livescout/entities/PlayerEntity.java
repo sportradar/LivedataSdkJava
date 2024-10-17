@@ -19,9 +19,10 @@ import java.util.Map;
 public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
 
     private static final long serialVersionUID = -1593562367717439150L;
-    private List<AttributeEntity> attributes;
     private int id;
+    private List<AttributeEntity> attributes;
     private List<MatchRoleEntity> matchRoles;
+    private List<String> specificContracts;
     private String name;
     private String nickname;
     private String position;
@@ -34,15 +35,6 @@ public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
     }
 
     /**
-     * List of attributes
-     *
-     * @return attributes
-     */
-    public List<AttributeEntity> getAttributes() {
-        return attributes;
-    }
-
-    /**
      * ID of the player.
      *
      * @return id
@@ -52,12 +44,31 @@ public class PlayerEntity extends LiveScoutEntityBase implements Serializable {
     }
 
     /**
+     * List of attributes
+     *
+     * @return attributes
+     */
+    public List<AttributeEntity> getAttributes() {
+        return attributes;
+    }
+
+    /**
      * List of match roles
      *
      * @return match roles
      */
     public List<MatchRoleEntity> getMatchRoles() {
         return matchRoles;
+    }
+
+    /**
+     * Restrictions may apply due to existing contractual obligations.
+     * For example people with 2-way contract cannot have open player markets.
+     *
+     * @return names of specific contracts
+     */
+    public List<String> getSpecificContracts() {
+        return specificContracts;
     }
 
     /**

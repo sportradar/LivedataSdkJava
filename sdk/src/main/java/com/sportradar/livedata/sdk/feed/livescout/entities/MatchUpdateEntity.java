@@ -36,6 +36,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private HomeAway<Integer> dangerousAttacks;
     private HomeAway<Integer> directFoulsPeriod;
     private HomeAway<Integer> directFreeKicks;
+    private HomeAway<Integer> fouls;
     private List<ScoutEventEntity> events;
     private HomeAway<Integer> freeKicks;
     private HomeAway<Integer> freeThrows;
@@ -86,6 +87,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private List<MatchPropertyEntity> matchProperties;
     private List<MatchTeamEntity> matchTeams;
     private List<SubteamEntity> subteams;
+    private Map<ScoutMatchStatus, HomeAway<Integer>> tryCounts;
     private HomeAway<Integer> greenCards;
 
     /**
@@ -174,6 +176,15 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
      */
     public HomeAway<Integer> getDirectFreeKicks() {
         return directFreeKicks;
+    }
+
+    /**
+     * Fouls count per team.
+     *
+     * @return fouls
+     */
+    public HomeAway<Integer> getFouls() {
+        return fouls;
     }
 
     /**
@@ -609,17 +620,19 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     public List<MatchTeamEntity> getMatchTeams() { return matchTeams; }
 
     /**
+     * Count the instances of try (1154) event per match phase. Used in Rugby. Possible match phases:
+     * period1, period2, overtime1, overtime2, overtime, penalties, sudden death, current.
+     * @return map of try counts
+     */
+    public Map<ScoutMatchStatus, HomeAway<Integer>> getTryCounts() {
+        return tryCounts;
+    }
+
+    /**
      * Returns the subteam.
      * @return {@link SubteamEntity}
      */
     public List<SubteamEntity> getSubteams() {
         return subteams;
-    }
-
-    protected void addInnings(InningsEntity innings) {
-        if(this.innings == null){
-            this.innings = new ArrayList<>();
-        }
-        this.innings.add(innings);
     }
 }
