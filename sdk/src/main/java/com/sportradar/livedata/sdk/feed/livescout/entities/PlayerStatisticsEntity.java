@@ -25,6 +25,7 @@ public class PlayerStatisticsEntity implements Serializable {
 
     private String homePlayerStatsTotal;
     private String awayPlayerStatsTotal;
+
     private String homePlayerStatsP1;
     private String awayPlayerStatsP1;
     private String homePlayerStatsP2;
@@ -35,15 +36,28 @@ public class PlayerStatisticsEntity implements Serializable {
     private String awayPlayerStatsP4;
     private String homePlayerStatsOt;
     private String awayPlayerStatsOt;
+
     private String homePitchersStatsTotal;
     private String awayPitchersStatsTotal;
     private String homeBattersStatsTotal;
     private String awayBattersStatsTotal;
 
+    private String homePlayerStatsSet1;
+    private String awayPlayerStatsSet1;
+    private String homePlayerStatsSet2;
+    private String awayPlayerStatsSet2;
+    private String homePlayerStatsSet3;
+    private String awayPlayerStatsSet3;
+    private String homePlayerStatsSet4;
+    private String awayPlayerStatsSet4;
+    private String homePlayerStatsSet5;
+    private String awayPlayerStatsSet5;
+
 
     private PlayerStatisticsEntity(Event event){
         this.homePlayerStatsTotal = event.getHomeplayerstatstotal();
         this.awayPlayerStatsTotal = event.getAwayplayerstatstotal();
+
         this.homePlayerStatsP1 = event.getHomeplayerstatsp1();
         this.awayPlayerStatsP1 = event.getAwayplayerstatsp1();
         this.homePlayerStatsP2 = event.getHomeplayerstatsp2();
@@ -54,6 +68,19 @@ public class PlayerStatisticsEntity implements Serializable {
         this.awayPlayerStatsP4 = event.getAwayplayerstatsp4();
         this.homePlayerStatsOt = event.getHomeplayerstatsot();
         this.awayPlayerStatsOt = event.getAwayplayerstatsot();
+
+        this.homePlayerStatsSet1 = event.getHomeplayerstatsset1();
+        this.awayPlayerStatsSet1 = event.getAwayplayerstatsset1();
+        this.homePlayerStatsSet2 = event.getHomeplayerstatsset2();
+        this.awayPlayerStatsSet2 = event.getAwayplayerstatsset2();
+        this.homePlayerStatsSet3 = event.getHomeplayerstatsset3();
+        this.awayPlayerStatsSet3 = event.getAwayplayerstatsset3();
+        this.homePlayerStatsSet4 = event.getHomeplayerstatsset4();
+        this.awayPlayerStatsSet4 = event.getAwayplayerstatsset4();
+        this.homePlayerStatsSet5 = event.getHomeplayerstatsset5();
+        this.awayPlayerStatsSet5 = event.getAwayplayerstatsset5();
+
+
         this.homePitchersStatsTotal = event.getHomepitchersstatstotal();
         this.awayPitchersStatsTotal = event.getAwaypitchersstatstotal();
         this.homeBattersStatsTotal = event.getHomebattersstatstotal();
