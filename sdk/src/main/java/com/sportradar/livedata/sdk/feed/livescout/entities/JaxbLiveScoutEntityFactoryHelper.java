@@ -207,6 +207,14 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
             result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
         }
+
+        result.setExpectedLatencyLevelString(match.getExpectedlatencylevel());
+        result.setExpectedLatencyLevel(
+                match.getExpectedlatencylevelid() != null
+                ? LatencyLevel.getLatencyLevelFromValue(match.getExpectedlatencylevelid())
+                : null
+        );
+
         return result;
     }
 
