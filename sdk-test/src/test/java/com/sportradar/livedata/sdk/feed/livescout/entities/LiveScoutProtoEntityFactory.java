@@ -421,7 +421,7 @@ public class LiveScoutProtoEntityFactory {
         event.setConversiontype((byte)(1 - valueBase));
         event.setTouchdowntype((byte)(7 + valueBase));
         event.setStime(17 + valueBase);
-        event.setFinalconfidence(BOOLEAN_TEST_VALUES[valueBase % BOOLEAN_TEST_VALUES.length]);
+        event.setFinalconfidence(valueBase % 2);
         if(valueBase % 3 != 0){
             event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
         }
@@ -462,11 +462,28 @@ public class LiveScoutProtoEntityFactory {
         teamstats2.setSide("away");
         teamstats2.setType("inning5");
 
+        Playerstats playerstats3 = new Playerstats();
+        playerstats3.setPid(3L);
+        playerstats3.getStats().add(buildStats("stats9", "value9"));
+        playerstats3.getStats().add(buildStats("stats10", "value10"));
+
+        Playerstats playerstats4 = new Playerstats();
+        playerstats4.setPid(4L);
+        playerstats4.getStats().add(buildStats("stats11", "value11"));
+        playerstats4.getStats().add(buildStats("stats12", "value12"));
+
+        Teamplayerstats teamplayerstats1 = new Teamplayerstats();
+        teamplayerstats1.setSide("home");
+        teamplayerstats1.setType("total");
+        teamplayerstats1.getPlayerstats().add(playerstats3);
+        teamplayerstats1.getPlayerstats().add(playerstats4);
+
         Statistics statistics = new Statistics();
         statistics.setBattersstatstotal(battersstatstotal);
         statistics.setPitchersstatstotal(pitchersstatstotal);
         statistics.getTeamstats().add(teamstats1);
         statistics.getTeamstats().add(teamstats2);
+        statistics.getTeamplayerstats().add(teamplayerstats1);
 
         return statistics;
     }
