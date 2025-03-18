@@ -15,8 +15,6 @@ import java.util.*;
 import static com.sportradar.livedata.sdk.common.classes.Nulls.etn;
 
 public class LiveScoutProtoEntityFactory {
-    private static final String[] BOOLEAN_TEST_VALUES = {"0", "1", "false", "true"};
-
     //------Match------>>>>>>-------------------------------------------------------------------------------------------
     static Match buildMatch(final int valueBase) {
         Match match = new Match();

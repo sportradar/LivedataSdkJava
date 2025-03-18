@@ -2,6 +2,7 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
+import com.sportradar.livedata.sdk.feed.livescout.enums.TeamPlayerStatsType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamStatsType;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.junit.jupiter.api.Test;
@@ -291,11 +292,10 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         StatisticsEntity statistics = entity.getStatistics();
         assertNotNull(statistics.getBattersStatsTotal());
         assertNotNull(statistics.getPitchersStatsTotal());
-        assertNotNull(statistics.getTeamStats());
         assertThat(statistics.getTeamStats().size(), equalTo(2));
+        assertThat(statistics.getTeamPlayerStats().size(), equalTo(1));
 
         BattersStatsTotalEntity battersStats = statistics.getBattersStatsTotal();
-        assertNotNull(battersStats.getPlayerStats());
         assertThat(battersStats.getPlayerStats().size(), equalTo(2));
         assertThat(battersStats.getSide(), equalTo(Team.HOME));
 
@@ -306,22 +306,43 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         assertThat(batterPlayersStats.get(0).getStats().get(1).getName(), equalTo("stats2"));
 
         PitchersStatsTotalEntity pitchersStats = statistics.getPitchersStatsTotal();
-        assertNotNull(pitchersStats.getPlayerStats());
         assertThat(pitchersStats.getPlayerStats().size(), equalTo(2));
         assertThat(pitchersStats.getSide(), equalTo(Team.AWAY));
 
         TeamStatsEntity teamStats1 = statistics.getTeamStats().get(0);
         assertThat(teamStats1.getSide(), equalTo(Team.HOME));
         assertThat(teamStats1.getType(), equalTo(TeamStatsType.TOTAL));
-        assertNotNull(teamStats1.getStats());
         assertThat(teamStats1.getStats().size(), equalTo(2));
         assertThat(teamStats1.getStats().get(1).getValue(), equalTo("value6"));
 
         TeamStatsEntity teamStats2 = statistics.getTeamStats().get(1);
         assertThat(teamStats2.getSide(), equalTo(Team.AWAY));
         assertThat(teamStats2.getType(), equalTo(TeamStatsType.INNING5));
-        assertNotNull(teamStats2.getStats());
         assertThat(teamStats2.getStats().size(), equalTo(2));
         assertThat(teamStats2.getStats().get(0).getName(), equalTo("stats7"));
+
+        TeamPlayerStatsEntity teamPlayerStats = statistics.getTeamPlayerStats().get(0);
+        assertThat(teamPlayerStats.getSide(), equalTo(Team.HOME));
+        assertThat(teamPlayerStats.getType(), equalTo(TeamPlayerStatsType.TOTAL));
+        assertThat(teamPlayerStats.getStats().size(), equalTo(2));
+
+        PlayerStatsEntity playerStats1 = teamPlayerStats.getStats().get(0);
+        assertThat(playerStats1.getPid(), equalTo(3L));
+        assertThat(playerStats1.getStats().size(), equalTo(2));
+        checkStatsEntity(playerStats1.getStats().get(0), "stats9", "value9");
+        checkStatsEntity(playerStats1.getStats().get(1), "stats10", "value10");
+
+        PlayerStatsEntity playerStats2 = teamPlayerStats.getStats().get(1);
+        assertThat(playerStats2.getPid(), equalTo(4L));
+        assertThat(playerStats2.getStats().size(), equalTo(2));
+        checkStatsEntity(playerStats2.getStats().get(0), "stats11", "value11");
+        checkStatsEntity(playerStats2.getStats().get(1), "stats12", "value12");
+    }
+
+    private void checkStatsEntity(StatsEntity entity, String key, String value) {
+        assertNotNull(entity);
+        assertThat(entity.getName(), equalTo(key));
+        assertThat(entity.getValue(), equalTo(value));
+
     }
 }
