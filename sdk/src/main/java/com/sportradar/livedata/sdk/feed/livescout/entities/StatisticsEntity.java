@@ -56,17 +56,32 @@ public class StatisticsEntity implements Serializable {
 
         this.teamPlayerStats = teamPlayerStats;
     }
-
+    /**
+     * Get the total batters stats
+     * @return {@link BattersStatsTotalEntity}
+     */
     public BattersStatsTotalEntity getBattersStatsTotal() {
         return battersStatsTotal;
     }
-
+    /**
+     * Get the total pitchers stats
+     * @return {@link PitchersStatsTotalEntity}
+     */
     public PitchersStatsTotalEntity getPitchersStatsTotal() {
         return pitchersStatsTotal;
     }
-
+    /**
+     * Get the list of team stats
+     * @return list of {@link TeamStatsEntity}
+     */
     public List<TeamStatsEntity> getTeamStats() {
         return teamStats;
     }
-
+    /**
+     * Get the list of team player stats
+     * @return list of {@link TeamPlayerStatsEntity}
+     */
+    public List<TeamPlayerStatsEntity> getTeamPlayerStats() {
+        return teamPlayerStats;
+    }
 }

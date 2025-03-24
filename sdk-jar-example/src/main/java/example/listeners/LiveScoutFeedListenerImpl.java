@@ -80,6 +80,11 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener{
     }
 
     @Override
+    public void onFullPaginatedMatchUpdateReceived(LiveScoutFeed liveScoutFeed, MatchUpdateEntity matchUpdateEntity) {
+        logger.info("Paginated match update");
+    }
+
+    @Override
     public void onMatchDeltaUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
         logger.info("Match delta update");
     }

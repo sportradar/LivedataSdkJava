@@ -199,4 +199,74 @@ public class PlayerStatisticsEntity implements Serializable {
     public String getAwayBattersStatsTotal() {
         return awayBattersStatsTotal;
     }
+    /**
+     * Returns home team set 1 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getHomePlayerStatsSet1() {
+        return homePlayerStatsSet1;
+    }
+    /**
+     * Returns away team set 1 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getAwayPlayerStatsSet1() {
+        return awayPlayerStatsSet1;
+    }
+    /**
+     * Returns home team set 2 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getHomePlayerStatsSet2() {
+        return homePlayerStatsSet2;
+    }
+    /**
+     * Returns away team set 2 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getAwayPlayerStatsSet2() {
+        return awayPlayerStatsSet2;
+    }
+    /**
+     * Returns home team set 3 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getHomePlayerStatsSet3() {
+        return homePlayerStatsSet3;
+    }
+    /**
+     * Returns away team set 3 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getAwayPlayerStatsSet3() {
+        return awayPlayerStatsSet3;
+    }
+    /**
+     * Returns home team set 4 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getHomePlayerStatsSet4() {
+        return homePlayerStatsSet4;
+    }
+    /**
+     * Returns away team set 4 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getAwayPlayerStatsSet4() {
+        return awayPlayerStatsSet4;
+    }
+    /**
+     * Returns home team set 5 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getHomePlayerStatsSet5() {
+        return homePlayerStatsSet5;
+    }
+    /**
+     * Returns away team set 5 statistics that is coming with PLAYER_MATCH_STATS(1714)
+     * @return statistics as String
+     */
+    public String getAwayPlayerStatsSet5() {
+        return awayPlayerStatsSet5;
+    }
 }
