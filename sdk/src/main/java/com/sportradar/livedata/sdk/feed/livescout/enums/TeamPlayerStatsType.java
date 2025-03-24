@@ -4,23 +4,18 @@ import com.sportradar.livedata.sdk.common.classes.EntityEnumHelper;
 import com.sportradar.livedata.sdk.common.exceptions.UnknownEnumException;
 import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
 
-public enum TeamStatsType implements EntityEnum {
+public enum TeamPlayerStatsType implements EntityEnum {
 
     TOTAL("total"),
-    INNING1("inning1"),
-    INNING2("inning2"),
-    INNING3("inning3"),
-    INNING4("inning4"),
-    INNING5("inning5"),
-    INNING6("inning6"),
-    INNING7("inning7"),
-    INNING8("inning8"),
-    INNING9("inning9"),
-    INNINGE("inninge");
+    SET1("set1"),
+    SET2("set2"),
+    SET3("set3"),
+    SET4("set4"),
+    SET5("set5");
 
     private final String literalValue;
 
-    TeamStatsType(String literalValue) {
+    TeamPlayerStatsType(String literalValue) {
         this.literalValue = literalValue;
     }
 
@@ -31,14 +26,15 @@ public enum TeamStatsType implements EntityEnum {
      * @return TeamStatsType enum
      * @throws UnknownEnumException if invalid value is passed
      */
-    public static TeamStatsType getTeamStatsTypeFromLiteralValue(String value) throws UnknownEnumException {
-        TeamStatsType result = EntityEnumHelper.getEnumMemberFromValue(TeamStatsType.values(), value);
+    public static TeamPlayerStatsType getTeamPlayerStatsTypeFromLiteralValue(String value) throws UnknownEnumException {
+        // TODO Move this crap to EntityEnumHelper and name this method simply - fromString(String value)
+        // It is copy pasted in every enum class atm, while it can be squeezed into one line
+        TeamPlayerStatsType result = EntityEnumHelper.getEnumMemberFromValue(TeamPlayerStatsType.values(), value);
         if (result == null && value != null && value.isEmpty()) {
-            throw new UnknownEnumException(TeamStatsType.class.getSimpleName(), value);
+            throw new UnknownEnumException(TeamPlayerStatsType.class.getSimpleName(), value);
         }
         return result;
     }
-
 
     @Override
     public boolean isValueEqual(Object value) {

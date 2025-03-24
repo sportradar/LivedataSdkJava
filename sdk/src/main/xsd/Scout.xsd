@@ -615,6 +615,7 @@
                         <xs:pattern value="overtime[12]?"/>
                         <xs:pattern value="current"/>
                         <xs:pattern value="penalties"/>
+                        <xs:pattern value="sudden death"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -1627,7 +1628,7 @@
             </xs:attribute>
             <xs:attribute name="finalconfidence">
                 <xs:simpleType>
-                    <xs:restriction base="xs:string"/>
+                    <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="extrainfo" use="optional">
@@ -2770,6 +2771,56 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="homeplayerstatsset1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsset1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsset2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsset2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsset3">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsset3">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsset4">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsset4">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="homeplayerstatsset5">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerstatsset5">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="homeplayerstatsp1" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
@@ -3456,6 +3507,7 @@
                 <xs:element ref="battersstatstotal" minOccurs="0" maxOccurs="1"/>
                 <xs:element ref="pitchersstatstotal" minOccurs="0" maxOccurs="1"/>
                 <xs:element ref="teamstats" minOccurs="0" maxOccurs="4"/>
+                <xs:element ref="teamplayerstats" minOccurs="0" maxOccurs="4"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -3486,6 +3538,30 @@
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="home"/>
                         <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="teamplayerstats">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="playerstats" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="side" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="home"/>
+                        <xs:enumeration value="away"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="total"/>
+                        <xs:pattern value="set[1-5]"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>

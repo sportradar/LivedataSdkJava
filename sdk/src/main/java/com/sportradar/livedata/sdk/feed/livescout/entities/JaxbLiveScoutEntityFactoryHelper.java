@@ -900,7 +900,11 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setShotSequence(event.getShotsequence());
         result.setPrimaryShotType(event.getPrimaryshottype());
         result.setSecondaryShotType(event.getSecondaryshottype());
-        result.setFinalConfidence(CommonUtils.parseBooleanProperty(event.getFinalconfidence(), "ScoutEvent.finalConfidence"));
+
+        if (event.getFinalconfidence() != null) {
+            result.setFinalConfidence(event.getFinalconfidence() == 1);
+        }
+
         result.setExtraInfoTennis(event.getExtrainfotennis());
         result.setLastStroke(event.getLaststroke());
         result.setSupervisorAction(event.getSupervisoraction());
