@@ -1380,6 +1380,16 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="expectedlatencylevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="expectedlatencylevelid">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="var" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:int">
@@ -1532,6 +1542,11 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="isrts" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:boolean"/>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="events">
@@ -1627,6 +1642,11 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="finalconfidence">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pointgamenumber">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>

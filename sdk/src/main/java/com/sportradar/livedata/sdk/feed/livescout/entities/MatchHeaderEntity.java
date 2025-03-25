@@ -69,6 +69,8 @@ public class MatchHeaderEntity implements Serializable {
     private String venue;
     private String region;
     private PaginationEntity pagination;
+    private String expectedLatencyLevelString;
+    private LatencyLevel expectedLatencyLevel;
 
     /**
      * For Serializable
@@ -462,5 +464,13 @@ public class MatchHeaderEntity implements Serializable {
      */
     public PaginationEntity getPagination() {
         return pagination;
+    }
+
+    public String getExpectedLatencyLevelString() {
+        return expectedLatencyLevelString;
+    }
+
+    public LatencyLevel getExpectedLatencyLevel() {
+        return expectedLatencyLevel;
     }
 }
