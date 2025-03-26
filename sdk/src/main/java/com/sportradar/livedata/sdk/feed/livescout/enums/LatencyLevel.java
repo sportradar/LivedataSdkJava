@@ -2,35 +2,29 @@ package com.sportradar.livedata.sdk.feed.livescout.enums;
 
 import com.sportradar.livedata.sdk.common.classes.EntityEnumHelper;
 import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
+import lombok.Getter;
+import lombok.Setter;
 
 public enum LatencyLevel implements EntityEnum {
-    INVALID(-1),
+    UNKNOWN(0, "unknown"), // seems that LDS won't send anything if NOT SET
+    LOW(1, "low"),
+    MODERATE(2, "moderate"),
+    HIGH(3, "high"),
+    VERY_HIGH(4, "very_high"),
+    EXCEPTIONAL(5, "exceptional");
 
-    NOT_SET(0),
+    private int value; // basically id of latency
 
-    MINIMAL(1),
+    private String name; // in case of new latency level, we also will have its name saved
 
-    LOW(2),
-
-    MODERATE(3),
-
-    HIGH(4),
-
-    VERY_HIGH(5);
-
-    private int value;
-
-    LatencyLevel(int value) {
+    LatencyLevel(int value, String name) {
         this.value = value;
+        this.name = name;
     }
 
     public static LatencyLevel getLatencyLevelFromValue(int value) {
         LatencyLevel result = EntityEnumHelper.getEnumMemberFromValue(LatencyLevel.values(), value);
-        if (result == null) {
-            result = LatencyLevel.INVALID;
-            result.value = value;
-        }
-        return result;
+        return result == null ? UNKNOWN : result;
     }
 
     @Override
@@ -44,6 +38,10 @@ public enum LatencyLevel implements EntityEnum {
     @Override
     public Integer getValue() {
         return value;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

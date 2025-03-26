@@ -60,6 +60,7 @@ public class ScoutEventEntity implements Serializable {
     private String extraInfoVolleyball;
     private String extraInfoKabaddi;
     private String extraInfoWaterPolo;
+    private String extraInfoTennis;
     private Boolean firstBaseLoaded;
     private Integer frameNumber;
     private String frameScore;
@@ -252,7 +253,6 @@ public class ScoutEventEntity implements Serializable {
     private Boolean scorerNotConfirmed;
     private Integer foulTypeDescriptor;
     private String foulTypeQualifier;
-
     private StatisticsEntity statistics;
     private Long onDeck;
     private Long inHole;
@@ -264,7 +264,7 @@ public class ScoutEventEntity implements Serializable {
     private String primaryShotType;
     private String secondaryShotType;
     private Boolean finalConfidence;
-    private String extraInfoTennis;
+    private Integer pointInGameNumber;
     private String lastStroke;
     private Integer supervisorAction;
 
@@ -527,6 +527,15 @@ public class ScoutEventEntity implements Serializable {
      * @return Water polo extra info
      */
     public String getExtraInfoWaterPolo() { return extraInfoWaterPolo; }
+
+    /**
+     * Gets tennis extra info
+     *
+     * @return tennis extra info
+     */
+    public String getExtraInfoTennis() {
+        return extraInfoTennis;
+    }
 
     /**
      * Gets frame number
@@ -1765,8 +1774,12 @@ public class ScoutEventEntity implements Serializable {
         return finalConfidence;
     }
 
-    public String getExtraInfoTennis() {
-        return extraInfoTennis;
+    /**
+     * Gets the point in game number
+     * @return point in game number
+     */
+    public Integer getPointInGameNumber() {
+        return pointInGameNumber;
     }
 
     public String getLastStroke() {

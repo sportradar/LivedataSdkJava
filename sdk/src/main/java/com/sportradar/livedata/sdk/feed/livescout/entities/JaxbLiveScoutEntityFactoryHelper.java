@@ -108,6 +108,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
             throw new InvalidEntityException(e, "Match.getCoveredfrom()", match.getCoveredfrom());
         }
         result.setDeepCoverage(BooleanUtils.toBooleanObject(match.getDc()));
+        result.setRts(BooleanUtils.toBooleanDefaultIfNull(match.isIsrts(), false));
         result.setDistance(match.getDistance());
         if (match.getTeamsreversed() != null) {
             try {
@@ -207,8 +208,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
             result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
         }
-
-        result.setExpectedLatencyLevelString(match.getExpectedlatencylevel());
+        // need to add logger here and show match.getExpectedlatencylevel() when no enum is found
         result.setExpectedLatencyLevel(
                 match.getExpectedlatencylevelid() != null
                 ? LatencyLevel.getLatencyLevelFromValue(match.getExpectedlatencylevelid())
@@ -908,10 +908,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setShotSequence(event.getShotsequence());
         result.setPrimaryShotType(event.getPrimaryshottype());
         result.setSecondaryShotType(event.getSecondaryshottype());
-
-        if (event.getFinalconfidence() != null) {
-            result.setFinalConfidence(event.getFinalconfidence() == 1);
-        }
+        result.setFinalConfidence(BooleanUtils.toBooleanObject(event.getFinalconfidence()));
+        result.setPointInGameNumber(event.getPointingamenumber());
 
         result.setExtraInfoTennis(event.getExtrainfotennis());
         result.setLastStroke(event.getLaststroke());

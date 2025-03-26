@@ -1646,7 +1646,7 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="pointgamenumber">
+            <xs:attribute name="pointingamenumber">
                 <xs:simpleType>
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>

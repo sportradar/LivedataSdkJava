@@ -27,6 +27,7 @@ public class MatchHeaderEntity implements Serializable {
     private Boolean connectionStatus;
     private Coverage coveredFrom;
     private Boolean deepCoverage;
+    private boolean isRts;
     private Integer device;
     private Integer distance;
     private TeamsReversed teamsReversed;
@@ -69,7 +70,6 @@ public class MatchHeaderEntity implements Serializable {
     private String venue;
     private String region;
     private PaginationEntity pagination;
-    private String expectedLatencyLevelString;
     private LatencyLevel expectedLatencyLevel;
 
     /**
@@ -416,6 +416,15 @@ public class MatchHeaderEntity implements Serializable {
     }
 
     /**
+     * Whether this is a rts match.
+     *
+     * @return true if this is a rts match
+     */
+    public boolean isRts() {
+        return isRts;
+    }
+
+    /**
      * Last set has tie break.
      *
      * @return true if last set has tie break
@@ -466,10 +475,13 @@ public class MatchHeaderEntity implements Serializable {
         return pagination;
     }
 
-    public String getExpectedLatencyLevelString() {
-        return expectedLatencyLevelString;
-    }
-
+    /**
+     * Return latency enum value.
+     * If not available, return {@link LatencyLevel#INVALID} with value and name taken from feed.
+     * {@link LatencyLevel#INVALID} holding only latest unexpected value and name.
+     *
+     * @return {@link LatencyLevel}
+     */
     public LatencyLevel getExpectedLatencyLevel() {
         return expectedLatencyLevel;
     }

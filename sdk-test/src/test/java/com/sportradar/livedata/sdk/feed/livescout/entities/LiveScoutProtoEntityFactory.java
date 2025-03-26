@@ -39,6 +39,7 @@ public class LiveScoutProtoEntityFactory {
         result.setStart(3L + valueBase);
         result.setMatchid(4L + valueBase);
         result.setFeedtype(getEnumValue(ScoutFeedType.values(), valueBase).name().toLowerCase());
+        result.setIsrts(valueBase % 2 == 0 ? true : null); // LDS sends value only if true
         result.setExtrainfo(5 + valueBase);
         result.setDistance(6 + valueBase);
         result.setBetstatus(getEnumValue(MatchBetStatus.values(), valueBase).name());
@@ -60,6 +61,10 @@ public class LiveScoutProtoEntityFactory {
         result.setUuid("23rfc1" + valueBase);
         result.setPage(valueBase);
         result.setTotalpages(19 + valueBase);
+
+        LatencyLevel latency = getEnumValue(LatencyLevel.values(), valueBase);
+        result.setExpectedlatencylevelid(latency == LatencyLevel.UNKNOWN ? 99 : latency.getValue());
+        result.setExpectedlatencylevel(latency == LatencyLevel.UNKNOWN ? "invalid" : latency.getName());
         return result;
     }
 
@@ -71,6 +76,7 @@ public class LiveScoutProtoEntityFactory {
         result.setStart(new DateTime(3L + valueBase, DateTimeZone.getDefault()));
         result.setMatchId(4L + valueBase);
         result.setFeedType(getEnumValue(ScoutFeedType.values(), valueBase));
+        result.setRts(valueBase % 2 == 0);
         result.setExtraInfo(5 + valueBase);
         result.setDistance(6 + valueBase);
         result.setBetStatus(getEnumValue(MatchBetStatus.values(), valueBase));
@@ -92,6 +98,7 @@ public class LiveScoutProtoEntityFactory {
         if(ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
             result.setPagination(new PaginationEntity("23rfc1" + valueBase, valueBase, 19 + valueBase));
         }
+        result.setExpectedLatencyLevel(getEnumValue(LatencyLevel.values(), valueBase));
 
         return result;
     }
@@ -423,6 +430,7 @@ public class LiveScoutProtoEntityFactory {
         if(valueBase % 3 != 0){
             event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
         }
+        event.setPointingamenumber(valueBase == 0 ? null : valueBase);
 
         return event;
     }
@@ -535,6 +543,7 @@ public class LiveScoutProtoEntityFactory {
         if(valueBase % 3 != 0){
             result.setScorerNotConfirmed(valueBase % 2 == 0);
         }
+        result.setPointInGameNumber(valueBase == 0 ? null : valueBase);
         return result;
     }
     //------IncomingMessage------Score------>>>>>>--------------------------<<<<<<------IncomingMessage------Event------
@@ -810,6 +819,7 @@ public class LiveScoutProtoEntityFactory {
         int index = valueBase % members.length;
         return members[index];
     }
+
     //hack for kickoff team fields
     private static Team getSpecificTeam(int valueBase) {
         Team team = getEnumValue(Team.values(), valueBase);
