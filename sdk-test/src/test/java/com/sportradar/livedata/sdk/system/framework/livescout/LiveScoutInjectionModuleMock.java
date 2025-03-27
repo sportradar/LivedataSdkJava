@@ -15,7 +15,7 @@ public class LiveScoutInjectionModuleMock extends LiveScoutInjectionModule {
     Gateway mockedGateway;
 
     /**
-     * Initializes a new instance of the {@link com.sportradar.livedata.sdk.di.LiveScoutInjectionModuleBase} class.
+     * Initializes a new instance of the {@link com.sportradar.livedata.sdk.di.LiveScoutInjectionModule} class.
      *
      * @param settings       The {@link LiveScoutSettings} implementation containing live-scout configurable values.
      * @throws IllegalArgumentException The {@code settings} is a null reference.<

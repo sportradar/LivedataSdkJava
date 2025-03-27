@@ -1,11 +1,21 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
+import jakarta.inject.Inject;
 
 @SuppressWarnings("JavaDoc")
 public class JaxbLiveScoutEntityFactory implements LiveScoutEntityFactory {
+
+    protected final SdkLogger sdkLogger;
+
+    @Inject
+    public JaxbLiveScoutEntityFactory(final SdkLogger sdkLogger) {
+        this.sdkLogger = sdkLogger;
+    }
 
     @Override
     public MatchBookingEntity buildMatchBookingEntity(Bookmatch bookMatch) throws InvalidEntityException {

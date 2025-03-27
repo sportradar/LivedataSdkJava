@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -96,7 +96,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -124,12 +124,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">com.sportradar.livedata.sdk.di.LiveScoutInjectionModuleBase</a></li>
-<li>
-<ul class="inheritance">
 <li>com.sportradar.livedata.sdk.di.LiveScoutInjectionModule</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -142,7 +137,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">LiveScoutInjectionModule</span>
-extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></pre>
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
+implements com.google.inject.Module</pre>
 <div class="block">A <code>Module</code> implementation used by Guice to set up live-scout dependency tree.</div>
 </li>
 </ul>
@@ -157,13 +153,21 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a id="fields.inherited.from.class.com.sportradar.livedata.sdk.di.LiveScoutInjectionModuleBase">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;com.sportradar.livedata.sdk.di.<a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></h3>
-<code><a href="LiveScoutInjectionModuleBase.html#settings">settings</a></code></li>
-</ul>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../common/settings/LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#settings">settings</a></span></code></th>
+<td class="colLast">
+<div class="block">The <a href="../common/settings/LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings"><code>LiveScoutSettings</code></a> instance containing live-scout configurable values.</div>
+</td>
+</tr>
+</table>
 </li>
 </ul>
 </section>
@@ -264,6 +268,11 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>protected <a href="../feed/common/TestManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">TestManager</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#provideTestManager(com.sportradar.livedata.sdk.proto.common.Protocol)">provideTestManager</a></span>&#8203;(<a href="../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common">Protocol</a>&lt;<a href="../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;protocol)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>protected <a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#provideUserRequestManager(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.feed.common.TestManager,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideUserRequestManager</a></span>&#8203;(<a href="../proto/livescout/LiveScoutStatusFactory.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutStatusFactory</a>&nbsp;factory,
                          <a href="../feed/common/TestManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">TestManager</a>&nbsp;testManager,
@@ -271,13 +280,6 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.com.sportradar.livedata.sdk.di.LiveScoutInjectionModuleBase">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;com.sportradar.livedata.sdk.di.<a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></h3>
-<code><a href="LiveScoutInjectionModuleBase.html#buildProtocol(java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.proto.common.OutgoingMessageInspector,com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">buildProtocol</a>, <a href="LiveScoutInjectionModuleBase.html#provideDispatcher(java.util.concurrent.ExecutorService,com.sportradar.livedata.sdk.common.interfaces.SdkLogger,com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX,com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter)">provideDispatcher</a>, <a href="LiveScoutInjectionModuleBase.html#provideFeed(jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,jakarta.inject.Provider,com.sportradar.livedata.sdk.common.settings.LiveScoutSettings)">provideFeed</a>, <a href="LiveScoutInjectionModuleBase.html#provideTestManager(com.sportradar.livedata.sdk.proto.common.Protocol)">provideTestManager</a></code></li>
-</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -294,6 +296,26 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="settings">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>settings</h4>
+<pre>protected final&nbsp;<a href="../common/settings/LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings">LiveScoutSettings</a> settings</pre>
+<div class="block">The <a href="../common/settings/LiveScoutSettings.html" title="class in com.sportradar.livedata.sdk.common.settings"><code>LiveScoutSettings</code></a> instance containing live-scout configurable values.</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section>
 <ul class="blockList">
@@ -339,6 +361,10 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
  <code>Binder.install(com.google.inject.Module)</code>, which ensures that <code>provider methods</code> are
  discovered.
  </p></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>configure</code>&nbsp;in interface&nbsp;<code>com.google.inject.Module</code></dd>
+</dl>
 </li>
 </ul>
 <a id="provideSdkLogger(java.util.concurrent.ScheduledExecutorService)">
@@ -350,10 +376,6 @@ extends <a href="LiveScoutInjectionModuleBase.html" title="class in com.sportrad
 <pre class="methodSignature">@Provides
 @Singleton
 protected&nbsp;<a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;provideSdkLogger&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent" class="externalLink">ScheduledExecutorService</a>&nbsp;scheduledExecutorService)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="LiveScoutInjectionModuleBase.html#provideSdkLogger(java.util.concurrent.ScheduledExecutorService)">provideSdkLogger</a></code>&nbsp;in class&nbsp;<code><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></code></dd>
-</dl>
 </li>
 </ul>
 <a id="provideGateway(java.util.concurrent.ExecutorService,java.util.concurrent.ScheduledExecutorService,org.apache.commons.net.DefaultSocketFactory,javax.net.ssl.SSLSocketFactory)">
@@ -368,10 +390,6 @@ protected&nbsp;<a href="../common/networking/Gateway.html" title="interface in c
                                  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent" class="externalLink">ScheduledExecutorService</a>&nbsp;scheduledExecutorService,
                                  org.apache.commons.net.DefaultSocketFactory&nbsp;socketFactory,
                                  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/net/ssl/SSLSocketFactory.html?is-external=true" title="class or interface in javax.net.ssl" class="externalLink">SSLSocketFactory</a>&nbsp;sslSocketFactory)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="LiveScoutInjectionModuleBase.html#provideGateway(java.util.concurrent.ExecutorService,java.util.concurrent.ScheduledExecutorService,org.apache.commons.net.DefaultSocketFactory,javax.net.ssl.SSLSocketFactory)">provideGateway</a></code>&nbsp;in class&nbsp;<code><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></code></dd>
-</dl>
 </li>
 </ul>
 <a id="provideUserRequestManager(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.feed.common.TestManager,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">
@@ -385,10 +403,6 @@ protected&nbsp;<a href="../common/networking/Gateway.html" title="interface in c
 protected&nbsp;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&nbsp;provideUserRequestManager&#8203;(<a href="../proto/livescout/LiveScoutStatusFactory.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutStatusFactory</a>&nbsp;factory,
                                                                     <a href="../feed/common/TestManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">TestManager</a>&nbsp;testManager,
                                                                     <a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="LiveScoutInjectionModuleBase.html#provideUserRequestManager(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,com.sportradar.livedata.sdk.feed.common.TestManager,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideUserRequestManager</a></code>&nbsp;in class&nbsp;<code><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></code></dd>
-</dl>
 </li>
 </ul>
 <a id="provideAliveProducer(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,java.util.concurrent.ScheduledExecutorService)">
@@ -401,10 +415,6 @@ protected&nbsp;<a href="../feed/livescout/classes/LiveScoutUserRequestManagerImp
 @Singleton
 protected&nbsp;<a href="../proto/livescout/LiveScoutClientAliveProducer.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutClientAliveProducer</a>&nbsp;provideAliveProducer&#8203;(<a href="../proto/livescout/LiveScoutStatusFactory.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutStatusFactory</a>&nbsp;entityFactory,
                                                             <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent" class="externalLink">ScheduledExecutorService</a>&nbsp;executor)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="LiveScoutInjectionModuleBase.html#provideAliveProducer(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,java.util.concurrent.ScheduledExecutorService)">provideAliveProducer</a></code>&nbsp;in class&nbsp;<code><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></code></dd>
-</dl>
 </li>
 </ul>
 <a id="provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">
@@ -419,14 +429,7 @@ protected&nbsp;<a href="../feed/common/ProtocolManager.html" title="interface in
                                                                                             <a href="../feed/common/EntityMapper.html" title="interface in com.sportradar.livedata.sdk.feed.common">EntityMapper</a>&lt;<a href="../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../feed/livescout/entities/LiveScoutEntityBase.html" title="class in com.sportradar.livedata.sdk.feed.livescout.entities">LiveScoutEntityBase</a>&gt;&nbsp;entityMapper,
                                                                                             <a href="../feed/livescout/classes/LiveScoutUserRequestManagerImpl.html" title="class in com.sportradar.livedata.sdk.feed.livescout.classes">LiveScoutUserRequestManagerImpl</a>&nbsp;userRequestManager,
                                                                                             <a href="../proto/livescout/LiveScoutClientAliveProducer.html" title="class in com.sportradar.livedata.sdk.proto.livescout">LiveScoutClientAliveProducer</a>&nbsp;aliveProducer,
-                                                                                            <a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)
-                                                                                     throws jakarta.xml.bind.JAXBException</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="LiveScoutInjectionModuleBase.html#provideProtocolManager(com.sportradar.livedata.sdk.proto.common.Protocol,com.sportradar.livedata.sdk.feed.common.EntityMapper,com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl,com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">provideProtocolManager</a></code>&nbsp;in class&nbsp;<code><a href="LiveScoutInjectionModuleBase.html" title="class in com.sportradar.livedata.sdk.di">LiveScoutInjectionModuleBase</a></code></dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>jakarta.xml.bind.JAXBException</code></dd>
-</dl>
+                                                                                            <a href="../common/interfaces/SdkLogger.html" title="interface in com.sportradar.livedata.sdk.common.interfaces">SdkLogger</a>&nbsp;sdkLogger)</pre>
 </li>
 </ul>
 <a id="provideDispatcher(java.util.concurrent.ExecutorService,com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">
@@ -459,7 +462,7 @@ protected&nbsp;<a href="../feed/livescout/interfaces/LiveScoutFeed.html" title="
 <a id="provideProtocol(com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory,java.util.concurrent.ScheduledExecutorService,com.sportradar.livedata.sdk.common.networking.Gateway,com.sportradar.livedata.sdk.common.interfaces.SdkLogger)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>provideProtocol</h4>
 <pre class="methodSignature">@Provides
@@ -473,6 +476,16 @@ protected&nbsp;<a href="../proto/common/Protocol.html" title="interface in com.s
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>jakarta.xml.bind.JAXBException</code></dd>
 </dl>
+</li>
+</ul>
+<a id="provideTestManager(com.sportradar.livedata.sdk.proto.common.Protocol)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>provideTestManager</h4>
+<pre class="methodSignature">@Provides
+protected&nbsp;<a href="../feed/common/TestManager.html" title="interface in com.sportradar.livedata.sdk.feed.common">TestManager</a>&nbsp;provideTestManager&#8203;(<a href="../proto/common/Protocol.html" title="interface in com.sportradar.livedata.sdk.proto.common">Protocol</a>&lt;<a href="../proto/dto/IncomingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">IncomingMessage</a>,&#8203;<a href="../proto/dto/OutgoingMessage.html" title="class in com.sportradar.livedata.sdk.proto.dto">OutgoingMessage</a>&gt;&nbsp;protocol)</pre>
 </li>
 </ul>
 </li>
@@ -534,7 +547,7 @@ protected&nbsp;<a href="../proto/common/Protocol.html" title="interface in com.s
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

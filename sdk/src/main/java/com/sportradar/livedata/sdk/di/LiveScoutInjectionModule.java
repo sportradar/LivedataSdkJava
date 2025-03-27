@@ -1,41 +1,81 @@
 package com.sportradar.livedata.sdk.di;
 
 import com.google.inject.*;
+import com.google.inject.Module;
+import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.NullSdkLogger;
+import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter;
 import com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
+import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
+import com.sportradar.livedata.sdk.common.networking.TcpGateway;
+import com.sportradar.livedata.sdk.common.rategate.*;
+import com.sportradar.livedata.sdk.common.settings.LimiterData;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
+import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
+import com.sportradar.livedata.sdk.common.timer.Timer;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
-import com.sportradar.livedata.sdk.feed.common.EntityMapper;
-import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
-import com.sportradar.livedata.sdk.feed.common.TestManager;
+import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDisruptorDispatcher;
+import com.sportradar.livedata.sdk.feed.common.*;
+import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutEntityMapper;
+import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutFeedImpl;
+import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutTestManagerImpl;
 import com.sportradar.livedata.sdk.feed.livescout.classes.LiveScoutUserRequestManagerImpl;
 import com.sportradar.livedata.sdk.feed.livescout.entities.JaxbLiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
-import com.sportradar.livedata.sdk.proto.common.Protocol;
+import com.sportradar.livedata.sdk.proto.LiveFeedProtocol;
+import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import jakarta.xml.bind.JAXBContext;
 import org.apache.commons.net.DefaultSocketFactory;
 
 import jakarta.inject.Provider;
 import jakarta.inject.Singleton;
 import javax.net.ssl.SSLSocketFactory;
 import jakarta.xml.bind.JAXBException;
+import org.joda.time.Duration;
+
+import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
+
+import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
 /**
  * A {@link com.google.inject.Module} implementation used by Guice to set up live-scout dependency tree.
  */
-public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
+public class LiveScoutInjectionModule implements Module {
+    /**
+     * The name of the package containing entities send from the feed to the sdk
+     */
+    private static final String INCOMING_PACKAGE_NAME = com.sportradar.livedata.sdk.proto.dto.incoming.livescout.ObjectFactory.class.getPackage().getName();
+
+    /**
+     * The name of the package containing entities send from the sdk to the feed
+     */
+    private static final String OUTGOING_PACKAGE_NAME = com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.ObjectFactory.class.getPackage().getName();
+
+    /**
+     * Index of the bound {@link UserRequestManager} instance.
+     */
+    private final static int USER_REQUEST_MANAGER_INDEX = 1;
+
+    /**
+     * The {@link LiveScoutSettings} instance containing live-scout configurable values.
+     */
+    protected final LiveScoutSettings settings;
 
     /**
      * Initializes a new instance of the {@link LiveScoutInjectionModule} class.
@@ -43,7 +83,8 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
      * @param settings The {@link LiveScoutSettings} containing live-scout configurable values.
      */
     public LiveScoutInjectionModule(LiveScoutSettings settings) {
-        super(settings);
+        checkNotNull(settings, "settings cannot be a null reference");
+        this.settings = settings;
     }
 
     /**
@@ -74,14 +115,22 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
                 .in(Singleton.class);
     }
 
-    @Override
     @Provides
     @Singleton
     protected SdkLogger provideSdkLogger(ScheduledExecutorService scheduledExecutorService) {
-        return super.provideSdkLogger(scheduledExecutorService);
+        Timer timer = new PeriodicTimer(scheduledExecutorService);
+
+        SdkLogger ret;
+
+        try {
+            ret = new FileSdkLogger(settings.getLoggerSettings(), timer, "FEED");
+        } catch (SdkException e) {
+            ret = new NullSdkLogger();
+        }
+
+        return ret;
     }
 
-    @Override
     @Provides
     @Singleton
     protected Gateway provideGateway(
@@ -89,39 +138,81 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
             ScheduledExecutorService scheduledExecutorService,
             DefaultSocketFactory socketFactory,
             SSLSocketFactory sslSocketFactory) {
+        InetSocketAddress socketAddress = new InetSocketAddress(settings.getHostName(), settings.getPort());
 
-        return super.provideGateway(executorService, scheduledExecutorService, socketFactory, sslSocketFactory);
+
+        Gateway actualGateway = new TcpGateway(
+                executorService,
+                settings.isUseSSL() ? sslSocketFactory : socketFactory,
+                socketAddress,
+                settings.getReceiveBufferSize());
+
+        Timer reconnectTimer = new PeriodicTimer(scheduledExecutorService);
+        Gateway reconnectingGateway = new ReconnectingGateway(
+                actualGateway,
+                reconnectTimer,
+                settings.getInitialReconnectDelay(),
+                settings.getReconnectDelay());
+
+        Timer monitoringTimer = new PeriodicTimer(scheduledExecutorService);
+
+        return new ConnectionMonitoringGateway(
+                reconnectingGateway,
+                monitoringTimer,
+                Duration.standardSeconds(5),
+                settings.getServerMessageTimeout(),
+                settings.isDebugMode());
     }
 
-    @Override
     @Provides
     @Singleton
     protected LiveScoutUserRequestManagerImpl provideUserRequestManager(LiveScoutStatusFactory factory,
                                                                         TestManager testManager,
                                                                         SdkLogger sdkLogger) {
-        return super.provideUserRequestManager(factory, testManager, sdkLogger);
+        return new LiveScoutUserRequestManagerImpl(
+                USER_REQUEST_MANAGER_INDEX,
+                factory,
+                settings.getMatchExpireMaxAge(),
+                testManager,
+                sdkLogger);
     }
 
-    @Override
     @Provides
     @Singleton
     protected LiveScoutClientAliveProducer provideAliveProducer(
             LiveScoutStatusFactory entityFactory,
             ScheduledExecutorService executor) {
-
-        return super.provideAliveProducer(entityFactory, executor);
+        return new LiveScoutClientAliveProducer(entityFactory, executor, settings.getClientAliveMsgTimeout());
     }
 
-    @Override
     @Provides
     @Singleton
+    @SuppressWarnings("unchecked")
     protected ProtocolManager<OutgoingMessage, LiveScoutEntityBase> provideProtocolManager(
             Protocol<IncomingMessage, OutgoingMessage> protocol,
             EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             LiveScoutUserRequestManagerImpl userRequestManager,
             LiveScoutClientAliveProducer aliveProducer,
-            SdkLogger sdkLogger) throws JAXBException {
-        return super.provideProtocolManager(protocol, entityMapper, userRequestManager, aliveProducer, sdkLogger);
+            SdkLogger sdkLogger) {
+
+        MessageProcessor<LiveScoutEntityBase>[] processors = new MessageProcessor[]{
+                userRequestManager,
+        };
+        MessageProcessor<LiveScoutEntityBase> pipeline = new MessagePipeline<>(1, processors);
+
+        RequestProducer<OutgoingMessage>[] producers = new RequestProducer[]{
+                aliveProducer,
+                userRequestManager
+        };
+
+        RequestProducer<OutgoingMessage> producerComposite = new RequestProducerComposite<>(producers);
+
+        return new LiveFeedProtocolManager(
+                protocol,
+                entityMapper,
+                pipeline,
+                producerComposite,
+                sdkLogger);
     }
 
     @Provides
@@ -132,7 +223,13 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
             SdkLogger sdkLogger) {
 
         LiveScoutStatisticsCounter counter = new LiveScoutStatisticsCounter();
-        return super.provideDispatcher(executorService, sdkLogger, jmxManager, counter);
+        jmxManager.add(counter);
+        return new LiveScoutDisruptorDispatcher(
+                settings.getDispatcherThreadCount(),
+                settings.getDispatcherQueueSize(),
+                executorService,
+                sdkLogger,
+                counter);
     }
 
     @Provides
@@ -142,12 +239,15 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
             Provider<LiveScoutUserRequestManagerImpl> userRequestManagerProvider,
             Provider<LiveScoutDispatcher> dispatcherProvider,
             Provider<SdkLogger> sdkLoggerProvider) {
-        return super.provideFeed(
-                protocolManagerProvider,
-                userRequestManagerProvider,
-                dispatcherProvider,
-                sdkLoggerProvider,
-                settings);
+
+        return settings.isEnabled()
+                ? new LiveScoutFeedImpl(
+                protocolManagerProvider.get(),
+                userRequestManagerProvider.get(),
+                dispatcherProvider.get(),
+                sdkLoggerProvider.get(),
+                settings)
+                : null;
     }
 
     @Provides
@@ -157,11 +257,62 @@ public class LiveScoutInjectionModule extends LiveScoutInjectionModuleBase {
             ScheduledExecutorService scheduledExecutorService,
             Gateway gateway,
             SdkLogger sdkLogger) throws JAXBException {
-        return super.buildProtocol(
-                scheduledExecutorService,
+
+        JAXBContext incomingContext = JAXBContext.newInstance(INCOMING_PACKAGE_NAME);
+        JaxbBuilder incomingBuilder = new JaxbFactory(incomingContext);
+        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(sdkLogger, settings.getMaxMessageSize());
+        MessageParser<IncomingMessage> messageParser = new JaxbMessageParser<>(incomingBuilder, tokenizer, sdkLogger);
+
+        JAXBContext outgoingContext = JAXBContext.newInstance(OUTGOING_PACKAGE_NAME);
+        JaxbBuilder outgoingBuilder = new JaxbFactory(outgoingContext);
+        MessageWriter<OutgoingMessage> messageWriter = new JaxbMessageWriter<>(outgoingBuilder);
+
+        RateLimiter rateLimiter = new RateLimiter(
+                new NullRateGate(),
+                getRateGateFromData(settings.getRequestLimiters(), scheduledExecutorService),
+                new NullRateGate());
+
+        return new LiveFeedProtocol(
                 gateway,
+                messageParser,
+                messageWriter,
+                rateLimiter,
                 new LiveScoutOutgoingMessageInspector(),
                 statusFactory,
+                settings,
                 sdkLogger);
+
+    }
+
+    @Provides
+    protected TestManager provideTestManager(
+            Protocol<IncomingMessage, OutgoingMessage> protocol
+    ) {
+        if (!settings.isTest()) {
+            return new TestManager(){
+                public boolean isEnabled() {
+                    return false;
+                }
+            };
+        } else {
+            return new LiveScoutTestManagerImpl(protocol);
+        }
+    }
+
+    private static RateGate getRateGateFromData(List<LimiterData> data, ScheduledExecutorService scheduledExecutorService) {
+
+        SimpleRateGate[] loginRateGates = new SimpleRateGate[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            LimiterData limiterData = data.get(i);
+            loginRateGates[i] = new SimpleRateGate(
+                    limiterData.getLimit(),
+                    limiterData.getDuration(),
+                    scheduledExecutorService,
+                    limiterData.getName());
+        }
+
+        return loginRateGates.length == 1
+                ? loginRateGates[0]
+                : new CombinedRateGate(loginRateGates);
     }
 }
