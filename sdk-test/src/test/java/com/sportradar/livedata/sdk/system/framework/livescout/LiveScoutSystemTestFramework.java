@@ -27,7 +27,7 @@ public class LiveScoutSystemTestFramework {
         mockGateway = new FakeGateway();
         try {
             messageParser = new SystemTestMessageParser(
-                    new NullSdkLogger(),
+                    NullSdkLogger.INSTANCE,
                     new OutgoingMessageListener() {
                         @Override
                         public <T extends OutgoingMessage> void messageSendToServer(T msg) throws Exception {

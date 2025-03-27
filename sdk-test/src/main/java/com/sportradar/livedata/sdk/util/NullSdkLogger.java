@@ -11,6 +11,10 @@ import org.joda.time.Duration;
  */
 public class NullSdkLogger implements SdkLogger {
 
+    public static final SdkLogger INSTANCE = new NullSdkLogger();
+
+    private NullSdkLogger(){}
+
     /**
      * {@inheritDoc}
      */

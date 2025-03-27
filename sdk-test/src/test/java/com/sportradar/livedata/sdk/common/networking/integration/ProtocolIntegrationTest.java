@@ -78,7 +78,7 @@ class ProtocolIntegrationTest {
         JaxbBuilder liveOddsJaxbFactory = new JaxbFactory(jaxbContext);
         JaxbBuilder bookmakerStatusJaxbFactory = new JaxbFactory(jaxbContext);
 
-        MessageParser<OutgoingMessage> serverMessageParser = new JaxbMessageParser<>(bookmakerStatusJaxbFactory, null, new NullSdkLogger());
+        MessageParser<OutgoingMessage> serverMessageParser = new JaxbMessageParser<>(bookmakerStatusJaxbFactory, null, NullSdkLogger.INSTANCE);
         MessageWriter<IncomingMessage> serverMessageWriter = new JaxbMessageWriter<>(liveOddsJaxbFactory);
 
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
@@ -103,11 +103,9 @@ class ProtocolIntegrationTest {
 
         clientMessageParser = new JaxbMessageParser<>(
                 liveOddsJaxbFactory,
-                new IncrementalMessageTokenizer(new NullSdkLogger(), settings.getMaxMessageSize()),
-                new NullSdkLogger());
+                new IncrementalMessageTokenizer(NullSdkLogger.INSTANCE, settings.getMaxMessageSize()),
+                NullSdkLogger.INSTANCE);
         clientMessageWriter = new JaxbMessageWriter<>(bookmakerStatusJaxbFactory);
-
-        SdkLogger logger = new NullSdkLogger();
 
         protocol = new LiveFeedProtocol(
                 gateway,
@@ -117,7 +115,7 @@ class ProtocolIntegrationTest {
                 new LiveScoutOutgoingMessageInspector(),
                 new LiveScoutStatusFactory(new SdkVersion()),
                 settings,
-                logger);
+                NullSdkLogger.INSTANCE);
 
 
         protocol.setListener(protocolListener);

@@ -91,8 +91,8 @@ class BetradarServerTest {
 
         clientMessageParser = new JaxbMessageParser<>(
                 jaxbBuilder,
-                new IncrementalMessageTokenizer(new NullSdkLogger(), 4 * 1024 * 1024),
-                new NullSdkLogger());
+                new IncrementalMessageTokenizer(NullSdkLogger.INSTANCE, 4 * 1024 * 1024),
+                NullSdkLogger.INSTANCE);
         clientMessageWriter = new JaxbMessageWriter<>(jaxbBuilder);
     }
 
@@ -105,8 +105,6 @@ class BetradarServerTest {
                 .setPassword("DirKES7ew")
                 .build();
 
-        SdkLogger skdLogger = new NullSdkLogger();
-
         protocol = new LiveFeedProtocol(
                 gateway,
                 clientMessageParser,
@@ -115,7 +113,7 @@ class BetradarServerTest {
                 new LiveScoutOutgoingMessageInspector(),
                 new LiveScoutStatusFactory(new SdkVersion()),
                 settings,
-                skdLogger);
+                NullSdkLogger.INSTANCE);
 
         protocol.setListener(protocolListener);
 

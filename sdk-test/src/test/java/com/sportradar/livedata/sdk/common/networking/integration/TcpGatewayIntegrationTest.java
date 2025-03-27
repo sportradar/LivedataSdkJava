@@ -59,7 +59,7 @@ class TcpGatewayIntegrationTest {
         jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder builder = new JaxbFactory(jaxbContext);
 
-        messageParser = new JaxbMessageParser<>(builder, null, new NullSdkLogger());
+        messageParser = new JaxbMessageParser<>(builder, null, NullSdkLogger.INSTANCE);
         messageWriter = new JaxbMessageWriter<>(builder);
 
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();

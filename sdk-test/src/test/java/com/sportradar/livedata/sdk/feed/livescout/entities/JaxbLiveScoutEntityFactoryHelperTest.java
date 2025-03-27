@@ -4,7 +4,9 @@ import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamPlayerStatsType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamStatsType;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
+import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,91 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"unchecked", "JavaDoc"})
 class JaxbLiveScoutEntityFactoryHelperTest {
-
-    @Test
-    void buildMatchListEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(null);
-        });
-    }
-
-    @Test
-    void buildMatchListEntity_Empty_Input_Test() throws Exception {
-        Matchlist input = new Matchlist();
-        MatchListEntity expected = new MatchListEntity();
-        expected.setMatches(new ArrayList<>());
-
-        MatchListEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchListEntity_OK_Input_Test() throws Exception {
-        Matchlist input = new Matchlist();
-        input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(38));
-
-        MatchListEntity expected = new MatchListEntity();
-        expected.setMatches(List.of(LiveScoutProtoEntityFactory.buildMatchUpdateEntity(38)));
-
-        MatchListEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchListUpdateEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(null);
-        });
-    }
-
-    @Test
-    void buildMatchListUpdateEntity_Empty_Input_Test() throws Exception {
-        Matchlistupdate input = new Matchlistupdate();
-        MatchListUpdateEntity expected = new MatchListUpdateEntity();
-        expected.setMatches(new ArrayList<>());
-
-        MatchListUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchListUpdateEntity_OK_Input() throws Exception {
-        Matchlistupdate input = new Matchlistupdate();
-        input.getMatch().add(LiveScoutProtoEntityFactory.buildMatch(33));
-
-        MatchListUpdateEntity expected = new MatchListUpdateEntity();
-        expected.setMatches(List.of(LiveScoutProtoEntityFactory.buildMatchUpdateEntity(33)));
-
-        MatchListUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchListUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchUpdateEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(null);
-        });
-    }
-
-    @Test
-    void buildMatchUpdateEntity_Empty_Input_Test() throws Exception {
-        Match input = new Match();
-        MatchUpdateEntity expected = new MatchUpdateEntity();
-        expected.setMatchHeader(new MatchHeaderEntity());
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @ParameterizedTest(name = "buildMatchUpdateEntity_OK_Input_{0}_Test")
-    @ValueSource(ints = {0,1,2,3,4,33,56})
-    void buildMatchUpdateEntity_OK_Input_Test(int valueBase) throws Exception {
-        Match input = LiveScoutProtoEntityFactory.buildMatch(valueBase);
-        MatchUpdateEntity expected = LiveScoutProtoEntityFactory.buildMatchUpdateEntity(valueBase);
-
-        MatchUpdateEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchUpdateEntity(input);
-        assertThat(result, equalTo(expected));
-    }
 
     @Test
     void buildMatchHeaderEntity_Null_Input_Test() {
@@ -184,73 +101,6 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         expected.setPlayerStatistics(stats);
 
         ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchStopEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(null);
-        });
-    }
-
-    @Test
-    void buildMatchStopEntity_Empty_Input_Test() {
-        MatchStopEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(new Matchstop());
-        assertThat(result, equalTo(new MatchStopEntity()));
-    }
-
-    @Test
-    void buildMatchStopEntity_OK_Input_Test() {
-        Matchstop input = LiveScoutProtoEntityFactory.buildMatchstop(23);
-        MatchStopEntity expected = LiveScoutProtoEntityFactory.buildMatchStopEntity(23);
-
-        MatchStopEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchStopEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildMatchBookingEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(null);
-        });
-    }
-
-    @Test
-    void buildMatchBookingEntity_Empty_Input_Test() throws Exception {
-        MatchBookingEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(new Bookmatch());
-        assertThat(result, equalTo(new MatchBookingEntity()));
-    }
-
-    @Test
-    void buildMatchBookingEntity_OK_Input_Test() throws Exception {
-        Bookmatch input = LiveScoutProtoEntityFactory.buildBookmatch(71);
-        MatchBookingEntity expected = LiveScoutProtoEntityFactory.buildMatchBookingEntity(71);
-
-        MatchBookingEntity result = JaxbLiveScoutEntityFactoryHelper.buildMatchBookingEntity(input);
-        assertThat(result, equalTo(expected));
-    }
-
-    @Test
-    void buildLineupsEntity_Null_Input_Test() {
-        Exception exception = assertThrows(NullPointerException.class, () -> {
-            JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(null);
-        });
-    }
-
-    @Test
-    void buildLineupsEntity_Empty_Input_Test() throws Exception {
-        LineupsEntity result = JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(new Lineups());
-        assertThat(result, equalTo(new LineupsEntity()));
-    }
-
-    @ParameterizedTest(name = "buildLineupsEntity_OK_Input_{0}_Test")
-    @ValueSource(ints = {0,10,17})
-    void buildLineupsEntity_OK_Input_Test(int valueBase) throws Exception {
-        Lineups input = LiveScoutProtoEntityFactory.buildLineups(valueBase);
-        LineupsEntity expected = LiveScoutProtoEntityFactory.buildLineupsEntity(valueBase);
-
-        LineupsEntity result = JaxbLiveScoutEntityFactoryHelper.buildLineupsEntity(input);
         assertThat(result, equalTo(expected));
     }
 

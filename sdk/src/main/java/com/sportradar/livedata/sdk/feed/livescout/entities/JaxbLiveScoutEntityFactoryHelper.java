@@ -10,7 +10,6 @@ import com.sportradar.livedata.sdk.feed.livescout.enums.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.apache.commons.lang3.BooleanUtils;
-import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import java.util.*;
@@ -18,7 +17,6 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 import static com.sportradar.livedata.sdk.common.classes.Nulls.nte;
 
 @SuppressWarnings("JavaDoc")
@@ -33,30 +31,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         return result;
     }
 
-    public static LineupsEntity buildLineupsEntity(Lineups lineups) throws InvalidEntityException {
-        LineupsEntity result = new LineupsEntity();
-        result.setMatchId(lineups.getMatchid());
-        result.setPreliminary(lineups.getPreliminary() != null ? 1 == lineups.getPreliminary() : null);
-        if (lineups.getPlayer() != null) {//always not null
-            for (Player player : lineups.getPlayer()) {
-                result.getPlayers().add(buildPlayerEntity(player));
-            }
-        }
-        List<Manager> managerList = lineups.getManager();
-        if (managerList != null) {//always not null
-            for (Manager manager : managerList) {
-                result.getManagers().add(buildManagerEntity(manager));
-            }
-        }
-        List<Teamofficial> teamOfficialList = lineups.getTeamofficial();
-        if (teamOfficialList != null) {//always not null
-            for (Teamofficial teamofficial : teamOfficialList) {
-                result.getTeamOfficials().add(buildTeamOfficial(teamofficial));
-            }
-        }
-        return result;
-    }
-
     public static ManagerEntity buildManagerEntity(Manager manager) throws InvalidEntityException {
         ManagerEntity result = new ManagerEntity();
         result.setName(manager.getName());
@@ -67,26 +41,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Manager.getTeam()", teamString);
         }
-        return result;
-    }
-
-    public static MatchBookingEntity buildMatchBookingEntity(Bookmatch bookMatch) throws InvalidEntityException {
-        MatchBookingEntity result = new MatchBookingEntity();
-        result.setMatchId(bookMatch.getMatchid());
-        result.setMessage(bookMatch.getMessage());
-        try {
-            result.setResult(BookMatchResult.getBookMatchResultFromLiteralValue(bookMatch.getResult()));
-        } catch (UnknownEnumException e) {
-            throw new InvalidEntityException(e, "Bookmatch.getScore()", bookMatch.getResult());
-        }
-        return result;
-    }
-
-    public static MatchDataEntity buildMatchDataEntity(Matchdata matchdata) {
-        MatchDataEntity result = new MatchDataEntity();
-        result.setMatchId(matchdata.getMatchid());
-        result.setMatchTime(matchdata.getMtime());
-        result.setRemainingTimeInPeriod(matchdata.getRemainingtimeperiod());
         return result;
     }
 
@@ -218,28 +172,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         return result;
     }
 
-    public static MatchListEntity buildMatchListEntity(Matchlist matchList) throws InvalidEntityException {
-        checkNotNull(matchList.getMatch());
-        MatchListEntity result = new MatchListEntity();
-        ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchList.getMatch().size());
-        for (Match match : matchList.getMatch()) {
-            matches.add(buildMatchUpdateEntity(match));
-        }
-        result.setMatches(matches);
-        return result;
-    }
-
-    public static MatchListUpdateEntity buildMatchListUpdateEntity(Matchlistupdate matchListUpdate) throws
-            InvalidEntityException {
-        MatchListUpdateEntity result = new MatchListUpdateEntity();
-        ArrayList<MatchUpdateEntity> matches = new ArrayList<>(matchListUpdate.getMatch().size());
-        for (Match match : matchListUpdate.getMatch()) {
-            matches.add(buildMatchUpdateEntity(match));
-        }
-        result.setMatches(matches);
-        return result;
-    }
-
     public static MatchRoleEntity buildMatchRole(Matchrole matchrole) {
         MatchRoleEntity result = new MatchRoleEntity();
         result.setDescription(matchrole.getDescription());
@@ -247,306 +179,294 @@ public class JaxbLiveScoutEntityFactoryHelper {
         return result;
     }
 
-    public static MatchStopEntity buildMatchStopEntity(Matchstop matchStop) {
-        MatchStopEntity result = new MatchStopEntity();
-        result.setMatchId(matchStop.getMatchid());
-        result.setReason(matchStop.getReason());
-        return result;
-    }
-
-    public static MatchUpdateEntity buildMatchUpdateEntity(Match match) throws InvalidEntityException {
-        MatchUpdateEntity result = new MatchUpdateEntity();
-        result.setMatchHeader(buildMatchHeaderEntity(match));
-        for (IncomingMessage item : match.getStatusOrScoreOrRed()) {
-            switch (item.getClass().getSimpleName()) {
-                case "Attacks":
-                    Attacks attacks = (Attacks) item;
-                    result.setAttacks(new HomeAway<>(attacks.getT1(), attacks.getT2()));
-                    break;
-                case "Black":
-                    Black black = (Black) item;
-                    result.setBlackCards(new HomeAway<>(black.getT1(), black.getT2()));
-                    break;
-                case "Category":
-                    Category category = (Category) item;
-                    result.setCategory(new IdNameTuple(category.getId(), category.getName()));
-                    break;
-                case "Corners":
-                    Corners corners = (Corners) item;
-                    result.setCorners(new HomeAway<>(corners.getT1(), corners.getT2()));
-                    break;
-                case "Dangerousattacks":
-                    Dangerousattacks da = (Dangerousattacks) item;
-                    result.setDangerousAttacks(new HomeAway<>(da.getT1(), da.getT2()));
-                    break;
-                case "Directfoulsperiod":
-                    Directfoulsperiod dfp = (Directfoulsperiod) item;
-                    result.setDirectFoulsPeriod(new HomeAway<>(dfp.getT1(), dfp.getT2()));
-                    break;
-                case "Directfreekicks":
-                    Directfreekicks dfk = (Directfreekicks) item;
-                    result.setDirectFreeKicks(new HomeAway<>(dfk.getT1(), dfk.getT2()));
-                    break;
-                case "Fouls":
-                    Fouls fouls = (Fouls) item;
-                    result.setFouls(new HomeAway<>(fouls.getT1(), fouls.getT2()));
-                    break;
-                case "Court":
-                    Court court = (Court) item;
-                    result.setCourt(buildCourtEntity(court));
-                    break;
-                case "Events":
-                    Events events = (Events) item;
-                    if (!nte(events.getEvent()).isEmpty()) {
-                        // realloc now that we know the exact size
-                        result.setEvents(new ArrayList<>(events.getEvent().size()));
-                        for (Event event : events.getEvent()) {
-                            result.getEvents().add(buildScoutEventEntity(event));
-                        }
+    public static void applyStatusOrScoreOrRed(MatchUpdateEntity result, IncomingMessage item) throws InvalidEntityException {
+        switch (item.getClass().getSimpleName()) {
+            case "Attacks":
+                Attacks attacks = (Attacks) item;
+                result.setAttacks(new HomeAway<>(attacks.getT1(), attacks.getT2()));
+                break;
+            case "Black":
+                Black black = (Black) item;
+                result.setBlackCards(new HomeAway<>(black.getT1(), black.getT2()));
+                break;
+            case "Category":
+                Category category = (Category) item;
+                result.setCategory(new IdNameTuple(category.getId(), category.getName()));
+                break;
+            case "Corners":
+                Corners corners = (Corners) item;
+                result.setCorners(new HomeAway<>(corners.getT1(), corners.getT2()));
+                break;
+            case "Dangerousattacks":
+                Dangerousattacks da = (Dangerousattacks) item;
+                result.setDangerousAttacks(new HomeAway<>(da.getT1(), da.getT2()));
+                break;
+            case "Directfoulsperiod":
+                Directfoulsperiod dfp = (Directfoulsperiod) item;
+                result.setDirectFoulsPeriod(new HomeAway<>(dfp.getT1(), dfp.getT2()));
+                break;
+            case "Directfreekicks":
+                Directfreekicks dfk = (Directfreekicks) item;
+                result.setDirectFreeKicks(new HomeAway<>(dfk.getT1(), dfk.getT2()));
+                break;
+            case "Fouls":
+                Fouls fouls = (Fouls) item;
+                result.setFouls(new HomeAway<>(fouls.getT1(), fouls.getT2()));
+                break;
+            case "Court":
+                Court court = (Court) item;
+                result.setCourt(buildCourtEntity(court));
+                break;
+            case "Events":
+                Events events = (Events) item;
+                if (!nte(events.getEvent()).isEmpty()) {
+                    // realloc now that we know the exact size
+                    result.setEvents(new ArrayList<>(events.getEvent().size()));
+                    for (Event event : events.getEvent()) {
+                        result.getEvents().add(buildScoutEventEntity(event));
                     }
-                    break;
-                case "Firstkickoffteam1Sthalf":
-                    Firstkickoffteam1Sthalf k1st = (Firstkickoffteam1Sthalf) item;
-                    Team teamk1 = parseTeam(k1st.getTeam(), false);
-                    result.setKickoffTeamFirstHalf(teamk1);
-                    break;
-                case "Firstkickoffteam2Ndhalf":
-                    Firstkickoffteam2Ndhalf k2ns = (Firstkickoffteam2Ndhalf) item;
-                    Team teamk2 = parseTeam(k2ns.getTeam(), false);
-                    result.setKickoffTeamSecondHalf(teamk2);
-                    break;
-                case "Firstkickoffteamot":
-                    Firstkickoffteamot kiot = (Firstkickoffteamot) item;
-                    Team teamOt = parseTeam(kiot.getTeam(), false);
-                    result.setKickoffTeamOt(teamOt);
-                    break;
-                case "Kickoffteam":
-                    Kickoffteam kot = (Kickoffteam) item;
-                    Team team = parseTeam(kot.getTeam(), false);
-                    result.setKickoffTeam(team);
-                    break;
-                case "Openingfaceoff1Stperiod":
-                    Openingfaceoff1Stperiod of1p = (Openingfaceoff1Stperiod) item;
-                    Team teamof1p = parseTeam(of1p.getTeam(), true);
-                    result.setOpeningFaceoff1StPeriod(teamof1p);
-                    break;
-                case "Openingfaceoff2Ndperiod":
-                    Openingfaceoff2Ndperiod of2p = (Openingfaceoff2Ndperiod) item;
-                    Team teamof2p = parseTeam(of2p.getTeam(), true);
-                    result.setOpeningFaceoff2NdPeriod(teamof2p);
-                    break;
-                case "Openingfaceoff3Rdperiod":
-                    Openingfaceoff3Rdperiod of3p = (Openingfaceoff3Rdperiod) item;
-                    Team teamof3p = parseTeam(of3p.getTeam(), true);
-                    result.setOpeningFaceoff3RdPeriod(teamof3p);
-                    break;
-                case "Openingfaceoffovertime":
-                    Openingfaceoffovertime ofop = (Openingfaceoffovertime) item;
-                    Team teamofot = parseTeam(ofop.getTeam(), true);
-                    result.setOpeningFaceoffOvertime(teamofot);
-                    break;
-                case "Freekicks":
-                    Freekicks fk = (Freekicks) item;
-                    result.setFreeKicks(new HomeAway<>(fk.getT1(), fk.getT2()));
-                    break;
-                case "Freethrows":
-                    Freethrows ft = (Freethrows) item;
-                    result.setFreeThrows(new HomeAway<>(ft.getT1(), ft.getT2()));
-                    break;
-                case "Goalkeepersaves":
-                    Goalkeepersaves gks = (Goalkeepersaves) item;
-                    result.setGoalkeeperSaves(new HomeAway<>(gks.getT1(), gks.getT2()));
-                    break;
-                case "Goalkicks":
-                    Goalkicks gk = (Goalkicks) item;
-                    result.setGoalKicks(new HomeAway<>(gk.getT1(), gk.getT2()));
-                    break;
-                case "Injuries":
-                    Injuries inj = (Injuries) item;
-                    result.setInjuries(new HomeAway<>(inj.getT1(), inj.getT2()));
-                    break;
-                case "Innings":
-                    addToList(buildInningsEntity((Innings) item), result::getInnings, result::setInnings);
-                    break;
-                case "Matchformat":
-                    Matchformat mf = (Matchformat) item;
-                    result.setMatchFormat(buildMatchformat(mf));
-                    break;
-                case "Offsides":
-                    Offsides ofs = (Offsides) item;
-                    result.setOffsides(new HomeAway<>(ofs.getT1(), ofs.getT2()));
-                    break;
-                case "Penalties":
-                    Penalties pen = (Penalties) item;
-                    result.setPenalties(new HomeAway<>(pen.getT1(), pen.getT2()));
-                    break;
-                case "Pitchconditions":
-                    Pitchconditions pc = (Pitchconditions) item;
-                    try {
-                        result.setPitchConditions(PitchConditions.getPitchConditionsFromLiteralValue(pc.getName()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Pitchconditions.getName()", pc.getName());
-                    }
-                    break;
-                case "Iceconditions":
-                    Iceconditions ic = (Iceconditions) item;
-                    try {
-                        result.setIceConditions(IceConditions.getIceConditionsFromLiteralValue(ic.getName()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Iceconditions.getName()", ic.getName());
-                    }
-                    break;
-                case "Possession":
-                    Possession p = (Possession) item;
-                    try {
-                        result.setPossessionTeam(Team.getTeamFromLiteralValue(p.getTeam()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Possession.getTeam()", p.getTeam());
-                    }
-                    result.setPossession(new HomeAway<>(p.getT1(), p.getT2()));
-                    break;
-                case "Red":
-                    Red red = (Red) item;
-                    result.setRedCards(new HomeAway<>(red.getT1(), red.getT2()));
-                    break;
-                case "Score":
-                    // Field score.score1 will be ignored
-                    Score score = (Score) item;
-                    addToMap(score.getType(), new HomeAway<>(score.getT1(), score.getT2()), result::getScore, result::setScore);
-                    addToList(new ScoreEntity(score), result::getScores, result::setScores);
-                    break;
-                case "Serve":
-                    Serve srv = (Serve) item;
-                    try {
-                        result.setServe(Team.getTeamFromLiteralValue(srv.getTeam()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Serve.getTeam()", srv.getTeam());
-                    }
-                    break;
-                case "Shotsblocked":
-                    Shotsblocked sb = (Shotsblocked) item;
-                    result.setShotsBlocked(new HomeAway<>(sb.getT1(), sb.getT2()));
-                    break;
-                case "Shotsofftarget":
-                    Shotsofftarget sot = (Shotsofftarget) item;
-                    result.setShotsOffTarget(new HomeAway<>(sot.getT1(), sot.getT2()));
-                    break;
-                case "Shotsontarget":
-                    Shotsontarget sont = (Shotsontarget) item;
-                    result.setShotsOnTarget(new HomeAway<>(sont.getT1(), sont.getT2()));
-                    break;
-                case "Sport":
-                    Sport sport = (Sport) item;
-                    result.setSport(new IdNameTuple(sport.getId(), sport.getName()));
-                    break;
-                case "Status":
-                    Status status = (Status) item;
-                    try {
-                        result.setMatchStatus(ScoutMatchStatus.getScoutMatchStatusFromLiteralValue(status.getName()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Status.getName()", status.getName());
-                    }
-                    result.setMatchStatusId(status.getId());
-                    result.setMatchStatusStart(CommonUtils.fromTimestamp(status.getStart()));
-                    break;
-                case "Surfacetype":
-                    Surfacetype st = (Surfacetype) item;
-                    try {
-                        result.setSurfaceType(SurfaceType.getSurfaceTypeFromLiteralValue(st.getName()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().SurfaceType.getName()", st.getName());
-                    }
-                    break;
-                case "Suspensions":
-                    Suspensions susp = (Suspensions) item;
-                    try {
-                        Team powerplay = Team.getTeamFromLiteralValue(String.valueOf(susp.getPowerplay()));
-                        result.setSuspensions(new SuspensionsEntity(susp.getT1(), susp.getT2(), powerplay));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Suspensions.getPowerplay()", susp.getPowerplay() + "");
-                    }
-                    break;
-                case "Throwins":
-                    Throwins thr = (Throwins) item;
-                    result.setThrowins(new HomeAway<>(thr.getT1(), thr.getT2()));
-                    break;
-                case "Tiebreak":
-                    Tiebreak tb = (Tiebreak) item;
-                    result.setTieBreak(BooleanUtils.toBooleanObject(tb.getValue()));
-                    break;
-                case "Tournament":
-                    Tournament tour = (Tournament) item;
-                    result.setTournament(new IdNameTuple(tour.getId(), tour.getName()));
-                    break;
-                case "Weatherconditions":
-                    Weatherconditions w = (Weatherconditions) item;
-                    try {
-                        result.setWeatherConditions(WeatherConditions.getWeatherConditionsFromLiteralValue(w.getName()));
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().WeatherConditions.getName()", w.getName());
-                    }
-                    break;
-                case "Yellow":
-                    Yellow yellow = (Yellow) item;
-                    result.setYellowCards(new HomeAway<>(yellow.getT1(), yellow.getT2()));
-                    break;
-                case "Scout": {
-                    Scout scout = (Scout) item;
-                    result.setScout(buildScoutEntity(scout));
-                    break;
                 }
-                case "Gold":
-                    Gold gold = (Gold) item;
-                    result.setGold(new GoldEntity(gold));
-                    break;
-                case "Networth":
-                    Networth networth = (Networth) item;
-                    result.setNetWorth(new NetWorthEntity(networth));
-                    break;
-                case "Jerseys":
-                    Jerseys jerseys = (Jerseys) item;
-                    result.setJerseys(buildJerseysEntities(jerseys));
-                    break;
-                case "Goals":
-                    Goals goals = (Goals) item;
-                    result.setGoals(buildGoalsEntity(goals));
-                    break;
-                case "Behinds":
-                    Behinds behinds = (Behinds) item;
-                    result.setBehinds(buildBehindsEntity(behinds));
-                    break;
-                case "Matchproperties":
-                    Matchproperties mp = (Matchproperties) item;
-                    result.setMatchProperties(buildMatchProperties(mp));
-                    break;
-                case "Teams":
-                    Teams teams = (Teams) item;
-                    result.setMatchTeams(buildMatchTeams(teams));
-                    break;
-                case "Subteam":
-                    addToList(new SubteamEntity((Subteam) item), result::getSubteams, result::setSubteams);
-                    break;
-                case "Trycount":
-                    Trycount tryCount = (Trycount) item;
-                    try {
-                        addToMap(
-                                ScoutMatchStatus.getScoutMatchStatusFromLiteralValue(tryCount.getType()),
-                                new HomeAway<>(tryCount.getT1(), tryCount.getT2()),
-                                result::getTryCounts,
-                                result::setTryCounts);
-                    } catch (UnknownEnumException e) {
-                        throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Trycount.getType()", tryCount.getType());
-                    }
-                    break;
-                case "Green":
-                    Green green = (Green) item;
-                    result.setGreenCards(new HomeAway<>(green.getT1(), green.getT2()));
-                    break;
-                default:
-                    throw new InvalidEntityException("Match.getStatusOrScoreOrRed", "Unknown event", item.getClass().getSimpleName());
+                break;
+            case "Firstkickoffteam1Sthalf":
+                Firstkickoffteam1Sthalf k1st = (Firstkickoffteam1Sthalf) item;
+                Team teamk1 = parseTeam(k1st.getTeam(), false);
+                result.setKickoffTeamFirstHalf(teamk1);
+                break;
+            case "Firstkickoffteam2Ndhalf":
+                Firstkickoffteam2Ndhalf k2ns = (Firstkickoffteam2Ndhalf) item;
+                Team teamk2 = parseTeam(k2ns.getTeam(), false);
+                result.setKickoffTeamSecondHalf(teamk2);
+                break;
+            case "Firstkickoffteamot":
+                Firstkickoffteamot kiot = (Firstkickoffteamot) item;
+                Team teamOt = parseTeam(kiot.getTeam(), false);
+                result.setKickoffTeamOt(teamOt);
+                break;
+            case "Kickoffteam":
+                Kickoffteam kot = (Kickoffteam) item;
+                Team team = parseTeam(kot.getTeam(), false);
+                result.setKickoffTeam(team);
+                break;
+            case "Openingfaceoff1Stperiod":
+                Openingfaceoff1Stperiod of1p = (Openingfaceoff1Stperiod) item;
+                Team teamof1p = parseTeam(of1p.getTeam(), true);
+                result.setOpeningFaceoff1StPeriod(teamof1p);
+                break;
+            case "Openingfaceoff2Ndperiod":
+                Openingfaceoff2Ndperiod of2p = (Openingfaceoff2Ndperiod) item;
+                Team teamof2p = parseTeam(of2p.getTeam(), true);
+                result.setOpeningFaceoff2NdPeriod(teamof2p);
+                break;
+            case "Openingfaceoff3Rdperiod":
+                Openingfaceoff3Rdperiod of3p = (Openingfaceoff3Rdperiod) item;
+                Team teamof3p = parseTeam(of3p.getTeam(), true);
+                result.setOpeningFaceoff3RdPeriod(teamof3p);
+                break;
+            case "Openingfaceoffovertime":
+                Openingfaceoffovertime ofop = (Openingfaceoffovertime) item;
+                Team teamofot = parseTeam(ofop.getTeam(), true);
+                result.setOpeningFaceoffOvertime(teamofot);
+                break;
+            case "Freekicks":
+                Freekicks fk = (Freekicks) item;
+                result.setFreeKicks(new HomeAway<>(fk.getT1(), fk.getT2()));
+                break;
+            case "Freethrows":
+                Freethrows ft = (Freethrows) item;
+                result.setFreeThrows(new HomeAway<>(ft.getT1(), ft.getT2()));
+                break;
+            case "Goalkeepersaves":
+                Goalkeepersaves gks = (Goalkeepersaves) item;
+                result.setGoalkeeperSaves(new HomeAway<>(gks.getT1(), gks.getT2()));
+                break;
+            case "Goalkicks":
+                Goalkicks gk = (Goalkicks) item;
+                result.setGoalKicks(new HomeAway<>(gk.getT1(), gk.getT2()));
+                break;
+            case "Injuries":
+                Injuries inj = (Injuries) item;
+                result.setInjuries(new HomeAway<>(inj.getT1(), inj.getT2()));
+                break;
+            case "Innings":
+                addToList(buildInningsEntity((Innings) item), result::getInnings, result::setInnings);
+                break;
+            case "Matchformat":
+                Matchformat mf = (Matchformat) item;
+                result.setMatchFormat(buildMatchformat(mf));
+                break;
+            case "Offsides":
+                Offsides ofs = (Offsides) item;
+                result.setOffsides(new HomeAway<>(ofs.getT1(), ofs.getT2()));
+                break;
+            case "Penalties":
+                Penalties pen = (Penalties) item;
+                result.setPenalties(new HomeAway<>(pen.getT1(), pen.getT2()));
+                break;
+            case "Pitchconditions":
+                Pitchconditions pc = (Pitchconditions) item;
+                try {
+                    result.setPitchConditions(PitchConditions.getPitchConditionsFromLiteralValue(pc.getName()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Pitchconditions.getName()", pc.getName());
+                }
+                break;
+            case "Iceconditions":
+                Iceconditions ic = (Iceconditions) item;
+                try {
+                    result.setIceConditions(IceConditions.getIceConditionsFromLiteralValue(ic.getName()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Iceconditions.getName()", ic.getName());
+                }
+                break;
+            case "Possession":
+                Possession p = (Possession) item;
+                try {
+                    result.setPossessionTeam(Team.getTeamFromLiteralValue(p.getTeam()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Possession.getTeam()", p.getTeam());
+                }
+                result.setPossession(new HomeAway<>(p.getT1(), p.getT2()));
+                break;
+            case "Red":
+                Red red = (Red) item;
+                result.setRedCards(new HomeAway<>(red.getT1(), red.getT2()));
+                break;
+            case "Score":
+                // Field score.score1 will be ignored
+                Score score = (Score) item;
+                addToMap(score.getType(), new HomeAway<>(score.getT1(), score.getT2()), result::getScore, result::setScore);
+                addToList(new ScoreEntity(score), result::getScores, result::setScores);
+                break;
+            case "Serve":
+                Serve srv = (Serve) item;
+                try {
+                    result.setServe(Team.getTeamFromLiteralValue(srv.getTeam()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Serve.getTeam()", srv.getTeam());
+                }
+                break;
+            case "Shotsblocked":
+                Shotsblocked sb = (Shotsblocked) item;
+                result.setShotsBlocked(new HomeAway<>(sb.getT1(), sb.getT2()));
+                break;
+            case "Shotsofftarget":
+                Shotsofftarget sot = (Shotsofftarget) item;
+                result.setShotsOffTarget(new HomeAway<>(sot.getT1(), sot.getT2()));
+                break;
+            case "Shotsontarget":
+                Shotsontarget sont = (Shotsontarget) item;
+                result.setShotsOnTarget(new HomeAway<>(sont.getT1(), sont.getT2()));
+                break;
+            case "Sport":
+                Sport sport = (Sport) item;
+                result.setSport(new IdNameTuple(sport.getId(), sport.getName()));
+                break;
+            case "Status":
+                Status status = (Status) item;
+                try {
+                    result.setMatchStatus(ScoutMatchStatus.getScoutMatchStatusFromLiteralValue(status.getName()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Status.getName()", status.getName());
+                }
+                result.setMatchStatusId(status.getId());
+                result.setMatchStatusStart(CommonUtils.fromTimestamp(status.getStart()));
+                break;
+            case "Surfacetype":
+                Surfacetype st = (Surfacetype) item;
+                try {
+                    result.setSurfaceType(SurfaceType.getSurfaceTypeFromLiteralValue(st.getName()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().SurfaceType.getName()", st.getName());
+                }
+                break;
+            case "Suspensions":
+                Suspensions susp = (Suspensions) item;
+                try {
+                    Team powerplay = Team.getTeamFromLiteralValue(String.valueOf(susp.getPowerplay()));
+                    result.setSuspensions(new SuspensionsEntity(susp.getT1(), susp.getT2(), powerplay));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Suspensions.getPowerplay()", susp.getPowerplay() + "");
+                }
+                break;
+            case "Throwins":
+                Throwins thr = (Throwins) item;
+                result.setThrowins(new HomeAway<>(thr.getT1(), thr.getT2()));
+                break;
+            case "Tiebreak":
+                Tiebreak tb = (Tiebreak) item;
+                result.setTieBreak(BooleanUtils.toBooleanObject(tb.getValue()));
+                break;
+            case "Tournament":
+                Tournament tour = (Tournament) item;
+                result.setTournament(new IdNameTuple(tour.getId(), tour.getName()));
+                break;
+            case "Weatherconditions":
+                Weatherconditions w = (Weatherconditions) item;
+                try {
+                    result.setWeatherConditions(WeatherConditions.getWeatherConditionsFromLiteralValue(w.getName()));
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().WeatherConditions.getName()", w.getName());
+                }
+                break;
+            case "Yellow":
+                Yellow yellow = (Yellow) item;
+                result.setYellowCards(new HomeAway<>(yellow.getT1(), yellow.getT2()));
+                break;
+            case "Scout": {
+                Scout scout = (Scout) item;
+                result.setScout(buildScoutEntity(scout));
+                break;
             }
+            case "Gold":
+                Gold gold = (Gold) item;
+                result.setGold(new GoldEntity(gold));
+                break;
+            case "Networth":
+                Networth networth = (Networth) item;
+                result.setNetWorth(new NetWorthEntity(networth));
+                break;
+            case "Jerseys":
+                Jerseys jerseys = (Jerseys) item;
+                result.setJerseys(buildJerseysEntities(jerseys));
+                break;
+            case "Goals":
+                Goals goals = (Goals) item;
+                result.setGoals(buildGoalsEntity(goals));
+                break;
+            case "Behinds":
+                Behinds behinds = (Behinds) item;
+                result.setBehinds(buildBehindsEntity(behinds));
+                break;
+            case "Matchproperties":
+                Matchproperties mp = (Matchproperties) item;
+                result.setMatchProperties(buildMatchProperties(mp));
+                break;
+            case "Teams":
+                Teams teams = (Teams) item;
+                result.setMatchTeams(buildMatchTeams(teams));
+                break;
+            case "Subteam":
+                addToList(new SubteamEntity((Subteam) item), result::getSubteams, result::setSubteams);
+                break;
+            case "Trycount":
+                Trycount tryCount = (Trycount) item;
+                try {
+                    addToMap(
+                            ScoutMatchStatus.getScoutMatchStatusFromLiteralValue(tryCount.getType()),
+                            new HomeAway<>(tryCount.getT1(), tryCount.getT2()),
+                            result::getTryCounts,
+                            result::setTryCounts);
+                } catch (UnknownEnumException e) {
+                    throw new InvalidEntityException(e, "Match.getStatusOrScoreOrRed().Trycount.getType()", tryCount.getType());
+                }
+                break;
+            case "Green":
+                Green green = (Green) item;
+                result.setGreenCards(new HomeAway<>(green.getT1(), green.getT2()));
+                break;
+            default:
+                throw new InvalidEntityException("Match.getStatusOrScoreOrRed", "Unknown event", item.getClass().getSimpleName());
         }
-        return result;
     }
 
     private static <T> void addToList(T item, Supplier<List<T>> getter, Consumer<List<T>> setter) {
@@ -924,12 +844,6 @@ public class JaxbLiveScoutEntityFactoryHelper {
         }
 
         return result;
-    }
-
-    public static ServerTimeEntity buildServerTimeEntity(Servertime servertime) {
-        ServerTimeEntity entity = new ServerTimeEntity();
-        entity.setServerTime(new DateTime(servertime.getValue()));
-        return entity;
     }
 
     public static TeamOfficialEntity buildTeamOfficial(Teamofficial teamofficial) throws InvalidEntityException {

@@ -66,7 +66,7 @@ class ReconnectingGatewayIntegrationTest {
     public void setUp() throws IOException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
-        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null, new NullSdkLogger());
+        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null, NullSdkLogger.INSTANCE);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
                 .setUsername("1")
