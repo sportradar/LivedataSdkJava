@@ -1,18 +1,11 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
-import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamPlayerStatsType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamStatsType;
-import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -76,7 +69,6 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         input.setAwayteamstatstotal("Stats total");
         ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(3);
         expected.setTypeId(1743);
-        expected.setType(EventType.UNKNOWN);
         TeamStatisticsEntity stats = new TeamStatisticsEntity();
         stats.setAwayTeamStatsI5("Stats 5");
         stats.setAwayTeamStatsTotal("Stats total");
@@ -94,7 +86,6 @@ class JaxbLiveScoutEntityFactoryHelperTest {
         input.setHomebattersstatstotal("Batter Stats total");
         ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(3);
         expected.setTypeId(1714);
-        expected.setType(EventType.UNKNOWN);
         PlayerStatisticsEntity stats = new PlayerStatisticsEntity();
         stats.setAwayPitchersStatsTotal("Pitcher Stats total");
         stats.setHomeBattersStatsTotal("Batter Stats total");

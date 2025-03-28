@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JaxbLiveScoutEntityFactoryTest {
-    LiveScoutEntityFactory entityFactory = new JaxbLiveScoutEntityFactory(NullSdkLogger.INSTANCE);
+    LiveScoutEntityFactory entityFactory = new JaxbLiveScoutEntityFactory();
 
     @Test
     void buildMatchListEntity_Null_Input_Test() {

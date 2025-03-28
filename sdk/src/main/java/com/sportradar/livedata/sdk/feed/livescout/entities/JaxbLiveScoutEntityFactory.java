@@ -19,13 +19,6 @@ import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 @SuppressWarnings("JavaDoc")
 public class JaxbLiveScoutEntityFactory implements LiveScoutEntityFactory {
 
-    protected final SdkLogger sdkLogger;
-
-    @Inject
-    public JaxbLiveScoutEntityFactory(final SdkLogger sdkLogger) {
-        this.sdkLogger = sdkLogger;
-    }
-
     @Override
     public MatchBookingEntity buildMatchBookingEntity(Bookmatch bookMatch) throws InvalidEntityException {
         MatchBookingEntity result = new MatchBookingEntity();

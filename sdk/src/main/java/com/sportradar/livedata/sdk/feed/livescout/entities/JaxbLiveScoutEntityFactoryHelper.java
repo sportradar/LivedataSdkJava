@@ -162,12 +162,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         if (ScoutFeedType.FULL_PAGINATED.equals(result.getFeedType())) {
             result.setPagination(new PaginationEntity(match.getUuid(), match.getPage(), match.getTotalpages()));
         }
-        // need to add logger here and show match.getExpectedlatencylevel() when no enum is found
-        result.setExpectedLatencyLevel(
-                match.getExpectedlatencylevelid() != null
-                ? LatencyLevel.getLatencyLevelFromValue(match.getExpectedlatencylevelid())
-                : null
-        );
+        result.setExpectedLatencyLevel(LatencyLevel.getLatencyLevelFromValue(match.getExpectedlatencylevelid()));
 
         return result;
     }
@@ -627,11 +622,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         } catch (UnknownEnumException e) {
             throw new InvalidEntityException(e, "Event.getSide()", event.getSide());
         }
-        if (event.getType() > 0) {
-            result.setTypeId(event.getType());
-            result.setType(EventType.getEventTypeFromLiteralValue(Integer.toString(event.getType())));
-        }
-
+        result.setTypeId(event.getType());
         result.setSecondScoreType(event.getSecondscoretype());
         result.setScoreTypeQualifier(event.getScoretypequalifier());
         if (event.getHappenedat() != null) {

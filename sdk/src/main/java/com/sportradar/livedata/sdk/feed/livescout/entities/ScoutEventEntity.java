@@ -2,7 +2,6 @@ package com.sportradar.livedata.sdk.feed.livescout.entities;
 
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
 import com.sportradar.livedata.sdk.feed.livescout.enums.BallEventType;
-import com.sportradar.livedata.sdk.feed.livescout.enums.EventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -129,7 +128,6 @@ public class ScoutEventEntity implements Serializable {
     private Long firstBasePlayer;
     private Long secondBasePlayer;
     private Long thirdBasePlayer;
-    private EventType type;
     private int typeId;
     private Integer weaponId;
     private String weaponName;
@@ -872,17 +870,6 @@ public class ScoutEventEntity implements Serializable {
      * @return number of strikes
      */
     public Integer getStrikes() { return strikes; }
-
-    /**
-     * Each event type has an id (e.g. yellow card 40, event deleted 1044, early bet status 1091, etc.).
-     * See LiveScout documentation to see which event types are supported for each sport.
-     * New event types can be offered in the future.
-     * @return type
-     * @deprecated
-     * Please use the appropriate event typeId instead and map typeId to event type based on sport in
-     * according to documentation.
-     */
-    public EventType getType() { return type; }
 
     /**
      * Each event type has an id (e.g. yellow card 40, event deleted 1044, early bet status 1091, etc.).

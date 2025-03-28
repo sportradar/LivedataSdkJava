@@ -2,6 +2,7 @@ package com.sportradar.livedata.sdk.di;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.sportradar.livedata.sdk.common.classes.LoggerProvider;
 import com.sportradar.livedata.sdk.common.settings.*;
 import com.sportradar.livedata.sdk.di.*;
 
@@ -21,6 +22,7 @@ public class DiTestHelper {
                     new GeneralInjectionModule(new JmxSettings(false, "localhost", 12345, null, null)),//TODO test
                     new LiveScoutInjectionModule(liveScoutSettings)
             );
+            injector.getInstance(LoggerProvider.class);
         }
         return injector;
     }

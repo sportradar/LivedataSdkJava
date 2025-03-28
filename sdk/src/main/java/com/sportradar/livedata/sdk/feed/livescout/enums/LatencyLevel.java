@@ -1,30 +1,35 @@
 package com.sportradar.livedata.sdk.feed.livescout.enums;
 
+import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.classes.EntityEnumHelper;
+import com.sportradar.livedata.sdk.common.classes.LoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
-import lombok.Getter;
-import lombok.Setter;
 
 public enum LatencyLevel implements EntityEnum {
-    UNKNOWN(0, "unknown"), // seems that LDS won't send anything if NOT SET
-    LOW(1, "low"),
-    MODERATE(2, "moderate"),
-    HIGH(3, "high"),
-    VERY_HIGH(4, "very_high"),
-    EXCEPTIONAL(5, "exceptional");
+    UNKNOWN(0), // seems that LDS won't send anything if NOT SET
+    LOW(1),
+    MODERATE(2),
+    HIGH(3),
+    VERY_HIGH(4),
+    EXCEPTIONAL(5);
 
-    private int value; // basically id of latency
+    private final int value; // basically id of latency
 
-    private String name; // in case of new latency level, we also will have its name saved
-
-    LatencyLevel(int value, String name) {
+    LatencyLevel(int value) {
         this.value = value;
-        this.name = name;
     }
 
-    public static LatencyLevel getLatencyLevelFromValue(int value) {
-        LatencyLevel result = EntityEnumHelper.getEnumMemberFromValue(LatencyLevel.values(), value);
-        return result == null ? UNKNOWN : result;
+    public static LatencyLevel getLatencyLevelFromValue(Integer value) {
+        if (value != null) {
+            LatencyLevel result = EntityEnumHelper.getEnumMemberFromValue(LatencyLevel.values(), value);
+            if (result == null) {
+                LoggerProvider.getLogger().logAlert(Level.WARN, "Unknown latency level value: " + value);
+                return UNKNOWN;
+            }
+            return result;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -39,9 +44,4 @@ public enum LatencyLevel implements EntityEnum {
     public Integer getValue() {
         return value;
     }
-
-    public String getName() {
-        return name;
-    }
-
 }

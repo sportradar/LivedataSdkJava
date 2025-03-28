@@ -64,7 +64,6 @@ public class LiveScoutProtoEntityFactory {
 
         LatencyLevel latency = getEnumValue(LatencyLevel.values(), valueBase);
         result.setExpectedlatencylevelid(latency == LatencyLevel.UNKNOWN ? 99 : latency.getValue());
-        result.setExpectedlatencylevel(latency == LatencyLevel.UNKNOWN ? "invalid" : latency.getName());
         return result;
     }
 
@@ -529,7 +528,6 @@ public class LiveScoutProtoEntityFactory {
         result.setInningHalf(getEnumValue(Inning.values(), valueBase));
         result.setServer(getEnumValue(Team.values(), valueBase));
         result.setSide(getEnumValue(Team.values(), valueBase));
-        result.setType(EventType.ATTACK);//TODO that enum should be removed
         result.setTypeId(1126);// + valueBase);
         result.setHappenedAt(new DateTime(12234556L + valueBase, DateTimeZone.UTC));
         result.setRefsTime(valueBase % 2 == 0 ? (long) valueBase : null);

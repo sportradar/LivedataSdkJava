@@ -3,6 +3,15 @@ Livedata SDK is a client library that enables easier integration with the Livesc
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.* ScoutFeedType extended with new type - PARTIAL
 
 **2.0.13 (2025-3-27)**
+* Removed name in LatencyLevel enum
+* EntityType enum removed
+* Field type removed fromScoutEventEntity
+* Refactoring in core classes: 
+  - got rid of LiveScoutInjectionModule by moving logic into LiveScoutInjectionModule
+  - some logic moved from JaxbLiveScoutEntityFactoryHelper to JaxbLiveScoutEntityFactory
+  - added logs in parsing methods
+
+**2.0.13 (2025-3-27)**
 * New LatencyLevel enum added
 * MatchHeaderEntity extended with new properties:
   - isRts
