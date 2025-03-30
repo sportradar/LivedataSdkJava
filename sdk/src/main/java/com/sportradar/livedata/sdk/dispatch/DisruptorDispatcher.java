@@ -6,6 +6,7 @@ import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.InsufficientCapacityException;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public abstract class DisruptorDispatcher<T extends DispatcherContainer<T>> {
     /**
      * The {@link SdkLogger} instance used for structured logging.
      */
-    protected final SdkLogger sdkLogger;
+    protected final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
      * The number of the dispatchers
      */
@@ -73,22 +74,18 @@ public abstract class DisruptorDispatcher<T extends DispatcherContainer<T>> {
      * @param executor The {@link ExecutorService} used to spawn background threads
      * @param dispatcherCount The number of the dispatchers.
      * @param dispatcherQueueSize The size of the disruptor.
-     * @param sdkLogger The {@link SdkLogger} instance used for structured logging.
      */
     protected DisruptorDispatcher(
             ExecutorService executor,
             int dispatcherCount,
-            int dispatcherQueueSize,
-            SdkLogger sdkLogger) {
+            int dispatcherQueueSize) {
         checkNotNull(executor, "executor cannot be a null reference");
         checkArgument(dispatcherCount > 0, "dispatcherCount must be greater than 0");
         checkArgument(dispatcherQueueSize > 0, "dispatcherQueueSize must be greater than 0");
-        checkNotNull(sdkLogger, "sdkLogger cannot be a null reference");
 
         this.executor = executor;
         this.dispatcherQueueSize = dispatcherQueueSize;
         this.halfDispatcherQueueSize = dispatcherQueueSize / 2;
-        this.sdkLogger = sdkLogger;
         this.dispatcherCount = dispatcherCount;
     }
 

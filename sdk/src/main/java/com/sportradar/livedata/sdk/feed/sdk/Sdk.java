@@ -3,7 +3,7 @@ package com.sportradar.livedata.sdk.feed.sdk;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.sportradar.livedata.sdk.common.classes.LoggerProvider;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.classes.jmx.SimpleJMX;
 import com.sportradar.livedata.sdk.common.exceptions.InvalidPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
@@ -197,7 +197,7 @@ public class Sdk implements AutoCloseable {
                 new GeneralInjectionModule(loader.getJmxSettings()),
                 new LiveScoutInjectionModule(loader.getLiveScoutSettings())
         );
-        injector.getInstance(LoggerProvider.class);
+        injector.getInstance(SdkLoggerProvider.class);
     }
 
     /**

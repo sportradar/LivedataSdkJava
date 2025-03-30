@@ -13,7 +13,6 @@ import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.util.FakeServer;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import com.sportradar.livedata.sdk.util.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
@@ -36,7 +35,6 @@ import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Integration tests for the {@link ReconnectingGateway} class.
@@ -66,7 +64,7 @@ class ReconnectingGatewayIntegrationTest {
     public void setUp() throws IOException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
-        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null, NullSdkLogger.INSTANCE);
+        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
                 .setUsername("1")

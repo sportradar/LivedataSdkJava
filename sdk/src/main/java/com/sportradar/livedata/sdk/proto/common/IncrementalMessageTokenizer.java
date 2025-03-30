@@ -5,6 +5,7 @@
 package com.sportradar.livedata.sdk.proto.common;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import org.apache.commons.io.IOUtils;
@@ -45,7 +46,7 @@ public class IncrementalMessageTokenizer extends MessageTokenizerBase {
     /**
      * A {@link SdkLogger} implementation used to log traffic.
      */
-    private final SdkLogger sdkLogger;
+    private final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
      * The buffer used to temporarily store the un-processed data.
      */
@@ -58,15 +59,12 @@ public class IncrementalMessageTokenizer extends MessageTokenizerBase {
     /**
      * Initializes a new instance of the {@link IncrementalMessageTokenizer} class.
      *
-     * @param sdkLogger  A {@link SdkLogger} implementation used to log traffic.
      * @param bufferSize the size of the internal buffer used to store incomplete messages
      * @throws IllegalArgumentException the {@code bufferSize} is smaller than or equal to 0.
      */
-    public IncrementalMessageTokenizer(SdkLogger sdkLogger, int bufferSize) {
-        checkNotNull(sdkLogger, "sdkLogger cannot be a null reference");
+    public IncrementalMessageTokenizer(int bufferSize) {
         checkArgument(bufferSize > 0, "The maxBufferSize must be greater than zero");
 
-        this.sdkLogger = sdkLogger;
         this.buffer = new byte[bufferSize];
     }
 

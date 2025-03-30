@@ -1,6 +1,11 @@
 package com.sportradar.livedata.sdk.proto;
 
 import ch.qos.logback.classic.Level;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.sportradar.livedata.sdk.common.classes.NullSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.proto.common.IncrementalMessageTokenizer;
 import com.sportradar.livedata.sdk.proto.common.MessageTokenizerListener;
@@ -10,6 +15,7 @@ import org.jmock.Sequence;
 import org.jmock.States;
 import org.jmock.junit5.JUnit5Mockery;
 import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +41,27 @@ class IncrementalMessageTokenizerTest {
         sequence = context.sequence("sequence");
         state = context.states("state");
         sdkLogger = context.mock(SdkLogger.class);
-        incrementalMessageTokenizerCrLfCrLf = new IncrementalMessageTokenizer(sdkLogger, bufferSize);
+        Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(SdkLogger.class).toInstance(sdkLogger);
+            }
+        });
+        injector.getInstance(SdkLoggerProvider.class);
+        incrementalMessageTokenizerCrLfCrLf = new IncrementalMessageTokenizer(bufferSize);
         messageTokenizerListener = context.mock(MessageTokenizerListener.class);
         incrementalMessageTokenizerCrLfCrLf.setListener(messageTokenizerListener);
+    }
+
+    @AfterAll
+    public static void tearDownAfterAll() {
+        Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(SdkLogger.class).toInstance(NullSdkLogger.INSTANCE);
+            }
+        });
+        injector.getInstance(SdkLoggerProvider.class);
     }
 
     @Test

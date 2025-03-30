@@ -2,6 +2,7 @@ package com.sportradar.livedata.sdk.feed.livescout.classes;
 
 import ch.qos.logback.classic.Level;
 import com.lmax.disruptor.InsufficientCapacityException;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
@@ -43,7 +44,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
     /**
      * Sdk logging facility.
      */
-    protected final SdkLogger sdkLogger;
+    protected final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
      * A {@link LiveScoutDispatcher} implementation used to dispatch messages to the user.
      */
@@ -83,7 +84,6 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      * @param protocolManager    A {@link ProtocolManager} implementation used to manage the underlying protocol and related components
      * @param userRequestManager The {@link UserRequestManager} used to process user requests.
      * @param dispatcher         A {@link LiveScoutDispatcher} implementation used to dispatch messages to the user.
-     * @param sdkLogger          Logger instance.
      * @param settings           Provided settings.
      * @throws IllegalArgumentException The {@code protocolManager} is a null reference or
      *                                  a {@code userRequestManager} is a null reference or
@@ -93,7 +93,6 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
             ProtocolManager<OutgoingMessage, LiveScoutEntityBase> protocolManager,
             LiveScoutUserRequestManager userRequestManager,
             LiveScoutDispatcher dispatcher,
-            SdkLogger sdkLogger,
             LiveScoutSettings settings) {
 
         checkNotNull(protocolManager, "protocolManager cannot be a null reference");
@@ -104,7 +103,6 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
         this.protocolManager = protocolManager;
         this.userRequestManager = userRequestManager;
         this.dispatcher = dispatcher;
-        this.sdkLogger = sdkLogger;
         this.settings = settings;
         dispatcher.setFeed(this);
 

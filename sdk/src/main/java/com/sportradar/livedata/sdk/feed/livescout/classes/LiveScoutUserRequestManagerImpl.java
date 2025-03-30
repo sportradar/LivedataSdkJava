@@ -3,6 +3,7 @@ package com.sportradar.livedata.sdk.feed.livescout.classes;
 import ch.qos.logback.classic.Level;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.timer.TimeProvider;
 import com.sportradar.livedata.sdk.feed.common.MessageProcessorListener;
@@ -54,7 +55,7 @@ public class LiveScoutUserRequestManagerImpl
     /**
      * SDK logger
      */
-    protected final SdkLogger sdkLogger;
+    protected final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
      * A {@link com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory} instance used to generate server requests.
      */
@@ -91,20 +92,17 @@ public class LiveScoutUserRequestManagerImpl
      * @param requestFactory A {@link LiveScoutStatusFactory} instance used to generate server requests.
      * @param maxAge         max age of events
      * @param testManager    test manager
-     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException The {@code requestFactory} is a null reference.
      */
     public LiveScoutUserRequestManagerImpl(
             final int index,
             final LiveScoutStatusFactory requestFactory,
             final Duration maxAge,
-            final TestManager testManager,
-            final SdkLogger sdkLogger
+            final TestManager testManager
     ) {
         checkArgument(index > 0, "index must be greater than zero");
         checkNotNull(requestFactory, "requestFactory cannot be a null reference");
         checkNotNull(testManager, "testManager cannot be a null reference");
-        checkNotNull(sdkLogger, "sdkLogger cannot be a null reference");
 
         this.requestFactory = requestFactory;
         this.testManager = testManager;
@@ -119,7 +117,6 @@ public class LiveScoutUserRequestManagerImpl
 
         this.index = index;
         this.wasDisconnected = false;
-        this.sdkLogger = sdkLogger;
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.sportradar.livedata.sdk.proto;
 
 import ch.qos.logback.classic.Level;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.rategate.RateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateGateContinuation;
@@ -66,7 +65,6 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      * @param outgoingMessageInspector The {@link OutgoingMessageInspector} implementation used to inspect send messages.
      * @param statusFactory            The factory used to build requests send to the feed.
      * @param settings                 The {@link LiveFeedSettings} instance containing the application's settings concerning the live-feed
-     * @param sdkLogger                The {@link SdkLogger} used for structured logging.
      */
     public LiveFeedProtocol(
             final Gateway gateway,
@@ -75,10 +73,9 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
             final RateLimiter rateLimiter,
             final OutgoingMessageInspector<OutgoingMessage> outgoingMessageInspector,
             final StatusFactory statusFactory,
-            final LiveFeedSettings settings,
-            final SdkLogger sdkLogger) {
+            final LiveFeedSettings settings) {
 
-        super(sdkLogger, gateway, messageParser);
+        super(gateway, messageParser);
 
         checkNotNull(messageWriter, "messageWriter cannot be a null reference");
         checkNotNull(rateLimiter, "rateLimiter cannot be a null reference");

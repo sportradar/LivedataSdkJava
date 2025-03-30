@@ -7,8 +7,6 @@ import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.system.framework.common.*;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
-import com.sportradar.livedata.sdk.system.framework.common.*;
 
 import jakarta.xml.bind.JAXBException;
 
@@ -27,7 +25,6 @@ public class LiveScoutSystemTestFramework {
         mockGateway = new FakeGateway();
         try {
             messageParser = new SystemTestMessageParser(
-                    NullSdkLogger.INSTANCE,
                     new OutgoingMessageListener() {
                         @Override
                         public <T extends OutgoingMessage> void messageSendToServer(T msg) throws Exception {

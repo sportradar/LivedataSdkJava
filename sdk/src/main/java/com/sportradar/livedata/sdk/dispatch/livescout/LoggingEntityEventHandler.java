@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.dispatch.livescout;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.livescout.entities.*;
@@ -8,14 +9,12 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 import org.joda.time.Duration;
 
-import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
-
 public class LoggingEntityEventHandler extends EntityEventHandler {
 
     /**
      * The {@link SdkLogger} implementation used to log messages.
      */
-    private final SdkLogger sdkLogger;
+    private final SdkLogger sdkLogger = SdkLoggerProvider.get();
 
     /**
      * Initializes a new instance of the {@link EntityEventHandler} class
@@ -24,13 +23,9 @@ public class LoggingEntityEventHandler extends EntityEventHandler {
      * @param dispatcherCount The number of {@link EntityEventHandler} instances handling user events
      * @param listener        The {@link LiveScoutFeedListener} instance used to inform the user about incoming messages
      * @param feed            The {@link LiveScoutFeed} which will be passed to method calls on the user provided listener
-     * @param sdkLogger       The {@link SdkLogger} implementation used to log messages.
      */
-    public LoggingEntityEventHandler(int id, int dispatcherCount, LiveScoutFeedListener listener, LiveScoutFeed feed, SdkLogger sdkLogger) {
+    public LoggingEntityEventHandler(int id, int dispatcherCount, LiveScoutFeedListener listener, LiveScoutFeed feed) {
         super(id, dispatcherCount, listener, feed);
-        checkNotNull(sdkLogger, "sdkLogger cannot be a null reference");
-
-        this.sdkLogger = sdkLogger;
     }
 
     @Override

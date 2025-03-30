@@ -2,7 +2,6 @@ package com.sportradar.livedata.sdk.system.framework.common;
 
 
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.MessageBase;
@@ -21,7 +20,6 @@ public class SystemTestMessageParser {
 
     @SuppressWarnings("unchecked")
     public SystemTestMessageParser(
-            final SdkLogger sdkLogger,
             final OutgoingMessageListener outgoingMessageListener,
             final String incomingPackageName,
             final String outgoingPackageName) throws JAXBException {
@@ -34,7 +32,7 @@ public class SystemTestMessageParser {
         JaxbBuilder jaxbBuilderOut = new JaxbFactory(jaxbContextOut);
 
         writer = new JaxbMessageWriter<>(jaxbBuilderIn);
-        parser = new JaxbMessageParser<>(jaxbBuilderOut, null, sdkLogger);
+        parser = new JaxbMessageParser<>(jaxbBuilderOut, null);
         parser.setListener(new MessageParserListener() {
             @Override
             public void onMessageReady(MessageBase message) {

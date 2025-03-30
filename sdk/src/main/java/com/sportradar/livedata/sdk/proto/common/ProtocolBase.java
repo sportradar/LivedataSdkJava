@@ -5,6 +5,7 @@
 package com.sportradar.livedata.sdk.proto.common;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
 import com.sportradar.livedata.sdk.common.exceptions.SdkFatalException;
@@ -45,7 +46,7 @@ public abstract class ProtocolBase<I extends IncomingMessage, O extends Outgoing
     /**
      * Sdk logging facility.
      */
-    protected final SdkLogger sdkLogger;
+    protected final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
      * The value specifying whether the protocol is started - i.e. is communication with the server enabled.
      */
@@ -58,21 +59,16 @@ public abstract class ProtocolBase<I extends IncomingMessage, O extends Outgoing
     /**
      * Initializes a new instance of the {@link ProtocolBase} class.
      *
-     * @param sdkLogger     The {@link SdkLogger} implementation used for structured logging.
      * @param gateway       The {@link Gateway} implementation used to establish a connection to the server.
      * @param messageParser The {@link MessageParser} used to parse data received from the server.
      * @throws IllegalArgumentException The {@code sdkLogger} is a null reference or {@code gateway} is a null reference or {@code messageParser} is a null reference.
      */
     public ProtocolBase(
-            final SdkLogger sdkLogger,
             final Gateway gateway,
             final MessageParser<I> messageParser) {
-        checkNotNull(sdkLogger, "The sdkLogger cannot be a null reference");
         checkNotNull(gateway, "The gateway cannot be a null reference");
         checkNotNull(messageParser, "The messageParser cannot be a null reference");
 
-
-        this.sdkLogger = sdkLogger;
         this.messageParser = messageParser;
         this.gateway = gateway;
 

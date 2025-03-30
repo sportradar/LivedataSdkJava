@@ -5,6 +5,7 @@
 package com.sportradar.livedata.sdk.proto.common;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.proto.dto.MessageBase;
@@ -35,23 +36,19 @@ public class JaxbMessageParser<T extends MessageBase> extends MessageParserBase<
     /**
      * Sdk logger for logging various events
      */
-    private final SdkLogger sdkLogger;
+    private final SdkLogger sdkLogger = SdkLoggerProvider.get();
 
     /**
      * Initializes a new instance of the {@link JaxbMessageParser} class.
      *
      * @param builder   The {@link JaxbBuilder} implementation used to construct the {@link Unmarshaller} instances.
      * @param tokenizer The {@link MessageTokenizer} implementation used to tokenize received data, or a null reference.
-     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException the {@code builder} is a null reference or {@code bufferSize} is smaller than or equal to 0.
      */
-    public JaxbMessageParser(JaxbBuilder builder, MessageTokenizer tokenizer, SdkLogger sdkLogger) {
+    public JaxbMessageParser(JaxbBuilder builder, MessageTokenizer tokenizer) {
         super(tokenizer);
-
         checkNotNull(builder, "The builder cannot be a null reference");
-        checkNotNull(sdkLogger);
         this.builder = builder;
-        this.sdkLogger = sdkLogger;
     }
 
     /**

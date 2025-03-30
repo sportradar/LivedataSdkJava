@@ -6,7 +6,6 @@ package com.sportradar.livedata.sdk.common.networking.integration;
 
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
@@ -23,7 +22,6 @@ import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
@@ -91,8 +89,7 @@ class BetradarServerTest {
 
         clientMessageParser = new JaxbMessageParser<>(
                 jaxbBuilder,
-                new IncrementalMessageTokenizer(NullSdkLogger.INSTANCE, 4 * 1024 * 1024),
-                NullSdkLogger.INSTANCE);
+                new IncrementalMessageTokenizer(4 * 1024 * 1024));
         clientMessageWriter = new JaxbMessageWriter<>(jaxbBuilder);
     }
 
@@ -112,8 +109,7 @@ class BetradarServerTest {
                 new RateLimiter(new NullRateGate(), new NullRateGate(), new NullRateGate()),
                 new LiveScoutOutgoingMessageInspector(),
                 new LiveScoutStatusFactory(new SdkVersion()),
-                settings,
-                NullSdkLogger.INSTANCE);
+                settings);
 
         protocol.setListener(protocolListener);
 

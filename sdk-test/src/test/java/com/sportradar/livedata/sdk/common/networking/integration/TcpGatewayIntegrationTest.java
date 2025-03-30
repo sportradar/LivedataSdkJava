@@ -10,7 +10,6 @@ import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.util.FakeServer;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import com.sportradar.livedata.sdk.util.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
@@ -59,7 +58,7 @@ class TcpGatewayIntegrationTest {
         jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder builder = new JaxbFactory(jaxbContext);
 
-        messageParser = new JaxbMessageParser<>(builder, null, NullSdkLogger.INSTANCE);
+        messageParser = new JaxbMessageParser<>(builder, null);
         messageWriter = new JaxbMessageWriter<>(builder);
 
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();

@@ -4,7 +4,11 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
@@ -35,9 +39,18 @@ public class LoggingEntityEventHandlerBase {
 
 
     public void setUp() throws Exception {
+
         loggerSettings = DefaultSettingsBuilderHelper.getLiveScout().getLoggerSettingsBuilder().build();
         timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
         sdkLogger = new FileSdkLogger(loggerSettings, timer);
+
+        Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(SdkLogger.class).toInstance(sdkLogger);
+            }
+        });
+        injector.getInstance(SdkLoggerProvider.class);
 
         logger = FileSdkLoggerTestBase.getLogger(sdkLogger, FileSdkLogger.ROOT_NS + ".logger." + SdkLogAppenderType.CLIENT_INTERACTION.getFileName());
         loggerContext = logger.getLoggerContext();

@@ -2,7 +2,7 @@ package com.sportradar.livedata.sdk.feed.livescout.enums;
 
 import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.classes.EntityEnumHelper;
-import com.sportradar.livedata.sdk.common.classes.LoggerProvider;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
 
 public enum LatencyLevel implements EntityEnum {
@@ -23,7 +23,7 @@ public enum LatencyLevel implements EntityEnum {
         if (value != null) {
             LatencyLevel result = EntityEnumHelper.getEnumMemberFromValue(LatencyLevel.values(), value);
             if (result == null) {
-                LoggerProvider.getLogger().logAlert(Level.WARN, "Unknown latency level value: " + value);
+                SdkLoggerProvider.get().logAlert(Level.WARN, "Unknown latency level value: " + value);
                 return UNKNOWN;
             }
             return result;

@@ -8,12 +8,15 @@ import ch.qos.logback.classic.Level;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import org.joda.time.Duration;
-import org.slf4j.LoggerFactory;
 
 /**
  * Null SDK logger implementation.
  */
 public class NullSdkLogger implements SdkLogger {
+
+    public static final SdkLogger INSTANCE = new NullSdkLogger();
+
+    private NullSdkLogger(){}
 
     /**
      * Corrupt input feed data will be dumped into log files dedicated to corrupt input data (could be garbage and not even text, exceeding max buffer size).

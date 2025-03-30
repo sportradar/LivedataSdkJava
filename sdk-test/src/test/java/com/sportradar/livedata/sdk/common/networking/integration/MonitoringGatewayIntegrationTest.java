@@ -15,7 +15,6 @@ import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.util.FakeServer;
-import com.sportradar.livedata.sdk.util.NullSdkLogger;
 import com.sportradar.livedata.sdk.util.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
@@ -67,7 +66,7 @@ class MonitoringGatewayIntegrationTest {
 
         JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
-        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null, NullSdkLogger.INSTANCE);
+        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();
         this.serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);

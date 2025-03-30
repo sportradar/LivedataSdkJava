@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.feed.livescout.classes;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.common.EntityMapper;
 import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
@@ -26,23 +27,19 @@ public class LiveScoutEntityMapper implements EntityMapper<IncomingMessage, Live
     /**
      * A {@link SdkLogger} implementation used for structured logging.
      */
-    private final SdkLogger sdkLogger;
+    private final SdkLogger sdkLogger = SdkLoggerProvider.get();
 
     /**
      * Initializes a new instance of the {@link LiveScoutEntityMapper} class.
      *
      * @param factory   A {@link LiveScoutEntityFactory} used to build live scout entities.
-     * @param sdkLogger Logger instance.
      * @throws IllegalArgumentException the {@code factory} is a null reference or
      *                                  {@code sdkLogger} is a null reference
      */
     @Inject
-    public LiveScoutEntityMapper(LiveScoutEntityFactory factory,
-                                 SdkLogger sdkLogger) {
+    public LiveScoutEntityMapper(LiveScoutEntityFactory factory) {
         checkNotNull(factory, "factory cannot be a null reference");
-        checkNotNull(sdkLogger, "sdkLogger cannot be a null reference");
         this.factory = factory;
-        this.sdkLogger = sdkLogger;
     }
 
 

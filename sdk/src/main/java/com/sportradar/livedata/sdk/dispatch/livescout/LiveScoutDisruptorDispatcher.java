@@ -5,7 +5,6 @@ import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.InsufficientCapacityException;
 import com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.dispatch.DisruptorDispatcher;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import org.joda.time.Duration;
@@ -51,17 +50,15 @@ public class LiveScoutDisruptorDispatcher extends DisruptorDispatcher<LiveScoutD
      * @param dispatcherCount The number of the consumers which dispatch events to the user.
      * @param dispatcherQueueSize The size of the disruptor.
      * @param executor        The {@link ExecutorService} used to spawn background threads
-     * @param sdkLogger The {@link SdkLogger} instance used for structured logging.
      * @param counter The {@link LiveScoutStatisticsCounter} event counter used as JMX MBeans
      */
     public LiveScoutDisruptorDispatcher(
             int dispatcherCount,
             int dispatcherQueueSize,
             ExecutorService executor,
-            SdkLogger sdkLogger,
             LiveScoutStatisticsCounter counter) {
 
-        super(executor, dispatcherCount, dispatcherQueueSize, sdkLogger);
+        super(executor, dispatcherCount, dispatcherQueueSize);
 
         checkNotNull(counter);
         this.executor = executor;
@@ -204,7 +201,7 @@ public class LiveScoutDisruptorDispatcher extends DisruptorDispatcher<LiveScoutD
         EventHandler<LiveScoutDispatcherContainer>[] entityDispatchers = new EventHandler[dispatcherCount];
 
         for (int i = 1; i <= dispatcherCount; i++) {
-            entityDispatchers[i - 1] = new StatisticsLiveScoutEntityEventHandler(i, dispatcherCount, listener, feed, sdkLogger, counter);
+            entityDispatchers[i - 1] = new StatisticsLiveScoutEntityEventHandler(i, dispatcherCount, listener, feed, counter);
         }
         return entityDispatchers;
     }

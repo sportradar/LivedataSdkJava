@@ -119,16 +119,11 @@ public class LiveScoutInjectionModule implements Module {
     @Singleton
     protected SdkLogger provideSdkLogger(ScheduledExecutorService scheduledExecutorService) {
         Timer timer = new PeriodicTimer(scheduledExecutorService);
-
-        SdkLogger ret;
-
         try {
-            ret = new FileSdkLogger(settings.getLoggerSettings(), timer, "FEED");
+            return new FileSdkLogger(settings.getLoggerSettings(), timer, "FEED");
         } catch (SdkException e) {
-            ret = new NullSdkLogger();
+            return NullSdkLogger.INSTANCE;
         }
-
-        return ret;
     }
 
     @Provides
@@ -173,8 +168,7 @@ public class LiveScoutInjectionModule implements Module {
                 USER_REQUEST_MANAGER_INDEX,
                 factory,
                 settings.getMatchExpireMaxAge(),
-                testManager,
-                sdkLogger);
+                testManager);
     }
 
     @Provides
@@ -211,16 +205,14 @@ public class LiveScoutInjectionModule implements Module {
                 protocol,
                 entityMapper,
                 pipeline,
-                producerComposite,
-                sdkLogger);
+                producerComposite);
     }
 
     @Provides
     @Singleton
     protected LiveScoutDispatcher provideDispatcher(
             ExecutorService executorService,
-            SimpleJMX jmxManager,
-            SdkLogger sdkLogger) {
+            SimpleJMX jmxManager) {
 
         LiveScoutStatisticsCounter counter = new LiveScoutStatisticsCounter();
         jmxManager.add(counter);
@@ -228,7 +220,6 @@ public class LiveScoutInjectionModule implements Module {
                 settings.getDispatcherThreadCount(),
                 settings.getDispatcherQueueSize(),
                 executorService,
-                sdkLogger,
                 counter);
     }
 
@@ -245,7 +236,6 @@ public class LiveScoutInjectionModule implements Module {
                 protocolManagerProvider.get(),
                 userRequestManagerProvider.get(),
                 dispatcherProvider.get(),
-                sdkLoggerProvider.get(),
                 settings)
                 : null;
     }
@@ -255,13 +245,12 @@ public class LiveScoutInjectionModule implements Module {
     protected Protocol<IncomingMessage, OutgoingMessage> provideProtocol(
             LiveScoutStatusFactory statusFactory,
             ScheduledExecutorService scheduledExecutorService,
-            Gateway gateway,
-            SdkLogger sdkLogger) throws JAXBException {
+            Gateway gateway) throws JAXBException {
 
         JAXBContext incomingContext = JAXBContext.newInstance(INCOMING_PACKAGE_NAME);
         JaxbBuilder incomingBuilder = new JaxbFactory(incomingContext);
-        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(sdkLogger, settings.getMaxMessageSize());
-        MessageParser<IncomingMessage> messageParser = new JaxbMessageParser<>(incomingBuilder, tokenizer, sdkLogger);
+        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(settings.getMaxMessageSize());
+        MessageParser<IncomingMessage> messageParser = new JaxbMessageParser<>(incomingBuilder, tokenizer);
 
         JAXBContext outgoingContext = JAXBContext.newInstance(OUTGOING_PACKAGE_NAME);
         JaxbBuilder outgoingBuilder = new JaxbFactory(outgoingContext);
@@ -279,8 +268,7 @@ public class LiveScoutInjectionModule implements Module {
                 rateLimiter,
                 new LiveScoutOutgoingMessageInspector(),
                 statusFactory,
-                settings,
-                sdkLogger);
+                settings);
 
     }
 

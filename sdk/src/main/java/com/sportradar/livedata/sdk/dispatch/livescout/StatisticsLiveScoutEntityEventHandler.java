@@ -1,7 +1,6 @@
 package com.sportradar.livedata.sdk.dispatch.livescout;
 
 import com.sportradar.livedata.sdk.common.classes.jmx.LiveScoutStatisticsCounter;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.livescout.entities.*;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
@@ -19,7 +18,6 @@ public final class StatisticsLiveScoutEntityEventHandler extends LoggingEntityEv
      * @param dispatcherCount The number of {@link EntityEventHandler} instances handling user events
      * @param listener        The {@link LiveScoutFeedListener} instance used to inform the user about incoming messages
      * @param feed            The {@link LiveScoutFeed} which will be passed to method calls on the user provided listener
-     * @param sdkLogger       The {@link SdkLogger} implementation used to log messages.
      * @param counter         The {@link LiveScoutStatisticsCounter} used for counting entity calls
      */
     protected StatisticsLiveScoutEntityEventHandler(
@@ -27,10 +25,9 @@ public final class StatisticsLiveScoutEntityEventHandler extends LoggingEntityEv
             int dispatcherCount,
             LiveScoutFeedListener listener,
             LiveScoutFeed feed,
-            SdkLogger sdkLogger,
             LiveScoutStatisticsCounter counter) {
 
-        super(id, dispatcherCount, listener, feed, sdkLogger);
+        super(id, dispatcherCount, listener, feed);
 
         checkNotNull(counter, "The counter cannot be a null reference");
         this.counter = counter;

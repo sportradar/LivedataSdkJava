@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.feed.common;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
@@ -25,7 +26,7 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
     /**
      * The {@link SdkLogger} implementation used for structured logging.
      */
-    protected SdkLogger sdklogger;
+    protected SdkLogger sdklogger = SdkLoggerProvider.get();
     /**
      * The {@link EntityMapper} implementation used to map received messages to feed entities.
      */
@@ -54,23 +55,19 @@ public class LiveFeedProtocolManager implements ProtocolManager<OutgoingMessage,
      * @param entityMapper     The {@link EntityMapper} implementation used to map received messages to feed entities.
      * @param messageProcessor The {@link MessageProcessor} used to process incoming messages
      * @param requestProducer  The {@link RequestProducer} implementation which produces message to be send to the server.
-     * @param sdkLogger        The {@link SdkLogger} used to log messages
      */
     public LiveFeedProtocolManager(
             Protocol<IncomingMessage, OutgoingMessage> protocol,
             EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             MessageProcessor<LiveScoutEntityBase> messageProcessor,
-            RequestProducer<OutgoingMessage> requestProducer,
-            SdkLogger sdkLogger) {
+            RequestProducer<OutgoingMessage> requestProducer) {
         checkNotNull(protocol, "the protocol cannot be a null reference");
         checkNotNull(entityMapper, "entityMapper cannot be a null reference");
-        checkNotNull(sdkLogger, "logger cannot be a null reference");
 
         this.protocol = protocol;
         this.entityMapper = entityMapper;
         this.messageProcessor = messageProcessor;
         this.requestProducer = requestProducer;
-        this.sdklogger = sdkLogger;
         setDependencyListeners();
     }
 

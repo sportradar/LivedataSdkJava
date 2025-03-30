@@ -1,6 +1,12 @@
 package com.sportradar.livedata.sdk.dispatch.livescout;
 
 import ch.qos.logback.classic.Level;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.sportradar.livedata.sdk.common.classes.NullSdkLogger;
+import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
+import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.timer.TimeProvider;
 import com.sportradar.livedata.sdk.dispatch.CommonTestUtils;
 import com.sportradar.livedata.sdk.dispatch.LoggingEntityEventHandlerBase;
@@ -13,6 +19,7 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListen
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.junit5.JUnit5Mockery;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,14 +54,23 @@ class LoggingEntityEventHandlerTest extends LoggingEntityEventHandlerBase {
                 id,
                 dispatcherCount,
                 feedListenerMock,
-                feedMock,
-                sdkLogger);
+                feedMock);
 
         context.checking(new Expectations() {{
             ignoring(feedListenerMock);
         }});
     }
 
+    @AfterAll
+    public static void tearDownAfterAll() {
+        Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(SdkLogger.class).toInstance(NullSdkLogger.INSTANCE);
+            }
+        });
+        injector.getInstance(SdkLoggerProvider.class);
+    }
 
     @Test
     void testOnEvent_DispatchMatchList_DebugLevel() throws Exception {
