@@ -119,6 +119,10 @@ public enum FormatType implements EntityEnum {
      */
     TWO_POINT_CONVERSION_YARD_LINE("twopointconversionyardline"),
     /**
+     * Three point conversion yard line
+     */
+    THREE_POINT_CONVERSION_YARD_LINE("threepointconversionyardline"),
+    /**
      * Extra point yard line
      */
     EXTRA_POINT_YARD_LINE("extrapointyardline"),

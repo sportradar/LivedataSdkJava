@@ -509,6 +509,7 @@
                         <xs:enumeration value="ruleset"/>
                         <xs:enumeration value="onepointconversionyardline"/>
                         <xs:enumeration value="twopointconversionyardline"/>
+                        <xs:enumeration value="threepointconversionyardline"/>
                         <xs:enumeration value="extrapointyardline"/>
                         <xs:enumeration value="noballpenaltyvalue"/>
                         <xs:enumeration value="tiebreakermethod"/>
