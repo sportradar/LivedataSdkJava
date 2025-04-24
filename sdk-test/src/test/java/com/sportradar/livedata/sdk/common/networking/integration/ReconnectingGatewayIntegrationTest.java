@@ -5,6 +5,7 @@ import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.GatewayListener;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
@@ -66,9 +67,10 @@ class ReconnectingGatewayIntegrationTest {
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
         MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
+        AuthSettings authSettings = new AuthSettings("1", "key",
+                null, null, null, null, null);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1")
-                .setPassword("key")
+                .authSettings(authSettings)
                 .build();
         this.serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
 

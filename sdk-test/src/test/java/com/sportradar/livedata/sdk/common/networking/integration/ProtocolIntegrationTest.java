@@ -11,6 +11,7 @@ import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import com.sportradar.livedata.sdk.common.rategate.NullRateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
@@ -79,9 +80,10 @@ class ProtocolIntegrationTest {
         MessageParser<OutgoingMessage> serverMessageParser = new JaxbMessageParser<>(bookmakerStatusJaxbFactory, null);
         MessageWriter<IncomingMessage> serverMessageWriter = new JaxbMessageWriter<>(liveOddsJaxbFactory);
 
+        AuthSettings authSettings = new AuthSettings("1", "key",
+                null, null, null, null, null);
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1")
-                .setPassword("key")
+                .authSettings(authSettings)
                 .build();
 
         serverDriver = new FakeServer(new TcpServer(executor, 5055), serverMessageParser, serverMessageWriter, serverSettings);
@@ -95,13 +97,12 @@ class ProtocolIntegrationTest {
         gateway = new ConnectionMonitoringGateway(reconnectingGateway, monitoringTimer, Duration.standardSeconds(5), Duration.standardSeconds(7), false);
 
         LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1")
-                .setPassword("key")
+                .authSettings(authSettings)
                 .build();
 
         clientMessageParser = new JaxbMessageParser<>(
                 liveOddsJaxbFactory,
-                new IncrementalMessageTokenizer(settings.getMaxMessageSize()));
+                new IncrementalMessageTokenizer(settings.getTotalBufferSize()));
         clientMessageWriter = new JaxbMessageWriter<>(bookmakerStatusJaxbFactory);
 
         protocol = new LiveFeedProtocol(

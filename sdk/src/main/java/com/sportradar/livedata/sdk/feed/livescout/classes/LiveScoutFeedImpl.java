@@ -341,7 +341,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
             @Override
             public void onFeedEvent(FeedEventType eventType) {
                 dispatcher.dispatchOnFeedEvent(LiveScoutFeedImpl.this, eventType);
-                if (eventType == FeedEventType.PARSE_ERROR && settings.disconnectOnParseError()) {
+                if (eventType == FeedEventType.PARSE_ERROR && settings.isDisconnectOnParseError()) {
                     logger.error("Disconnect on parse error enabled, disconnecting the feed");
                     protocolManager.reconnect();
                 }

@@ -191,7 +191,7 @@ public class Sdk implements AutoCloseable {
     private static void initializeInjector(Properties properties) throws SdkException {
         logger.info("Initializing SDK dependency injector");
 
-        final SettingsLoader loader = properties == null ? new PropertyFileSettingsLoader() : new PropertyFileSettingsLoader(properties);
+        final SettingsLoader loader = new PropertyFileSettingsLoader(properties);
 
         injector = Guice.createInjector(
                 new GeneralInjectionModule(loader.getJmxSettings()),

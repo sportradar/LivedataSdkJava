@@ -11,6 +11,7 @@ import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import com.sportradar.livedata.sdk.common.rategate.NullRateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
@@ -96,10 +97,10 @@ class BetradarServerTest {
     @Test
     @Timeout(25)
     void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
-
+        AuthSettings authSettings = new AuthSettings("1762", "DirKES7ew",
+                null, null , null, null, null);
         LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1762")
-                .setPassword("DirKES7ew")
+                .authSettings(authSettings)
                 .build();
 
         protocol = new LiveFeedProtocol(

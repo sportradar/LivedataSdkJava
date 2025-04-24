@@ -5,6 +5,7 @@ import com.sportradar.livedata.sdk.common.exceptions.InvalidPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyFileException;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings.LiveScoutSettingsBuilder;
 import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +22,12 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
     private final static Logger logger = LoggerFactory.getLogger(PropertyFileSettingsLoader.class);
     private PropertiesParser properties;
 
-    public PropertyFileSettingsLoader() throws MissingPropertyFileException, MissingPropertyException, InvalidPropertyException {
-        loadProperties(DEFAULT_SETTINGS_FILE_NAME);
-        LoggerSettingsBuilder loggerSettings = DefaultSettingsBuilderHelper.getLoggerSettings();
-        readCommon(loggerSettings);
-    }
-
-    public PropertyFileSettingsLoader(Properties properties) {
-        loadProperties(properties);
+    public PropertyFileSettingsLoader(Properties properties) throws MissingPropertyFileException {
+        if (properties == null) {
+            loadProperties(DEFAULT_SETTINGS_FILE_NAME);
+        }else{
+            loadProperties(properties);
+        }
     }
 
     @Override
@@ -108,33 +107,20 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         return test;
     }
 
-    private void readCommon(LoggerSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
-        String prefix = "sdk.common.";
-        readLoggerSettings(prefix, builder);
-    }
-
-    private void readFeedCommon(String prefix, CommonSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
-        Boolean enabled = properties.getBooleanProperty(prefix + "enabled");
-        if (enabled == null) {
-            enabled = false;
-        }
-
-        if (enabled) {
-            builder.setEnabled(true);
-        }
+    private void readFeedCommon(String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
         Boolean debugMode = properties.getBooleanProperty(prefix + "debug");
         if (debugMode != null) {
-            builder.setDebugMode(debugMode);
+            builder.debugMode(debugMode);
         }
         Integer dispatcherThreadCount = properties.getIntegerProperty(prefix + "dispatcher_thread_count");
         Integer dispatcherQueueSize = properties.getIntegerProperty(prefix + "dispatcher_queue_size");
         if (dispatcherThreadCount != null) {
-            builder.setDispatcherThreadCount(dispatcherThreadCount);
+            builder.dispatcherThreadCount(dispatcherThreadCount);
         }
         if (dispatcherQueueSize != null) {
-            builder.setDispatcherQueueSize(dispatcherQueueSize);
+            builder.dispatcherQueueSize(dispatcherQueueSize);
         }
-        readLoggerSettings(prefix, builder.getLoggerSettingsBuilder());
+        readLoggerSettings(prefix, builder);
     }
 
     private JmxSettings readJmxSettings(String prefix, JmxSettingsBuilder jmxSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
@@ -167,11 +153,8 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         return jmxSettingsBuilder.build();
     }
 
-    private void readLiveFeed(String prefix, LiveFeedSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
+    private void readLiveFeed(String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
         readFeedCommon(prefix, builder);
-        if (!builder.isEnabled()) {
-            return;
-        }
         Duration clientAliveMsgTimeout = properties.getDurationProperty(prefix + "client_alive_msg_timeout");
         String hostName = properties.getProperty(prefix + "host_name");
         List<LimiterData> loginLimiters = properties.getLimitersProperty(prefix + "login_limiters");
@@ -188,83 +171,73 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         Boolean useSSL = properties.getBooleanProperty(prefix + "use_ssl");
         Boolean disconnectOnParseError = properties.getBooleanProperty(prefix + "disconnect_on_parse_error");
         if (clientAliveMsgTimeout != null) {
-            builder.setClientAliveMsgTimeout(clientAliveMsgTimeout);
+            builder.clientAliveMsgTimeout(clientAliveMsgTimeout);
         }
         if (hostName != null) {
-            builder.setHostName(hostName);
+            builder.hostName(hostName);
         }
         if (loginLimiters != null) {
-            builder.setLoginLimiters(loginLimiters);
+            builder.loginLimiters(loginLimiters);
         }
         if (matchRequestLimiters != null) {
-            builder.setMatchRequestLimiters(matchRequestLimiters);
+            builder.matchRequestLimiters(matchRequestLimiters);
         }
         if (requestLimiters != null) {
-            builder.setRequestLimiters(requestLimiters);
+            builder.requestLimiters(requestLimiters);
         }
         if (maxMessageSize != null) {
-            builder.setMaxMessageSize(maxMessageSize);
+            builder.totalBufferSize(maxMessageSize);
         }
         if (reconnectWait != null) {
-            builder.setReconnectWait(reconnectWait);
+            builder.reconnectWait(reconnectWait);
         }
         if (maxRequestMatchIds != null) {
-            builder.setMaxRequestMatchIds(maxRequestMatchIds);
+            builder.maxMatchIdsPerRequest(maxRequestMatchIds);
         }
         if (maxRequestTimeAllowance != null) {
-            builder.setMaxRequestTimeAllowance(maxRequestTimeAllowance);
+            builder.maxRequestTimeAllowance(maxRequestTimeAllowance);
         }
         if (initialReconnectWait != null) {
-            builder.setInitialReconnectWait(initialReconnectWait);
+            builder.initialReconnectWait(initialReconnectWait);
         }
         if (port != null) {
-            builder.setPort(port);
+            builder.port(port);
         }
         if (receiveBufferSize != null) {
-            builder.setReceiveBufferSize(receiveBufferSize);
+            builder.receiveBufferSize(receiveBufferSize);
         }
         if (serverAliveMsgTimeout != null) {
-            builder.setServerAliveMsgTimeout(serverAliveMsgTimeout);
+            builder.serverAliveMsgTimeout(serverAliveMsgTimeout);
         }
         if (useSSL != null) {
-            builder.setUseSSL(useSSL);
+            builder.useSSL(useSSL);
         }
         if (disconnectOnParseError != null) {
-            builder.setDisconnectOnParseError(disconnectOnParseError);
+            builder.disconnectOnParseError(disconnectOnParseError);
         }
     }
 
     private void readLiveScout(String prefix, LiveScoutSettingsBuilder liveScoutSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
         readLiveFeed(prefix, liveScoutSettingsBuilder);
-        if (!liveScoutSettingsBuilder.isEnabled()) {
-            return;
-        }
         String username = properties.getProperty(prefix + "username", true);
         String password = properties.getProperty(prefix + "password", true);
         Duration matchExpireCheckInterval = properties.getDurationProperty(prefix + "match_expire_check_interval");
         Duration matchExpireMaxAge = properties.getDurationProperty(prefix + "match_expire_max_age");
         Duration maxMatchListInterval = properties.getDurationProperty(prefix + "max_match_list_interval");
-        liveScoutSettingsBuilder.setUsername(username);
-        liveScoutSettingsBuilder.setPassword(password);
+        AuthSettings authSettings = new AuthSettings(username, password, null, null, null, null, null);
+        liveScoutSettingsBuilder.authSettings(authSettings);
 
         // by default set use_ssl to true
         Boolean useSSL = properties.getBooleanProperty(prefix + "use_ssl");
         if (useSSL == null) {
-            liveScoutSettingsBuilder.useSSL = true;
-        }
-
-        if (matchExpireCheckInterval != null) {
-            liveScoutSettingsBuilder.setMatchExpireCheckInterval(matchExpireCheckInterval);
+            liveScoutSettingsBuilder.useSSL(true);
         }
         if (matchExpireMaxAge != null) {
-            liveScoutSettingsBuilder.setMatchExpireMaxAge(matchExpireMaxAge);
-        }
-        if (maxMatchListInterval != null) {
-            liveScoutSettingsBuilder.setMaxMatchListInterval(maxMatchListInterval);
+            liveScoutSettingsBuilder.matchExpireMaxAge(matchExpireMaxAge);
         }
     }
 
-    private void readLoggerSettings(final String prefix, LoggerSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
+    private void readLoggerSettings(final String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
         String internalPrefix = prefix + "logger.";
         String logPath = properties.getProperty(internalPrefix + "log_path");
         Integer maxFileSize = properties.getIntegerProperty(internalPrefix + "max_file_size");
@@ -275,33 +248,36 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         Level executionLogLevel = properties.getLevelProperty("sdk.common.logger.execution_log_level");
         Level invalidMsgLogLevel = properties.getLevelProperty(internalPrefix + "invalid_msg_log_level");
         Level trafficLogLevel = properties.getLevelProperty(internalPrefix + "traffic_log_level");
+
+        LoggerSettingsBuilder logBuilder = DefaultSettingsBuilderHelper.getLoggerSettings();
         if (logPath != null) {
-            builder.setLogPath(logPath);
+            logBuilder.setLogPath(logPath);
         }
         if (oldLogCleanupInterval != null) {
-            builder.setOldLogCleanupInterval(oldLogCleanupInterval);
+            logBuilder.setOldLogCleanupInterval(oldLogCleanupInterval);
         }
         if (oldLogMaxAge != null) {
-            builder.setOldLogMaxAge(oldLogMaxAge);
+            logBuilder.setOldLogMaxAge(oldLogMaxAge);
         }
         if (alertLogLevel != null) {
-            builder.setAlertLogLevel(alertLogLevel);
+            logBuilder.setAlertLogLevel(alertLogLevel);
         }
         if (clientInteractionLogLevel != null) {
-            builder.setClientInteractionLogLevel(clientInteractionLogLevel);
+            logBuilder.setClientInteractionLogLevel(clientInteractionLogLevel);
         }
         if (executionLogLevel != null) {
-            builder.setExecutionLogLevel(executionLogLevel);
+            logBuilder.setExecutionLogLevel(executionLogLevel);
         }
         if (invalidMsgLogLevel != null) {
-            builder.setInvalidMsgLogLevel(invalidMsgLogLevel);
+            logBuilder.setInvalidMsgLogLevel(invalidMsgLogLevel);
         }
         if (trafficLogLevel != null) {
-            builder.setTrafficLogLevel(trafficLogLevel);
+            logBuilder.setTrafficLogLevel(trafficLogLevel);
         }
         if (maxFileSize != null) {
-            builder.setMaxFileSize(maxFileSize);
+            logBuilder.setMaxFileSize(maxFileSize);
         }
+        builder.loggerSettings(logBuilder.build());
     }
 
     private boolean useSSL(String prefix, boolean def) throws MissingPropertyException, InvalidPropertyException {

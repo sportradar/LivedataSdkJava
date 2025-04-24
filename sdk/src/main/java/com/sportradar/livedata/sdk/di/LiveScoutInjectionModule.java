@@ -146,8 +146,8 @@ public class LiveScoutInjectionModule implements Module {
         Gateway reconnectingGateway = new ReconnectingGateway(
                 actualGateway,
                 reconnectTimer,
-                settings.getInitialReconnectDelay(),
-                settings.getReconnectDelay());
+                settings.getInitialReconnectWait(),
+                settings.getReconnectWait());
 
         Timer monitoringTimer = new PeriodicTimer(scheduledExecutorService);
 
@@ -155,15 +155,14 @@ public class LiveScoutInjectionModule implements Module {
                 reconnectingGateway,
                 monitoringTimer,
                 Duration.standardSeconds(5),
-                settings.getServerMessageTimeout(),
+                settings.getServerAliveMsgTimeout(),
                 settings.isDebugMode());
     }
 
     @Provides
     @Singleton
     protected LiveScoutUserRequestManagerImpl provideUserRequestManager(LiveScoutStatusFactory factory,
-                                                                        TestManager testManager,
-                                                                        SdkLogger sdkLogger) {
+                                                                        TestManager testManager) {
         return new LiveScoutUserRequestManagerImpl(
                 USER_REQUEST_MANAGER_INDEX,
                 factory,
@@ -186,8 +185,7 @@ public class LiveScoutInjectionModule implements Module {
             Protocol<IncomingMessage, OutgoingMessage> protocol,
             EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             LiveScoutUserRequestManagerImpl userRequestManager,
-            LiveScoutClientAliveProducer aliveProducer,
-            SdkLogger sdkLogger) {
+            LiveScoutClientAliveProducer aliveProducer) {
 
         MessageProcessor<LiveScoutEntityBase>[] processors = new MessageProcessor[]{
                 userRequestManager,
@@ -228,16 +226,13 @@ public class LiveScoutInjectionModule implements Module {
     protected LiveScoutFeed provideFeed(
             Provider<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> protocolManagerProvider,
             Provider<LiveScoutUserRequestManagerImpl> userRequestManagerProvider,
-            Provider<LiveScoutDispatcher> dispatcherProvider,
-            Provider<SdkLogger> sdkLoggerProvider) {
+            Provider<LiveScoutDispatcher> dispatcherProvider) {
 
-        return settings.isEnabled()
-                ? new LiveScoutFeedImpl(
+        return new LiveScoutFeedImpl(
                 protocolManagerProvider.get(),
                 userRequestManagerProvider.get(),
                 dispatcherProvider.get(),
-                settings)
-                : null;
+                settings);
     }
 
     @Provides
@@ -249,7 +244,7 @@ public class LiveScoutInjectionModule implements Module {
 
         JAXBContext incomingContext = JAXBContext.newInstance(INCOMING_PACKAGE_NAME);
         JaxbBuilder incomingBuilder = new JaxbFactory(incomingContext);
-        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(settings.getMaxMessageSize());
+        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(settings.getTotalBufferSize());
         MessageParser<IncomingMessage> messageParser = new JaxbMessageParser<>(incomingBuilder, tokenizer);
 
         JAXBContext outgoingContext = JAXBContext.newInstance(OUTGOING_PACKAGE_NAME);
@@ -277,11 +272,7 @@ public class LiveScoutInjectionModule implements Module {
             Protocol<IncomingMessage, OutgoingMessage> protocol
     ) {
         if (!settings.isTest()) {
-            return new TestManager(){
-                public boolean isEnabled() {
-                    return false;
-                }
-            };
+            return () -> false;
         } else {
             return new LiveScoutTestManagerImpl(protocol);
         }

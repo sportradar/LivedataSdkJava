@@ -1,7 +1,7 @@
 package com.sportradar.livedata.sdk.system.framework.livescout;
 
 import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
-import com.sportradar.livedata.sdk.common.settings.LiveScoutSettingsBuilder;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings.LiveScoutSettingsBuilder;
 import com.sportradar.livedata.sdk.common.networking.FakeGateway;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;

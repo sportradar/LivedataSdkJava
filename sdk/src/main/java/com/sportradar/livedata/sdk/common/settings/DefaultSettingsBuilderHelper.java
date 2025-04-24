@@ -1,66 +1,60 @@
 package com.sportradar.livedata.sdk.common.settings;
 
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings.LiveScoutSettingsBuilder;
 import ch.qos.logback.classic.Level;
 import org.joda.time.Duration;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultSettingsBuilderHelper {
 
     public static LiveScoutSettingsBuilder getLiveScout() {
-        LiveScoutSettingsBuilder builder = new LiveScoutSettingsBuilder();
+        LiveScoutSettingsBuilder builder =  LiveScoutSettings.builder();
         fillLiveScoutDefaults(builder);
-        builder.setHostName("livedata.betradar.com");
-        builder.setPort(2017);
-        builder.setTest(false);
+        builder.hostName("livedata.betradar.com");
+        builder.port(2017);
+        builder.test(false);
         return builder;
     }
 
     private static void fillLiveScoutDefaults(LiveScoutSettingsBuilder builder) {
         fillFeedSettingsDefaults(builder);
 
-        builder.setUseSSL(true);
+        builder.useSSL(true);
 
-        builder.setRequestLimiters(buildLimiters(new LimiterData(450, Duration.standardMinutes(2), "scoutRequestLimit")));
+        builder.requestLimiters(buildLimiters(new LimiterData(450, Duration.standardMinutes(2), "scoutRequestLimit")));
 
-        builder.setMaxMatchListInterval(Duration.standardHours(300));
+        builder.matchExpireMaxAge(Duration.standardHours(8));
 
-        builder.setMatchExpireCheckInterval(Duration.standardMinutes(5));
-        builder.setMatchExpireMaxAge(Duration.standardHours(8));
-
-        builder.setClientAliveMsgTimeout(Duration.standardSeconds(20));
-        builder.setServerAliveMsgTimeout(Duration.standardSeconds(8));
-
-        builder.getLoggerSettingsBuilder().setLogPath("logs/livescout/");
+        builder.clientAliveMsgTimeout(Duration.standardSeconds(20));
+        builder.serverAliveMsgTimeout(Duration.standardSeconds(8));
     }
 
-    private static void fillFeedSettingsDefaults(LiveFeedSettingsBuilder builder) {
+    private static void fillFeedSettingsDefaults(LiveScoutSettingsBuilder builder) {
         fillCommonDefaults(builder);
-        builder.setInitialReconnectWait(Duration.standardSeconds(10));
-        builder.setReconnectWait(Duration.standardSeconds(20));
+        builder.initialReconnectWait(Duration.standardSeconds(10));
+        builder.reconnectWait(Duration.standardSeconds(20));
 
-        builder.setReceiveBufferSize(1024 * 1024);
-        builder.setMaxMessageSize(20 * 1024 * 1024);
+        builder.receiveBufferSize(1024 * 1024);
+        builder.totalBufferSize(20 * 1024 * 1024);
 
-        builder.setMaxRequestTimeAllowance(Duration.standardMinutes(15));
-        builder.setMaxRequestMatchIds(100);
-        builder.setDisconnectOnParseError(false);
+        builder.maxRequestTimeAllowance(Duration.standardMinutes(15));
+        builder.maxMatchIdsPerRequest(100);
+        builder.disconnectOnParseError(false);
     }
 
     private static List<LimiterData> buildLimiters(LimiterData... limiters) {
         return Arrays.asList(limiters);
     }
 
-    private static void fillCommonDefaults(CommonSettingsBuilder builder) {
-        builder.setEnabled(false);
-        builder.setLoggerSettings(getLoggerSettings());
-        builder.setDispatcherThreadCount(4);
-        builder.setDispatcherQueueSize(16384);
+    private static void fillCommonDefaults(LiveScoutSettingsBuilder builder) {
+        builder.dispatcherThreadCount(4);
+        builder.dispatcherQueueSize(16384);
     }
 
     public static LoggerSettingsBuilder getLoggerSettings() {
         LoggerSettingsBuilder builder = new LoggerSettingsBuilder();
+        builder.setLogPath("logs/livescout/");
         builder.setOldLogCleanupInterval(Duration.standardHours(1));
         builder.setOldLogMaxAge(Duration.standardDays(7));
         builder.setAlertLogLevel(Level.WARN);
@@ -75,9 +69,9 @@ public class DefaultSettingsBuilderHelper {
     public static LiveScoutSettingsBuilder getLiveScoutTest() {
         LiveScoutSettingsBuilder builder = new LiveScoutSettingsBuilder();
         fillLiveScoutDefaults(builder);
-        builder.setHostName("replay.livedata.betradar.com");    //Old "scouttest.betradar.com"
-        builder.setPort(2047); // before 2047
-        builder.setTest(true);
+        builder.hostName("replay.livedata.betradar.com");    //Old "scouttest.betradar.com"
+        builder.port(2047); // before 2047
+        builder.test(true);
         return builder;
     }
 

@@ -3,6 +3,7 @@ package com.sportradar.livedata.sdk.util;
 import com.sportradar.livedata.sdk.common.classes.BlockingList;
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
@@ -139,8 +140,9 @@ public class FakeServer implements NetworkServerListener, MessageParserListener<
 
         if (message != null && Login.class.equals(message.getClass())) {
             Credential cred = ((Login)message).getCredential();
-            if (cred.getLoginname().getValue().equals(settings.getUsername())
-                    && settings.getPassword().equals(cred.getPassword().getValue())) {
+            AuthSettings authSettings = settings.getAuthSettings();
+            if (cred.getLoginname().getValue().equals(authSettings.getUsername())
+                    && authSettings.getPassword().equals(cred.getPassword().getValue())) {
                 try {
                     sendData(buildLoginResponse(LiveScoutLoginType.VALID));
                 } catch (Exception e) {

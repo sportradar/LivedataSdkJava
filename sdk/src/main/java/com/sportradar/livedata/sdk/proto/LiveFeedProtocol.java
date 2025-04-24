@@ -5,7 +5,8 @@ import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.rategate.RateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateGateContinuation;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
-import com.sportradar.livedata.sdk.common.settings.LiveFeedSettings;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.LiveScoutLoginType;
@@ -47,9 +48,9 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      */
     private final RateLimiter rateLimiter;
     /**
-     * The {@link LiveFeedSettings} instance containing the application's settings concerning the live-feed
+     * The {@link LiveScoutSettings} instance containing the application's settings concerning the live-feed
      */
-    private final LiveFeedSettings settings;
+    private final LiveScoutSettings settings;
     /**
      * The factory used to build requests send to the feed.
      */
@@ -64,7 +65,7 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      * @param rateLimiter              The {@link RateLimiter} implementation used to rate-limit send messages
      * @param outgoingMessageInspector The {@link OutgoingMessageInspector} implementation used to inspect send messages.
      * @param statusFactory            The factory used to build requests send to the feed.
-     * @param settings                 The {@link LiveFeedSettings} instance containing the application's settings concerning the live-feed
+     * @param settings                 The {@link LiveScoutSettings} instance containing the application's settings concerning the live-feed
      */
     public LiveFeedProtocol(
             final Gateway gateway,
@@ -73,7 +74,7 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
             final RateLimiter rateLimiter,
             final OutgoingMessageInspector<OutgoingMessage> outgoingMessageInspector,
             final StatusFactory statusFactory,
-            final LiveFeedSettings settings) {
+            final LiveScoutSettings settings) {
 
         super(gateway, messageParser);
 
@@ -227,7 +228,8 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
             }
 
             try {
-                sendMessage(statusFactory.buildLoginRequest(settings.getUsername(), settings.getPassword()), false);
+                AuthSettings authSettings = settings.getAuthSettings();
+                sendMessage(statusFactory.buildLoginRequest(authSettings.getUsername(), authSettings.getPassword()), false);
             } catch (Exception e) {
                 logger.error("onConnected caught exception", e);
             }

@@ -40,7 +40,7 @@ public class LoggingEntityEventHandlerBase {
 
     public void setUp() throws Exception {
 
-        loggerSettings = DefaultSettingsBuilderHelper.getLiveScout().getLoggerSettingsBuilder().build();
+        loggerSettings = DefaultSettingsBuilderHelper.getLoggerSettings().build();
         timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
         sdkLogger = new FileSdkLogger(loggerSettings, timer);
 

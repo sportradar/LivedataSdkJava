@@ -11,9 +11,10 @@ public class DiTestHelper {
     public static Injector getInjector() {
         if (injector == null) {
 
+            LoggerSettings loggerSettings = DefaultSettingsBuilderHelper.getLoggerSettings().build();
             LiveScoutSettings liveScoutSettings = DefaultSettingsBuilderHelper.getLiveScout()
-                    .setUseSSL(true)
-                    .setEnabled(true)
+                    .useSSL(true)
+                    .loggerSettings(loggerSettings)
                     .build();
 
             injector = Guice.createInjector(
