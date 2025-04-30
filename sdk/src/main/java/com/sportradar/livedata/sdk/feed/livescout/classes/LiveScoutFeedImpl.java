@@ -157,7 +157,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      * @param matchIds         - filter by matches ids, nullable
      */
     @Override
-    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds) {
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
         checkState(opened, "The feed is not opened");
         userRequestManager.getMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds);
     }

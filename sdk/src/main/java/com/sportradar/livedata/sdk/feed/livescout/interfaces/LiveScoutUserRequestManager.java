@@ -22,7 +22,7 @@ public interface LiveScoutUserRequestManager extends UserRequestManager {
      * @param sportIds         - filter by sports ids, nullable
      * @param matchIds         - filter by matches ids, nullable
      */
-    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds);
+    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds);
 
 
     /**

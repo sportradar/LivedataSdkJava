@@ -4,6 +4,7 @@
 
 package com.sportradar.livedata.sdk.common.networking.integration;
 
+import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
@@ -22,7 +23,7 @@ import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
@@ -97,8 +98,7 @@ class BetradarServerTest {
     @Test
     @Timeout(25)
     void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
-        AuthSettings authSettings = new AuthSettings("1762", "DirKES7ew",
-                null, null , null, null, null);
+        AuthSettings authSettings = new AuthSettings("1762", "DirKES7ew");
         LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
                 .authSettings(authSettings)
                 .build();
@@ -109,8 +109,7 @@ class BetradarServerTest {
                 clientMessageWriter,
                 new RateLimiter(new NullRateGate(), new NullRateGate(), new NullRateGate()),
                 new LiveScoutOutgoingMessageInspector(),
-                new LiveScoutStatusFactory(new SdkVersion()),
-                settings);
+                new CredentialsAuthMessageProvider(new LiveScoutOutgoingMessageFactory(new SdkVersion()), settings.getAuthSettings()));
 
         protocol.setListener(protocolListener);
 

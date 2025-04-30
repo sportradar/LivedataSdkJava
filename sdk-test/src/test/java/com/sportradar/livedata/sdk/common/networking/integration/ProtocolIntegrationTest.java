@@ -4,6 +4,7 @@
 
 package com.sportradar.livedata.sdk.common.networking.integration;
 
+import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
@@ -22,7 +23,7 @@ import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import com.sportradar.livedata.sdk.util.FakeServer;
 import com.sportradar.livedata.sdk.util.TcpServer;
 import org.apache.commons.net.DefaultSocketFactory;
@@ -80,8 +81,7 @@ class ProtocolIntegrationTest {
         MessageParser<OutgoingMessage> serverMessageParser = new JaxbMessageParser<>(bookmakerStatusJaxbFactory, null);
         MessageWriter<IncomingMessage> serverMessageWriter = new JaxbMessageWriter<>(liveOddsJaxbFactory);
 
-        AuthSettings authSettings = new AuthSettings("1", "key",
-                null, null, null, null, null);
+        AuthSettings authSettings = new AuthSettings("1", "key");
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
                 .authSettings(authSettings)
                 .build();
@@ -111,8 +111,7 @@ class ProtocolIntegrationTest {
                 clientMessageWriter,
                 new RateLimiter(new NullRateGate(), new NullRateGate(), new NullRateGate()),
                 new LiveScoutOutgoingMessageInspector(),
-                new LiveScoutStatusFactory(new SdkVersion()),
-                settings);
+                new CredentialsAuthMessageProvider(new LiveScoutOutgoingMessageFactory(new SdkVersion()), settings.getAuthSettings()));
 
 
         protocol.setListener(protocolListener);

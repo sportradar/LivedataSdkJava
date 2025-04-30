@@ -79,8 +79,7 @@ class LiveScoutSystemTest {
                 mockDispatcher,
                 sdkDataListener);
         testFramework.server().validBookmakers().put("1000", "password");
-        AuthSettings authSettings = new AuthSettings("1000", "password",
-                null, null, null, null, null);
+        AuthSettings authSettings = new AuthSettings("1000", "password");
         testFramework.settings().authSettings(authSettings);
         //send alive message to server every 2 sec
         testFramework.settings().clientAliveMsgTimeout(Duration.standardSeconds(2));

@@ -23,12 +23,12 @@ public class LiveScoutClientAliveProducer extends RequestProducerBase<OutgoingMe
 
     private final ScheduledExecutorService executor;
     private final Duration interval;
-    private final LiveScoutStatusFactory entityFactory;
+    private final LiveScoutOutgoingMessageFactory entityFactory;
 
     private Future<?> timerCancel;
 
     public LiveScoutClientAliveProducer(
-            final LiveScoutStatusFactory entityFactory,
+            final LiveScoutOutgoingMessageFactory entityFactory,
             final ScheduledExecutorService executor,
             final Duration interval) {
 

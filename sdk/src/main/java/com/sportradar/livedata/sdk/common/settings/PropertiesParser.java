@@ -7,6 +7,10 @@ import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -207,7 +211,6 @@ public class PropertiesParser {
             if (mandatory) {
                 throw new MissingPropertyException(key);
             }
-            return null;
         }
         return property;
     }
@@ -231,5 +234,28 @@ public class PropertiesParser {
             return new HashSet<>();
         }
         return new HashSet<>(Arrays.asList(splitted));
+    }
+
+    /**
+     * Getting private key from the property and parses to {@link RSAPrivateKey}.
+     *
+     * @param key {@link String} key of the property
+     * @return {@link RSAPrivateKey} parsed private key
+     * @throws MissingPropertyException if property is missing
+     * @throws InvalidPropertyException if could not parse the key
+     */
+    public RSAPrivateKey parsePrivateKey(String key) throws MissingPropertyException, InvalidPropertyException {
+        String pkString =  this.getProperty(key, true)
+                .replaceAll("-----BEGIN (.*)-----", "")
+                .replaceAll("-----END (.*)-----", "")
+                .replaceAll("\\s", "");
+        try {
+            byte[] decoded = Base64.getDecoder().decode(pkString);
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decoded);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+        } catch (Exception e) {
+            throw new InvalidPropertyException(e.getMessage(), key, "***");
+        }
     }
 }

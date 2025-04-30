@@ -67,8 +67,7 @@ class ReconnectingGatewayIntegrationTest {
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
         MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
-        AuthSettings authSettings = new AuthSettings("1", "key",
-                null, null, null, null, null);
+        AuthSettings authSettings = new AuthSettings("1", "key");
         LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
                 .authSettings(authSettings)
                 .build();

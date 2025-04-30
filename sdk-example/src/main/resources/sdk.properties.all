@@ -85,20 +85,14 @@
 ####
 ####
 
-# Is the feed enabled
-.enabled=true
-# Sportradar bookmaker username for feed, mandatory if .enabled=true
+# Sportradar bookmaker username for feed
 .username=Username
-# Sportradar bookmaker password for feed, mandatory if .enabled=true
+# Sportradar bookmaker password for feed
 .password=Password
 # Connect to test server
 .test=false
-# When are cached events checked for expiry
-.match_expire_check_interval= 00:01:00:00
 # When do cached events expire
 .match_expire_max_age = 00:10:00:00
-# Maximum match list interval
-.max_match_list_interval= 07:00:00:00
 # Interval on how long should SDK send alive message(for feeds that have this)
 .client_alive_msg_timeout = 00:00:00:10
 # Hostname to connect to for specific feed (used to override the default hostname)

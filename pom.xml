@@ -78,6 +78,8 @@
         <commonsnet.version>3.10.0</commonsnet.version>
         <commonslang3.version>3.13.0</commonslang3.version>
         <commonsio.version>2.15.0</commonsio.version>
+        <jwt.version>4.5.0</jwt.version>
+        <httpclient5.version>5.2.1</httpclient5.version>
         <disruptor.version>3.4.4</disruptor.version>
         <findbugs.version>3.0.2</findbugs.version>
         <xerces.version>2.12.2</xerces.version>
@@ -354,6 +356,18 @@
                         <artifactId>guice</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- Auth0 -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
             </dependency>
 
             <!-- Disruptor -->

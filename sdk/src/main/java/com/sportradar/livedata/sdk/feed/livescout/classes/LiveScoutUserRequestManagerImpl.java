@@ -16,7 +16,7 @@ import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
 import com.sportradar.livedata.sdk.proto.common.RequestProducerBase;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -57,9 +57,9 @@ public class LiveScoutUserRequestManagerImpl
      */
     protected final SdkLogger sdkLogger = SdkLoggerProvider.get();
     /**
-     * A {@link com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory} instance used to generate server requests.
+     * A {@link LiveScoutOutgoingMessageFactory} instance used to generate server requests.
      */
-    private final LiveScoutStatusFactory requestFactory;
+    private final LiveScoutOutgoingMessageFactory requestFactory;
     /**
      * Test manager.
      */
@@ -89,14 +89,14 @@ public class LiveScoutUserRequestManagerImpl
      * Initializes a new instance of the {@link LiveScoutUserRequestManagerImpl} class.
      *
      * @param index          index in pipeline
-     * @param requestFactory A {@link LiveScoutStatusFactory} instance used to generate server requests.
+     * @param requestFactory A {@link LiveScoutOutgoingMessageFactory} instance used to generate server requests.
      * @param maxAge         max age of events
      * @param testManager    test manager
      * @throws IllegalArgumentException The {@code requestFactory} is a null reference.
      */
     public LiveScoutUserRequestManagerImpl(
             final int index,
-            final LiveScoutStatusFactory requestFactory,
+            final LiveScoutOutgoingMessageFactory requestFactory,
             final Duration maxAge,
             final TestManager testManager
     ) {
@@ -244,7 +244,7 @@ public class LiveScoutUserRequestManagerImpl
      * @param hoursForward     - number of hours forward (from current time)
      * @param includeAvailable - include also available matches (which you have not booked yet)
      */
-    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds) {
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
         sdkLogger.logClientInteraction(Level.INFO, String.format(
                 "getEventList hoursBack: %s, hoursForward: %s, includeAvailable: %s, sportIds: %s, matchIds: %s",
                 hoursBack, hoursForward, includeAvailable, StringUtils.join(sportIds, ','), StringUtils.join(matchIds, ',')));

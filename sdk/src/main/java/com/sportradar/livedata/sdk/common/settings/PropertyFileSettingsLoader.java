@@ -219,19 +219,26 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
 
     private void readLiveScout(String prefix, LiveScoutSettingsBuilder liveScoutSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
         readLiveFeed(prefix, liveScoutSettingsBuilder);
-        String username = properties.getProperty(prefix + "username", true);
-        String password = properties.getProperty(prefix + "password", true);
-        Duration matchExpireCheckInterval = properties.getDurationProperty(prefix + "match_expire_check_interval");
-        Duration matchExpireMaxAge = properties.getDurationProperty(prefix + "match_expire_max_age");
-        Duration maxMatchListInterval = properties.getDurationProperty(prefix + "max_match_list_interval");
-        AuthSettings authSettings = new AuthSettings(username, password, null, null, null, null, null);
-        liveScoutSettingsBuilder.authSettings(authSettings);
+        try {
+            liveScoutSettingsBuilder.authSettings(new AuthSettings(
+                    properties.getProperty(prefix + "auth0.domain", true),
+                    properties.getProperty(prefix + "auth0.audience", true),
+                    properties.getProperty(prefix + "auth0.client_id", true),
+                    properties.getProperty(prefix + "auth0.kid", true),
+                    properties.parsePrivateKey(prefix + "auth0.private_key")));
+        } catch (MissingPropertyException e) { // if getting token parameters fails, fallback to legacy login
+            logger.warn("SSO required property \"{}\" not found. Using legacy login", e.getProperty());
+            liveScoutSettingsBuilder.authSettings(new AuthSettings(
+                    properties.getProperty(prefix + "username", true),
+                    properties.getProperty(prefix + "password", true )));
+        }
 
         // by default set use_ssl to true
         Boolean useSSL = properties.getBooleanProperty(prefix + "use_ssl");
         if (useSSL == null) {
             liveScoutSettingsBuilder.useSSL(true);
         }
+        Duration matchExpireMaxAge = properties.getDurationProperty(prefix + "match_expire_max_age");
         if (matchExpireMaxAge != null) {
             liveScoutSettingsBuilder.matchExpireMaxAge(matchExpireMaxAge);
         }

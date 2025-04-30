@@ -12,7 +12,7 @@ import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Ct;
 import com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.Credential;
 import com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.Login;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,9 +59,9 @@ public class FakeServer implements NetworkServerListener, MessageParserListener<
     private final MessageWriter<IncomingMessage> messageWriter;
 
     /**
-     * A {@link com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory}
+     * A {@link LiveScoutOutgoingMessageFactory}
      */
-    private final LiveScoutStatusFactory requestFactory = new LiveScoutStatusFactory(new SdkVersion());
+    private final LiveScoutOutgoingMessageFactory requestFactory = new LiveScoutOutgoingMessageFactory(new SdkVersion());
 
     /**
      * The {@link com.sportradar.livedata.sdk.common.settings.LiveScoutSettings} representing the application's liveOddsSettings.
@@ -318,7 +318,7 @@ public class FakeServer implements NetworkServerListener, MessageParserListener<
      * Blocks the calling thread until the a "login" request is received from the client or throws {@link InterruptedException}
      */
     public void hasReceivedLoginRequest() throws InterruptedException {
-        messages.compareAndRemove((OutgoingMessage) requestFactory.buildLoginRequest("0", "0"), requestComparator, TIMEOUT);
+        messages.compareAndRemove((OutgoingMessage) requestFactory.buildLoginRequest("0", "0", null), requestComparator, TIMEOUT);
     }
 
 }
