@@ -70,7 +70,7 @@ public class TokenAuthMessageProvider extends AuthMessageProvider {
             // by using date created before request we ensure that network latency is not included in the token expiration time
             expires = now.plus(Duration.ofSeconds(response.expiresIn));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);// protocol catches all exceptions anyway
         }
     }
 

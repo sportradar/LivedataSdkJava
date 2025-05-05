@@ -9,7 +9,7 @@ import java.util.List;
 public class DefaultSettingsBuilderHelper {
 
     public static LiveScoutSettingsBuilder getLiveScout() {
-        LiveScoutSettingsBuilder builder =  LiveScoutSettings.builder();
+        LiveScoutSettingsBuilder builder = LiveScoutSettings.builder();
         fillLiveScoutDefaults(builder);
         builder.hostName("livedata.betradar.com");
         builder.port(2017);
