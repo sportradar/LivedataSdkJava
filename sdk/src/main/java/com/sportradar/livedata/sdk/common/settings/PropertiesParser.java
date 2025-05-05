@@ -245,15 +245,12 @@ public class PropertiesParser {
      * @throws InvalidPropertyException if could not parse the key
      */
     public RSAPrivateKey parsePrivateKey(String key) throws MissingPropertyException, InvalidPropertyException {
-        String pkString =  this.getProperty(key, true)
-                .replaceAll("-----BEGIN (.*)-----", "")
-                .replaceAll("-----END (.*)-----", "")
-                .replaceAll("\\s", "");
+        String pkString = this.getProperty(key, true)
+                .replaceAll("-{5}[\\w\\s]*-{5}|\\s", ""); // Removes headers, footers, and all whitespace
         try {
             byte[] decoded = Base64.getDecoder().decode(pkString);
             PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decoded);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+            return (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(keySpec);
         } catch (Exception e) {
             throw new InvalidPropertyException(e.getMessage(), key, "***");
         }
