@@ -11,11 +11,10 @@ import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
 import com.sportradar.livedata.sdk.common.classes.SdkLoggerProvider;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
 import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
-import com.sportradar.livedata.sdk.common.FileSdkLoggerTestBase;
+import com.sportradar.livedata.sdk.common.FileSdkLoggerBaseTest;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -29,19 +28,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LoggingEntityEventHandlerBase {
 
     private DummyLBAppender listAppender;
-    private LoggerContext loggerContext;
-    private Pattern elapsedPattern = Pattern.compile("\\[(Elapsed )(?<elapsed>\\d+)\\]");
-    private final float ELAPSED_MAX = 1.234f;
+    private final Pattern elapsedPattern = Pattern.compile("\\[(Elapsed )(?<elapsed>\\d+)]");
     protected Logger logger;
-    private LoggerSettings loggerSettings;
-    protected SdkLogger sdkLogger;
-    private Timer timer;
+    protected FileSdkLogger sdkLogger;
 
 
     public void setUp() throws Exception {
 
-        loggerSettings = DefaultSettingsBuilderHelper.getLoggerSettings().build();
-        timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
+        LoggerSettings loggerSettings = LoggerSettings.builder().build();
+        Timer timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
         sdkLogger = new FileSdkLogger(loggerSettings, timer);
 
         Injector injector = Guice.createInjector(new AbstractModule() {
@@ -52,8 +47,8 @@ public class LoggingEntityEventHandlerBase {
         });
         injector.getInstance(SdkLoggerProvider.class);
 
-        logger = FileSdkLoggerTestBase.getLogger(sdkLogger, FileSdkLogger.ROOT_NS + ".logger." + SdkLogAppenderType.CLIENT_INTERACTION.getFileName());
-        loggerContext = logger.getLoggerContext();
+        logger = FileSdkLoggerBaseTest.getLogger(sdkLogger, FileSdkLogger.ROOT_NS + ".logger." + SdkLogAppenderType.CLIENT_INTERACTION.getFileName());
+        LoggerContext loggerContext = logger.getLoggerContext();
 
         listAppender = new DummyLBAppender();
         listAppender.setContext(loggerContext);
@@ -73,6 +68,7 @@ public class LoggingEntityEventHandlerBase {
             int startPos = matcher.start(2);
             int endPos = matcher.end(2);
 
+            float ELAPSED_MAX = 1.234f;
             if (elapsed < ELAPSED_MAX) {
                 String replacedMessage = eventMessage.substring(0, startPos)
                         + "0" + eventMessage.substring(endPos);

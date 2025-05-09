@@ -2,73 +2,36 @@ package com.sportradar.livedata.sdk.common.settings;
 
 
 import ch.qos.logback.classic.Level;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.joda.time.Duration;
 
+@Getter
+@EqualsAndHashCode
+@Builder
 public class LoggerSettings {
 
-    private Level alertLogLevel;
-    private Level clientInteractionLogLevel;
-    private Level executionLogLevel;
-    private Level invalidMsgLogLevel;
-    private String logPath;
-    private int maxFileSize;
-    private Duration oldLogCleanupInterval;
-    private Duration oldLogMaxAge;
-    private Level trafficLogLevel;
-    public LoggerSettings(
-            String logPath,
-            Duration oldLogCleanupInterval,
-            Duration oldLogMaxAge,
-            Level alertLogLevel,
-            Level clientInteractionLogLevel,
-            Level executionLogLevel,
-            Level invalidMsgLogLevel,
-            Level trafficLogLevel,
-            int maxFileSize) {
-        this.logPath = logPath;
-        this.oldLogCleanupInterval = oldLogCleanupInterval;
-        this.oldLogMaxAge = oldLogMaxAge;
-        this.alertLogLevel = alertLogLevel;
-        this.clientInteractionLogLevel = clientInteractionLogLevel;
-        this.executionLogLevel = executionLogLevel;
-        this.invalidMsgLogLevel = invalidMsgLogLevel;
-        this.trafficLogLevel = trafficLogLevel;
-        this.maxFileSize = maxFileSize;
-    }
+    private final Level alertLogLevel;
+    private final Level clientInteractionLogLevel;
+    private final Level executionLogLevel;
+    private final Level invalidMsgLogLevel;
+    private final String logPath;
+    private final int maxFileSize;
+    private final Duration oldLogCleanupInterval;
+    private final Duration oldLogMaxAge;
+    private final Level trafficLogLevel;
 
-    public Level getAlertLogLevel() {
-        return alertLogLevel;
-    }
-
-    public Level getClientInteractionLogLevel() {
-        return clientInteractionLogLevel;
-    }
-
-    public Level getExecutionLogLevel() {
-        return executionLogLevel;
-    }
-
-    public Level getInvalidMsgLogLevel() {
-        return invalidMsgLogLevel;
-    }
-
-    public String getLogPath() {
-        return logPath;
-    }
-
-    public int getMaxFileSize() {
-        return maxFileSize;
-    }
-
-    public Duration getOldLogCleanupInterval() {
-        return oldLogCleanupInterval;
-    }
-
-    public Duration getOldLogMaxAge() {
-        return oldLogMaxAge;
-    }
-
-    public Level getTrafficLogLevel() {
-        return trafficLogLevel;
+    @SuppressWarnings("all") // Suppressing warnings for Lombok generated code
+    public static class LoggerSettingsBuilder {
+        private String logPath = "logs/livescout/";
+        private Duration oldLogCleanupInterval = Duration.standardHours(1);
+        private Duration oldLogMaxAge = Duration.standardDays(7);
+        private Level alertLogLevel = Level.WARN;
+        private Level clientInteractionLogLevel = Level.INFO;
+        private Level executionLogLevel = Level.INFO;
+        private Level invalidMsgLogLevel = Level.INFO;
+        private Level trafficLogLevel = Level.INFO;
+        private int maxFileSize = 10485760;
     }
 }

@@ -6,6 +6,8 @@ import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyFileException;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings.LiveScoutSettingsBuilder;
+import com.sportradar.livedata.sdk.common.settings.LoggerSettings.LoggerSettingsBuilder;
+import com.sportradar.livedata.sdk.common.settings.JmxSettings.JmxSettingsBuilder;
 import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,16 +17,18 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-@SuppressWarnings({"unchecked", "JavaDoc"})
+@SuppressWarnings({"JavaDoc"})
 public class PropertyFileSettingsLoader implements SettingsLoader {
 
     public static final String DEFAULT_SETTINGS_FILE_NAME = "/sdk.properties";
+    public static final String LIVE_SCOUT_PREFIX = "sdk.livescout.";
+    public static final String JMX_PREFIX = "sdk.com.sportradar.livedata.sdk.loginterceptor.jmx.";
     private final static Logger logger = LoggerFactory.getLogger(PropertyFileSettingsLoader.class);
     private PropertiesParser properties;
 
     public PropertyFileSettingsLoader(Properties properties) throws MissingPropertyFileException {
         if (properties == null) {
-            loadProperties(DEFAULT_SETTINGS_FILE_NAME);
+            loadProperties();
         }else{
             loadProperties(properties);
         }
@@ -32,31 +36,19 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
 
     @Override
     public JmxSettings getJmxSettings() throws SdkException {
-        JmxSettingsBuilder jmxSettingsBuilder = DefaultSettingsBuilderHelper.getJmxSettingsBuilder();
-        return readJmxSettings("sdk.com.sportradar.livedata.sdk.loginterceptor.jmx.", jmxSettingsBuilder);
+        JmxSettingsBuilder jmxSettingsBuilder = JmxSettings.builder();
+        return readJmxSettings(jmxSettingsBuilder);
     }
 
     @Override
     public LiveScoutSettings getLiveScoutSettings() throws MissingPropertyException, InvalidPropertyException {
-        final String PREFIX = "sdk.livescout.";
-        LiveScoutSettingsBuilder liveScoutSettingsBuilder;
-
-
-        if (!useSSL(PREFIX, true)) {
-            logger.warn("Unsecure connection not supported for LiveScout. It will probably not connect", PREFIX + ".use_ssl", "false");
-        }
-
-        if (isTest(PREFIX)) {
-            liveScoutSettingsBuilder = DefaultSettingsBuilderHelper.getLiveScoutTest();
-        } else {
-            liveScoutSettingsBuilder = DefaultSettingsBuilderHelper.getLiveScout();
-        }
-
-        return commonLiveScoutSettingsBuild(PREFIX, liveScoutSettingsBuilder);
+        LiveScoutSettingsBuilder liveScoutSettingsBuilder = LiveScoutSettings.builder(isTest());
+        readLiveScout(liveScoutSettingsBuilder);
+        return liveScoutSettingsBuilder.build();
     }
 
-    protected final void loadProperties(String file) throws MissingPropertyFileException {
-        final InputStream res = getClass().getResourceAsStream(file);
+    protected final void loadProperties() throws MissingPropertyFileException {
+        final InputStream res = getClass().getResourceAsStream(PropertyFileSettingsLoader.DEFAULT_SETTINGS_FILE_NAME);
         if (res == null) {
             throw new MissingPropertyFileException();
         }
@@ -93,83 +85,78 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         logger.info(builder.toString());
     }
 
-    private LiveScoutSettings commonLiveScoutSettingsBuild(String prefix, LiveScoutSettingsBuilder liveScoutSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
-        readLiveScout(prefix, liveScoutSettingsBuilder);
-        return liveScoutSettingsBuilder.build();
-    }
-
-    private boolean isTest(String prefix) throws MissingPropertyException, InvalidPropertyException {
-        Boolean test = properties.getBooleanProperty(prefix + "test");
+    private boolean isTest() throws MissingPropertyException, InvalidPropertyException {
+        Boolean test = properties.getBooleanProperty(LIVE_SCOUT_PREFIX + "test");
         if (test == null) {
             return false;
         }
-
         return test;
     }
 
-    private void readFeedCommon(String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
-        Boolean debugMode = properties.getBooleanProperty(prefix + "debug");
+    private void readFeedCommon(LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
+        Boolean debugMode = properties.getBooleanProperty(LIVE_SCOUT_PREFIX + "debug");
         if (debugMode != null) {
             builder.debugMode(debugMode);
         }
-        Integer dispatcherThreadCount = properties.getIntegerProperty(prefix + "dispatcher_thread_count");
-        Integer dispatcherQueueSize = properties.getIntegerProperty(prefix + "dispatcher_queue_size");
+        Integer dispatcherThreadCount = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "dispatcher_thread_count");
+        Integer dispatcherQueueSize = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "dispatcher_queue_size");
         if (dispatcherThreadCount != null) {
             builder.dispatcherThreadCount(dispatcherThreadCount);
         }
         if (dispatcherQueueSize != null) {
             builder.dispatcherQueueSize(dispatcherQueueSize);
         }
-        readLoggerSettings(prefix, builder);
+        readLoggerSettings(builder);
     }
 
-    private JmxSettings readJmxSettings(String prefix, JmxSettingsBuilder jmxSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
-        boolean enabled = Boolean.parseBoolean(properties.getProperty(prefix + "enabled"));
-        jmxSettingsBuilder.setEnabled(enabled);
+    private JmxSettings readJmxSettings(JmxSettingsBuilder jmxSettingsBuilder) throws MissingPropertyException {
+        boolean enabled = Boolean.parseBoolean(properties.getProperty(JMX_PREFIX + "enabled"));
+        jmxSettingsBuilder.enabled(enabled);
 
-        if (jmxSettingsBuilder.isEnabled()) {
-            String jmxHost = properties.getProperty(prefix + "host");
-            if (jmxHost != null && jmxHost.length() > 0) {
-                jmxSettingsBuilder.setJmxHost(jmxHost);
+        if (enabled) {
+            String jmxHost = properties.getProperty(JMX_PREFIX + "host");
+            if (jmxHost != null && !jmxHost.isEmpty()) {
+                jmxSettingsBuilder.jmxHost(jmxHost);
             }
 
             try {
-                int jmxPort = Integer.parseInt(properties.getProperty(prefix + "port"));
-                jmxSettingsBuilder.setJmxPort(jmxPort);
+                int jmxPort = Integer.parseInt(properties.getProperty(JMX_PREFIX + "port"));
+                jmxSettingsBuilder.jmxPort(jmxPort);
             } catch (Exception e) {
                 //use default port
             }
 
-            String passwordFile = properties.getProperty(prefix + "passwordfile");
-            if (passwordFile != null && passwordFile.length() > 0) {
-                jmxSettingsBuilder.setPasswordFile(passwordFile);
+            String passwordFile = properties.getProperty(JMX_PREFIX + "passwordfile");
+            if (passwordFile != null && !passwordFile.isEmpty()) {
+                jmxSettingsBuilder.passwordFile(passwordFile);
             }
 
-            String accessFile = properties.getProperty(prefix + "accessfile");
-            if (accessFile != null && accessFile.length() > 0) {
-                jmxSettingsBuilder.setAccessFile(accessFile);
+            String accessFile = properties.getProperty(JMX_PREFIX + "accessfile");
+            if (accessFile != null && !accessFile.isEmpty()) {
+                jmxSettingsBuilder.accessFile(accessFile);
             }
         }
         return jmxSettingsBuilder.build();
     }
 
-    private void readLiveFeed(String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
-        readFeedCommon(prefix, builder);
-        Duration clientAliveMsgTimeout = properties.getDurationProperty(prefix + "client_alive_msg_timeout");
-        String hostName = properties.getProperty(prefix + "host_name");
-        List<LimiterData> loginLimiters = properties.getLimitersProperty(prefix + "login_limiters");
-        List<LimiterData> matchRequestLimiters = properties.getLimitersProperty(prefix + "match_request_limiters");
-        List<LimiterData> requestLimiters = properties.getLimitersProperty(prefix + "request_limiters");
-        Integer maxMessageSize = properties.getIntegerProperty(prefix + "max_message_size");
-        Duration reconnectWait = properties.getDurationProperty(prefix + "reconnect_wait");
-        Integer maxRequestMatchIds = properties.getIntegerProperty(prefix + "max_request_match_ids");
-        Duration maxRequestTimeAllowance = properties.getDurationProperty(prefix + "max_request_time_allowance");
-        Duration initialReconnectWait = properties.getDurationProperty(prefix + "initial_reconnect_wait");
-        Integer port = properties.getIntegerProperty(prefix + "port");
-        Integer receiveBufferSize = properties.getIntegerProperty(prefix + "receive_buffer_size");
-        Duration serverAliveMsgTimeout = properties.getDurationProperty(prefix + "server_alive_msg_timeout");
-        Boolean useSSL = properties.getBooleanProperty(prefix + "use_ssl");
-        Boolean disconnectOnParseError = properties.getBooleanProperty(prefix + "disconnect_on_parse_error");
+    private void readLiveScout(LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
+        readFeedCommon(builder);
+        Duration clientAliveMsgTimeout = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "client_alive_msg_timeout");
+        String hostName = properties.getProperty(LIVE_SCOUT_PREFIX + "host_name");
+        List<LimiterData> loginLimiters = properties.getLimitersProperty(LIVE_SCOUT_PREFIX + "login_limiters");
+        List<LimiterData> matchRequestLimiters = properties.getLimitersProperty(LIVE_SCOUT_PREFIX + "match_request_limiters");
+        List<LimiterData> requestLimiters = properties.getLimitersProperty(LIVE_SCOUT_PREFIX + "request_limiters");
+        Integer maxMessageSize = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "max_message_size");
+        Duration reconnectWait = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "reconnect_wait");
+        Integer maxRequestMatchIds = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "max_request_match_ids");
+        Duration matchExpireMaxAge = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "match_expire_max_age");
+        Duration maxRequestTimeAllowance = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "max_request_time_allowance");
+        Duration initialReconnectWait = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "initial_reconnect_wait");
+        Integer port = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "port");
+        Integer receiveBufferSize = properties.getIntegerProperty(LIVE_SCOUT_PREFIX + "receive_buffer_size");
+        Duration serverAliveMsgTimeout = properties.getDurationProperty(LIVE_SCOUT_PREFIX + "server_alive_msg_timeout");
+        Boolean useSSL = properties.getBooleanProperty(LIVE_SCOUT_PREFIX + "use_ssl");
+        Boolean disconnectOnParseError = properties.getBooleanProperty(LIVE_SCOUT_PREFIX + "disconnect_on_parse_error");
         if (clientAliveMsgTimeout != null) {
             builder.clientAliveMsgTimeout(clientAliveMsgTimeout);
         }
@@ -194,6 +181,9 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         if (maxRequestMatchIds != null) {
             builder.maxMatchIdsPerRequest(maxRequestMatchIds);
         }
+        if (matchExpireMaxAge != null) {
+            builder.matchExpireMaxAge(matchExpireMaxAge);
+        }
         if (maxRequestTimeAllowance != null) {
             builder.maxRequestTimeAllowance(maxRequestTimeAllowance);
         }
@@ -211,41 +201,34 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         }
         if (useSSL != null) {
             builder.useSSL(useSSL);
+            if(!useSSL) {
+                logger.warn("Unsecure connection not supported for LiveScout. It will probably not connect");
+            }
         }
         if (disconnectOnParseError != null) {
             builder.disconnectOnParseError(disconnectOnParseError);
         }
+        readAuthSettings(builder);
     }
 
-    private void readLiveScout(String prefix, LiveScoutSettingsBuilder liveScoutSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
-        readLiveFeed(prefix, liveScoutSettingsBuilder);
+    private void readAuthSettings(LiveScoutSettingsBuilder liveScoutSettingsBuilder) throws MissingPropertyException, InvalidPropertyException {
         try {
-            liveScoutSettingsBuilder.authSettings(new AuthSettings(
-                    properties.getProperty(prefix + "auth0.domain", true),
-                    properties.getProperty(prefix + "auth0.audience", true),
-                    properties.getProperty(prefix + "auth0.client_id", true),
-                    properties.getProperty(prefix + "auth0.kid", true),
-                    properties.parsePrivateKey(prefix + "auth0.private_key")));
+            liveScoutSettingsBuilder.authSettings(new AuthSettings(liveScoutSettingsBuilder.isTest(),
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "auth0.domain"),
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "auth0.audience"),
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "auth0.client_id", true),
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "auth0.kid", true),
+                    properties.parsePrivateKey(LIVE_SCOUT_PREFIX + "auth0.private_key")));
         } catch (MissingPropertyException e) { // if getting token parameters fails, fallback to legacy login
             logger.warn("SSO required property \"{}\" not found. Using legacy login", e.getProperty());
             liveScoutSettingsBuilder.authSettings(new AuthSettings(
-                    properties.getProperty(prefix + "username", true),
-                    properties.getProperty(prefix + "password", true )));
-        }
-
-        // by default set use_ssl to true
-        Boolean useSSL = properties.getBooleanProperty(prefix + "use_ssl");
-        if (useSSL == null) {
-            liveScoutSettingsBuilder.useSSL(true);
-        }
-        Duration matchExpireMaxAge = properties.getDurationProperty(prefix + "match_expire_max_age");
-        if (matchExpireMaxAge != null) {
-            liveScoutSettingsBuilder.matchExpireMaxAge(matchExpireMaxAge);
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "username", true),
+                    properties.getProperty(LIVE_SCOUT_PREFIX + "password", true )));
         }
     }
 
-    private void readLoggerSettings(final String prefix, LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
-        String internalPrefix = prefix + "logger.";
+    private void readLoggerSettings(LiveScoutSettingsBuilder builder) throws MissingPropertyException, InvalidPropertyException {
+        String internalPrefix = LIVE_SCOUT_PREFIX + "logger.";
         String logPath = properties.getProperty(internalPrefix + "log_path");
         Integer maxFileSize = properties.getIntegerProperty(internalPrefix + "max_file_size");
         Duration oldLogCleanupInterval = properties.getDurationProperty(internalPrefix + "old_log_cleanup_interval");
@@ -256,43 +239,34 @@ public class PropertyFileSettingsLoader implements SettingsLoader {
         Level invalidMsgLogLevel = properties.getLevelProperty(internalPrefix + "invalid_msg_log_level");
         Level trafficLogLevel = properties.getLevelProperty(internalPrefix + "traffic_log_level");
 
-        LoggerSettingsBuilder logBuilder = DefaultSettingsBuilderHelper.getLoggerSettings();
+        LoggerSettingsBuilder logBuilder = LoggerSettings.builder();
         if (logPath != null) {
-            logBuilder.setLogPath(logPath);
+            logBuilder.logPath(logPath);
         }
         if (oldLogCleanupInterval != null) {
-            logBuilder.setOldLogCleanupInterval(oldLogCleanupInterval);
+            logBuilder.oldLogCleanupInterval(oldLogCleanupInterval);
         }
         if (oldLogMaxAge != null) {
-            logBuilder.setOldLogMaxAge(oldLogMaxAge);
+            logBuilder.oldLogMaxAge(oldLogMaxAge);
         }
         if (alertLogLevel != null) {
-            logBuilder.setAlertLogLevel(alertLogLevel);
+            logBuilder.alertLogLevel(alertLogLevel);
         }
         if (clientInteractionLogLevel != null) {
-            logBuilder.setClientInteractionLogLevel(clientInteractionLogLevel);
+            logBuilder.clientInteractionLogLevel(clientInteractionLogLevel);
         }
         if (executionLogLevel != null) {
-            logBuilder.setExecutionLogLevel(executionLogLevel);
+            logBuilder.executionLogLevel(executionLogLevel);
         }
         if (invalidMsgLogLevel != null) {
-            logBuilder.setInvalidMsgLogLevel(invalidMsgLogLevel);
+            logBuilder.invalidMsgLogLevel(invalidMsgLogLevel);
         }
         if (trafficLogLevel != null) {
-            logBuilder.setTrafficLogLevel(trafficLogLevel);
+            logBuilder.trafficLogLevel(trafficLogLevel);
         }
         if (maxFileSize != null) {
-            logBuilder.setMaxFileSize(maxFileSize);
+            logBuilder.maxFileSize(maxFileSize);
         }
         builder.loggerSettings(logBuilder.build());
-    }
-
-    private boolean useSSL(String prefix, boolean def) throws MissingPropertyException, InvalidPropertyException {
-        Boolean test = properties.getBooleanProperty(prefix + "use_ssl");
-        if (test == null) {
-            return def;
-        }
-
-        return test;
     }
 }

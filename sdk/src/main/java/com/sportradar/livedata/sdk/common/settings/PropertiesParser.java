@@ -9,7 +9,6 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
-import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -54,8 +53,8 @@ public class PropertiesParser {
         }
     }
 
-    public Object setProperty(String key, String value) {
-        return properties.setProperty(key, value);
+    public void setProperty(String key, String value) {
+        properties.setProperty(key, value);
     }
 
     public Duration getDurationProperty(String key) throws MissingPropertyException {
@@ -180,26 +179,6 @@ public class PropertiesParser {
         return limiters;
     }
 
-    public Long getLongProperty(String key) throws MissingPropertyException, InvalidPropertyException {
-        return getLongProperty(key, false);
-    }
-
-    public Long getLongProperty(String key, boolean mandatory) throws InvalidPropertyException, MissingPropertyException {
-        checkNotNull(key);
-        String input = properties.getProperty(key);
-        if (input == null) {
-            if (mandatory) {
-                throw new MissingPropertyException(key);
-            }
-            return null;
-        }
-        try {
-            return Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            throw new InvalidPropertyException(key, "Expecting long value", input);
-        }
-    }
-
     public String getProperty(String key) throws MissingPropertyException {
         return getProperty(key, false);
     }
@@ -207,10 +186,8 @@ public class PropertiesParser {
     public String getProperty(String key, boolean mandatory) throws MissingPropertyException {
         checkNotNull(key);
         String property = properties.getProperty(key);
-        if (property == null) {
-            if (mandatory) {
-                throw new MissingPropertyException(key);
-            }
+        if (property == null && mandatory) {
+            throw new MissingPropertyException(key);
         }
         return property;
     }
@@ -230,7 +207,7 @@ public class PropertiesParser {
         }
         final String SEPARATOR = ",";
         String[] splitted = input.split(SEPARATOR);
-        if (splitted == null || splitted.length == 0) {
+        if (splitted.length == 0) {
             return new HashSet<>();
         }
         return new HashSet<>(Arrays.asList(splitted));

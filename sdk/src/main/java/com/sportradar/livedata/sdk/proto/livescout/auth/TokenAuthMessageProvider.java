@@ -85,7 +85,7 @@ public class TokenAuthMessageProvider extends AuthMessageProvider {
                 new BasicNameValuePair("client_assertion", createClientAssertion(now))
         );
 
-        HttpPost request = new HttpPost("https://" + settings.getAuth0Domain() + "/oauth/token");
+        HttpPost request = new HttpPost(settings.getAuth0Domain() + "oauth/token");
         request.addHeader("Content-Type", "application/x-www-form-urlencoded");
         request.setEntity(new UrlEncodedFormEntity(params, StandardCharsets.UTF_8));
         return request;
@@ -100,7 +100,7 @@ public class TokenAuthMessageProvider extends AuthMessageProvider {
                 .withHeader(Map.of("alg", algorithm.getName(), "kid", settings.getKid()))
                 .withIssuer(settings.getClientId())
                 .withSubject(settings.getClientId())
-                .withAudience("https://" + settings.getAuth0Domain() + "/")
+                .withAudience(settings.getAuth0Domain())
                 .withIssuedAt(now)
                 .withExpiresAt(now.plus(Duration.ofMinutes(1)))
                 .withJWTId(UUID.randomUUID().toString())

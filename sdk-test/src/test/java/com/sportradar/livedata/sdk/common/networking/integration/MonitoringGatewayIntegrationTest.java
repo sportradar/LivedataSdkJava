@@ -6,7 +6,6 @@ import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.GatewayListener;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
@@ -68,7 +67,7 @@ class MonitoringGatewayIntegrationTest {
         JaxbBuilder JaxbBuilder = new JaxbFactory(jaxbContext);
         MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(JaxbBuilder, null);
         MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(JaxbBuilder);
-        LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();
+        LiveScoutSettings serverSettings = LiveScoutSettings.builder(false).build();
         this.serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
@@ -82,6 +81,7 @@ class MonitoringGatewayIntegrationTest {
         this.client.setListener(clientListener);
     }
 
+    @SuppressWarnings("unused") // not used but may be needed in future
     @Timeout(3)
     public void gatewayConnectsToTheServerWhenServerStarted() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
@@ -221,7 +221,7 @@ class MonitoringGatewayIntegrationTest {
 
     @Test
     @Timeout(3)
-    void gatewayDoesNotDisconnectIfReceivingAliveMessages() throws IOException, InterruptedException, SdkException {
+    void gatewayDoesNotDisconnectIfReceivingAliveMessages() throws IOException, InterruptedException {
         context.checking(new Expectations() {{
             oneOf(clientListener).onConnected();
             then(clientState.is("connected"));

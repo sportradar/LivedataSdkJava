@@ -1,5 +1,10 @@
 package com.sportradar.livedata.sdk.common.settings;
 
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Base64;
+
 public final class PropertyConstants {
 
     public static final String VALID_RSA_PRIVATE_KEY =
@@ -13,6 +18,15 @@ public final class PropertyConstants {
             "/bDRPrtlRUDDx44wHoEhSDRdy77eiQIgE6z/k6I+ChN1LLttwX0galITxmAYrOBh\n" +
             "BVl433tgTTQ=\n" +
             "-----END PRIVATE KEY-----\n";
+    public static final RSAPrivateKey PRIVATE_KEY;
+    static {
+        try {
+            byte[] decoded = Base64.getDecoder().decode(VALID_RSA_PRIVATE_KEY.replaceAll("-{5}[\\w\\s]*-{5}|\\s", ""));
+            PRIVATE_KEY = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // Authentication-related constants
     public static final String AUTH0_DOMAIN = "sdk.livescout.auth0.domain";

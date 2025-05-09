@@ -11,7 +11,6 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
 import com.sportradar.livedata.sdk.common.classes.RealTimeProvider;
 import com.sportradar.livedata.sdk.common.enums.SdkLogAppenderType;
-import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.settings.LoggerSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.TimeProvider;
@@ -22,6 +21,7 @@ import org.hamcrest.CoreMatchers;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -39,13 +39,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FileSdkLoggerTestBase {
+
+@SuppressWarnings("ResultOfMethodCallIgnored")
+public class FileSdkLoggerBaseTest {
 
     private final String tmpLogPath = System.getProperty("java.io.tmpdir") + File.separator + "logs";
     @TempDir
@@ -54,23 +55,13 @@ public class FileSdkLoggerTestBase {
     private LoggerSettings loggerSettings;
     private FileSdkLogger fileSdkLogger;
     private final String ROOT_NS = FileSdkLogger.ROOT_NS +".logger";
-    private Logger logger;
     private DummyLBAppender listAppender;
-    private DummyLBAppender rootListAppender;
-    private LoggerContext loggerContext;
-    private String logPath;
-    private Duration oldLogCleanupInterval;
-    private Duration oldLogMaxAge;
-    private Logger sdkRootLogger;
-    private Logger sdkRootMarkerLogger;
     private Logger invalidMessageLogger;
     protected Logger trafficLogger;
     private Logger clientInteractionLogger;
     private Logger alertLogger;
-    private Timer timer;
-    private final String markerName = "markerName";
 
-    FileSdkLoggerTestBase() {
+    FileSdkLoggerBaseTest() {
     }
 
     @BeforeEach
@@ -79,41 +70,39 @@ public class FileSdkLoggerTestBase {
         if (!logDirectory.exists() && !logDirectory.isDirectory()) {
             logDirectory.mkdir();
         }
-        logger = (Logger) LoggerFactory.getLogger(ROOT_NS);
+        Logger logger = (Logger) LoggerFactory.getLogger(ROOT_NS);
         tmpDirectory = Files.createTempDirectory(directory.toPath(), "file_logger_test").toFile();
-        logPath = tmpDirectory.getAbsolutePath();
+        String logPath = tmpDirectory.getAbsolutePath();
 
-        oldLogCleanupInterval = Duration.standardHours(1);
-        oldLogMaxAge = Duration.standardMinutes(5);
-        Level alertLogLevel = Level.ALL;
-        Level clientInteractionLogLevel = Level.INFO;
-        Level configLogLevel = Level.INFO;
-        Level executionLogLevel = Level.INFO;
-        Level invalidMsgLogLevel = Level.INFO;
-        Level statsLogLevel = Level.INFO;
-        Level trafficLogLevel = Level.INFO;
-        int maxFileSize = 1024*1024*10;
-        timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
-        loggerSettings = new LoggerSettings(
-                logPath, oldLogCleanupInterval, oldLogMaxAge,
-                alertLogLevel, clientInteractionLogLevel,
-                executionLogLevel,
-                invalidMsgLogLevel, trafficLogLevel, maxFileSize);
+        Timer timer = new PeriodicTimer(Executors.newScheduledThreadPool(1));
+        loggerSettings =
+                LoggerSettings.builder()
+                        .logPath(logPath)
+                        .oldLogCleanupInterval(Duration.standardHours(1))
+                        .oldLogMaxAge(Duration.standardMinutes(5))
+                        .alertLogLevel(Level.ALL)
+                        .clientInteractionLogLevel(Level.INFO)
+                        .executionLogLevel(Level.INFO)
+                        .invalidMsgLogLevel(Level.INFO)
+                        .trafficLogLevel(Level.INFO)
+                        .maxFileSize(1024*1024*10)
+                        .build();
+        String markerName = "markerName";
         fileSdkLogger = new FileSdkLogger(loggerSettings, timer, markerName);
 
         listAppender = new DummyLBAppender();
-        loggerContext = logger.getLoggerContext();
+        LoggerContext loggerContext = logger.getLoggerContext();
         listAppender.setContext(loggerContext);
 
-        rootListAppender = new DummyLBAppender();
+        DummyLBAppender rootListAppender = new DummyLBAppender();
         rootListAppender.setContext(loggerContext);
 
         final String markerNameWithDot = "." + markerName;
         final String markerNameWithDotPlusDot = "." + markerName + ".";
 
-        sdkRootLogger = loggerContext.getLogger(ROOT_NS + ".common");
+        Logger sdkRootLogger = loggerContext.getLogger(ROOT_NS + ".common");
         assertThat(sdkRootLogger, CoreMatchers.instanceOf(Logger.class));
-        sdkRootMarkerLogger = loggerContext.getLogger(ROOT_NS + markerNameWithDot);
+        Logger sdkRootMarkerLogger = loggerContext.getLogger(ROOT_NS + markerNameWithDot);
         assertThat(sdkRootMarkerLogger, CoreMatchers.instanceOf(Logger.class));
         invalidMessageLogger = getLogger(fileSdkLogger, ROOT_NS + markerNameWithDotPlusDot + SdkLogAppenderType.INVALID_MSG.getFileName());
         trafficLogger = getLogger(fileSdkLogger, ROOT_NS + markerNameWithDotPlusDot + SdkLogAppenderType.TRAFFIC.getFileName());
@@ -135,16 +124,13 @@ public class FileSdkLoggerTestBase {
         TimeProvider.setCurrent(new RealTimeProvider());
     }
 
-    public static Logger getLogger(SdkLogger sdkLogger, String loggerName) {
-        Map<Logger, Marker> markers = null;
+    @SuppressWarnings("unchecked")
+    public static Logger getLogger(FileSdkLogger sdkLogger, String loggerName) throws Exception {
+        Map<Logger, Marker> markers;
         Logger logger = null;
-        try {
-            Field fieldMarker = sdkLogger.getClass().getDeclaredField("markers");
-            fieldMarker.setAccessible(true);
-            markers = (Map<Logger, Marker>) fieldMarker.get(sdkLogger);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Field fieldMarker = sdkLogger.getClass().getDeclaredField("markers");
+        fieldMarker.setAccessible(true);
+        markers = (Map<Logger, Marker>) fieldMarker.get(sdkLogger);
 
         if (markers != null) {
             for (Map.Entry<Logger, Marker> entry : markers.entrySet()) {
@@ -244,7 +230,7 @@ public class FileSdkLoggerTestBase {
         Level level = Level.INFO;
         String message = "client interaction with exception message";
         try {
-            new IllegalArgumentException("argument exception test 111");
+            throw new IllegalArgumentException("argument exception test 111");
         } catch (IllegalArgumentException exception) {
             fileSdkLogger.logClientInteraction(level, message, exception);
             loggingEvents = listAppender.list;
@@ -268,14 +254,14 @@ public class FileSdkLoggerTestBase {
         ILoggingEvent event;
 
         try {
-            new IllegalArgumentException("argument exception test with duration zero");
+            throw new IllegalArgumentException("argument exception test with duration zero");
         } catch (IllegalArgumentException exception) {
             fileSdkLogger.logClientInteraction(level, message, Duration.ZERO, exception);
             loggingEvents = listAppender.list;
             assertThat(loggingEvents.size(), is(1));
 
             event = loggingEvents.get(0);
-            assertThat(message, equalTo(event.getFormattedMessage()));
+            assertThat(event.getFormattedMessage(), equalTo(message));
             assertThat(event.getLevel(), equalTo(level));
         }
     }
@@ -292,14 +278,14 @@ public class FileSdkLoggerTestBase {
         ILoggingEvent event;
 
         try {
-            new IllegalArgumentException("test exception with duration non zero");
+            throw new IllegalArgumentException("test exception with duration non zero");
         } catch (IllegalArgumentException exception) {
             message = "duration message";
             fileSdkLogger.logClientInteraction(level, message, Duration.millis(1324), exception);
-            assertThat(loggingEvents.size(), is(2));
+            assertThat(loggingEvents.size(), is(1));
 
-            event = loggingEvents.get(1);
-            assertThat("[Elapsed PT1.324S] " + message, equalTo(event.getFormattedMessage()));
+            event = loggingEvents.get(0);
+            assertThat(event.getFormattedMessage(),equalTo("[Elapsed 1.324] " + message));
             assertThat(event.getLevel(), equalTo(level));
         }
     }
@@ -341,17 +327,13 @@ public class FileSdkLoggerTestBase {
 
     @Test
     void testLoggerLevelIsNull() {
-        Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            FileSdkLogger.getLevel(null);
-        });
+        Exception e = assertThrows(IllegalArgumentException.class, () -> FileSdkLogger.getLevel(null));
         assertTrue(e.getMessage().contains("level"));
     }
 
     @Test
     void testLoggerLevelIsEmpty() {
-        Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            FileSdkLogger.getLevel("");
-        });
+        Exception e = assertThrows(IllegalArgumentException.class, () -> FileSdkLogger.getLevel(""));
         assertTrue(e.getMessage().contains("level"));
     }
 
@@ -373,9 +355,7 @@ public class FileSdkLoggerTestBase {
     void testAppenderTypeNull() {
         SdkLogAppenderType appenderTypeAlert = null;
         final String markerName = "marker";
-        Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName);
-        });
+        Exception e = assertThrows(IllegalArgumentException.class, () -> SdkLogAppenderType.getAppenderName(appenderTypeAlert, markerName));
         assertTrue(e.getMessage().contains("appenderType"));
     }
 
@@ -401,9 +381,7 @@ public class FileSdkLoggerTestBase {
         final String appenderName = FileSdkLogger.ROOT_NS + inputAppenderType.name() + "." + suffix;
 
         final String expected = "No enum constant " + inputAppenderType.getClass().getName() + "." + inputAppenderType.name() + suffix;
-        Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            SdkLogAppenderType outputAppenderType = FileSdkLogger.getAppenderType(appenderName);
-        });
+        Exception e = assertThrows(IllegalArgumentException.class, () -> FileSdkLogger.getAppenderType(appenderName));
         assertTrue(e.getMessage().contains(expected));
     }
 
@@ -454,6 +432,7 @@ public class FileSdkLoggerTestBase {
         cleanUpMethod.invoke(fileSdkLogger);
 
         String[] trafficFiles = trafficDirectory.list();
+        Assertions.assertNotNull(trafficFiles);
         assertThat(trafficFiles.length, is(0));
     }
 
@@ -468,6 +447,7 @@ public class FileSdkLoggerTestBase {
         return file;
     }
 
+    @SuppressWarnings("all")
     private void setOldDate(File file) {
         file.setLastModified(DateTime.now().minus(Duration.millis(loggerSettings.getOldLogMaxAge().getMillis())).getMillis());
     }

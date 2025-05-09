@@ -53,7 +53,7 @@ class PropertyFileSettingsLoaderTest {
 
     @Test
     void testGetLiveScoutSettingsFallbackToLegacyLogin() throws MissingPropertyException, InvalidPropertyException, MissingPropertyFileException {
-        mockProperties.remove(AUTH0_DOMAIN);
+        mockProperties.remove(AUTH0_CLIENT_ID);
         PropertyFileSettingsLoader settingsLoader = new PropertyFileSettingsLoader(mockProperties);
 
         AuthSettings authSettings = settingsLoader.getLiveScoutSettings().getAuthSettings();
@@ -64,7 +64,7 @@ class PropertyFileSettingsLoaderTest {
 
     @Test
     void testGetLiveScoutSettingsThrowsMissingPropertyException() throws MissingPropertyFileException {
-        mockProperties.remove(AUTH0_DOMAIN);
+        mockProperties.remove(AUTH0_KID);
         mockProperties.remove(USERNAME);
         PropertyFileSettingsLoader settingsLoader = new PropertyFileSettingsLoader(mockProperties);
         assertThrows(MissingPropertyException.class, settingsLoader::getLiveScoutSettings);

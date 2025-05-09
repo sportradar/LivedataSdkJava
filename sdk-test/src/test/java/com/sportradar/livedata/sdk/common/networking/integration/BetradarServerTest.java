@@ -4,26 +4,27 @@
 
 package com.sportradar.livedata.sdk.common.networking.integration;
 
-import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
+import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import com.sportradar.livedata.sdk.common.rategate.NullRateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
 import com.sportradar.livedata.sdk.common.settings.AuthSettings;
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
-import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import com.sportradar.livedata.sdk.proto.LiveFeedProtocol;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
+import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.Sequence;
@@ -39,8 +40,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLSocketFactory;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
@@ -73,7 +72,6 @@ class BetradarServerTest {
     private Gateway gateway;
     MessageParser<IncomingMessage> clientMessageParser;
     MessageWriter<OutgoingMessage> clientMessageWriter;
-    private Protocol<IncomingMessage, OutgoingMessage> protocol;
 
     @BeforeEach
     public void setUp() throws IOException, JAXBException {
@@ -97,13 +95,13 @@ class BetradarServerTest {
 
     @Test
     @Timeout(25)
-    void protocolLogsInAndStops() throws InterruptedException, IOException, MessageException, ProtocolException {
+    void protocolLogsInAndStops() throws InterruptedException{
         AuthSettings authSettings = new AuthSettings("1762", "DirKES7ew");
-        LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
+        LiveScoutSettings settings = LiveScoutSettings.builder(false)
                 .authSettings(authSettings)
                 .build();
 
-        protocol = new LiveFeedProtocol(
+        Protocol<IncomingMessage, OutgoingMessage> protocol = new LiveFeedProtocol(
                 gateway,
                 clientMessageParser,
                 clientMessageWriter,

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import java.security.interfaces.RSAPrivateKey;
 
-import static com.sportradar.livedata.sdk.common.classes.Nulls.hasNulls;
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 @Getter
 @EqualsAndHashCode
@@ -21,7 +21,8 @@ public class AuthSettings {
     private final String kid;
     private final RSAPrivateKey privateKey;
 
-    public AuthSettings(String auth0Domain,
+    public AuthSettings(boolean isTest,
+                        String auth0Domain,
                         String audience,
                         String clientId,
                         String kid,
@@ -30,8 +31,12 @@ public class AuthSettings {
 
         this.username = null;
         this.password = null;
-        this.auth0Domain = auth0Domain;
-        this.audience = audience;
+        this.auth0Domain = isNullOrEmpty(auth0Domain) ? "https://auth.sportradar.com/" : auth0Domain;
+        if(isNullOrEmpty(audience)){
+            this.audience = isTest ? "livedata-replay" : "livedata-feed";
+        } else {
+            this.audience = audience;
+        }
         this.clientId = clientId;
         this.kid = kid;
         this.privateKey = privateKey;

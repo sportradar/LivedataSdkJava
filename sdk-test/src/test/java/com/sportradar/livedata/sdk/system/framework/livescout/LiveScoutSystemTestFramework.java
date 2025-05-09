@@ -1,6 +1,6 @@
 package com.sportradar.livedata.sdk.system.framework.livescout;
 
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings.LiveScoutSettingsBuilder;
 import com.sportradar.livedata.sdk.common.networking.FakeGateway;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
@@ -12,35 +12,30 @@ import jakarta.xml.bind.JAXBException;
 
 public class LiveScoutSystemTestFramework {
 
-    private LiveScoutSettingsBuilder liveScoutSettingsBuilder;
-    private LiveScoutDispatcher mockDispatcher;
-    private FakeGateway mockGateway;
-    private LiveScoutServerMock liveScoutServer;
-    private SystemTestMessageParser messageParser;
+    private final LiveScoutSettingsBuilder liveScoutSettingsBuilder;
+    private final LiveScoutDispatcher mockDispatcher;
+    private final FakeGateway mockGateway;
+    private final LiveScoutServerMock liveScoutServer;
 
     public LiveScoutSystemTestFramework(
             final LiveScoutDispatcher mockDispatcher,
-            final SdkDataListener sdkDataListener) {
+            final SdkDataListener sdkDataListener) throws JAXBException {
         this.mockDispatcher = mockDispatcher;
         mockGateway = new FakeGateway();
-        try {
-            messageParser = new SystemTestMessageParser(
-                    new OutgoingMessageListener() {
-                        @Override
-                        public <T extends OutgoingMessage> void messageSendToServer(T msg) throws Exception {
-                            liveScoutServer.handleBookmakerStatus(msg);
-                            sdkDataListener.sdkEntitySend(msg);
-                        }
-                    },
-                    "com.sportradar.livedata.sdk.proto.dto.incoming.livescout",
-                    "com.sportradar.livedata.sdk.proto.dto.outgoing.livescout");
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+        SystemTestMessageParser messageParser = new SystemTestMessageParser(
+                new OutgoingMessageListener() {
+                    @Override
+                    public <T extends OutgoingMessage> void messageSendToServer(T msg) {
+                        liveScoutServer.handleBookmakerStatus(msg);
+                        sdkDataListener.sdkEntitySend(msg);
+                    }
+                },
+                "com.sportradar.livedata.sdk.proto.dto.incoming.livescout",
+                "com.sportradar.livedata.sdk.proto.dto.outgoing.livescout");
         mockGateway.setFakeGatewayListener(new GatewayListenerMock(messageParser));
         liveScoutServer = new LiveScoutServerMock(mockGateway, messageParser);
 
-        liveScoutSettingsBuilder = DefaultSettingsBuilderHelper.getLiveScout();
+        liveScoutSettingsBuilder = LiveScoutSettings.builder(false);
     }
 
     public LiveScoutFeed createFeed() {

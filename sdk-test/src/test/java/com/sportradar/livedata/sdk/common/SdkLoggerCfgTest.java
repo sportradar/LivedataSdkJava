@@ -29,8 +29,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 class SdkLoggerCfgTest {
 
@@ -38,9 +38,8 @@ class SdkLoggerCfgTest {
 
     @TempDir
     public File directory;
-    final private String LIVE_SCOUT_SUBDIRECTORY = "LiveScout";
 
-    private Logger rootLogger = (Logger) LoggerFactory.getLogger(FileSdkLogger.ROOT_NS);
+    private final Logger rootLogger = (Logger) LoggerFactory.getLogger(FileSdkLogger.ROOT_NS);
     private Logger testLogger;
     private LoggerSettings loggerSettings;
     private LoggerSettings liveScoutLoggerSettings;
@@ -51,6 +50,7 @@ class SdkLoggerCfgTest {
     public SdkLoggerCfgTest() {
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @BeforeEach
     public void setUp() throws Exception {
         File logDirectory = new File(directory, tmpLogPath);
@@ -62,22 +62,23 @@ class SdkLoggerCfgTest {
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
         testLogger = (Logger) LoggerFactory.getLogger(SdkLoggerCfg.class);
 
+        String LIVE_SCOUT_SUBDIRECTORY = "LiveScout";
         liveScoutLoggerSettings = createLoggerSettings(logDirectory, LIVE_SCOUT_SUBDIRECTORY);
         dummyLBAppender = new DummyLBAppender();
     }
 
     private LoggerSettings createLoggerSettings(File logDirectory, String subDirectory) {
-        return new LoggerSettings(
-                logDirectory.getPath() + File.separator + subDirectory,
-                new Duration(1000 * 60 * 60),
-                new Duration(1000 * 60 * 60 * 60),
-                Level.INFO,
-                Level.WARN,
-                Level.TRACE,
-                Level.DEBUG,
-                Level.DEBUG,
-                10*1024*1024
-        );
+        return LoggerSettings.builder()
+                .logPath(logDirectory.getPath() + File.separator + subDirectory)
+                .oldLogCleanupInterval(new Duration(1000 * 60 * 60))
+                .oldLogMaxAge(new Duration(1000 * 60 * 60 * 60))
+                .alertLogLevel(Level.INFO)
+                .clientInteractionLogLevel(Level.WARN)
+                .executionLogLevel(Level.TRACE)
+                .invalidMsgLogLevel(Level.DEBUG)
+                .trafficLogLevel(Level.DEBUG)
+                .maxFileSize(10*1024*1024)
+                .build();
     }
 
     private void addDummyLBAppender(LoggerContext loggerContext) {
@@ -90,7 +91,7 @@ class SdkLoggerCfgTest {
 
     private LoggerContext getLoggerContext() {
         int maxFileSize = 1024*1024*10;
-        final Appender appender = SdkLoggerCfg.createAppender(SdkLogAppenderType.EXECUTION,
+        final Appender<ILoggingEvent> appender = SdkLoggerCfg.createAppender(SdkLogAppenderType.EXECUTION,
                 loggerSettings.getLogPath(),
                 loggerSettings.getExecutionLogLevel(), null, true, "Common", maxFileSize);
         LoggerContext loggerContext = (LoggerContext) appender.getContext();
@@ -101,7 +102,7 @@ class SdkLoggerCfgTest {
         return loggerContext;
     }
 
-    private ConcurrentLinkedQueue<Object[]> log(SdkLogger sdkLogger, String markerName) {
+    private ConcurrentLinkedQueue<Object[]> log(SdkLogger sdkLogger) {
         ConcurrentLinkedQueue<Object[]> result = new ConcurrentLinkedQueue<>();
 
         String str = "alert message";
@@ -109,8 +110,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.ALERT.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.ALERT.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.ALERT.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -120,8 +121,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.ALERT.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.ALERT.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.ALERT.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -130,8 +131,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -141,8 +142,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -154,8 +155,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.CLIENT_INTERACTION.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -164,8 +165,8 @@ class SdkLoggerCfgTest {
         sdkLogger.logTraffic(false, str);
         result.add(new Object[]{
                 level, FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.TRAFFIC.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.TRAFFIC.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.TRAFFIC.getAppenderName(),
+                "LiveScout",
                 s + str
         });
 
@@ -175,8 +176,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.TRAFFIC.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.TRAFFIC.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.TRAFFIC.getAppenderName(),
+                "LiveScout",
                 s + str
         });
 
@@ -186,8 +187,8 @@ class SdkLoggerCfgTest {
         result.add(new Object[]{
                 level,
                 FileSdkLogger.ROOT_NS + "." + SdkLogAppenderType.INVALID_MSG.getAppenderName(),
-                markerName + "-" + SdkLogAppenderType.INVALID_MSG.getAppenderName(),
-                markerName,
+                "LiveScout" + "-" + SdkLogAppenderType.INVALID_MSG.getAppenderName(),
+                "LiveScout",
                 str
         });
 
@@ -202,16 +203,9 @@ class SdkLoggerCfgTest {
 
     @Test
     void perfomanceTest() throws Exception {
-        LoggerContext loggerContext = getLoggerContext();
-
         LiveScoutFileSdkLogger liveScoutFileSdkLogger = new LiveScoutFileSdkLogger(liveScoutLoggerSettings);
         final SdkLogger liveScoutSdkLogger = liveScoutFileSdkLogger.createLogger(scheduledExecutorService);
-        Thread liveScoutThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                simulateLogging(liveScoutSdkLogger);
-            }
-        });
+        Thread liveScoutThread = new Thread(() -> simulateLogging(liveScoutSdkLogger));
 
         long startTime = System.nanoTime();
 
@@ -222,6 +216,7 @@ class SdkLoggerCfgTest {
         System.out.println(new Duration(elapsedTime));
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     void testFileSdkLogger() throws Exception {
         LoggerContext loggerContext = getLoggerContext();
@@ -230,12 +225,9 @@ class SdkLoggerCfgTest {
 
         LiveScoutFileSdkLogger liveScoutFileSdkLogger = new LiveScoutFileSdkLogger(liveScoutLoggerSettings);
         final SdkLogger liveScoutSdkLogger = liveScoutFileSdkLogger.createLogger(scheduledExecutorService);
-        Thread liveScoutThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ConcurrentLinkedQueue<Object[]> result = log(liveScoutSdkLogger, "LiveScout");
-                concurrentQueue.addAll(result);
-            }
+        Thread liveScoutThread = new Thread(() -> {
+            ConcurrentLinkedQueue<Object[]> result = log(liveScoutSdkLogger);
+            concurrentQueue.addAll(result);
         });
 
         addDummyLBAppender(loggerContext);
@@ -247,38 +239,30 @@ class SdkLoggerCfgTest {
         List<ILoggingEvent> list = new ArrayList<>(dummyLBAppender.list);
 
         for (ILoggingEvent event : list) {
-            System.out.println(String.format("%s %s %s %s",
+            System.out.printf("%s %s %s %s%n",
                     event.getLoggerName(),
                     event.getLevel().levelStr,
                     event.getMarker(),
-                    event.getMessage()));
+                    event.getMessage());
             if (concurrentQueue.isEmpty()) {
                 break;
             }
             Object[] object = (Object[]) concurrentQueue.poll();
             assertThat(level, equalTo(object[0]));
             Marker marker = event.getMarker();
-            if (marker instanceof Marker) {
+            if (marker != null) {
                 assertThat(marker.getName(), equalTo(object[2]));
                 assertThat(event.getMessage(), equalTo(object[4]));
             }
         }
     }
 
-    private static class LoggerClassBar {
-
-        public LoggerClassBar() {
-        }
-
-        public static void bar(Logger logger) {
-            logger.debug("test bar");
-        }
-    }
+    private static class LoggerClassBar {}
 
     private static class LiveScoutFileSdkLogger {
 
         org.slf4j.Logger logger = LoggerFactory.getLogger(LoggerClassBar.class);
-        private LoggerSettings loggerSettings;
+        private final LoggerSettings loggerSettings;
 
         public LiveScoutFileSdkLogger(LoggerSettings loggerSettings) {
             logger.info("constructor");
@@ -289,33 +273,6 @@ class SdkLoggerCfgTest {
             logger.info("create logger");
             Timer timer = new PeriodicTimer(scheduledExecutorService);
             return new FileSdkLogger(loggerSettings, timer, "LiveScout");
-        }
-    }
-
-    private static class LoggerClassFooBar {
-
-        public LoggerClassFooBar() {
-        }
-
-        public static void foobar(Logger logger) {
-            logger.debug("test foobar");
-        }
-    }
-
-    private static class LiveOddsFileSdkLogger {
-
-        org.slf4j.Logger logger = LoggerFactory.getLogger(LoggerClassFooBar.class);
-        private LoggerSettings loggerSettings;
-
-        public LiveOddsFileSdkLogger(LoggerSettings loggerSettings) {
-            logger.info("constructor");
-            this.loggerSettings = loggerSettings;
-        }
-
-        public SdkLogger createLogger(ScheduledExecutorService scheduledExecutorService) throws SdkException {
-            logger.info("create logger");
-            Timer timer = new PeriodicTimer(scheduledExecutorService);
-            return new FileSdkLogger(loggerSettings, timer, "LiveOdds");
         }
     }
 }

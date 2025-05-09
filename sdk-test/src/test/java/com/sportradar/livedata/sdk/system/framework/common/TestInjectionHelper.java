@@ -14,7 +14,7 @@ public class TestInjectionHelper {
 
         return Guice.createInjector(
                 new GeneralInjectionModule(
-                        new JmxSettings(false, "localhost", 12345, null, null)
+                        JmxSettings.builder().jmxPort(12345).build()
                 ),//TODO test
                 liveScoutInjectionModule);
     }

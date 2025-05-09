@@ -4,17 +4,13 @@ import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.NameValuePair;
-import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.apache.hc.core5.net.URIBuilder;
 import org.apache.hc.core5.net.URLEncodedUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,33 +22,29 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.security.KeyFactory;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
-import java.util.Base64;
 import java.util.List;
 
-import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.VALID_RSA_PRIVATE_KEY;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.PRIVATE_KEY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@SuppressWarnings("resource")
 class TokenAuthMessageProviderTest {
 
     private LiveScoutOutgoingMessageFactory factory;
-    private AuthSettings settings;
     private TokenAuthMessageProvider provider;
 
     @BeforeEach
     void setUp() {
         factory = mock(LiveScoutOutgoingMessageFactory.class);
-        settings = mock(AuthSettings.class);
+        AuthSettings settings = mock(AuthSettings.class);
 
         when(settings.getAudience()).thenReturn("test-audience");
-        when(settings.getAuth0Domain()).thenReturn("test.auth0.com");
+        when(settings.getAuth0Domain()).thenReturn("https://test.auth0.com/");
         when(settings.getClientId()).thenReturn("test-client-id");
         when(settings.getKid()).thenReturn("test-kid");
-        when(settings.getPrivateKey()).thenReturn(getPrivateKey());
+        when(settings.getPrivateKey()).thenReturn(PRIVATE_KEY);
 
         provider = new TokenAuthMessageProvider(factory, settings);
     }
@@ -156,7 +148,6 @@ class TokenAuthMessageProviderTest {
         try (MockedStatic<HttpClients> mockedHttpClients = Mockito.mockStatic(HttpClients.class)) {
             CloseableHttpClient mockClient = mock(CloseableHttpClient.class);
             mockedHttpClients.when(HttpClients::createDefault).thenReturn(mockClient);
-
             ClassicHttpResponse httpResponse = mock(ClassicHttpResponse.class);
             HttpEntity entity = mock(HttpEntity.class);
             InputStream stream = new ByteArrayInputStream("{\"access_token\":\"dummy-token\",\"expires_in\":3600}".getBytes());
@@ -176,16 +167,6 @@ class TokenAuthMessageProviderTest {
         }
     }
 
-    private RSAPrivateKey getPrivateKey() {
-        try {
-            byte[] decoded = Base64.getDecoder().decode(VALID_RSA_PRIVATE_KEY.replaceAll("-{5}[\\w\\s]*-{5}|\\s", ""));
-            return (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     private void validateTokenRequest(CloseableHttpClient mockClient, int times) throws Exception {
         // Capture the HttpPost object
         ArgumentCaptor<HttpPost> httpPostCaptor = ArgumentCaptor.forClass(HttpPost.class);
@@ -198,6 +179,7 @@ class TokenAuthMessageProviderTest {
 
         // Check the parameters in the entity
         String entityContent = EntityUtils.toString(capturedPost.getEntity());
+        @SuppressWarnings("deprecation")
         List<NameValuePair> params = URLEncodedUtils.parse(entityContent, StandardCharsets.UTF_8);
 
         for(NameValuePair param : params) {
