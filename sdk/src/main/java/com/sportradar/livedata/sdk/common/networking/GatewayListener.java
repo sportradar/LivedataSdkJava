@@ -20,6 +20,11 @@ public interface GatewayListener {
     void onDataReceived(InputStream stream);
 
     /**
+     * Invoked by the observed {@link Gateway} instance before it establishes a connection to the server.
+     */
+    //void onPrepareConnection();
+
+    /**
      * Invoked by the observed {@link Gateway} instance when it establishes a connection to the server.
      */
     void onConnected();

@@ -49,7 +49,7 @@ public interface LiveScoutFeed extends UserRequestManager {
      * @param matchIds         - filter by matches ids, nullable
      * @throws IllegalStateException if the feed is not opened
      */
-    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds);
+    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds);
 
     /**
      * Get a list of matches

@@ -6,24 +6,27 @@ package com.sportradar.livedata.sdk.common.networking.integration;
 
 import com.sportradar.livedata.sdk.common.classes.SdkVersion;
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
+import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import com.sportradar.livedata.sdk.common.rategate.NullRateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
 import com.sportradar.livedata.sdk.common.timer.Timer;
-import com.sportradar.livedata.sdk.common.networking.ConnectionMonitoringGateway;
 import com.sportradar.livedata.sdk.proto.LiveFeedProtocol;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
 import com.sportradar.livedata.sdk.util.FakeServer;
 import com.sportradar.livedata.sdk.util.TcpServer;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 import org.apache.commons.net.DefaultSocketFactory;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -34,9 +37,6 @@ import org.joda.time.Duration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
 import org.junit.jupiter.api.Timeout;
 
 import java.io.IOException;
@@ -65,7 +65,6 @@ class ProtocolIntegrationTest {
 
     private FakeServer serverDriver;
 
-    private Gateway gateway;
     MessageParser<IncomingMessage> clientMessageParser;
     MessageWriter<OutgoingMessage> clientMessageWriter;
     private Protocol<IncomingMessage, OutgoingMessage> protocol;
@@ -79,9 +78,9 @@ class ProtocolIntegrationTest {
         MessageParser<OutgoingMessage> serverMessageParser = new JaxbMessageParser<>(bookmakerStatusJaxbFactory, null);
         MessageWriter<IncomingMessage> serverMessageWriter = new JaxbMessageWriter<>(liveOddsJaxbFactory);
 
-        LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1")
-                .setPassword("key")
+        AuthSettings authSettings = new AuthSettings("1", "key");
+        LiveScoutSettings serverSettings = LiveScoutSettings.builder(false)
+                .authSettings(authSettings)
                 .build();
 
         serverDriver = new FakeServer(new TcpServer(executor, 5055), serverMessageParser, serverMessageWriter, serverSettings);
@@ -92,16 +91,15 @@ class ProtocolIntegrationTest {
         Gateway reconnectingGateway = new ReconnectingGateway(tcpGateway, reconnectTimer, Duration.millis(200), Duration.millis(200));
 
         Timer monitoringTimer = new PeriodicTimer(executorService);
-        gateway = new ConnectionMonitoringGateway(reconnectingGateway, monitoringTimer, Duration.standardSeconds(5), Duration.standardSeconds(7), false);
+        Gateway gateway = new ConnectionMonitoringGateway(reconnectingGateway, monitoringTimer, Duration.standardSeconds(5), Duration.standardSeconds(7), false);
 
-        LiveScoutSettings settings = DefaultSettingsBuilderHelper.getLiveScout()
-                .setUsername("1")
-                .setPassword("key")
+        LiveScoutSettings settings = LiveScoutSettings.builder(false)
+                .authSettings(authSettings)
                 .build();
 
         clientMessageParser = new JaxbMessageParser<>(
                 liveOddsJaxbFactory,
-                new IncrementalMessageTokenizer(settings.getMaxMessageSize()));
+                new IncrementalMessageTokenizer(settings.getTotalBufferSize()));
         clientMessageWriter = new JaxbMessageWriter<>(bookmakerStatusJaxbFactory);
 
         protocol = new LiveFeedProtocol(
@@ -110,8 +108,7 @@ class ProtocolIntegrationTest {
                 clientMessageWriter,
                 new RateLimiter(new NullRateGate(), new NullRateGate(), new NullRateGate()),
                 new LiveScoutOutgoingMessageInspector(),
-                new LiveScoutStatusFactory(new SdkVersion()),
-                settings);
+                new CredentialsAuthMessageProvider(new LiveScoutOutgoingMessageFactory(new SdkVersion()), settings.getAuthSettings()));
 
 
         protocol.setListener(protocolListener);

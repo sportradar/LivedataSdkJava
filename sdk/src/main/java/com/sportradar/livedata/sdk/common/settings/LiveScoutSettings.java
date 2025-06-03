@@ -1,81 +1,75 @@
 package com.sportradar.livedata.sdk.common.settings;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.joda.time.Duration;
 
 import java.util.List;
 
-/**
- * Represents a part of the application's configuration file related to the live-scout
- */
-public class LiveScoutSettings extends LiveFeedSettings {
+@Getter
+@EqualsAndHashCode
+@Builder
+public class LiveScoutSettings {
+    // Common settings
+    protected int dispatcherThreadCount;
+    protected int dispatcherQueueSize;
+    protected LoggerSettings loggerSettings;
+    protected boolean debugMode;
+    // LiveScout specific settings
+    private final Duration clientAliveMsgTimeout;
+    private final boolean disconnectOnParseError;
+    private final String hostName;
+    private final Duration initialReconnectWait;
+    private final List<LimiterData> loginLimiters;
+    private final List<LimiterData> matchRequestLimiters;
+    private final int maxMatchIdsPerRequest;
+    private final int totalBufferSize;
+    private final Duration maxRequestTimeAllowance;
+    private final int port;
+    private final int receiveBufferSize;
+    private final Duration reconnectWait;
+    private final List<LimiterData> requestLimiters;
+    private final Duration serverAliveMsgTimeout;
+    private final boolean test;
+    private final boolean useSSL;
+    private final AuthSettings authSettings;
+    private final Duration matchExpireMaxAge;
 
-    private Duration matchExpireCheckInterval;
-    private Duration matchExpireMaxAge;
-    private Duration maxMatchListInterval;
-    public LiveScoutSettings(String username,
-                             String password,
-                             Duration maxMatchListInterval,
-                             Duration matchExpireCheckInterval,
-                             Duration matchExpireMaxAge,
-                             String hostName,
-                             int port,
-                             boolean useSSL,
-                             boolean test,
-                             int receiveBufferSize,
-                             int maxMessageSize,
-                             Duration initialReconnectWait,
-                             Duration reconnectWait,
-                             int maxMatchIdsPerRequest,
-                             List<LimiterData> loginLimiters,
-                             List<LimiterData> requestLimiters,
-                             List<LimiterData> matchRequestLimiters,
-                             Duration maxRequestTimeAllowance,
-                             Duration serverAliveMsgTimeout,
-                             Duration clientAliveMsgTimeout,
-                             int dispatcherThreadCount,
-                             int dispatcherQueueSize,
-                             LoggerSettings loggerSettings,
-                             boolean enabled,
-                             boolean disconnectOnParseError,
-                             boolean debugMode) {
-        super(username,
-                password,
-                hostName,
-                port,
-                useSSL,
-                test,
-                receiveBufferSize,
-                maxMessageSize,
-                initialReconnectWait,
-                reconnectWait,
-                maxMatchIdsPerRequest,
-                loginLimiters,
-                requestLimiters,
-                matchRequestLimiters,
-                maxRequestTimeAllowance,
-                serverAliveMsgTimeout,
-                clientAliveMsgTimeout,
-                loggerSettings,
-                dispatcherThreadCount,
-                dispatcherQueueSize,
-                enabled,
-                disconnectOnParseError,
-                debugMode);
-
-        this.maxMatchListInterval = maxMatchListInterval;
-        this.matchExpireCheckInterval = matchExpireCheckInterval;
-        this.matchExpireMaxAge = matchExpireMaxAge;
+    public static LiveScoutSettingsBuilder builder(boolean isTest) {
+        LiveScoutSettingsBuilder builder = new LiveScoutSettingsBuilder().test(isTest);
+        if(isTest){ // setting test mode values
+            builder.hostName("replay.livedata.betradar.com");
+            builder.port(2047);
+        } else { // could be set with other defaults, but this way is easier to read
+            builder.hostName("livedata.betradar.com");
+            builder.port(2017);
+        }
+        return builder;
     }
 
-    public Duration getMatchExpireCheckInterval() {
-        return matchExpireCheckInterval;
-    }
+    @SuppressWarnings("all") // Suppressing warnings for Lombok generated code
+    public static class LiveScoutSettingsBuilder {
+        // Builder default values. Lombok will generate setters for all missing LiveScoutSettings fields as well
+        private int dispatcherThreadCount = 4;
+        private int dispatcherQueueSize = 16384;
 
-    public Duration getMatchExpireMaxAge() {
-        return matchExpireMaxAge;
-    }
+        private Duration initialReconnectWait = Duration.standardSeconds(10);
+        private Duration reconnectWait = Duration.standardSeconds(20);
+        private int receiveBufferSize = 1024 * 1024;
+        private int totalBufferSize = 20 * 1024 * 1024;
+        private Duration maxRequestTimeAllowance = Duration.standardMinutes(15);
+        private int maxMatchIdsPerRequest = 100;
+        private boolean disconnectOnParseError = false;
 
-    public Duration getMaxMatchListInterval() {
-        return maxMatchListInterval;
+        private boolean useSSL = true;
+        private List<LimiterData> requestLimiters = List.of(new LimiterData(450, Duration.standardMinutes(2), "scoutRequestLimit"));
+        private Duration matchExpireMaxAge = Duration.standardHours(8);
+        private Duration clientAliveMsgTimeout = Duration.standardSeconds(20);
+        private Duration serverAliveMsgTimeout = Duration.standardSeconds(8);
+
+        public boolean isTest() {
+            return test;
+        }
     }
 }

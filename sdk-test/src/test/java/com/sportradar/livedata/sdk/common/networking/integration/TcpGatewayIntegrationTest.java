@@ -4,7 +4,6 @@ import com.sportradar.livedata.sdk.common.exceptions.SdkException;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.networking.GatewayListener;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
-import com.sportradar.livedata.sdk.common.settings.DefaultSettingsBuilderHelper;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
@@ -47,32 +46,31 @@ class TcpGatewayIntegrationTest {
 
     private final States clientState = context.states("clientState");
 
-    private JAXBContext jaxbContext;
-    private MessageParser<OutgoingMessage> messageParser;
-    private MessageWriter<IncomingMessage> messageWriter;
     private FakeServer serverDriver;
     private Gateway client;
 
     @BeforeEach
     public void setUp() throws IOException, JAXBException {
-        jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(OutgoingMessage.class, IncomingMessage.class);
         JaxbBuilder builder = new JaxbFactory(jaxbContext);
 
-        messageParser = new JaxbMessageParser<>(builder, null);
-        messageWriter = new JaxbMessageWriter<>(builder);
+        MessageParser<OutgoingMessage> messageParser = new JaxbMessageParser<>(builder, null);
+        MessageWriter<IncomingMessage> messageWriter = new JaxbMessageWriter<>(builder);
 
-        LiveScoutSettings serverSettings = DefaultSettingsBuilderHelper.getLiveScout().build();
+        LiveScoutSettings serverSettings = LiveScoutSettings.builder(false).build();
         serverDriver = new FakeServer(new TcpServer(executor, 5055), messageParser, messageWriter, serverSettings);
         client = new TcpGateway(executor, new DefaultSocketFactory(), new InetSocketAddress("localhost", 5055), 1024);
         client.setListener(clientListener);
     }
 
+    @SuppressWarnings("all")
     @AfterEach
     public void tearDown() throws InterruptedException {
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.SECONDS);
     }
 
+    @SuppressWarnings("unused") // not used but may be needed in future
     @Timeout(1)
     public void sdkStartsAndStopsConnection() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
@@ -96,6 +94,7 @@ class TcpGatewayIntegrationTest {
         serverDriver.stop();
     }
 
+    @SuppressWarnings("unused") // not used but may be needed in future
     @Timeout(1)
     public void gatewayDetectsWhenServerDropsConnection() throws InterruptedException, IOException {
         context.checking(new Expectations() {{
@@ -115,6 +114,7 @@ class TcpGatewayIntegrationTest {
         synchroniser.waitUntil(clientState.is("disconnected"), 200);
     }
 
+    @SuppressWarnings("unused") // not used but may be needed in future
     @Timeout(5)
     public void gatewayReceivesData() throws InterruptedException, IOException, SdkException {
         context.checking(new Expectations() {{

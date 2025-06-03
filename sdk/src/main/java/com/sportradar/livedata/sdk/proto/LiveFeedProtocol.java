@@ -1,11 +1,11 @@
 package com.sportradar.livedata.sdk.proto;
 
 import ch.qos.logback.classic.Level;
+import com.sportradar.livedata.sdk.proto.livescout.auth.AuthMessageProvider;
 import com.sportradar.livedata.sdk.common.networking.Gateway;
 import com.sportradar.livedata.sdk.common.rategate.RateGate;
 import com.sportradar.livedata.sdk.common.rategate.RateGateContinuation;
 import com.sportradar.livedata.sdk.common.rategate.RateLimiter;
-import com.sportradar.livedata.sdk.common.settings.LiveFeedSettings;
 import com.sportradar.livedata.sdk.proto.common.*;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.LiveScoutLoginType;
@@ -47,13 +47,9 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      */
     private final RateLimiter rateLimiter;
     /**
-     * The {@link LiveFeedSettings} instance containing the application's settings concerning the live-feed
+     * The provider of authentication messages such as login and logout.
      */
-    private final LiveFeedSettings settings;
-    /**
-     * The factory used to build requests send to the feed.
-     */
-    private final StatusFactory statusFactory;
+    private final AuthMessageProvider authMessageProvider;
 
     /**
      * Initializes a new instance of the {@link LiveFeedProtocol} class.
@@ -63,8 +59,7 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      * @param messageWriter            The {@link MessageWriter used to write messages to {@link byte[]}}.
      * @param rateLimiter              The {@link RateLimiter} implementation used to rate-limit send messages
      * @param outgoingMessageInspector The {@link OutgoingMessageInspector} implementation used to inspect send messages.
-     * @param statusFactory            The factory used to build requests send to the feed.
-     * @param settings                 The {@link LiveFeedSettings} instance containing the application's settings concerning the live-feed
+     * @param authMessageProvider      The provider of authentication messages such as login and logout.
      */
     public LiveFeedProtocol(
             final Gateway gateway,
@@ -72,22 +67,19 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
             final MessageWriter<OutgoingMessage> messageWriter,
             final RateLimiter rateLimiter,
             final OutgoingMessageInspector<OutgoingMessage> outgoingMessageInspector,
-            final StatusFactory statusFactory,
-            final LiveFeedSettings settings) {
+            final AuthMessageProvider authMessageProvider) {
 
         super(gateway, messageParser);
 
         checkNotNull(messageWriter, "messageWriter cannot be a null reference");
         checkNotNull(rateLimiter, "rateLimiter cannot be a null reference");
         checkNotNull(outgoingMessageInspector, "outgoingMessageInspector cannot be a null reference");
-        checkNotNull(statusFactory, "statusFactory cannot be a null reference");
-        checkNotNull(settings, "settings cannot be a null reference");
+        checkNotNull(authMessageProvider, "authMessageProvider cannot be a null reference");
 
         this.messageWriter = messageWriter;
         this.rateLimiter = rateLimiter;
         this.outgoingMessageInspector = outgoingMessageInspector;
-        this.statusFactory = statusFactory;
-        this.settings = settings;
+        this.authMessageProvider = authMessageProvider;
     }
 
     /**
@@ -188,7 +180,7 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
      */
     @Override
     public void stop() {
-        OutgoingMessage logout = statusFactory.buildLogOutRequest();
+        OutgoingMessage logout = authMessageProvider.buildLogOutRequest();
 
         //Some protocols do not require/support log-out
         if (logout != null) {
@@ -227,7 +219,7 @@ public class LiveFeedProtocol extends ProtocolBase<IncomingMessage, OutgoingMess
             }
 
             try {
-                sendMessage(statusFactory.buildLoginRequest(settings.getUsername(), settings.getPassword()), false);
+                sendMessage(authMessageProvider.buildLoginRequest(), false);
             } catch (Exception e) {
                 logger.error("onConnected caught exception", e);
             }

@@ -2,6 +2,9 @@ package com.sportradar.livedata.sdk.di;
 
 import com.google.inject.*;
 import com.google.inject.Module;
+import com.sportradar.livedata.sdk.proto.livescout.auth.AuthMessageProvider;
+import com.sportradar.livedata.sdk.proto.livescout.auth.TokenAuthMessageProvider;
+import com.sportradar.livedata.sdk.proto.livescout.auth.CredentialsAuthMessageProvider;
 import com.sportradar.livedata.sdk.common.classes.FileSdkLogger;
 import com.sportradar.livedata.sdk.common.classes.NullSdkLogger;
 import com.sportradar.livedata.sdk.common.exceptions.SdkException;
@@ -13,6 +16,7 @@ import com.sportradar.livedata.sdk.common.interfaces.SdkLogger;
 import com.sportradar.livedata.sdk.common.networking.ReconnectingGateway;
 import com.sportradar.livedata.sdk.common.networking.TcpGateway;
 import com.sportradar.livedata.sdk.common.rategate.*;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.common.settings.LimiterData;
 import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.common.timer.PeriodicTimer;
@@ -36,12 +40,13 @@ import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
 import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutClientAliveProducer;
 import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageInspector;
-import com.sportradar.livedata.sdk.proto.livescout.LiveScoutStatusFactory;
+import com.sportradar.livedata.sdk.proto.livescout.LiveScoutOutgoingMessageFactory;
 import jakarta.xml.bind.JAXBContext;
 import org.apache.commons.net.DefaultSocketFactory;
 
 import jakarta.inject.Provider;
 import jakarta.inject.Singleton;
+
 import javax.net.ssl.SSLSocketFactory;
 import jakarta.xml.bind.JAXBException;
 import org.joda.time.Duration;
@@ -106,7 +111,7 @@ public class LiveScoutInjectionModule implements Module {
                 .to(LiveScoutEntityMapper.class)
                 .in(Singleton.class);
 
-        binder.bind(LiveScoutStatusFactory.class)
+        binder.bind(LiveScoutOutgoingMessageFactory.class)
                 .in(Singleton.class);
 
 
@@ -146,8 +151,8 @@ public class LiveScoutInjectionModule implements Module {
         Gateway reconnectingGateway = new ReconnectingGateway(
                 actualGateway,
                 reconnectTimer,
-                settings.getInitialReconnectDelay(),
-                settings.getReconnectDelay());
+                settings.getInitialReconnectWait(),
+                settings.getReconnectWait());
 
         Timer monitoringTimer = new PeriodicTimer(scheduledExecutorService);
 
@@ -155,15 +160,14 @@ public class LiveScoutInjectionModule implements Module {
                 reconnectingGateway,
                 monitoringTimer,
                 Duration.standardSeconds(5),
-                settings.getServerMessageTimeout(),
+                settings.getServerAliveMsgTimeout(),
                 settings.isDebugMode());
     }
 
     @Provides
     @Singleton
-    protected LiveScoutUserRequestManagerImpl provideUserRequestManager(LiveScoutStatusFactory factory,
-                                                                        TestManager testManager,
-                                                                        SdkLogger sdkLogger) {
+    protected LiveScoutUserRequestManagerImpl provideUserRequestManager(LiveScoutOutgoingMessageFactory factory,
+                                                                        TestManager testManager) {
         return new LiveScoutUserRequestManagerImpl(
                 USER_REQUEST_MANAGER_INDEX,
                 factory,
@@ -174,7 +178,7 @@ public class LiveScoutInjectionModule implements Module {
     @Provides
     @Singleton
     protected LiveScoutClientAliveProducer provideAliveProducer(
-            LiveScoutStatusFactory entityFactory,
+            LiveScoutOutgoingMessageFactory entityFactory,
             ScheduledExecutorService executor) {
         return new LiveScoutClientAliveProducer(entityFactory, executor, settings.getClientAliveMsgTimeout());
     }
@@ -186,8 +190,7 @@ public class LiveScoutInjectionModule implements Module {
             Protocol<IncomingMessage, OutgoingMessage> protocol,
             EntityMapper<IncomingMessage, LiveScoutEntityBase> entityMapper,
             LiveScoutUserRequestManagerImpl userRequestManager,
-            LiveScoutClientAliveProducer aliveProducer,
-            SdkLogger sdkLogger) {
+            LiveScoutClientAliveProducer aliveProducer) {
 
         MessageProcessor<LiveScoutEntityBase>[] processors = new MessageProcessor[]{
                 userRequestManager,
@@ -228,28 +231,26 @@ public class LiveScoutInjectionModule implements Module {
     protected LiveScoutFeed provideFeed(
             Provider<ProtocolManager<OutgoingMessage, LiveScoutEntityBase>> protocolManagerProvider,
             Provider<LiveScoutUserRequestManagerImpl> userRequestManagerProvider,
-            Provider<LiveScoutDispatcher> dispatcherProvider,
-            Provider<SdkLogger> sdkLoggerProvider) {
+            Provider<LiveScoutDispatcher> dispatcherProvider) {
 
-        return settings.isEnabled()
-                ? new LiveScoutFeedImpl(
+        return new LiveScoutFeedImpl(
                 protocolManagerProvider.get(),
                 userRequestManagerProvider.get(),
                 dispatcherProvider.get(),
-                settings)
-                : null;
+                settings);
     }
 
     @Provides
     @Singleton
     protected Protocol<IncomingMessage, OutgoingMessage> provideProtocol(
-            LiveScoutStatusFactory statusFactory,
+            AuthMessageProvider authFactory,
             ScheduledExecutorService scheduledExecutorService,
-            Gateway gateway) throws JAXBException {
+            Gateway gateway
+    ) throws JAXBException {
 
         JAXBContext incomingContext = JAXBContext.newInstance(INCOMING_PACKAGE_NAME);
         JaxbBuilder incomingBuilder = new JaxbFactory(incomingContext);
-        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(settings.getMaxMessageSize());
+        MessageTokenizer tokenizer = new IncrementalMessageTokenizer(settings.getTotalBufferSize());
         MessageParser<IncomingMessage> messageParser = new JaxbMessageParser<>(incomingBuilder, tokenizer);
 
         JAXBContext outgoingContext = JAXBContext.newInstance(OUTGOING_PACKAGE_NAME);
@@ -267,9 +268,19 @@ public class LiveScoutInjectionModule implements Module {
                 messageWriter,
                 rateLimiter,
                 new LiveScoutOutgoingMessageInspector(),
-                statusFactory,
-                settings);
+                authFactory);
 
+    }
+
+    @Provides
+    @Singleton
+    protected AuthMessageProvider provideAuthMessageFactory(LiveScoutOutgoingMessageFactory factory) throws Exception {
+        AuthSettings authSettings = settings.getAuthSettings();
+        if (authSettings.isTokenAuth()) {
+            return new TokenAuthMessageProvider(factory, authSettings);
+        } else {
+            return new CredentialsAuthMessageProvider(factory, authSettings);
+        }
     }
 
     @Provides
@@ -277,11 +288,7 @@ public class LiveScoutInjectionModule implements Module {
             Protocol<IncomingMessage, OutgoingMessage> protocol
     ) {
         if (!settings.isTest()) {
-            return new TestManager(){
-                public boolean isEnabled() {
-                    return false;
-                }
-            };
+            return () -> false;
         } else {
             return new LiveScoutTestManagerImpl(protocol);
         }

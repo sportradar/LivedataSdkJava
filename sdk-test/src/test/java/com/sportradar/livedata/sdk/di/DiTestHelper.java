@@ -11,13 +11,15 @@ public class DiTestHelper {
     public static Injector getInjector() {
         if (injector == null) {
 
-            LiveScoutSettings liveScoutSettings = DefaultSettingsBuilderHelper.getLiveScout()
-                    .setUseSSL(true)
-                    .setEnabled(true)
+            LoggerSettings loggerSettings = LoggerSettings.builder().build();
+            LiveScoutSettings liveScoutSettings = LiveScoutSettings.builder(false)
+                    .useSSL(true)
+                    .loggerSettings(loggerSettings)
+                    .authSettings(new AuthSettings("", ""))
                     .build();
 
             injector = Guice.createInjector(
-                    new GeneralInjectionModule(new JmxSettings(false, "localhost", 12345, null, null)),//TODO test
+                    new GeneralInjectionModule(JmxSettings.builder().jmxPort(12345).build()),
                     new LiveScoutInjectionModule(liveScoutSettings)
             );
         }

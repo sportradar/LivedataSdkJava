@@ -1,38 +1,24 @@
 package com.sportradar.livedata.sdk.common.settings;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
+@EqualsAndHashCode
+@Builder
 public class JmxSettings {
 
-    protected boolean enabled;
-    protected String jmxHost = "localhost";
-    protected int jmxPort = 12345;
-    protected String passwordFile;
-    protected String accessFile;
+    private final boolean enabled;
+    private final String jmxHost;
+    private final int jmxPort;
+    private final String passwordFile;
+    private final String accessFile;
 
-    public JmxSettings(boolean enabled, String jmxHost, int jmxPort, String passwordFile, String accessFile) {
-        this.enabled = enabled;
-        this.jmxHost = jmxHost;
-        this.jmxPort = jmxPort;
-        this.passwordFile = passwordFile;
-        this.accessFile = accessFile;
-    }
-
-    public String getJmxHost() {
-        return jmxHost;
-    }
-
-    public int getJmxPort() {
-        return jmxPort;
-    }
-
-    public String getPasswordFile() {
-        return passwordFile;
-    }
-
-    public String getAccessFile() {
-        return accessFile;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
+    @SuppressWarnings("all") // Suppressing warnings for Lombok generated code
+    public static class JmxSettingsBuilder {
+        private boolean enabled = false;
+        private String jmxHost = "localhost";
+        private int jmxPort = 13370;
     }
 }

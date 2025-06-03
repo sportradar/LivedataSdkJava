@@ -2,6 +2,12 @@
 Livedata SDK is a client library that enables easier integration with the Livescout XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. 
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.* ScoutFeedType extended with new type - PARTIAL
 
+**2.0.14 (2025-5-15)**
+* Common-IAM login added. Credentials login used only if Common-IAM login fails.
+* configurations refactored
+* sdk.livescout.enabled is not needed anymore
+* LiveScoutFeed.getMatchList sportIds type changed from Collection<Long> to Collection<Integer>
+
 **2.0.13-2 (2025-3-30)**
 * FormatType enum extended with new value - THREE_POINT_CONVERSION_YARD_LINE
 

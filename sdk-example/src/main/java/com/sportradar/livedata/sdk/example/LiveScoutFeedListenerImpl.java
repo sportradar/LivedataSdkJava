@@ -67,16 +67,10 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
         logger.info("Full match update");
 
         if(matchUpdate.getEventId().getEventId() == -941369){
-            String status = matchUpdate.getEventId().toString();
+            System.out.println(matchUpdate.getEventId().toString());
         }
-
-        String homeState = matchUpdate.getMatchHeader().getHomeState();
-        String awayState = matchUpdate.getMatchHeader().getAwayState();
-        String venue = matchUpdate.getMatchHeader().getVenue();
-        for(ScoutEventEntity scoutEventEntity : matchUpdate.getEvents()){
-            String unavailablePlayersHome = scoutEventEntity.getUnavailablePlayersHome();
-            String unavailablePlayersAway = scoutEventEntity.getUnavailablePlayersAway();
-        }
+        System.out.println(matchUpdate.getMatchHeader().getHomeState() + " " +
+                matchUpdate.getMatchHeader().getAwayState());
     }
 
     @Override

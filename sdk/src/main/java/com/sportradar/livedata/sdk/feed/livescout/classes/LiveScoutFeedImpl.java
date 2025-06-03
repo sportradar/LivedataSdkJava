@@ -157,7 +157,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
      * @param matchIds         - filter by matches ids, nullable
      */
     @Override
-    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Long> sportIds, Collection<Long> matchIds) {
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
         checkState(opened, "The feed is not opened");
         userRequestManager.getMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds);
     }
@@ -341,7 +341,7 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
             @Override
             public void onFeedEvent(FeedEventType eventType) {
                 dispatcher.dispatchOnFeedEvent(LiveScoutFeedImpl.this, eventType);
-                if (eventType == FeedEventType.PARSE_ERROR && settings.disconnectOnParseError()) {
+                if (eventType == FeedEventType.PARSE_ERROR && settings.isDisconnectOnParseError()) {
                     logger.error("Disconnect on parse error enabled, disconnecting the feed");
                     protocolManager.reconnect();
                 }

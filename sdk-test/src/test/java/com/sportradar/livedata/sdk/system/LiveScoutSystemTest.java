@@ -1,6 +1,7 @@
 package com.sportradar.livedata.sdk.system;
 
 import com.sportradar.livedata.sdk.common.enums.FeedEventType;
+import com.sportradar.livedata.sdk.common.settings.AuthSettings;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
 import com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity;
@@ -78,12 +79,12 @@ class LiveScoutSystemTest {
                 mockDispatcher,
                 sdkDataListener);
         testFramework.server().validBookmakers().put("1000", "password");
-        testFramework.settings().setUsername("1000");
-        testFramework.settings().setPassword("password");
+        AuthSettings authSettings = new AuthSettings("1000", "password");
+        testFramework.settings().authSettings(authSettings);
         //send alive message to server every 2 sec
-        testFramework.settings().setClientAliveMsgTimeout(Duration.standardSeconds(2));
+        testFramework.settings().clientAliveMsgTimeout(Duration.standardSeconds(2));
         //receive alive message from server every 1 sec
-        testFramework.settings().setServerAliveMsgTimeout(Duration.standardSeconds(1));
+        testFramework.settings().serverAliveMsgTimeout(Duration.standardSeconds(1));
 
         testFramework.server().setReciveAliveDelay(1500);
         testFramework.server().setSendAliveDelay(1000);
