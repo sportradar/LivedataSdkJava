@@ -26,3 +26,4 @@ com.sportradar.livedata.sdk.proto
 com.sportradar.livedata.sdk.proto.common
 com.sportradar.livedata.sdk.proto.dto
 com.sportradar.livedata.sdk.proto.livescout
+com.sportradar.livedata.sdk.proto.livescout.auth
