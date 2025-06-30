@@ -7,6 +7,7 @@ It also makes a client solution more stable and robust when it comes to feed han
 * configurations refactored
 * sdk.livescout.enabled is not needed anymore
 * LiveScoutFeed.getMatchList sportIds type changed from Collection<Long> to Collection<Integer>
+* Migration from Legacy OSSRH to Maven Central Repository
 
 **2.0.13-2 (2025-3-30)**
 * FormatType enum extended with new value - THREE_POINT_CONVERSION_YARD_LINE

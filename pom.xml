@@ -35,17 +35,6 @@
         </developer>
     </developers>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-    </distributionManagement>
-
     <profiles>
         <profile>
             <id>default</id>
@@ -62,7 +51,7 @@
     </profiles>
 
     <properties>
-        <revision>2.0.14-RC</revision>
+        <revision>2.0.14</revision>
 
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 
@@ -103,7 +92,7 @@
         <jaxb2-maven-plugin.version>3.1.0</jaxb2-maven-plugin.version>
         <copy-rename-maven-plugin.version>1.0.1</copy-rename-maven-plugin.version>
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
-        <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
+        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -236,6 +225,18 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <excludeArtifacts>
+                        sdk-example,sdk-test,sdk-loginterceptor
+                    </excludeArtifacts>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>${maven-gpg-plugin.version}</version>
@@ -250,19 +251,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${maven-deploy-plugin.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 
     <dependencyManagement>

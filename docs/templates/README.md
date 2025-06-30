@@ -45,9 +45,15 @@ If you want to manage sdk libraries original jar be used:
 ```
 
 ### CONFIGURATION
-In your _sdk.properties_ you need at least to set-up the following: (replace xxx with actual credentials).
+In your _sdk.properties_ you need at least to set-up the following(replace xxx with actual credentials):
 ```
-sdk.livescout.enabled=true
+sdk.livescout.auth0.domain=https://auth.sportradar.com/
+sdk.livescout.auth0.client_id=xxx
+sdk.livescout.auth0.kid=xxx
+sdk.livescout.auth0.private_key=xxx
+```
+Legacy login option is still available, but it is deprecated and will be removed in the future. If you want to use legacy login, you need to set-up the following:
+```
 sdk.livescout.username=xxx
 sdk.livescout.password=xxx
 ```
