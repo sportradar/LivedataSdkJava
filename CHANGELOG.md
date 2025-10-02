@@ -3,7 +3,7 @@ Livedata SDK is a client library that enables easier integration with the Livesc
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.* ScoutFeedType extended with new type - PARTIAL
 
 **2.0.16 (2025-10-02)**
-* Added unique tournament (id and name) to matchMatchUpdateEntity
+* Added unique tournament (id and name) to MatchUpdateEntity
 
 **2.0.15 (2025-09-24)**
 * Added request id for match list request and response.
