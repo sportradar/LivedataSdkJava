@@ -10,6 +10,7 @@ import com.sportradar.livedata.sdk.proto.dto.outgoing.livescout.*;
 
 import jakarta.inject.Inject;
 import java.util.Collection;
+import java.util.UUID;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.nte;
 
@@ -97,7 +98,7 @@ public class LiveScoutOutgoingMessageFactory {
         return unsubscription;
     }
 
-    public OutgoingMessage buildMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
+    public OutgoingMessage buildMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds, UUID requestId) {
         Matchlist ret = new Matchlist();
 
         ret.setHoursback(hoursBack);
@@ -116,6 +117,10 @@ public class LiveScoutOutgoingMessageFactory {
             Matchlist.Match match = new Matchlist.Match();
             match.setMatchid(matchId);
             ret.getMatch().add(match);
+        }
+
+        if (requestId != null) {
+            ret.setRequestid(requestId.toString());
         }
 
         return ret;

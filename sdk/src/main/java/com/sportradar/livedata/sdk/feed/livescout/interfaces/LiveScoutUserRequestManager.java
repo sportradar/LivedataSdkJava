@@ -7,6 +7,7 @@ package com.sportradar.livedata.sdk.feed.livescout.interfaces;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * Represents a manager used to explicitly retrieve data from live-odds server.
@@ -21,8 +22,9 @@ public interface LiveScoutUserRequestManager extends UserRequestManager {
      * @param includeAvailable - include also available matches (which you have not booked yet)
      * @param sportIds         - filter by sports ids, nullable
      * @param matchIds         - filter by matches ids, nullable
+     * @param requestId        - UUID to track matchlist request
      */
-    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds);
+    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds, UUID requestId);
 
 
     /**

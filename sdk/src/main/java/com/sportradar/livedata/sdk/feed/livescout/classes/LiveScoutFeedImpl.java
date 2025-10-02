@@ -9,23 +9,24 @@ import com.sportradar.livedata.sdk.common.settings.LiveScoutSettings;
 import com.sportradar.livedata.sdk.dispatch.livescout.LiveScoutDispatcher;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManager;
 import com.sportradar.livedata.sdk.feed.common.ProtocolManagerListener;
+import com.sportradar.livedata.sdk.feed.common.TestManager;
 import com.sportradar.livedata.sdk.feed.common.entities.ConnectionParams;
 import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 import com.sportradar.livedata.sdk.feed.livescout.entities.LiveScoutEntityBase;
-import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
-import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
-import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
-import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.sportradar.livedata.sdk.feed.common.TestManager;
 import com.sportradar.livedata.sdk.feed.livescout.entities.MatchBookingEntity;
 import com.sportradar.livedata.sdk.feed.livescout.entities.MatchStopEntity;
 import com.sportradar.livedata.sdk.feed.livescout.entities.MatchUpdateEntity;
+import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeed;
+import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutFeedListener;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutUserRequestManager;
+import com.sportradar.livedata.sdk.proto.dto.OutgoingMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import static com.google.common.base.Preconditions.checkState;
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
@@ -159,12 +160,23 @@ public class LiveScoutFeedImpl implements LiveScoutFeed {
     @Override
     public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
         checkState(opened, "The feed is not opened");
-        userRequestManager.getMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds);
+        userRequestManager.getMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds, null);
     }
 
     @Override
     public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable) {
-        getMatchList(hoursBack, hoursForward, includeAvailable, null, null);
+        getMatchList(hoursBack, hoursForward, includeAvailable, null, null, null);
+    }
+
+    @Override
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, UUID requestId) {
+        getMatchList(hoursBack, hoursForward, includeAvailable, null, null, requestId);
+    }
+
+    @Override
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds, UUID requestId) {
+        checkState(opened, "The feed is not opened");
+        userRequestManager.getMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds, requestId);
     }
 
 
