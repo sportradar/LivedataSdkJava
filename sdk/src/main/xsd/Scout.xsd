@@ -39,9 +39,7 @@
         <!ATTLIST xs:extension
                 base CDATA #REQUIRED>
         ]>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-           jaxb:version="2.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="yellow">
         <xs:complexType>
             <xs:attribute name="t2" use="required">
