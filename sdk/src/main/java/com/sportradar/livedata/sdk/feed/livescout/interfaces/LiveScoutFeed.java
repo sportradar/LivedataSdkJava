@@ -5,6 +5,7 @@ import com.sportradar.livedata.sdk.feed.common.entities.EventIdentifier;
 import com.sportradar.livedata.sdk.feed.common.interfaces.UserRequestManager;
 
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * Represents an access-point for live-scout feed.
@@ -33,6 +34,26 @@ public interface LiveScoutFeed extends UserRequestManager {
      */
     ConnectionParams getConnectionParams();
 
+
+    /**
+     * Requests a list of available scout matches for a given time frame.
+     * This method can block to prevent going over the server limits. Use this call in non SDK dispatcher thread!
+     * <p>
+     * By default only matches you have access to will be sent.
+     * You can also request all available matches by setting the {@code includeAvailable}
+     * If this is done the reply will also include matches that are open for booking.
+     * </p>
+     *
+     * @param hoursBack        Specifies the open of the time frame
+     * @param hoursForward     Specifies the end of the time frame
+     * @param includeAvailable Specifies whether matches available for booking should be included
+     * @param sportIds         - filter by sports ids, nullable
+     * @param matchIds         - filter by matches ids, nullable
+     * @param requestId        - matchlist request id
+     * @throws IllegalStateException if the feed is not opened
+     */
+    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds, UUID requestId);
+
     /**
      * Requests a list of available scout matches for a given time frame.
      * This method can block to prevent going over the server limits. Use this call in non SDK dispatcher thread!
@@ -59,6 +80,16 @@ public interface LiveScoutFeed extends UserRequestManager {
      * @param includeAvailable - include also available matches (which you have not booked yet)
      */
     void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable);
+
+    /**
+     * Get a list of matches
+     *
+     * @param hoursBack        - number of hours back (from current time)
+     * @param hoursForward     - number of hours forward (from current time)
+     * @param includeAvailable - include also available matches (which you have not booked yet)
+     * @param requestId        - matchlist request id
+     */
+    void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, UUID requestId);
 
     /**
      * Makes a server time request.

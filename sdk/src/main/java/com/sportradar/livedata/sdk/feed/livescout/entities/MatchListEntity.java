@@ -6,10 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 /**
  * Contains information about multiple matches
@@ -22,8 +22,19 @@ public class MatchListEntity extends LiveScoutEntityBase implements Serializable
 
     private static final long serialVersionUID = 4362493347787349301L;
     private List<MatchUpdateEntity> matches;
+    private UUID requestId;
 
     protected MatchListEntity() {
+    }
+
+    /**
+     * Gets request id
+     *
+     * @return request id
+     */
+    @Nullable
+    public UUID getRequestId() {
+        return requestId;
     }
 
     /**

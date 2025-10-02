@@ -127,7 +127,7 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
 
     @Override
     public void onMatchListReceived(LiveScoutFeed sender, MatchListEntity matchList) {
-        logger.info("matchlist received");
+        logger.info("matchlist received {}", matchList.getRequestId());
 //        for(MatchUpdateEntity match : matchList.getMatches()){
 //            logger.info(match.toString());
 //        }

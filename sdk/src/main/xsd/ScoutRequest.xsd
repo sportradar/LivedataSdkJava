@@ -95,6 +95,7 @@
 			</xs:sequence>
 			<xs:attribute name="hoursforward" type="xs:int" use="required"/>
 			<xs:attribute name="hoursback" type="xs:int" use="required"/>
+			<xs:attribute name="requestid" type="xs:string"/>
 			<xs:attribute name="includeavailable">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">

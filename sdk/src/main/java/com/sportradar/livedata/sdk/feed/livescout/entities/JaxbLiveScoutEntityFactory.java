@@ -13,6 +13,7 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static com.sportradar.livedata.sdk.common.classes.Nulls.checkNotNull;
 
@@ -49,6 +50,9 @@ public class JaxbLiveScoutEntityFactory implements LiveScoutEntityFactory {
             matches.add(buildMatchUpdateEntity(match));
         }
         result.setMatches(matches);
+        if (matchList.getRequestid() != null) {
+            result.setRequestId(UUID.fromString(matchList.getRequestid()));
+        }
         return result;
     }
 

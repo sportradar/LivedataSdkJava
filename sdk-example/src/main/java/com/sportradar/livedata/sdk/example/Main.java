@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -46,8 +47,9 @@ public class Main {
                 if("close".equals(input)) {
                     close = true;
                 } else if("matchlist".equals(input)) {
-                    logger.info("Sending matchlist request");
-                    liveScoutFeed.getMatchList(13,13,true);
+                    UUID uuid = UUID.randomUUID();
+                    logger.info("Sending matchlist request {}", uuid);
+                    liveScoutFeed.getMatchList(13,13,true,uuid);
                 } else if(input.matches("(\\d+,?)+")){
                     String[] ids = StringUtils.split(input, ',');
                     EventIdentifier[] toSubscribe = Arrays.stream(ids).map(i -> EventIdentifier.id(Long.parseLong(i)))

@@ -1,5 +1,6 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
 import com.sportradar.livedata.sdk.feed.livescout.interfaces.LiveScoutEntityFactory;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
 import org.junit.jupiter.api.Test;
@@ -165,6 +166,18 @@ public class JaxbLiveScoutEntityFactoryTest {
         LineupsEntity expected = LiveScoutProtoEntityFactory.buildLineupsEntity(valueBase);
 
         LineupsEntity result = entityFactory.buildLineupsEntity(input);
+        assertThat(result, equalTo(expected));
+    }
+
+    @Test
+    void testRequestId() throws InvalidEntityException {
+        Matchlist input = new Matchlist();
+        input.setRequestid("550e8400-e29b-41d4-a716-446655440000");
+        MatchListEntity expected = new MatchListEntity();
+        expected.setMatches(new ArrayList<>());
+        expected.setRequestId(java.util.UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+
+        MatchListEntity result = entityFactory.buildMatchListEntity(input);
         assertThat(result, equalTo(expected));
     }
 }

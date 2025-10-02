@@ -244,11 +244,11 @@ public class LiveScoutUserRequestManagerImpl
      * @param hoursForward     - number of hours forward (from current time)
      * @param includeAvailable - include also available matches (which you have not booked yet)
      */
-    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds) {
+    public void getMatchList(int hoursBack, int hoursForward, boolean includeAvailable, Collection<Integer> sportIds, Collection<Long> matchIds, UUID requestId) {
         sdkLogger.logClientInteraction(Level.INFO, String.format(
-                "getEventList hoursBack: %s, hoursForward: %s, includeAvailable: %s, sportIds: %s, matchIds: %s",
-                hoursBack, hoursForward, includeAvailable, StringUtils.join(sportIds, ','), StringUtils.join(matchIds, ',')));
-        notifyOnRequestReady(requestFactory.buildMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds));
+                "getEventList hoursBack: %s, hoursForward: %s, includeAvailable: %s, sportIds: %s, matchIds: %s, requestId: %s",
+                hoursBack, hoursForward, includeAvailable, StringUtils.join(sportIds, ','), StringUtils.join(matchIds, ','), requestId));
+        notifyOnRequestReady(requestFactory.buildMatchList(hoursBack, hoursForward, includeAvailable, sportIds, matchIds, requestId));
     }
 
     /**
