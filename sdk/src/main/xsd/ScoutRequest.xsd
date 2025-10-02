@@ -104,7 +104,6 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
-			<xs:attribute name="requestid" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="matchstop">
