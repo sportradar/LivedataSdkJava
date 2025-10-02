@@ -272,6 +272,7 @@ public class LiveScoutProtoEntityFactory {
         Uniquetournament uniquetournament = new Uniquetournament();
         uniquetournament.setId(123456 + valueBase);
         uniquetournament.setName("uniquetournament" + valueBase + " name");
+        msgs.add(uniquetournament);
     //Weatherconditions
         Weatherconditions weatherconditions = new Weatherconditions();
         weatherconditions.setId(8888888 + valueBase);

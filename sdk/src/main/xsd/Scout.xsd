@@ -1784,11 +1784,6 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="newscore">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-            </xs:attribute>
             <xs:attribute name="setscore" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
