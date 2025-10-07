@@ -110,6 +110,20 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="uniquetournament">
+        <xs:complexType>
+            <xs:attribute name="name">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="status">
         <xs:complexType>
             <xs:attribute name="start" use="required">
@@ -1194,6 +1208,7 @@
                 <xs:element ref="freethrows" minOccurs="0"/>
                 <xs:element ref="events" minOccurs="0"/>
                 <xs:element ref="tournament" minOccurs="0"/>
+                <xs:element ref="uniquetournament" minOccurs="0"/>
                 <xs:element ref="category" minOccurs="0"/>
                 <xs:element ref="sport" minOccurs="0"/>
                 <xs:element ref="attacks" minOccurs="0"/>

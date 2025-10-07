@@ -395,6 +395,10 @@ public class JaxbLiveScoutEntityFactoryHelper {
                 Tournament tour = (Tournament) item;
                 result.setTournament(new IdNameTuple(tour.getId(), tour.getName()));
                 break;
+            case "Uniquetournament":
+                Uniquetournament ut = (Uniquetournament) item;
+                result.setUniqueTournament(new IdNameTuple(ut.getId(), ut.getName()));
+                break;
             case "Weatherconditions":
                 Weatherconditions w = (Weatherconditions) item;
                 try {

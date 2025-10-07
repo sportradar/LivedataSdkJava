@@ -77,6 +77,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private HomeAway<Integer> throwins;
     private Boolean tieBreak;
     private IdNameTuple tournament;
+    private IdNameTuple uniqueTournament;
     private WeatherConditions weatherConditions;
     private HomeAway<Integer> yellowCards;
     private GoldEntity gold;

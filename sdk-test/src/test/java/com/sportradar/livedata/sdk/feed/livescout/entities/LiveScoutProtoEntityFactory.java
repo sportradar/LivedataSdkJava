@@ -268,6 +268,11 @@ public class LiveScoutProtoEntityFactory {
         tournament.setId(7777777 + valueBase);
         tournament.setName("tournament"+ valueBase + " name");
         msgs.add(tournament);
+    //Uniquetournament
+        Uniquetournament uniquetournament = new Uniquetournament();
+        uniquetournament.setId(123456 + valueBase);
+        uniquetournament.setName("uniquetournament" + valueBase + " name");
+        msgs.add(uniquetournament);
     //Weatherconditions
         Weatherconditions weatherconditions = new Weatherconditions();
         weatherconditions.setId(8888888 + valueBase);
@@ -363,6 +368,8 @@ public class LiveScoutProtoEntityFactory {
         result.setTieBreak(valueBase % 3 == 0);
     //Tournament
         result.setTournament(new IdNameTuple(7777777 + valueBase, "tournament" + valueBase + " name"));
+    //Uniquetournament
+        result.setUniqueTournament(new IdNameTuple(123456 + valueBase, "uniquetournament" + valueBase + " name"));
     //Weatherconditions
         result.setWeatherConditions(getEnumValue(WeatherConditions.values(), valueBase));
     //Yellow
