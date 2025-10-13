@@ -536,10 +536,19 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     /**
      * Sport tournament.
      *
-     * @return sport tournament
+     * @return sport tournament e.g. World Championships 2025
      */
     public IdNameTuple getTournament() {
         return tournament;
+    }
+
+    /**
+     * Sport unique tournament.
+     *
+     * @return sport unique tournament e.g. World Championships
+     */
+    public IdNameTuple getUniqueTournament() {
+        return uniqueTournament;
     }
 
     /**
