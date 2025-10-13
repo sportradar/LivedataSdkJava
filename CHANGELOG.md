@@ -5,10 +5,10 @@ It also makes a client solution more stable and robust when it comes to feed han
 **2.0.17 (2025-10-13)**
 * Bugfix: add getter for uniqueTournment in MatchUpdateEntity
 
-**2.0.16 (2025-10-02)**
+**2.0.16 (2025-10-02) (internal - not published in maven) **
 * Added unique tournament (id and name) to MatchUpdateEntity
 
-**2.0.15 (2025-09-24)**
+**2.0.15 (2025-09-24) (internal - not published in maven)**
 * Added request id for match list request and response.
 
 **2.0.14 (2025-5-15)**

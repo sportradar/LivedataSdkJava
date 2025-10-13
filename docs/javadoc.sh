@@ -1,1 +1,1 @@
-/Users/a.klevanets/Library/Java/JavaVirtualMachines/corretto-11.0.19/Contents/Home/bin/javadoc @options @argfile
+/home/oszysiak/.sdkman/candidates/java/21.0.8-amzn/bin/javadoc @options @argfile
