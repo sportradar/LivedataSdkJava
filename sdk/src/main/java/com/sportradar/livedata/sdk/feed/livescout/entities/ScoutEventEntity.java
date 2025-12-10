@@ -265,6 +265,7 @@ public class ScoutEventEntity implements Serializable {
     private Integer pointInGameNumber;
     private String lastStroke;
     private Integer supervisorAction;
+    private Integer ftValue;
 
     /**
      * For Serializable
@@ -1775,5 +1776,9 @@ public class ScoutEventEntity implements Serializable {
 
     public Integer getSupervisorAction() {
         return supervisorAction;
+    }
+
+    public Integer getFreeThrowValue() {
+        return ftValue;
     }
 }

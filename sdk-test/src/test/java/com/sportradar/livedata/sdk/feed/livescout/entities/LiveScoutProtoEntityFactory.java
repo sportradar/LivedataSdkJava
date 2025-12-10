@@ -437,6 +437,7 @@ public class LiveScoutProtoEntityFactory {
             event.setScorernotconfirmed(valueBase % 2 == 0 ? 1 : 0);
         }
         event.setPointingamenumber(valueBase == 0 ? null : valueBase);
+        event.setFtvalue(valueBase % 4);
 
         return event;
     }
@@ -549,6 +550,7 @@ public class LiveScoutProtoEntityFactory {
             result.setScorerNotConfirmed(valueBase % 2 == 0);
         }
         result.setPointInGameNumber(valueBase == 0 ? null : valueBase);
+        result.setFtValue(valueBase % 4);
         return result;
     }
     //------IncomingMessage------Score------>>>>>>--------------------------<<<<<<------IncomingMessage------Event------
