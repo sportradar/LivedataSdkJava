@@ -829,6 +829,7 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setExtraInfoTennis(event.getExtrainfotennis());
         result.setLastStroke(event.getLaststroke());
         result.setSupervisorAction(event.getSupervisoraction());
+        result.setFtValue(event.getFtvalue());
 
         if (event.getStatistics() != null) {
             try {
