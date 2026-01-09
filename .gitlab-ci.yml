@@ -9,6 +9,7 @@ workflow:
 
 stages:
   - code_quality
+  - publish
 
 cache:
   paths:
@@ -40,3 +41,27 @@ whitesource-update:
   extends:
     - .whitesource-update
     - .rules-only-master
+
+#################
+# Publish stage #
+#################
+
+publish-maven-central:
+  stage: publish
+  image: maven:3.9.11-amazoncorretto-21
+  rules:
+    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+      when: manual
+      allow_failure: true
+    - when: never
+  before_script:
+    - gpg --import $GPG_PRIVATE_KEY
+  script:
+    - mvn -s .m2/settings.xml
+          -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+          -Dgpg.keyname=$GPG_KEYID
+          -Dgpg.passphrase=$GPG_PASSPHRASE
+          -Dgpg.skip=false
+          -B clean deploy
+  dependencies: []
+  needs: []
