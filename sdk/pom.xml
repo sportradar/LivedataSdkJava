@@ -39,6 +39,10 @@
         </developer>
     </developers>
 
+    <properties>
+        <siteJavadocOutputDirectory>${project.build.directory}/apidocs</siteJavadocOutputDirectory>
+    </properties>
+
 <!--  removed testing dependencies  -->
     <dependencies>
         <!-- Logging -->
@@ -53,10 +57,6 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
         </dependency>
         <dependency>
             <groupId>com.j256.simplejmx</groupId>
@@ -77,10 +77,6 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-throwingproviders</artifactId>
         </dependency>
 
         <!-- Auth0 -->
@@ -179,8 +175,8 @@
                 </executions>
             </plugin>
 
-            <!-- include javadoc in doc folder -->
-            <!-- if package does not work, comment this, install package and then enable again -->
+            <!-- Javadoc HTML to siteJavadocOutputDirectory; skipped by default (skipSiteJavadoc=true).
+                 CI publish-javadoc overrides output to docs/ via -DsiteJavadocOutputDirectory. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -195,8 +191,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <outputDirectory>${project.parent.basedir}/docs</outputDirectory>
-<!--                    <jarOutputDirectory>${project.parent.build.directory}</jarOutputDirectory>-->
+                    <skip>${skipSiteJavadoc}</skip>
+                    <outputDirectory>${siteJavadocOutputDirectory}</outputDirectory>
                     <windowtitle>Livedata SDK ${project.version} API</windowtitle>
                     <doctitle>Livedata SDK ${project.version} API</doctitle>
                     <notimestamp>true</notimestamp>

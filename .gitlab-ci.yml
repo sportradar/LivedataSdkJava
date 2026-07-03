@@ -17,7 +17,7 @@ cache:
     
 variables:
   RULES_MASTER_BRANCH_OVERRIDE: main
-  MVN_CMD: mvn -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip
+  MVN_CMD: mvn -s .m2/settings.xml -U -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip=true
   SONAR_PROJECT_KEY: ldsdk_ldsdk-java
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
@@ -46,22 +46,49 @@ whitesource-update:
 # Publish stage #
 #################
 
-publish-maven-central:
+.publish-common:
   stage: publish
   image: maven:3.9.11-amazoncorretto-21
+  variables:
+    GIT_DEPTH: 0
+    GITLAB_PROJECT: "https://$GITLAB_GIT_PUSH_USER:$GITLAB_GIT_PUSH_TOKEN@gitlab.sportradar.ag/${CI_PROJECT_PATH}.git"
   rules:
     - if: '$CI_COMMIT_REF_PROTECTED == "true"'
       when: manual
       allow_failure: true
     - when: never
+
+publish-javadoc:
+  extends: .publish-common
+  script:
+    - yum install -y git > /dev/null
+    - git checkout -B "$CI_COMMIT_REF_NAME"
+    - rm -rf docs
+    - mkdir -p docs
+    - $MVN_CMD -pl sdk -am -DskipTests -DskipSiteJavadoc=false
+        -DsiteJavadocOutputDirectory=${CI_PROJECT_DIR}/docs package
+    - git config --global user.name "${GITLAB_LD_PUSH_USERNAME}"
+    - git config --global user.email "${GITLAB_LD_PUSH_EMAIL}"
+    - git add docs/
+    - |
+      if git diff --staged --quiet; then
+        echo "docs/ unchanged; nothing to commit"
+      else
+        git commit -m "docs: Javadoc for ${CI_COMMIT_TAG:-$($MVN_CMD -q -DforceStdout help:evaluate -Dexpression=revision)}"
+        git push $GITLAB_PROJECT
+      fi
+  dependencies: []
+  needs: []
+
+publish-maven-central:
+  extends: .publish-common
   before_script:
     - gpg --import $GPG_PRIVATE_KEY
   script:
-    - mvn -s .m2/settings.xml
-          -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
-          -Dgpg.keyname=$GPG_KEYID
+    - $MVN_CMD -Dgpg.keyname=$GPG_KEYID
           -Dgpg.passphrase=$GPG_PASSPHRASE
           -Dgpg.skip=false
+          -DskipSiteJavadoc=false
           -B clean deploy
   dependencies: []
   needs: []

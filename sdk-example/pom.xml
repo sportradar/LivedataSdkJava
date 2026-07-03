@@ -11,23 +11,26 @@
     <artifactId>sdk-example</artifactId>
     <packaging>jar</packaging>
     <name>Livedata SDK - Example</name>
+    <description>Runnable quickstart for integrating with the Livedata SDK.</description>
 
     <dependencies>
-        <!-- Dependencies to other projects in this solution -->
         <dependency>
             <groupId>com.sportradar.livedata.sdk</groupId>
             <artifactId>sdk</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>jakarta.mail</groupId>
-            <artifactId>jakarta.mail-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.15.4</version>
-        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.sportradar.livedata.sdk.example.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
