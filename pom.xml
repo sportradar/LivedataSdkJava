@@ -59,7 +59,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <slf4j.version>2.0.9</slf4j.version>
-        <logback.version>1.5.32</logback.version>
+        <logback.version>1.5.37</logback.version>
         <simplejmx.version>2.2</simplejmx.version>
         <guice.version>7.0.0</guice.version>
         <guava.version>32.1.3-jre</guava.version>
@@ -67,8 +67,8 @@
         <commonsnet.version>3.10.0</commonsnet.version>
         <commonslang3.version>3.13.0</commonslang3.version>
         <commonsio.version>2.15.0</commonsio.version>
-        <jwt.version>4.5.0</jwt.version>
-        <httpclient5.version>5.2.1</httpclient5.version>
+        <jwt.version>4.5.2</jwt.version>
+        <httpclient5.version>5.6.2</httpclient5.version>
         <disruptor.version>3.4.4</disruptor.version>
         <findbugs.version>3.0.2</findbugs.version>
         <xerces.version>2.12.2</xerces.version>
@@ -76,10 +76,10 @@
         <jakarta.xml.bind-api.version>4.0.1</jakarta.xml.bind-api.version>
         <jaxb-impl.version>4.0.4</jaxb-impl.version><!-- seems will be replaced with jaxb-runtime-->
         <classgraph.version>4.8.164</classgraph.version>
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.46</lombok.version>
         <junit.version>5.10.1</junit.version>
         <jmock.version>2.12.0</jmock.version>
-        <mockito-core.version>5.17.0</mockito-core.version>
+        <mockito-core.version>5.23.0</mockito-core.version>
 
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
@@ -100,6 +100,7 @@
         <finalName>${project.artifactId}.${project.version}</finalName>
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+        <skipSiteJavadoc>true</skipSiteJavadoc>
 
         <sonar.exclusions>
             **/livedata/sdk/example/**,
@@ -148,6 +149,13 @@
                     <compilerArgs>
                         <arg>-Djava.endorsed.dirs=${endorsed.dir}</arg>
                     </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
@@ -175,54 +183,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>readme-md</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.basedir}/docs/templates</directory>
-                                    <includes>
-                                        <include>README.md</include>
-                                    </includes>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                            <encoding>UTF-8</encoding>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-<!--            removing javadoc during clean-->
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin.version}</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>${project.basedir}/docs</directory>
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <excludes>
-                                <exclude>*.docx</exclude>
-                                <exclude>*.pdf</exclude>
-                                <exclude>templates/**</exclude>
-                            </excludes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
@@ -358,6 +318,13 @@
                 <groupId>org.apache.httpcomponents.client5</groupId>
                 <artifactId>httpclient5</artifactId>
                 <version>${httpclient5.version}</version>
+            </dependency>
+            <!-- Required at compile scope: java-jwt 4.5.2 exposes Jackson as runtime only -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.22.0</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Disruptor -->
