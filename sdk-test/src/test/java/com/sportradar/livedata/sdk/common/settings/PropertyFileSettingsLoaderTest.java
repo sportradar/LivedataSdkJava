@@ -1,16 +1,26 @@
 package com.sportradar.livedata.sdk.common.settings;
 
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.AUTH0_AUDIENCE;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.AUTH0_CLIENT_ID;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.AUTH0_DOMAIN;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.AUTH0_KID;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.AUTH0_PRIVATE_KEY;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.PASSWORD;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.USERNAME;
+import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.VALID_RSA_PRIVATE_KEY;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.sportradar.livedata.sdk.common.exceptions.InvalidPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyException;
 import com.sportradar.livedata.sdk.common.exceptions.MissingPropertyFileException;
+import java.util.Properties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Properties;
-
-import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PropertyFileSettingsLoaderTest {
 
@@ -44,7 +54,7 @@ class PropertyFileSettingsLoaderTest {
 
         AuthSettings authSettings = settingsLoader.getLiveScoutSettings().getAuthSettings();
         assertTrue(authSettings.isTokenAuth);
-        assertEquals("example.com", authSettings.getAuth0Domain());
+        assertEquals("https://example.com/", authSettings.getAuth0Domain());
         assertEquals("audience", authSettings.getAudience());
         assertEquals("clientId", authSettings.getClientId());
         assertEquals("kid", authSettings.getKid());

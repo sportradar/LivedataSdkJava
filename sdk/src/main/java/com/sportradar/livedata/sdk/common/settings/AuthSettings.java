@@ -1,11 +1,10 @@
 package com.sportradar.livedata.sdk.common.settings;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 import java.security.interfaces.RSAPrivateKey;
-
-import static com.google.common.base.Strings.isNullOrEmpty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode
@@ -20,6 +19,7 @@ public class AuthSettings {
     private final String clientId;
     private final String kid;
     private final RSAPrivateKey privateKey;
+    private static final String AUTH0_DEFAULT_DOMAIN = "https://auth.sportradar.com/";
 
     public AuthSettings(boolean isTest,
                         String auth0Domain,
@@ -31,7 +31,7 @@ public class AuthSettings {
 
         this.username = null;
         this.password = null;
-        this.auth0Domain = isNullOrEmpty(auth0Domain) ? "https://auth.sportradar.com/" : auth0Domain;
+        this.auth0Domain = normalizeAuth0Domain(auth0Domain);
         if(isNullOrEmpty(audience)){
             this.audience = isTest ? "livedata-replay" : "livedata-feed";
         } else {
@@ -52,5 +52,16 @@ public class AuthSettings {
         this.clientId = null;
         this.kid = null;
         this.privateKey = null;
+    }
+
+    private static String normalizeAuth0Domain(String domain) {
+        if (domain == null || domain.isBlank()) {
+            return AUTH0_DEFAULT_DOMAIN;
+        }
+        String normalized = domain.trim();
+        if (!normalized.startsWith("http://") && !normalized.startsWith("https://")) {
+            normalized = "https://" + normalized;
+        }
+        return normalized.endsWith("/") ? normalized : normalized + "/";
     }
 }

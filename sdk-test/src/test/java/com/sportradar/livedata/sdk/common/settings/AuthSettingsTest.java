@@ -1,9 +1,16 @@
 package com.sportradar.livedata.sdk.common.settings;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.sportradar.livedata.sdk.common.settings.PropertyConstants.PRIVATE_KEY;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AuthSettingsTest {
 
@@ -43,11 +50,35 @@ class AuthSettingsTest {
         assertTrue(settings.isTokenAuth());
         assertNull(settings.getUsername());
         assertNull(settings.getPassword());
-        assertEquals("custom-domain", settings.getAuth0Domain());
+        assertEquals("https://custom-domain/", settings.getAuth0Domain());
         assertEquals("custom-audience", settings.getAudience());
         assertEquals("custom-clientId", settings.getClientId());
         assertEquals("custom-kid", settings.getKid());
         assertEquals(PRIVATE_KEY, settings.getPrivateKey());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"   "})
+    void shouldReturnDefaultAuth0DomainWhenInputIsBlank(String auth0Domain) {
+        AuthSettings settings = new AuthSettings(false, auth0Domain, null, "clientId", "kid", PRIVATE_KEY);
+
+        assertEquals("https://auth.sportradar.com/", settings.getAuth0Domain());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "auth.sportradar.com, https://auth.sportradar.com/",
+        "auth.sportradar.com/, https://auth.sportradar.com/",
+        "https://auth.sportradar.com, https://auth.sportradar.com/",
+        "https://stg-auth.sportradar.com/, https://stg-auth.sportradar.com/",
+        "http://auth.sportradar.com, http://auth.sportradar.com/",
+        "  stg-auth.sportradar.com  , https://stg-auth.sportradar.com/",
+    })
+    void shouldNormalizeAuth0Domain(String auth0Domain, String expected) {
+        AuthSettings settings = new AuthSettings(false, auth0Domain, null, "clientId", "kid", PRIVATE_KEY);
+
+        assertEquals(expected, settings.getAuth0Domain());
     }
 
     @Test
