@@ -1155,6 +1155,20 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:element name="orange">
+        <xs:complexType>
+            <xs:attribute name="t2" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="t1" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="fouls">
         <xs:complexType>
             <xs:attribute name="t2" use="required">
@@ -1216,6 +1230,7 @@
                 <xs:element ref="directfreekicks" minOccurs="0"/>
                 <xs:element ref="fouls" minOccurs="0"/>
                 <xs:element ref="black" minOccurs="0"/>
+                <xs:element ref="orange" minOccurs="0"/>
                 <xs:element ref="court" minOccurs="0"/>
                 <xs:element ref="matchformat" minOccurs="0"/>
                 <xs:element ref="innings" minOccurs="0"/>

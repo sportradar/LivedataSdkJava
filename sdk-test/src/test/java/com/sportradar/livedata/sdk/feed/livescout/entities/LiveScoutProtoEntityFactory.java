@@ -1,18 +1,90 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import static com.sportradar.livedata.sdk.common.classes.Nulls.etn;
+
 import com.sportradar.livedata.sdk.common.interfaces.EntityEnum;
 import com.sportradar.livedata.sdk.feed.common.entities.HomeAway;
 import com.sportradar.livedata.sdk.feed.common.entities.IdNameTuple;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
-import com.sportradar.livedata.sdk.feed.livescout.enums.*;
+import com.sportradar.livedata.sdk.feed.livescout.enums.BookMatchResult;
+import com.sportradar.livedata.sdk.feed.livescout.enums.Coverage;
+import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
+import com.sportradar.livedata.sdk.feed.livescout.enums.LatencyLevel;
+import com.sportradar.livedata.sdk.feed.livescout.enums.MatchBetStatus;
+import com.sportradar.livedata.sdk.feed.livescout.enums.PitchConditions;
+import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutFeedType;
+import com.sportradar.livedata.sdk.feed.livescout.enums.ScoutMatchStatus;
+import com.sportradar.livedata.sdk.feed.livescout.enums.Sex;
+import com.sportradar.livedata.sdk.feed.livescout.enums.SurfaceType;
+import com.sportradar.livedata.sdk.feed.livescout.enums.WeatherConditions;
 import com.sportradar.livedata.sdk.proto.dto.IncomingMessage;
-import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Attacks;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Attribute;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Attributes;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Battersstatstotal;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Black;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Bookmatch;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Category;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Corners;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Court;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Dangerousattacks;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Directfoulsperiod;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Directfreekicks;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Event;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Events;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Firstkickoffteam1Sthalf;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Fouls;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Freekicks;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Freethrows;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Goalkeepersaves;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Goalkicks;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Injuries;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Kickoffteam;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Lineups;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Manager;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Match;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Matchrole;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Matchroles;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Matchstop;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Offsides;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Orange;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Penalties;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Pitchconditions;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Pitchersstatstotal;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Player;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Playerstats;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Possession;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Red;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Score;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Serve;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Shotsblocked;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Shotsofftarget;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Shotsontarget;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Specificcontract;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Specificcontracts;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Sport;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Statistics;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Stats;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Status;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Subteam;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Surfacetype;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Suspensions;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Teamofficial;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Teamplayerstats;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Teamstats;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Throwins;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Tiebreak;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Tournament;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Trycount;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Uniquetournament;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Weatherconditions;
+import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Yellow;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-
-import java.util.*;
-
-import static com.sportradar.livedata.sdk.common.classes.Nulls.etn;
 
 public class LiveScoutProtoEntityFactory {
     //------Match------>>>>>>-------------------------------------------------------------------------------------------
@@ -114,6 +186,11 @@ public class LiveScoutProtoEntityFactory {
         black.setT1(333 + valueBase);
         black.setT2(444 + valueBase);
         msgs.add(black);
+    //Orange
+        Orange orange = new Orange();
+        orange.setT1(333 + valueBase);
+        orange.setT2(444 + valueBase);
+        msgs.add(orange);
     //Category
         Category category = new Category();
         category.setId(33 + valueBase);
@@ -296,6 +373,8 @@ public class LiveScoutProtoEntityFactory {
         result.setAttacks(new HomeAway<>(11 + valueBase, 22 + valueBase));
     //Black
         result.setBlackCards(new HomeAway<>(333 + valueBase, 444 + valueBase));
+    //Orange
+    result.setOrangeCards(new HomeAway<>(333 + valueBase, 444 + valueBase));
     //Category
         result.setCategory(new IdNameTuple(33 + valueBase, "category"+ valueBase + " name"));
     //Corners
