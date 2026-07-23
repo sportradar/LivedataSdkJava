@@ -30,6 +30,7 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
     private static final long serialVersionUID = -3625209060165281600L;
     private HomeAway<Integer> attacks;
     private HomeAway<Integer> blackCards;
+    private HomeAway<Integer> orangeCards;
     private IdNameTuple category;
     private HomeAway<Integer> corners;
     private CourtEntity court;
@@ -114,6 +115,15 @@ public class MatchUpdateEntity extends LiveScoutEntityBase implements Serializab
      */
     public HomeAway<Integer> getBlackCards() {
         return blackCards;
+    }
+
+    /**
+     * Gets orange cards (rugby).
+     *
+     * @return number of orange cards
+     */
+    public HomeAway<Integer> getOrangeCards() {
+        return orangeCards;
     }
 
     /**
