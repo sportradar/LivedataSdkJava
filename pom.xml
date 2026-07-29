@@ -51,7 +51,7 @@
     </profiles>
 
     <properties>
-        <revision>2.0.19</revision>
+        <revision>2.0.20</revision>
 
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 
