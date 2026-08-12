@@ -1,1 +1,1 @@
-/home/oszysiak/.sdkman/candidates/java/21.0.8-amzn/bin/javadoc @options @argfile
+/usr/lib/jvm/java-21-amazon-corretto/bin/javadoc @options @argfile
