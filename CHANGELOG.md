@@ -2,6 +2,9 @@
 Livedata SDK is a client library that enables easier integration with the Livescout XML feed. SDK exposes XML feed service interface in a more user-friendly way and isolates the client from having to do XML feed parsing, proper connection handling, error recovery, event queuing and dispatching. 
 It also makes a client solution more stable and robust when it comes to feed handling, especially with the release of new and updated XML feed version.* ScoutFeedType extended with new type - PARTIAL
 
+**2.0.21 (2026-09-07)**
+* Attributes hometeamstatsh1, awayteamstatsh1, hometeamstatsh2 and awayteamstatsh2 added for Events PLAYER_MATCH_STATS(1714) and TEAM_MATCH_STATS(1743)
+
 **2.0.20 (2026-07-23)**
 * MatchUpdateEntity extended with new property - orangeCards
 * Bugfix: Auth0 domain is normalized (scheme and trailing slash)
