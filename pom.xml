@@ -192,6 +192,7 @@
                 <configuration>
                     <publishingServerId>central</publishingServerId>
                     <autoPublish>true</autoPublish>
+                    <deploymentName>${project.groupId}:${project.version}</deploymentName>
                     <excludeArtifacts>
                         sdk-example,sdk-test,sdk-loginterceptor
                     </excludeArtifacts>
