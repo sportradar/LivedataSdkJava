@@ -18,7 +18,7 @@ cache:
 variables:
   RULES_MASTER_BRANCH_OVERRIDE: main
   MVN_CMD: mvn -s .m2/settings.xml -U -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Denv.type=aws -Dgpg.skip=true
-  SONAR_PROJECT_KEY: ldsdk_ldsdk-java
+  SONAR_PROJECT_KEY: ldt_solp_LivedataSdkJava_77b4d360-04b4-4179-8790-03e873f21117
   WS_MAVEN_AGGREGATEMODULES: "true"
   WS_PROJECTNAME: "ldsdk-java"
 
