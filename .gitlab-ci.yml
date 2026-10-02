@@ -28,8 +28,26 @@ variables:
 ######################
 
 sonar-validate:
-  extends: .sonar-base
+  image: maven:3.9.3-amazoncorretto-17
   needs: []
+  stage: code_quality
+  rules:
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+  variables:
+    GIT_DEPTH: "0"
+    GIT_FETCH_EXTRA_FLAGS: "--prune --quiet +refs/heads/$CI_DEFAULT_BRANCH:refs/remotes/origin/$CI_DEFAULT_BRANCH"
+  script:
+    - MR_IID="${CI_OPEN_MERGE_REQUESTS%%,*}"; MR_IID="${MR_IID##*!}"
+    - TARGET_BRANCH="$CI_DEFAULT_BRANCH"
+    - $MVN_CMD -B verify sonar:sonar
+      -Dsonar.projectKey=$SONAR_PROJECT_KEY
+      -Dsonar.host.url=$SONAR_HOST
+      -Dsonar.login=$SONAR_TOKEN
+      -Dsonar.qualitygate.wait=true
+      -Dsonar.pullrequest.key=$MR_IID
+      -Dsonar.pullrequest.branch=$CI_COMMIT_BRANCH
+      -Dsonar.pullrequest.base=$TARGET_BRANCH
+      -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
 whitesource-check-policies:
   extends:

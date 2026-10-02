@@ -3082,6 +3082,16 @@
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="homeplayerpositions" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="awayplayerpositions" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="attackingplayers" use="optional">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>

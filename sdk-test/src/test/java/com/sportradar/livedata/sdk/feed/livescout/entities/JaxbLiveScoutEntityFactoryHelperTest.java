@@ -1,15 +1,20 @@
 package com.sportradar.livedata.sdk.feed.livescout.entities;
 
+import com.google.common.collect.ImmutableMap;
 import com.sportradar.livedata.sdk.feed.common.enums.Team;
+import com.sportradar.livedata.sdk.feed.common.exceptions.InvalidEntityException;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamPlayerStatsType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.TeamStatsType;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.*;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.util.Collections.emptyMap;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -59,6 +64,28 @@ class JaxbLiveScoutEntityFactoryHelperTest {
 
         ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
         assertThat(result, equalTo(expected));
+    }
+
+    @Test
+    void shouldParsePlayerPositions() throws InvalidEntityException {
+        Event input = LiveScoutProtoEntityFactory.buildEvent(587438753);
+        input.setHomeplayerpositions("123456=x:1,y:324");
+        input.setAwayplayerpositions("123456=x:1,y:99;234567=x:23,y:33;345678=x:0,y:0");
+        ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
+        assertEquals(ImmutableMap.of(123456, Pair.of(1, 324)), result.getHomePlayerPositions());
+        assertEquals(ImmutableMap.of(
+            123456, Pair.of(1, 99),
+            234567, Pair.of(23, 33),
+            345678, Pair.of(0, 0)), result.getAwayPlayerPositions());
+    }
+
+    @Test
+    void shouldNotParsePlayerPositions() throws InvalidEntityException {
+        Event input = LiveScoutProtoEntityFactory.buildEvent(938743874);
+        input.setAwayplayerpositions("");
+        ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
+        assertEquals(emptyMap(), result.getHomePlayerPositions());
+        assertEquals(emptyMap(), result.getAwayPlayerPositions());
     }
 
     @Test
