@@ -92,6 +92,8 @@ import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Uniquetournament
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Weatherconditions;
 import com.sportradar.livedata.sdk.proto.dto.incoming.livescout.Yellow;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,6 +102,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.joda.time.DateTimeZone;
 
 @SuppressWarnings("JavaDoc")
@@ -870,6 +874,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setHomeTimeOnIce(event.getHometimeonice());
         result.setAwayTimeOnIce(event.getAwaytimeonice());
         result.setAttackingPlayers(event.getAttackingplayers());
+        result.setHomePlayerPositions(parsePositions(event.getHomeplayerpositions()));
+        result.setAwayPlayerPositions(parsePositions(event.getAwayplayerpositions()));
         result.setUnavailablePlayersHome(event.getUnavailableplayershome());
         result.setUnavailablePlayersAway(event.getUnavailableplayersaway());
         result.setPlayerStatistics(PlayerStatisticsEntity.tryCreate(event));
@@ -927,6 +933,24 @@ public class JaxbLiveScoutEntityFactoryHelper {
         }
 
         return result;
+    }
+
+    private static Map<Integer, Pair<Integer, Integer>> parsePositions(String playerPositions) {
+        if (StringUtils.isEmpty(playerPositions)) {
+            return Collections.emptyMap();
+        }
+        return Arrays.stream(playerPositions.split(";"))
+            .map(JaxbLiveScoutEntityFactoryHelper::parsePlayerPositionsPair)
+            .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+    }
+
+    private static Pair<Integer, Pair<Integer, Integer>> parsePlayerPositionsPair(String playerPositions) {
+        String[] parts1 = playerPositions.split("=");
+        int playerId =  Integer.parseInt(parts1[0]);
+        String[] parts2 = parts1[1].split(",");
+        int x = Integer.parseInt(parts2[0].substring(2));
+        int y = Integer.parseInt(parts2[1].substring(2));
+        return Pair.of(playerId, Pair.of(x, y));
     }
 
     public static TeamOfficialEntity buildTeamOfficial(Teamofficial teamofficial) throws InvalidEntityException {

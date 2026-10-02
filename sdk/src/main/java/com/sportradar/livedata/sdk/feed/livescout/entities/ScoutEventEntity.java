@@ -5,12 +5,16 @@ import com.sportradar.livedata.sdk.feed.livescout.enums.BallEventType;
 import com.sportradar.livedata.sdk.feed.livescout.enums.Inning;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.commons.lang3.tuple.Pair;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Contains information about an event
@@ -223,6 +227,8 @@ public class ScoutEventEntity implements Serializable {
     private String homeTimeOnIce;
     private String awayTimeOnIce;
     private String attackingPlayers;
+    @Getter private Map<Integer, Pair<Integer, Integer>> homePlayerPositions = Collections.emptyMap();
+    @Getter private Map<Integer, Pair<Integer, Integer>> awayPlayerPositions = Collections.emptyMap();
     private String unavailablePlayersHome;
     private String unavailablePlayersAway;
     private PlayerStatisticsEntity playerStatistics;
