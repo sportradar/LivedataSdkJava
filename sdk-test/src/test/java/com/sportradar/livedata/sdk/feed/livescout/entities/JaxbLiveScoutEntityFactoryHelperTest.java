@@ -123,6 +123,21 @@ class JaxbLiveScoutEntityFactoryHelperTest {
     }
 
     @Test
+    void buildScoutEventEntity_2378_Test() throws Exception {
+        Event input = LiveScoutProtoEntityFactory.buildEvent(3);
+        input.setType(2378);
+        input.setShotmakeprobability(72);
+        input.setOffensivereboundchance(28);
+        ScoutEventEntity expected = LiveScoutProtoEntityFactory.buildScoutEventEntity(3);
+        expected.setTypeId(2378);
+        expected.setShotMakeProbability(72);
+        expected.setOffensiveReboundChance(28);
+
+        ScoutEventEntity result = JaxbLiveScoutEntityFactoryHelper.buildScoutEventEntity(input);
+        assertThat(result, equalTo(expected));
+    }
+
+    @Test
     void buildPlayerEntity_Null_Input_Test() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             JaxbLiveScoutEntityFactoryHelper.buildPlayerEntity(null);

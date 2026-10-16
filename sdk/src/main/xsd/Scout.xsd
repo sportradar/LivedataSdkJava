@@ -3172,6 +3172,16 @@
                     <xs:restriction base="xs:int"/>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="shotmakeprobability">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="offensivereboundchance">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int"/>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="aussie_rules_score_type">

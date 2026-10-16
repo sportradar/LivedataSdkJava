@@ -272,6 +272,8 @@ public class ScoutEventEntity implements Serializable {
     private String lastStroke;
     private Integer supervisorAction;
     private Integer ftValue;
+    private Integer offensiveReboundChance;
+    private Integer shotMakeProbability;
 
     /**
      * For Serializable
@@ -1787,4 +1789,8 @@ public class ScoutEventEntity implements Serializable {
     public Integer getFreeThrowValue() {
         return ftValue;
     }
+
+    public Integer getOffensiveReboundChance() { return offensiveReboundChance; }
+
+    public Integer getShotMakeProbability() { return shotMakeProbability; }
 }

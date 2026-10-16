@@ -23,6 +23,17 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
 
   private static final Logger logger = LoggerFactory.getLogger(LiveScoutFeedListenerImpl.class);
 
+  private final ExampleEventLoggingSettings eventLoggingSettings;
+
+  /**
+   * Creates a listener with the given scout event logging settings.
+   *
+   * @param eventLoggingSettings settings controlling scout event log output
+   */
+  public LiveScoutFeedListenerImpl(ExampleEventLoggingSettings eventLoggingSettings) {
+    this.eventLoggingSettings = eventLoggingSettings;
+  }
+
   @Override
   public void onOpened(LiveScoutFeed sender) {
     logger.info("Feed opened");
@@ -70,28 +81,33 @@ public class LiveScoutFeedListenerImpl implements LiveScoutFeedListener {
   @Override
   public void onMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
     logger.info("Match update: eventId={}", matchUpdate.getEventId());
+    ScoutEventLogger.logEvents(logger, matchUpdate, eventLoggingSettings);
   }
 
   @Override
   public void onFullMatchUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
     logger.info("Full match update: eventId={}", matchUpdate.getEventId());
+    ScoutEventLogger.logEvents(logger, matchUpdate, eventLoggingSettings);
   }
 
   @Override
   public void onFullPaginatedMatchUpdateReceived(
       LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
     logger.info("Full paginated match update: eventId={}", matchUpdate.getEventId());
+    ScoutEventLogger.logEvents(logger, matchUpdate, eventLoggingSettings);
   }
 
   @Override
   public void onMatchDeltaUpdateReceived(LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
     logger.info("Match delta update: eventId={}", matchUpdate.getEventId());
+    ScoutEventLogger.logEvents(logger, matchUpdate, eventLoggingSettings);
   }
 
   @Override
   public void onMatchDeltaUpdateUpdateReceived(
       LiveScoutFeed sender, MatchUpdateEntity matchUpdate) {
     logger.info("Match delta update update: eventId={}", matchUpdate.getEventId());
+    ScoutEventLogger.logEvents(logger, matchUpdate, eventLoggingSettings);
   }
 
   @Override
