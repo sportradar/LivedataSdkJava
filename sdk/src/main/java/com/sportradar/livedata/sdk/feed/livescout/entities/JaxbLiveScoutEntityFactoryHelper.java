@@ -923,6 +923,8 @@ public class JaxbLiveScoutEntityFactoryHelper {
         result.setLastStroke(event.getLaststroke());
         result.setSupervisorAction(event.getSupervisoraction());
         result.setFtValue(event.getFtvalue());
+        result.setShotMakeProbability(event.getShotmakeprobability());
+        result.setOffensiveReboundChance(event.getOffensivereboundchance());
 
         if (event.getStatistics() != null) {
             try {

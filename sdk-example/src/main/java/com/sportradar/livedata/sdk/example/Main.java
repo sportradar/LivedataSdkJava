@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +38,8 @@ public class Main {
     final LiveScoutFeed liveScoutFeed = sdk.getLiveScout();
     logger.info("SDK version: {}", sdk.getVersion());
 
-    final LiveScoutFeedListener listener = new LiveScoutFeedListenerImpl();
+    final ExampleEventLoggingSettings eventLoggingSettings = new ExampleEventLoggingSettings();
+    final LiveScoutFeedListener listener = new LiveScoutFeedListenerImpl(eventLoggingSettings);
     liveScoutFeed.open(listener);
     printHelp();
 
@@ -43,7 +47,7 @@ public class Main {
     try {
       String line;
       while ((line = reader.readLine()) != null) {
-        if (!handleCommand(line.trim(), liveScoutFeed)) {
+        if (!handleCommand(line.trim(), liveScoutFeed, eventLoggingSettings)) {
           break;
         }
       }
@@ -56,10 +60,15 @@ public class Main {
   }
 
   private static void printHelp() {
-    logger.info("Commands: matchlist | subscribe <id[,id...]> | book <id[,id...]> | help | close");
+    logger.info(
+        "Commands: matchlist | subscribe <id[,id...]> | book <id[,id...]> | "
+            + "events on|off [typeId[,typeId...]] | help | close");
   }
 
-  private static boolean handleCommand(String command, LiveScoutFeed liveScoutFeed) {
+  private static boolean handleCommand(
+      String command,
+      LiveScoutFeed liveScoutFeed,
+      ExampleEventLoggingSettings eventLoggingSettings) {
     if (command.isEmpty()) {
       return true;
     }
@@ -95,9 +104,53 @@ public class Main {
       liveScoutFeed.bookMatches(eventIds);
       return true;
     }
+    if (command.toLowerCase().startsWith("events ")) {
+      handleEventsCommand(command.substring("events ".length()).trim(), eventLoggingSettings);
+      return true;
+    }
 
     logger.warn("Unknown command: {}. Type 'help' for available commands.", command);
     return true;
+  }
+
+  private static void handleEventsCommand(
+      String arguments,
+      ExampleEventLoggingSettings eventLoggingSettings) {
+    final String[] parts = StringUtils.split(arguments);
+    if (parts == null || parts.length == 0) {
+      logger.warn("Usage: events on|off [typeId[,typeId...]]");
+      return;
+    }
+
+    if ("off".equalsIgnoreCase(parts[0])) {
+      eventLoggingSettings.setEnabled(false);
+      logger.info("Scout event logging disabled");
+      return;
+    }
+
+    if (!"on".equalsIgnoreCase(parts[0])) {
+      logger.warn("Usage: events on|off [typeId[,typeId...]]");
+      return;
+    }
+
+    eventLoggingSettings.setEnabled(true);
+    if (parts.length == 1) {
+      eventLoggingSettings.clearTypeFilter();
+      logger.info("Scout event logging enabled for all event types");
+      return;
+    }
+
+    final Set<Integer> typeIds = parseTypeIds(parts[1]);
+    eventLoggingSettings.setTypeFilter(typeIds);
+    logger.info("Scout event logging enabled for type ids: {}", typeIds);
+  }
+
+  private static Set<Integer> parseTypeIds(String rawTypeIds) {
+    return Arrays.stream(StringUtils.split(rawTypeIds, ','))
+        .map(String::trim)
+        .filter(id -> !id.isEmpty())
+        .map(Integer::parseInt)
+        .collect(Collectors.toCollection(HashSet::new));
   }
 
   private static EventIdentifier[] parseEventIds(String rawIds) {

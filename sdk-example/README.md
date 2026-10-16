@@ -51,10 +51,14 @@ Or run `com.sportradar.livedata.sdk.example.Main` from your IDE with the `sdk-ex
 | `matchlist` | Request matches for the next/past 13 hours |
 | `subscribe <id[,id...]>` | Subscribe to one or more match IDs |
 | `book <id[,id...]>` | Book one or more match IDs |
+| `events on\|off [typeId[,typeId...]]` | Enable/disable scout event logging; optionally filter by event type |
 | `help` | Show available commands |
 | `close` | Shut down the SDK and exit |
 
 Typical flow: run the example, type `matchlist`, note match IDs from the log output, then `subscribe <id>`.
+
+Scout events are logged by default as `Scout event: match=... type=... id=...` with the full parsed
+`ScoutEventEntity` payload. Use `events off` to suppress them, or `events on 1743` to filter by type.
 
 ## Using the fatjar-shaded JAR instead of Maven
 
@@ -71,5 +75,7 @@ The legacy [`sdk-jar-example`](../sdk-jar-example/) module is kept for internal 
 | File | Purpose |
 |------|---------|
 | `Main.java` | Opens the feed and reads commands from stdin |
-| `LiveScoutFeedListenerImpl.java` | Logs all feed callbacks (no automatic booking/subscribing) |
+| `LiveScoutFeedListenerImpl.java` | Logs feed callbacks and parsed scout events |
+| `ScoutEventLogger.java` | Generic scout event logging helper |
+| `ExampleEventLoggingSettings.java` | Runtime toggle/filter for scout event logging |
 | `sdk.properties.all` | Full list of SDK configuration keys and defaults |

@@ -517,6 +517,8 @@ public class LiveScoutProtoEntityFactory {
         }
         event.setPointingamenumber(valueBase == 0 ? null : valueBase);
         event.setFtvalue(valueBase % 4);
+        event.setShotmakeprobability(20 + valueBase);
+        event.setOffensivereboundchance(30 + valueBase);
 
         return event;
     }
@@ -630,6 +632,8 @@ public class LiveScoutProtoEntityFactory {
         }
         result.setPointInGameNumber(valueBase == 0 ? null : valueBase);
         result.setFtValue(valueBase % 4);
+        result.setShotMakeProbability(20 + valueBase);
+        result.setOffensiveReboundChance(30 + valueBase);
         return result;
     }
     //------IncomingMessage------Score------>>>>>>--------------------------<<<<<<------IncomingMessage------Event------
