@@ -49,13 +49,18 @@ Or run `com.sportradar.livedata.sdk.example.Main` from your IDE with the `sdk-ex
 | Command | Description |
 |---------|-------------|
 | `matchlist` | Request matches for the next/past 13 hours |
-| `subscribe <id[,id...]>` | Subscribe to one or more match IDs |
+| `subscribe <id[,id...]>` | Live feed subscribe (port 2017); not replay |
+| `replay <id> [delayMs] [startMessage]` | Replay server subscribe with `messagedelay` (use with `sdk.livescout.test=true`) |
 | `book <id[,id...]>` | Book one or more match IDs |
 | `events on\|off [typeId[,typeId...]]` | Enable/disable scout event logging; optionally filter by event type |
 | `help` | Show available commands |
 | `close` | Shut down the SDK and exit |
 
-Typical flow: run the example, type `matchlist`, note match IDs from the log output, then `subscribe <id>`.
+**Live feed:** `matchlist` → `book <id>` → `subscribe <id>`.
+
+**Replay / test server** (`sdk.livescout.test=true`, port 2047): `book <id>` → `replay <id> 100`
+(or omit delay to use 100 ms default). Plain `subscribe` only receives the match shell and keepalives,
+not timed scout events.
 
 Scout events are logged by default as `Scout event: match=... type=... id=...` with the full parsed
 `ScoutEventEntity` payload. Use `events off` to suppress them, or `events on 1743` to filter by type.
