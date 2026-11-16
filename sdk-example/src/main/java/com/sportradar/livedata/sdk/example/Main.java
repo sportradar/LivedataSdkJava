@@ -59,10 +59,15 @@ public class Main {
     }
   }
 
+  private static final int DEFAULT_REPLAY_DELAY_MS = 100;
+
   private static void printHelp() {
     logger.info(
-        "Commands: matchlist | subscribe <id[,id...]> | book <id[,id...]> | "
-            + "events on|off [typeId[,typeId...]] | help | close");
+        "Commands: matchlist | subscribe <id[,id...]> | replay <id> [delayMs] [startMessage] | "
+            + "book <id[,id...]> | events on|off [typeId[,typeId...]] | help | close");
+    logger.info(
+        "On replay/test servers (sdk.livescout.test=true), use 'replay' — not 'subscribe' — "
+            + "to receive timed scout events.");
   }
 
   private static boolean handleCommand(
@@ -92,6 +97,10 @@ public class Main {
       }
       logger.info("Subscribing to {} match(es)", eventIds.length);
       liveScoutFeed.subscribe(eventIds);
+      return true;
+    }
+    if (command.toLowerCase().startsWith("replay ")) {
+      handleReplayCommand(command.substring("replay ".length()).trim(), liveScoutFeed);
       return true;
     }
     if (command.toLowerCase().startsWith("book ")) {
@@ -143,6 +152,45 @@ public class Main {
     final Set<Integer> typeIds = parseTypeIds(parts[1]);
     eventLoggingSettings.setTypeFilter(typeIds);
     logger.info("Scout event logging enabled for type ids: {}", typeIds);
+  }
+
+  private static void handleReplayCommand(String arguments, LiveScoutFeed liveScoutFeed) {
+    final String[] parts = StringUtils.split(arguments);
+    if (parts == null || parts.length == 0) {
+      logger.warn("Usage: replay <matchId> [delayMs] [startMessage]");
+      return;
+    }
+    final long matchId;
+    try {
+      matchId = Long.parseLong(parts[0]);
+    } catch (NumberFormatException e) {
+      logger.warn("Invalid match id: {}", parts[0]);
+      return;
+    }
+    int delayMs = DEFAULT_REPLAY_DELAY_MS;
+    if (parts.length >= 2) {
+      try {
+        delayMs = Integer.parseInt(parts[1]);
+      } catch (NumberFormatException e) {
+        logger.warn("Invalid delayMs: {}", parts[1]);
+        return;
+      }
+    }
+    Integer startMessage = null;
+    if (parts.length >= 3) {
+      try {
+        startMessage = Integer.parseInt(parts[2]);
+      } catch (NumberFormatException e) {
+        logger.warn("Invalid startMessage: {}", parts[2]);
+        return;
+      }
+    }
+    logger.info(
+        "Replay subscribe matchId={} delayMs={} startMessage={}",
+        matchId,
+        delayMs,
+        startMessage);
+    liveScoutFeed.subscribeToTest(EventIdentifier.id(matchId), delayMs, startMessage);
   }
 
   private static Set<Integer> parseTypeIds(String rawTypeIds) {
